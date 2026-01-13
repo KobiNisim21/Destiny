@@ -1,0 +1,1533 @@
+
+> vite_react_shadcn_ts@0.0.0 dev
+> vite --port 0
+
+
+  [32m[1mVITE[22m v5.4.19[39m  [2mready in [0m[1m252[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5173[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.1.237:[1m5173[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://169.254.129.8:[1m5173[22m/[39m
+[2m[32m  ➜[39m[22m[2m  press [22m[1mh + enter[22m[2m to show help[22m
+Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+[2m21:35:35[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css[22m
+[2m21:35:51[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mtailwind.config.ts[22m
+[2m21:35:53[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Navbar.tsx, /src/index.css[22m
+[2m21:46:21[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m21:46:45[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m21:46:48[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m21:48:48[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m21:49:13[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m21:50:47[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m21:50:49[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m21:53:12[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mindex.html[22m
+[2m21:53:14[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Navbar.tsx, /src/index.css[22m
+[2m21:55:21[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Navbar.tsx, /src/index.css[22m
+[2m21:57:39[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Navbar.tsx, /src/index.css[22m
+[2m22:02:52[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Navbar.tsx, /src/index.css[22m
+[2m22:02:54[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Navbar.tsx, /src/index.css[22m
+[2m22:04:49[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Navbar.tsx, /src/index.css[22m
+[2m22:07:43[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Navbar.tsx, /src/index.css[22m
+[2m22:11:19[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m22:11:21[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m22:13:14[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m22:14:50[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m22:15:41[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m22:16:50[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m22:17:32[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m22:19:15[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m22:23:00[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m22:25:46[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m22:27:26[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m22:27:58[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m22:30:28[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m22:30:28[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-real-headphones.png" from "src/components/FeaturedProducts.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/FeaturedProducts.tsx[39m:5:32
+[33m  21 |  import { Button } from "@/components/ui/button";
+  22 |  import { Badge } from "@/components/ui/badge";
+  23 |  import realHeadphonesImage from "@/assets/product-real-headphones.png";
+     |                                   ^
+  24 |  import cartoonHeadphonesImage from "@/assets/product-cartoon-headphones.png";
+  25 |  import butterfliesImage from "@/assets/product-butterflies.png";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 5)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m22:31:08[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-real-headphones.png" from "src/components/FeaturedProducts.tsx". Does the file exist?
+[2m22:31:08[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-real-headphones.png" from "src/components/FeaturedProducts.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/FeaturedProducts.tsx[39m:5:32
+[33m  21 |  import { Button } from "@/components/ui/button";
+  22 |  import { Badge } from "@/components/ui/badge";
+  23 |  import realHeadphonesImage from "@/assets/product-real-headphones.png";
+     |                                   ^
+  24 |  import cartoonHeadphonesImage from "@/assets/product-cartoon-headphones.png";
+  25 |  import butterfliesImage from "@/assets/product-butterflies.png";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 5)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m22:32:12[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-real-headphones.png" from "src/components/FeaturedProducts.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/FeaturedProducts.tsx[39m:5:32
+[33m  21 |  import { Button } from "@/components/ui/button";
+  22 |  import { Badge } from "@/components/ui/badge";
+  23 |  import realHeadphonesImage from "@/assets/product-real-headphones.png";
+     |                                   ^
+  24 |  import cartoonHeadphonesImage from "@/assets/product-cartoon-headphones.png";
+  25 |  import butterfliesImage from "@/assets/product-butterflies.png";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 5)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m22:32:13[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-real-headphones.png" from "src/components/FeaturedProducts.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/FeaturedProducts.tsx[39m:5:32
+[33m  21 |  import { Button } from "@/components/ui/button";
+  22 |  import { Badge } from "@/components/ui/badge";
+  23 |  import realHeadphonesImage from "@/assets/product-real-headphones.png";
+     |                                   ^
+  24 |  import cartoonHeadphonesImage from "@/assets/product-cartoon-headphones.png";
+  25 |  import butterfliesImage from "@/assets/product-butterflies.png";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 5)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m22:32:14[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-real-headphones.png" from "src/components/FeaturedProducts.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/FeaturedProducts.tsx[39m:5:32
+[33m  21 |  import { Button } from "@/components/ui/button";
+  22 |  import { Badge } from "@/components/ui/badge";
+  23 |  import realHeadphonesImage from "@/assets/product-real-headphones.png";
+     |                                   ^
+  24 |  import cartoonHeadphonesImage from "@/assets/product-cartoon-headphones.png";
+  25 |  import butterfliesImage from "@/assets/product-butterflies.png";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 5)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m22:32:29[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-real-headphones.png" from "src/components/FeaturedProducts.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/FeaturedProducts.tsx[39m:5:32
+[33m  21 |  import { Button } from "@/components/ui/button";
+  22 |  import { Badge } from "@/components/ui/badge";
+  23 |  import realHeadphonesImage from "@/assets/product-real-headphones.png";
+     |                                   ^
+  24 |  import cartoonHeadphonesImage from "@/assets/product-cartoon-headphones.png";
+  25 |  import butterfliesImage from "@/assets/product-butterflies.png";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 5)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m22:32:30[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-real-headphones.png" from "src/components/FeaturedProducts.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/FeaturedProducts.tsx[39m:5:32
+[33m  21 |  import { Button } from "@/components/ui/button";
+  22 |  import { Badge } from "@/components/ui/badge";
+  23 |  import realHeadphonesImage from "@/assets/product-real-headphones.png";
+     |                                   ^
+  24 |  import cartoonHeadphonesImage from "@/assets/product-cartoon-headphones.png";
+  25 |  import butterfliesImage from "@/assets/product-butterflies.png";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 5)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m22:32:53[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx[22m
+[2m22:32:53[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-real-headphones.png" from "src/components/FeaturedProducts.tsx". Does the file exist?
+[2m22:32:53[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx[22m
+[2m22:32:53[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-real-headphones.png" from "src/components/FeaturedProducts.tsx". Does the file exist?
+[2m22:32:53[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-real-headphones.png" from "src/components/FeaturedProducts.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/FeaturedProducts.tsx[39m:5:32
+[33m  21 |  import { Button } from "@/components/ui/button";
+  22 |  import { Badge } from "@/components/ui/badge";
+  23 |  import realHeadphonesImage from "@/assets/product-real-headphones.png";
+     |                                   ^
+  24 |  import cartoonHeadphonesImage from "@/assets/product-cartoon-headphones.png";
+  25 |  import butterfliesImage from "@/assets/product-butterflies.png";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 5)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m22:33:03[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx[22m
+[2m22:33:03[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-cartoon-headphones.png" from "src/components/FeaturedProducts.tsx". Does the file exist?
+[2m22:33:04[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-cartoon-headphones.png" from "src/components/FeaturedProducts.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/FeaturedProducts.tsx[39m:6:35
+[33m  22 |  import { Badge } from "@/components/ui/badge";
+  23 |  import realHeadphonesImage from "@/assets/product-real-headphones.png";
+  24 |  import cartoonHeadphonesImage from "@/assets/product-cartoon-headphones.png";
+     |                                      ^
+  25 |  import butterfliesImage from "@/assets/product-butterflies.png";
+  26 |  import crownImage from "@/assets/product-crown.png";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m22:33:10[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx[22m
+[2m22:33:10[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-butterflies.png" from "src/components/FeaturedProducts.tsx". Does the file exist?
+[2m22:33:11[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-butterflies.png" from "src/components/FeaturedProducts.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/FeaturedProducts.tsx[39m:7:29
+[33m  23 |  import realHeadphonesImage from "@/assets/product-real-headphones.png";
+  24 |  import cartoonHeadphonesImage from "@/assets/product-cartoon-headphones.png";
+  25 |  import butterfliesImage from "@/assets/product-butterflies.png";
+     |                                ^
+  26 |  import crownImage from "@/assets/product-crown.png";
+  27 |  const products = [[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 7)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m22:33:17[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx[22m
+[2m22:33:17[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-crown.png" from "src/components/FeaturedProducts.tsx". Does the file exist?
+[2m22:33:17[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-crown.png" from "src/components/FeaturedProducts.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/FeaturedProducts.tsx[39m:8:23
+[33m  24 |  import cartoonHeadphonesImage from "@/assets/product-cartoon-headphones.png";
+  25 |  import butterfliesImage from "@/assets/product-butterflies.png";
+  26 |  import crownImage from "@/assets/product-crown.png";
+     |                          ^
+  27 |  const products = [
+  28 |      {[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m22:33:24[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx[22m
+[2m22:34:49[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m23:05:39[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m23:05:39[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-crown.png" from "src/components/FeaturedProducts.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/FeaturedProducts.tsx[39m:8:23
+[33m  24 |  import cartoonHeadphonesImage from "@/assets/product-cartoon-headphones.png";
+  25 |  import butterfliesImage from "@/assets/product-butterflies.png";
+  26 |  import crownImage from "@/assets/product-crown.png";
+     |                          ^
+  27 |  const products = [
+  28 |      {[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:05:42[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx[22m
+[2m23:05:42[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/ProductPage.tsx, /src/index.css, /src/components/NewArrivals.tsx[22m
+[2m23:05:43[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:05:43[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/NewArrivals.tsx[39m:4:24
+[33m  22 |  import { Button } from "@/components/ui/button";
+  23 |  import { Sparkles } from "lucide-react";
+  24 |  import hoodieImage from "@/assets/product-hoodie.jpg";
+     |                           ^
+  25 |  import tshirtImage from "@/assets/product-tshirt.jpg";
+  26 |  const NewArrivals = ()=>{[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:05:59[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m23:09:38[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css, /src/pages/Index.tsx[22m
+[2m23:09:38[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?
+[2m23:09:38[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?
+[2m23:09:38[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/NewArrivals.tsx[39m:4:24
+[33m  22 |  import { Button } from "@/components/ui/button";
+  23 |  import { Sparkles } from "lucide-react";
+  24 |  import hoodieImage from "@/assets/product-hoodie.jpg";
+     |                           ^
+  25 |  import tshirtImage from "@/assets/product-tshirt.jpg";
+  26 |  const NewArrivals = ()=>{[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:09:38[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:09:45[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m23:09:45[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-butterflies.png" from "src/components/FeaturedProducts.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/FeaturedProducts.tsx[39m:7:29
+[33m  23 |  import realHeadphonesImage from "@/assets/product-real-headphones.png";
+  24 |  import cartoonHeadphonesImage from "@/assets/product-cartoon-headphones.png";
+  25 |  import butterfliesImage from "@/assets/product-butterflies.png";
+     |                                ^
+  26 |  import crownImage from "@/assets/product-crown.png";
+  27 |  const products = [[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 7)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:09:48[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx, /src/App.tsx[22m
+[2m23:09:48[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?
+[2m23:09:48[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/NewArrivals.tsx[39m:4:24
+[33m  22 |  import { Button } from "@/components/ui/button";
+  23 |  import { Sparkles } from "lucide-react";
+  24 |  import hoodieImage from "@/assets/product-hoodie.jpg";
+     |                           ^
+  25 |  import tshirtImage from "@/assets/product-tshirt.jpg";
+  26 |  const NewArrivals = ()=>{[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:09:48[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+[2m23:09:48[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?
+[2m23:09:59[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:09:59[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/NewArrivals.tsx[39m:4:24
+[33m  22 |  import { Button } from "@/components/ui/button";
+  23 |  import { Sparkles } from "lucide-react";
+  24 |  import hoodieImage from "@/assets/product-hoodie.jpg";
+     |                           ^
+  25 |  import tshirtImage from "@/assets/product-tshirt.jpg";
+  26 |  const NewArrivals = ()=>{[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:10:00[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:10:00[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/NewArrivals.tsx[39m:4:24
+[33m  22 |  import { Button } from "@/components/ui/button";
+  23 |  import { Sparkles } from "lucide-react";
+  24 |  import hoodieImage from "@/assets/product-hoodie.jpg";
+     |                           ^
+  25 |  import tshirtImage from "@/assets/product-tshirt.jpg";
+  26 |  const NewArrivals = ()=>{[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:10:01[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:10:17[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:10:17[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/NewArrivals.tsx[39m:4:24
+[33m  22 |  import { Button } from "@/components/ui/button";
+  23 |  import { Sparkles } from "lucide-react";
+  24 |  import hoodieImage from "@/assets/product-hoodie.jpg";
+     |                           ^
+  25 |  import tshirtImage from "@/assets/product-tshirt.jpg";
+  26 |  const NewArrivals = ()=>{[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:10:19[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:10:19[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/NewArrivals.tsx[39m:4:24
+[33m  22 |  import { Button } from "@/components/ui/button";
+  23 |  import { Sparkles } from "lucide-react";
+  24 |  import hoodieImage from "@/assets/product-hoodie.jpg";
+     |                           ^
+  25 |  import tshirtImage from "@/assets/product-tshirt.jpg";
+  26 |  const NewArrivals = ()=>{[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:10:49[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx, /src/App.tsx[22m
+[2m23:10:49[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?
+[2m23:10:49[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?
+[2m23:10:49[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:10:57[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx, /src/App.tsx[22m
+[2m23:10:57[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?
+[2m23:10:57[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?
+[2m23:10:58[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:10:58[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/NewArrivals.tsx[39m:4:24
+[33m  22 |  import { Button } from "@/components/ui/button";
+  23 |  import { Sparkles } from "lucide-react";
+  24 |  import hoodieImage from "@/assets/product-hoodie.jpg";
+     |                           ^
+  25 |  import tshirtImage from "@/assets/product-tshirt.jpg";
+  26 |  const NewArrivals = ()=>{[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:10:59[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m23:10:59[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?
+[2m23:11:00[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-butterflies.png" from "src/components/FeaturedProducts.tsx". Does the file exist?
+[2m23:11:00[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?
+[2m23:11:00[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:11:02[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx, /src/App.tsx[22m
+[2m23:11:03[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?
+[2m23:11:03[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?
+[2m23:11:03[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:11:03[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/NewArrivals.tsx[39m:4:24
+[33m  22 |  import { Button } from "@/components/ui/button";
+  23 |  import { Sparkles } from "lucide-react";
+  24 |  import hoodieImage from "@/assets/product-hoodie.jpg";
+     |                           ^
+  25 |  import tshirtImage from "@/assets/product-tshirt.jpg";
+  26 |  const NewArrivals = ()=>{[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:11:11[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:11:11[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/NewArrivals.tsx[39m:4:24
+[33m  22 |  import { Button } from "@/components/ui/button";
+  23 |  import { Sparkles } from "lucide-react";
+  24 |  import hoodieImage from "@/assets/product-hoodie.jpg";
+     |                           ^
+  25 |  import tshirtImage from "@/assets/product-tshirt.jpg";
+  26 |  const NewArrivals = ()=>{[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:11:50[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:11:50[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/NewArrivals.tsx[39m:4:24
+[33m  22 |  import { Button } from "@/components/ui/button";
+  23 |  import { Sparkles } from "lucide-react";
+  24 |  import hoodieImage from "@/assets/product-hoodie.jpg";
+     |                           ^
+  25 |  import tshirtImage from "@/assets/product-tshirt.jpg";
+  26 |  const NewArrivals = ()=>{[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:11:51[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:11:51[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/NewArrivals.tsx[39m:4:24
+[33m  22 |  import { Button } from "@/components/ui/button";
+  23 |  import { Sparkles } from "lucide-react";
+  24 |  import hoodieImage from "@/assets/product-hoodie.jpg";
+     |                           ^
+  25 |  import tshirtImage from "@/assets/product-tshirt.jpg";
+  26 |  const NewArrivals = ()=>{[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:12:38[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:12:38[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/NewArrivals.tsx[39m:4:24
+[33m  22 |  import { Button } from "@/components/ui/button";
+  23 |  import { Sparkles } from "lucide-react";
+  24 |  import hoodieImage from "@/assets/product-hoodie.jpg";
+     |                           ^
+  25 |  import tshirtImage from "@/assets/product-tshirt.jpg";
+  26 |  const NewArrivals = ()=>{[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:12:39[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:12:39[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/components/NewArrivals.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/NewArrivals.tsx[39m:4:24
+[33m  22 |  import { Button } from "@/components/ui/button";
+  23 |  import { Sparkles } from "lucide-react";
+  24 |  import hoodieImage from "@/assets/product-hoodie.jpg";
+     |                           ^
+  25 |  import tshirtImage from "@/assets/product-tshirt.jpg";
+  26 |  const NewArrivals = ()=>{[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:13:13[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx[22m
+[2m23:13:13[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?
+[2m23:13:14[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:13:36[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:13:37[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:13:38[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-hoodie.jpg" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:8:26
+[33m  27 |  import Navbar from "@/components/Navbar";
+  28 |  import Footer from "@/components/Footer";
+  29 |  import productHoodie from "@/assets/product-hoodie.jpg";
+     |                             ^
+  30 |  import productTshirt from "@/assets/product-tshirt.jpg";
+  31 |  import productCap from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:14:39[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m23:14:39[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/components/ui/link" from "src/pages/ProductPage.tsx". Does the file exist?
+[2m23:14:39[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/components/ui/link" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:6:17
+[33m  25 |  import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+  26 |  import { ShoppingBag, Plus, Minus, Star, Truck, Shield, Award, ChevronLeft, ChevronRight } from "lucide-react";
+  27 |  import Link from '@/components/ui/link'; // Not strictly needed but keeping structure 
+     |                    ^
+  28 |  // Actually I need to keep imports as they were, just changing paths
+  29 |  import Navbar from "@/components/Navbar";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:14:43[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/components/ui/link" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:6:17
+[33m  25 |  import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+  26 |  import { ShoppingBag, Plus, Minus, Star, Truck, Shield, Award, ChevronLeft, ChevronRight } from "lucide-react";
+  27 |  import Link from '@/components/ui/link'; // Not strictly needed but keeping structure 
+     |                    ^
+  28 |  // Actually I need to keep imports as they were, just changing paths
+  29 |  import Navbar from "@/components/Navbar";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:14:48[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/components/ui/link" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:6:17
+[33m  25 |  import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+  26 |  import { ShoppingBag, Plus, Minus, Star, Truck, Shield, Award, ChevronLeft, ChevronRight } from "lucide-react";
+  27 |  import Link from '@/components/ui/link'; // Not strictly needed but keeping structure 
+     |                    ^
+  28 |  // Actually I need to keep imports as they were, just changing paths
+  29 |  import Navbar from "@/components/Navbar";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:15:58[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m23:16:23[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css, /src/components/NewArrivals.tsx, /src/pages/ProductPage.tsx[22m
+[2m23:16:23[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-butterflies.png" from "src/components/FeaturedProducts.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/FeaturedProducts.tsx[39m:7:29
+[33m  23 |  import realHeadphonesImage from "@/assets/product-real-headphones.png";
+  24 |  import cartoonHeadphonesImage from "@/assets/product-cartoon-headphones.png";
+  25 |  import butterfliesImage from "@/assets/product-butterflies.png";
+     |                                ^
+  26 |  import crownImage from "@/assets/product-crown.png";
+  27 |  const products = [[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 7)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:16:23[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-butterflies.png" from "src/components/NewArrivals.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/NewArrivals.tsx[39m:5:24
+[33m  23 |  import { Sparkles } from "lucide-react";
+  24 |  import hoodieImage from "@/assets/product-crown.png";
+  25 |  import tshirtImage from "@/assets/product-butterflies.png";
+     |                           ^
+  26 |  const NewArrivals = ()=>{
+  27 |      return /*#__PURE__*/ _jsxDEV("section", {[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 7)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:16:23[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-butterflies.png" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:10:26
+[33m  29 |  import Footer from "@/components/Footer";
+  30 |  import productHoodie from "@/assets/product-crown.png";
+  31 |  import productTshirt from "@/assets/product-butterflies.png";
+     |                             ^
+  32 |  import productCap from "@/assets/product-real-headphones.png";
+  33 |  import productTotebag from "@/assets/product-cartoon-headphones.png";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 11)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:16:25[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx, /src/App.tsx[22m
+[2m23:19:29[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css, /src/pages/ProductPage.tsx[22m
+[2m23:19:29[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-cartoon-headphones.png" from "src/components/FeaturedProducts.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/FeaturedProducts.tsx[39m:6:35
+[33m  22 |  import { Badge } from "@/components/ui/badge";
+  23 |  import realHeadphonesImage from "@/assets/product-real-headphones.png";
+  24 |  import cartoonHeadphonesImage from "@/assets/product-cartoon-headphones.png";
+     |                                      ^
+  25 |  import butterfliesImage from "@/assets/product-butterflies.png";
+  26 |  import crownImage from "@/assets/product-crown.png";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 6)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:19:29[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/product-cartoon-headphones.png" from "src/pages/ProductPage.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/pages/ProductPage.tsx[39m:12:27
+[33m  31 |  import productTshirt from "@/assets/product-butterflies.png";
+  32 |  import productCap from "@/assets/product-real-headphones.png";
+  33 |  import productTotebag from "@/assets/product-cartoon-headphones.png";
+     |                              ^
+  34 |  const products = {
+  35 |      "hoodie": {[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 13)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m23:19:32[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx, /src/App.tsx[22m
+[2m23:21:27[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m23:25:14[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m23:31:41[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m23:35:32[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m23:35:35[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m23:37:29[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m23:38:54[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m23:40:40[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m23:42:43[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m18:51:10[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m19:02:36[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m19:05:13[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m19:08:21[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m19:11:43[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m19:11:44[22m [36m[1m[vite][22m[39m [32m✨ new dependencies optimized: [33m@radix-ui/react-dialog[32m[39m
+[2m19:11:44[22m [36m[1m[vite][22m[39m [32m✨ optimized dependencies changed. reloading[39m
+[2m19:15:32[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/ProductQuickView.tsx, /src/index.css[22m
+[2m19:15:32[22m [31m[1m[vite][22m[39m [31mInternal server error:   x Expected '</', got 'jsx text (
+  |             )'
+     ,-[C:/Users/Kobi/ddestiny-main/src/components/ProductQuickView.tsx:116:1]
+ 113 |                                 </Accordion>
+ 114 |                             )}
+ 115 |                         </div>
+ 116 | ,->             </DialogContent>
+ 117 | `->             <div className="w-full h-full lg:absolute inset-0">
+ 118 |                     <img src={product.images[selectedImage]} alt={product.name} className="w-full h-full object-cover" />
+ 119 |                 </div>
+ 119 |     
+     `----
+
+
+Caused by:
+    Syntax Error[39m
+  Plugin: [35mvite:react-swc[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/ProductQuickView.tsx[39m
+  
+[2m19:15:34[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/ProductQuickView.tsx[22m
+[2m19:15:34[22m [31m[1m[vite][22m[39m [31mInternal server error:   x Expected '</', got 'jsx text (
+  |             )'
+     ,-[C:/Users/Kobi/ddestiny-main/src/components/ProductQuickView.tsx:116:1]
+ 113 |                                 </Accordion>
+ 114 |                             )}
+ 115 |                         </div>
+ 116 | ,->             </DialogContent>
+ 117 | `->             <div className="w-full h-full lg:absolute inset-0">
+ 118 |                     <img src={product.images[selectedImage]} alt={product.name} className="w-full h-full object-cover" />
+ 119 |                 </div>
+ 119 |     
+     `----
+
+
+Caused by:
+    Syntax Error[39m
+  Plugin: [35mvite:react-swc[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/ProductQuickView.tsx[39m
+  
+[2m19:16:47[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/ProductQuickView.tsx, /src/index.css[22m
+[2m19:17:58[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/ProductQuickView.tsx, /src/index.css[22m
+[2m19:17:58[22m [31m[1m[vite][22m[39m [31mInternal server error:   x Expected '</', got 'jsx text (
+  |             )'
+     ,-[C:/Users/Kobi/ddestiny-main/src/components/ProductQuickView.tsx:116:1]
+ 113 |                                 </Accordion>
+ 114 |                             )}
+ 115 |                         </div>
+ 116 | ,->             </DialogContent>
+ 117 | `->             <div className="w-full h-full lg:absolute inset-0">
+ 118 |                     <img src={product.images[selectedImage]} alt={product.name} className="w-full h-full object-cover" />
+ 119 |                 </div>
+ 119 |     
+     `----
+
+
+Caused by:
+    Syntax Error[39m
+  Plugin: [35mvite:react-swc[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/ProductQuickView.tsx[39m
+  
+[2m19:18:04[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/ProductQuickView.tsx[22m
+[2m19:18:04[22m [31m[1m[vite][22m[39m [31mInternal server error:   x Expected '</', got 'jsx text (
+  |             )'
+     ,-[C:/Users/Kobi/ddestiny-main/src/components/ProductQuickView.tsx:116:1]
+ 113 |                                 </Accordion>
+ 114 |                             )}
+ 115 |                         </div>
+ 116 | ,->             </DialogContent>
+ 117 | `->             <div className="w-full h-full lg:absolute inset-0">
+ 118 |                     <img src={product.images[selectedImage]} alt={product.name} className="w-full h-full object-cover" />
+ 119 |                 </div>
+ 119 |     
+     `----
+
+
+Caused by:
+    Syntax Error[39m
+  Plugin: [35mvite:react-swc[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/ProductQuickView.tsx[39m
+  
+[2m19:18:04[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/ProductQuickView.tsx, /src/index.css[22m
+[2m19:18:04[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/data/products" from "src/components/ProductQuickView.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/ProductQuickView.tsx[39m:6:29
+[33m  24 |  import { ShoppingBag, Plus, Minus, Star, Truck, Shield, Award, ChevronLeft, ChevronRight } from "lucide-react";
+  25 |  import { useState } from "react";
+  26 |  import { productsData } from "@/data/products";
+     |                                ^
+  27 |  const ProductQuickView = ({ productSlug, isOpen, onClose })=>{
+  28 |      _s();[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 7)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m19:18:04[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FeaturedProducts.tsx, /src/index.css[22m
+[2m19:18:04[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/data/products.ts[22m
+[2m19:18:04[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/ProductQuickView.tsx[22m
+[2m19:23:50[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:25:08[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:26:26[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:27:48[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:35:32[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:37:34[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:38:53[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:40:32[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:42:02[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:43:18[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:44:17[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:45:21[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:46:27[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:47:23[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:49:03[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:50:22[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:51:26[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:52:50[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:57:36[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m19:57:36[22m [31m[1m[vite][22m[39m [31mInternal server error:   x Expected ';', '}' or <eof>
+     ,-[C:/Users/Kobi/ddestiny-main/src/components/Collections.tsx:1:1]
+   1 | ,-> ```
+   2 | |   import { ShoppingBag } from "lucide-react";
+   3 | |   import { Link } from "react-router-dom";
+   4 | |   import { Button } from "@/components/ui/button";
+   5 | |   import { Badge } from "@/components/ui/badge";
+   6 | |   
+   7 | |   // New Trinkets Images
+   8 | |   import trinket1Image from "@/assets/A5.png";
+   9 | |   import trinket2Image from "@/assets/A6.png";
+  10 | |   import trinket3Image from "@/assets/A7.png";
+  11 | |   import trinket4Image from "@/assets/A8.png";
+  12 | |   
+  13 | |   // Placeholder Hover Images (reusing same logic or assets if available)
+  14 | |   import capHoverImage from "@/assets/product-cap.jpg";
+  15 | |   import toteHoverImage from "@/assets/product-totebag.jpg";
+  16 | |   import tshirtHoverImage from "@/assets/A2.png";
+  17 | |   import hoodieHoverImage from "@/assets/A3.png";
+  18 | |   
+  19 | |   const trinkets = [
+  20 | |     {
+  21 | |       id: 101,
+  22 | |       slug: "trinket-1",
+  23 | |       name: "Cat Ears Attachment",
+  24 | |       price: 49.99,
+  25 | |       image: trinket1Image,
+  26 | |       hoverImage: capHoverImage,
+  27 | |       description: "תוספת אוזני חתול לאוזניות, מתאים לכל סוגי האוזניות."
+  28 | |     },
+  29 | |     {
+  30 | |       id: 102,
+  31 | |       slug: "trinket-2",
+  32 | |       name: "Neon Glow Kit",
+  33 | |       price: 79.99,
+  34 | |       image: trinket2Image,
+  35 | |       hoverImage: toteHoverImage,
+  36 | |       badge: "מומלץ",
+  37 | |       description: "ערכת תאורה ניאון לאוזניות לשדרוג הסטייל הגיימינג שלך."
+  38 | |     },
+  39 | |     {
+  40 | |       id: 103,
+  41 | |       slug: "trinket-3",
+  42 | |       name: "Custom Plates",
+  43 | |       price: 39.99,
+  44 | |       image: trinket3Image,
+  45 | |       hoverImage: tshirtHoverImage,
+  46 | |       badge: "חדש",
+  47 | |       description: "פלטות צד מתחלפות בעיצובים מרהיבים לאוזניות."
+  48 | |     },
+  49 | |     {
+  50 | |       id: 104,
+  51 | |       slug: "trinket-4",
+  52 | |       name: "Cable Charm",
+  53 | |       price: 19.99,
+  54 | |       image: trinket4Image,
+  55 | |       hoverImage: hoodieHoverImage,
+  56 | |       description: "תכשיט לכבל האוזניות/מטען להוספת טאץ' אישי."
+  57 | |     }
+  58 | |   ];
+  59 | |   
+  60 | |   const Collections = () => {
+  61 | |     return (
+  62 | |       <section className="relative" dir="rtl">
+  63 | |         {/* Green Separator Glow (Upward Only) - Slightly Stronger (1px Spread) */}
+  64 | |         <div className="absolute top-0 w-full h-[1px] bg-transparent shadow-[0_-8px_20px_1px_#7DE400] z-20" />
+  65 | |   
+  66 | |         <div className="py-16 md:py-24 bg-[#F9F5FF]"> {/* Light Purple Background */}
+  67 | |           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+  68 | |   
+  69 | |             {/* Header */}
+  70 | |             <div className="mb-12 animate-fade-in text-center">
+  71 | |               <h2 style={{
+  72 | |                 color: '#22222A',
+  73 | |                 fontFamily: '"Noto Sans Hebrew", sans-serif',
+  74 | |                 fontSize: '48px',
+  75 | |                 fontStyle: 'normal',
+  76 | |                 fontWeight: 700,
+  77 | |                 lineHeight: 'normal',
+  78 | |                 marginBottom: '3px'
+  79 | |               }}>
+  80 | |                 טרינקטס
+  81 | |               </h2>
+  82 | |               <p className="max-w-2xl mx-auto" style={{
+  83 | |                 color: '#797986',
+  84 | |                 fontFamily: '"Noto Sans Hebrew", sans-serif',
+  85 | |                 fontSize: '16px',
+  86 | |                 fontStyle: 'normal',
+  87 | |                 fontWeight: 400,
+  88 | |                 lineHeight: 'normal',
+  89 | |                 textAlign: 'center'
+  90 | |               }}>
+  91 | |                 הציגו את האישיות שלכם וצרו אמירה נועזת עם עיצוב אוזני החתלתול האייקוני ביותר בגיימינג
+  92 | |               </p>
+  93 | |             </div>
+  94 | |   
+  95 | |             {/* Products Grid */}
+  96 | |             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 justify-items-center">
+  97 | |               {trinkets.map((product, index) => (
+  98 | |                 <div key={product.id} className="group animate-slide-up" style={{
+  99 | |->                 animationDelay: `${ index * 0.1 } s`,
+     : `---                                 ^
+     : `---- This is the expression part of an expression statement
+ 100 |                     width: '310px',
+ 101 |                     height: '450px'
+ 102 |                   }}>
+     `----
+
+
+Caused by:
+    Syntax Error[39m
+  Plugin: [35mvite:react-swc[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/Collections.tsx[39m
+  
+[2m19:58:59[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m20:03:33[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m20:03:33[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m20:03:33[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m20:03:33[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/A6.png" from "src/components/Collections.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/Collections.tsx[39m:8:26
+[33m  25 |  // New Trinkets Images
+  26 |  import trinket1Image from "@/assets/A5.png";
+  27 |  import trinket2Image from "@/assets/A6.png";
+     |                             ^
+  28 |  import trinket3Image from "@/assets/A7.png";
+  29 |  import trinket4Image from "@/assets/A8.png";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+[2m20:03:33[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/A6.png" from "src/components/Collections.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/Collections.tsx[39m:8:26
+[33m  25 |  // New Trinkets Images
+  26 |  import trinket1Image from "@/assets/A5.png";
+  27 |  import trinket2Image from "@/assets/A6.png";
+     |                             ^
+  28 |  import trinket3Image from "@/assets/A7.png";
+  29 |  import trinket4Image from "@/assets/A8.png";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+[2m20:04:42[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx[22m
+[2m20:04:42[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/A6.png" from "src/components/Collections.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/Collections.tsx[39m:8:26
+[33m  25 |  // New Trinkets Images
+  26 |  import trinket1Image from "@/assets/A5.png";
+  27 |  import trinket2Image from "@/assets/A6.png";
+     |                             ^
+  28 |  import trinket3Image from "@/assets/A7.png";
+  29 |  import trinket4Image from "@/assets/A8.png";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 8)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+[2m20:04:42[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/A6.png" from "src/components/Collections.tsx". Does the file exist?
+[2m20:04:49[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx[22m
+[2m20:04:49[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/A7.png" from "src/components/Collections.tsx". Does the file exist?
+[2m20:04:49[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/A7.png" from "src/components/Collections.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/Collections.tsx[39m:9:26
+[33m  26 |  import trinket1Image from "@/assets/A5.png";
+  27 |  import trinket2Image from "@/assets/A6.png";
+  28 |  import trinket3Image from "@/assets/A7.png";
+     |                             ^
+  29 |  import trinket4Image from "@/assets/A8.png";
+  30 |  // Placeholder Hover Images[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 9)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m20:04:56[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx[22m
+[2m20:04:56[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/A8.png" from "src/components/Collections.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/Collections.tsx[39m:10:26
+[33m  27 |  import trinket2Image from "@/assets/A6.png";
+  28 |  import trinket3Image from "@/assets/A7.png";
+  29 |  import trinket4Image from "@/assets/A8.png";
+     |                             ^
+  30 |  // Placeholder Hover Images
+  31 |  import capHoverImage from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+[2m20:04:56[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/A8.png" from "src/components/Collections.tsx". Does the file exist?
+[2m20:06:26[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx[22m
+[2m20:06:27[22m [31m[1m[vite][22m[39m Pre-transform error: Failed to resolve import "@/assets/A8.png" from "src/components/Collections.tsx". Does the file exist?
+[2m20:06:27[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to resolve import "@/assets/A8.png" from "src/components/Collections.tsx". Does the file exist?[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36mC:/Users/Kobi/ddestiny-main/src/components/Collections.tsx[39m:10:26
+[33m  27 |  import trinket2Image from "@/assets/A6.png";
+  28 |  import trinket3Image from "@/assets/A7.png";
+  29 |  import trinket4Image from "@/assets/A8.png";
+     |                             ^
+  30 |  // Placeholder Hover Images
+  31 |  import capHoverImage from "@/assets/product-cap.jpg";[39m
+      at TransformPluginContext._formatError (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41)
+      at TransformPluginContext.error (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16)
+      at normalizeUrl (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23)
+      at async file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+      at async Promise.all (index 10)
+      at async TransformPluginContext.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7)
+      at async PluginContainer.transform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18)
+      at async loadAndTransform (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27)
+      at async viteTransformMiddleware (file:///C:/Users/Kobi/ddestiny-main/node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:62105:24)
+[2m20:06:29[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Index.tsx[22m
+[2m20:17:09[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Index.tsx, /src/index.css[22m
+[2m20:19:15[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/PinsAndStickers.tsx, /src/index.css[22m
+[2m20:22:45[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m20:29:14[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m20:33:04[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m20:34:38[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m20:37:18[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m20:38:19[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m20:39:46[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m20:42:29[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m20:44:20[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m20:44:22[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/PinsAndStickers.tsx, /src/index.css[22m
+[2m20:45:44[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m20:45:46[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/PinsAndStickers.tsx, /src/index.css[22m
+[2m20:48:32[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Collections.tsx, /src/index.css[22m
+[2m20:48:45[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/PinsAndStickers.tsx, /src/index.css[22m
+[2m20:52:07[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m20:54:44[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m20:58:42[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m21:01:58[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m21:02:52[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m21:05:36[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m21:38:32[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m21:41:58[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m21:44:22[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m21:46:46[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m21:49:23[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m21:50:31[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m21:52:19[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m21:53:06[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m21:53:55[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m21:59:02[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AboutCreator.tsx, /src/index.css[22m
+[2m22:01:45[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AboutCreator.tsx, /src/index.css[22m
+[2m22:04:35[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AboutCreator.tsx, /src/index.css[22m
+[2m22:09:40[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m22:15:54[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Index.tsx, /src/index.css[22m
+[2m22:15:56[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Index.tsx, /src/index.css[22m
+[2m22:19:08[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Newsletter.tsx, /src/index.css[22m
+[2m22:20:48[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css[22m
+[2m22:20:51[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AboutCreator.tsx, /src/index.css[22m
+[2m22:20:53[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/NewArrivals.tsx, /src/index.css[22m
+[2m22:35:44[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Footer.tsx, /src/index.css[22m
+[2m22:39:33[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Footer.tsx, /src/index.css[22m
+[2m22:41:25[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Footer.tsx, /src/index.css[22m
+[2m22:44:10[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Footer.tsx, /src/index.css[22m
+[2m22:45:27[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Footer.tsx, /src/index.css[22m
+[2m22:47:55[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Footer.tsx, /src/index.css[22m
+[2m23:00:00[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Footer.tsx, /src/index.css[22m
+[2m23:01:13[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Footer.tsx, /src/index.css[22m
+[2m23:02:35[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Influencers.tsx, /src/index.css[22m
+[2m23:02:37[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Newsletter.tsx, /src/index.css[22m
+[2m18:44:05[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m18:45:55[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m18:48:15[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m18:49:48[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m18:53:48[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m18:53:51[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m19:01:20[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/HeroVideo.tsx, /src/index.css[22m
+[2m19:05:10[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Influencers.tsx, /src/index.css[22m
+[2m19:05:11[22m [36m[1m[vite][22m[39m [32m✨ new dependencies optimized: [33membla-carousel-react[32m[39m
+[2m19:05:11[22m [36m[1m[vite][22m[39m [32m✨ optimized dependencies changed. reloading[39m
+[2m19:07:10[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Influencers.tsx, /src/index.css[22m
+[2m19:12:34[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Footer.tsx, /src/index.css[22m
+[2m19:15:16[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Navbar.tsx, /src/index.css[22m
+[2m19:20:37[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Index.tsx, /src/index.css[22m
+[2m19:24:21[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Navbar.tsx, /src/index.css[22m

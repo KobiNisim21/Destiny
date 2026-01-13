@@ -1,0 +1,233 @@
+import { ShoppingBag } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+
+// Images for Pins and Stickers
+// Reusing existing assets to match the screenshot provided
+import whiteHeadphonesImage from "@/assets/product-real-headphones.png";
+import pinkHeadphonesImage from "@/assets/product-cartoon-headphones.png";
+import catEarsImage from "@/assets/A5.png"; // Reusing A5 (Cat Ears)
+import stickerImage from "@/assets/product-crown.png"; // Placeholder for Sticker (Purple item/Crown)
+
+// Placeholder Hover Images
+import capHoverImage from "@/assets/product-cap.jpg";
+import toteHoverImage from "@/assets/product-totebag.jpg";
+import tshirtHoverImage from "@/assets/A2.png";
+import hoodieHoverImage from "@/assets/A3.png";
+
+const pinsAndStickers = [
+    {
+        id: 201,
+        slug: "pin-1",
+        name: "Classic Cap", // Placeholder text matching screenshot
+        price: 99.00,
+        image: whiteHeadphonesImage,
+        hoverImage: capHoverImage,
+        description: "כובע ממותק מיוחד במינו עם איכות מוצר מהגובהה ביותר בשוק."
+    },
+    {
+        id: 202,
+        slug: "pin-2",
+        name: "Canvas Tote Bag", // Placeholder text matching screenshot
+        price: 99.00,
+        image: pinkHeadphonesImage,
+        hoverImage: toteHoverImage,
+        badge: "מהדורה מוגבלת",
+        description: "גרסה מוגבלת בלעדית עם פרטים הולוגרפיים"
+    },
+    {
+        id: 203,
+        slug: "pin-3",
+        name: "Essential Tee", // Placeholder text matching screenshot
+        price: 80.00,
+        image: catEarsImage,
+        hoverImage: tshirtHoverImage,
+        badge: "חדש!",
+        description: "חולצת טי נוחה גדולה במיוחד עם וייבים מוטיבציוניים"
+    },
+    {
+        id: 204,
+        slug: "pin-4",
+        name: "Signature Hoodie", // Placeholder text matching screenshot
+        price: 99.00,
+        image: stickerImage,
+        hoverImage: hoodieHoverImage,
+        badge: "מוצר נמכר",
+        description: "קפוצ'ון פרימיום רך במיוחד עם לוגו דסטיני בלעדי"
+    }
+];
+
+const PinsAndStickers = () => {
+    return (
+        <section
+            className="relative"
+            dir="rtl"
+            style={{
+                backgroundColor: '#FFFFFF',
+                boxShadow: '0px 0px 15.2px 0px #8AFF00',
+                zIndex: 10
+            }}
+        >
+            <div className="py-16 md:py-24">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+
+                    {/* Header */}
+                    <div className="mb-12 animate-fade-in text-center">
+                        <h2 style={{
+                            color: '#22222A',
+                            fontFamily: '"Noto Sans Hebrew", sans-serif',
+                            fontSize: '48px',
+                            fontStyle: 'normal',
+                            fontWeight: 700,
+                            lineHeight: 'normal',
+                            marginBottom: '3px'
+                        }}>
+                            סיכות ומדבקות
+                        </h2>
+                        <p className="max-w-2xl mx-auto" style={{
+                            color: '#797986',
+                            fontFamily: '"Noto Sans Hebrew", sans-serif',
+                            fontSize: '16px',
+                            fontStyle: 'normal',
+                            fontWeight: 400,
+                            lineHeight: 'normal',
+                            textAlign: 'center'
+                        }}>
+                            הציגו את האישיות שלכם וצרו אמירה נועזת עם עיצוב אוזני החתלתול האייקוני ביותר בגיימינג
+                        </p>
+                    </div>
+
+                    {/* Products Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 justify-items-center">
+                        {pinsAndStickers.map((product, index) => (
+                            <div key={product.id} className="group animate-slide-up" style={{
+                                animationDelay: `${index * 0.1}s`,
+                                width: '310px',
+                                height: '450px'
+                            }}>
+                                <div
+                                    className="overflow-hidden h-full flex flex-col transition-all duration-300 relative group-hover:-translate-y-1 bg-[#202027] group-hover:bg-white shadow-[0_8px_18.7px_-7px_#9F19FF] group-hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2),0_10px_20px_-5px_rgba(125,228,0,0.4)]"
+                                    style={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        gap: '2px',
+                                        borderRadius: '24px',
+                                        height: '450px',
+                                        width: '310px'
+                                    }}>
+
+                                    {/* Image Container - White BG */}
+                                    <div className="relative overflow-hidden w-full group-hover:bg-[#D5D5F5]/30 transition-colors duration-300"
+                                        style={{
+                                            height: '265px',
+                                            flexShrink: 0,
+                                            padding: '12px 18px',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            alignItems: 'flex-start',
+                                            gap: '10px',
+                                            borderRadius: '24px 24px 0 0',
+                                            backgroundColor: '#FFFFFF',
+                                        }}>
+
+                                        {/* Default Image */}
+                                        <img src={product.image} alt={product.name} className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0 z-0" />
+                                        {/* Hover Image */}
+                                        <img src={product.hoverImage} alt={product.name} className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100 z-0" />
+
+                                        {/* Cart Icon (Hover) */}
+                                        <div className="absolute top-4 left-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                                            <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg" style={{ backgroundColor: '#7DE400' }}>
+                                                <ShoppingBag className="w-5 h-5 text-white" />
+                                            </div>
+                                        </div>
+
+                                        {product.badge && <Badge className="relative z-10 font-bold px-3 py-1"
+                                            style={{
+                                                backgroundColor: '#9F19FF',
+                                                color: 'white',
+                                                borderRadius: '20px',
+                                                fontSize: '12px',
+                                                boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                                            }}>
+                                            {product.badge}
+                                        </Badge>}
+                                    </div>
+
+                                    {/* Content Container */}
+                                    <div className="w-full px-5 pb-[70px] flex flex-col flex-1 relative duration-300">
+
+                                        {/* Dark BG base to allow hover light */}
+                                        <div className="absolute inset-0 bg-[#202027] group-hover:bg-white transition-colors duration-300 -z-10" />
+
+                                        {/* Title */}
+                                        <h3 className="mb-1 text-[#F2F2F2] transition-colors duration-300 group-hover:text-[#7DE400]" style={{
+                                            textAlign: 'right',
+                                            fontFamily: '"Noto Sans Hebrew", sans-serif',
+                                            fontSize: '20px',
+                                            fontStyle: 'normal',
+                                            fontWeight: 700,
+                                            lineHeight: 'normal',
+                                            alignSelf: 'stretch',
+                                            marginTop: '4px'
+                                        }}>
+                                            {product.name}
+                                        </h3>
+
+                                        {/* Description */}
+                                        <p className="flex-1 text-[#F2F2F2] transition-colors duration-300 group-hover:text-[#22222A]" style={{
+                                            textAlign: 'right',
+                                            fontFamily: '"Noto Sans Hebrew", sans-serif',
+                                            fontSize: '14px',
+                                            fontStyle: 'normal',
+                                            fontWeight: 200,
+                                            lineHeight: 'normal',
+                                            alignSelf: 'stretch'
+                                        }}>
+                                            {product.description}
+                                        </p>
+
+                                        {/* Footer: Price & Button */}
+                                        <div className="flex items-center justify-between w-full absolute bottom-5 left-0 px-5">
+                                            <span className="text-[#FFF] transition-colors duration-300 group-hover:text-[#22222A]" style={{
+                                                fontFamily: '"Noto Sans Hebrew"',
+                                                fontSize: '24px',
+                                                fontWeight: 700,
+                                            }}>
+                                                ₪{product.price.toFixed(2)}
+                                            </span>
+
+                                            <Link to={`/product/${product.slug}`}>
+                                                <Button
+                                                    size="sm"
+                                                    className="w-[107px] h-[36px] px-[18px] py-[4px] flex flex-col justify-center items-center gap-[10px] rounded-[14px] border border-[#9F19FF] bg-[#3C3C43] text-[#F2F2F2] font-['Noto_Sans_Hebrew'] text-[14px] font-normal transition-all duration-300 hover:opacity-90 group-hover:bg-[#7DE400] group-hover:border-[#A6FF4D] group-hover:text-white"
+                                                >
+                                                    צפו במוצר
+                                                </Button>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* View All Button */}
+                    <div className="text-center mt-12" style={{ display: 'flex', justifyContent: 'center' }}>
+                        <Button
+                            variant="ghost"
+                            className="w-[185px] h-[44px] px-[18px] py-[4px] flex flex-col justify-center items-center gap-[10px] rounded-[14px] border-2 border-[#D3D3D3] bg-white text-[#22222A] font-['Noto Sans Hebrew'] text-[16px] font-medium transition-all duration-300 hover:bg-[#7DE400] hover:border-[#A6FF4D] hover:text-white"
+                        >
+                            צפו בכל הטרינקטס
+                        </Button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default PinsAndStickers;
