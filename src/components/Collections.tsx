@@ -246,13 +246,20 @@ const Collections = () => {
 
                         {/* Footer: Price & Button */}
                         <div className="flex items-center justify-between w-full absolute bottom-5 left-0 px-5">
-                          <span className="text-[#FFF] transition-colors duration-300 group-hover:text-[#22222A]" style={{
-                            fontFamily: '"Noto Sans Hebrew"',
-                            fontSize: '24px',
-                            fontWeight: 700,
-                          }}>
-                            ₪{product.price}
-                          </span>
+                          <div className="flex flex-col items-start gap-0">
+                            <span className="text-[#FFF] transition-colors duration-300 group-hover:text-[#22222A]" style={{
+                              fontFamily: '"Noto Sans Hebrew"',
+                              fontSize: '24px',
+                              fontWeight: 700,
+                            }}>
+                              ₪{product.price}
+                            </span>
+                            {product.originalPrice && product.originalPrice > product.price && (
+                              <span className="text-sm text-gray-400 line-through -mt-1 group-hover:text-gray-500">
+                                ₪{product.originalPrice}
+                              </span>
+                            )}
+                          </div>
 
                           <Link to={getProductLink(product)}>
                             <Button

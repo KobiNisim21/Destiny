@@ -31,6 +31,7 @@ const ContentSettings = () => {
         faqTitle: "",
         faqSubtitle: "",
         faqItems: [] as { question: string; answer: string }[],
+        heroInfoItems: [] as { icon: string; title: string; subtitle: string }[],
     });
     const [menuItems, setMenuItems] = useState([
         { id: 'home', label: 'דף הבית', type: 'scroll', target: 'hero-section' },
@@ -99,6 +100,11 @@ const ContentSettings = () => {
                         question: "האם אתם שולחים לחו״ל?",
                         answer: "כן! אנחנו שולחים לרוב המדינות בעולם. עלויות המשלוח וזמני האספקה משתנים לפי מיקום ויחושבו בקופה. שימו לב שהזמנות בינלאומיות עשויות להיות כפופות לעמלות מכס.",
                     },
+                ],
+                heroInfoItems: data.heroInfoItems && data.heroInfoItems.length > 0 ? data.heroInfoItems : [
+                    { icon: 'badge', title: 'מוצרים איכותיים', subtitle: 'סטנדרט פרימיום' },
+                    { icon: 'shield', title: 'קנייה בטוחה', subtitle: 'תשלום מאובטח ומוגן' },
+                    { icon: 'truck', title: 'משלוח חינם בקנייה מעל ₪349', subtitle: 'אספקה מהירה ונוחה' }
                 ],
             });
             if (data.menuItems) {
@@ -254,7 +260,89 @@ const ContentSettings = () => {
                 </CardContent>
             </Card>
 
-
+            <Card className="border-none shadow-sm bg-white">
+                <CardHeader>
+                    <CardTitle>סרגל מידע (מתחת לוידאו)</CardTitle>
+                    <CardDescription>כאן ניתן לערוך את האייקונים והטקסטים המופיעים בשורה השחורה מתחת לוידאו הראשי.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                    <div className="space-y-4">
+                        {settings.heroInfoItems.map((item, index) => (
+                            <div key={index} className="flex gap-4 items-start p-4 border rounded-xl bg-gray-50">
+                                <div className="space-y-2 w-[150px]">
+                                    <label className="text-xs font-medium">אייקון</label>
+                                    <select
+                                        className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        value={item.icon}
+                                        onChange={(e) => {
+                                            const newItems = [...settings.heroInfoItems];
+                                            newItems[index].icon = e.target.value;
+                                            setSettings({ ...settings, heroInfoItems: newItems });
+                                        }}
+                                    >
+                                        <option value="badge">תג (Badge)</option>
+                                        <option value="shield">מגן (Shield)</option>
+                                        <option value="truck">משאית (Truck)</option>
+                                        <option value="credit-card">כרטיס אשראי</option>
+                                        <option value="star">כוכב</option>
+                                        <option value="heart">לב</option>
+                                    </select>
+                                </div>
+                                <div className="flex-1 space-y-2">
+                                    <div className="space-y-1">
+                                        <label className="text-xs font-medium">כותרת</label>
+                                        <Input
+                                            value={item.title}
+                                            onChange={(e) => {
+                                                const newItems = [...settings.heroInfoItems];
+                                                newItems[index].title = e.target.value;
+                                                setSettings({ ...settings, heroInfoItems: newItems });
+                                            }}
+                                        />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <label className="text-xs font-medium">כותרת משנה</label>
+                                        <Input
+                                            value={item.subtitle}
+                                            onChange={(e) => {
+                                                const newItems = [...settings.heroInfoItems];
+                                                newItems[index].subtitle = e.target.value;
+                                                setSettings({ ...settings, heroInfoItems: newItems });
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                                <Button
+                                    variant="destructive"
+                                    size="icon"
+                                    className="mt-6"
+                                    onClick={() => {
+                                        const newItems = settings.heroInfoItems.filter((_, i) => i !== index);
+                                        setSettings({ ...settings, heroInfoItems: newItems });
+                                    }}
+                                >
+                                    X
+                                </Button>
+                            </div>
+                        ))}
+                        <Button
+                            variant="outline"
+                            onClick={() => setSettings({
+                                ...settings,
+                                heroInfoItems: [...settings.heroInfoItems, { icon: "star", title: "חדש", subtitle: "תיאור" }]
+                            })}
+                            className="w-full border-dashed"
+                        >
+                            + הוסף פריט חדש
+                        </Button>
+                    </div>
+                    <div className="flex justify-end">
+                        <Button onClick={handleSave} disabled={loading} className="bg-[#9F19FF] text-white">
+                            {loading ? 'שומר...' : 'שמור שינויים'}
+                        </Button>
+                    </div>
+                </CardContent>
+            </Card>
 
             <Card className="border-none shadow-sm bg-white">
                 <CardHeader>

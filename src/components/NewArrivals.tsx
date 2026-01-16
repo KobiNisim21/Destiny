@@ -14,6 +14,7 @@ interface Product {
   title?: string;
   name?: string;
   price: number;
+  originalPrice?: number;
   description: string;
   images?: string[];
   image?: string;
@@ -163,13 +164,20 @@ const NewArrivals = () => {
 
                   {/* Footer: Price & Button */}
                   <div className="flex items-center justify-between w-full absolute bottom-4 left-0 px-5">
-                    <span className="text-[#22222A] transition-colors duration-300" style={{
-                      fontFamily: '"Noto Sans Hebrew"',
-                      fontSize: '28px',
-                      fontWeight: 700,
-                    }}>
-                      ₪{product.price}
-                    </span>
+                    <div className="flex flex-col items-start gap-0">
+                      <span className="text-[#22222A] transition-colors duration-300" style={{
+                        fontFamily: '"Noto Sans Hebrew"',
+                        fontSize: '28px',
+                        fontWeight: 700,
+                      }}>
+                        ₪{product.price}
+                      </span>
+                      {product.originalPrice && product.originalPrice > product.price && (
+                        <span className="text-sm text-gray-400 line-through -mt-1">
+                          ₪{product.originalPrice}
+                        </span>
+                      )}
+                    </div>
 
                     <Link to={productLink}>
                       <Button

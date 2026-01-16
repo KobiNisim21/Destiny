@@ -4,10 +4,22 @@ import iconTruck from "@/assets/icon-truck.svg";
 import defaultHeroVideo from "@/assets/VideoProject.mp4";
 import { useEffect, useState } from "react";
 import API_BASE_URL from "@/config";
+import { CreditCard, Star, Heart } from "lucide-react";
+
+interface InfoItem {
+  icon: string;
+  title: string;
+  subtitle: string;
+}
 
 const HeroVideo = () => {
   const [videoSrc, setVideoSrc] = useState(defaultHeroVideo);
   const [youtubeId, setYoutubeId] = useState<string | null>(null);
+  const [infoItems, setInfoItems] = useState<InfoItem[]>([
+    { icon: 'badge', title: 'מוצרים איכותיים', subtitle: 'סטנדרט פרימיום' },
+    { icon: 'shield', title: 'קנייה בטוחה', subtitle: 'תשלום מאובטח ומוגן' },
+    { icon: 'truck', title: 'משלוח חינם בקנייה מעל ₪349', subtitle: 'אספקה מהירה ונוחה' }
+  ]);
 
   useEffect(() => {
     const fetchContent = async () => {
@@ -30,6 +42,10 @@ const HeroVideo = () => {
         if (data.heroVideo) {
           setVideoSrc(`${API_BASE_URL}${data.heroVideo}`);
         }
+
+        if (data.heroInfoItems) {
+          setInfoItems(data.heroInfoItems);
+        }
       } catch (error) {
         console.error("Failed to fetch hero video", error);
       }
@@ -37,6 +53,18 @@ const HeroVideo = () => {
 
     fetchContent();
   }, []);
+
+  const getIcon = (iconName: string) => {
+    switch (iconName) {
+      case 'badge': return <img src={iconBadge} alt="Quality" className="info-icon" />;
+      case 'shield': return <img src={iconShield} alt="Secure" className="info-icon" />;
+      case 'truck': return <img src={iconTruck} alt="Delivery" className="info-icon" />;
+      case 'credit-card': return <CreditCard className="info-icon text-white p-3" />;
+      case 'star': return <Star className="info-icon text-white p-3" />;
+      case 'heart': return <Heart className="info-icon text-white p-3" />;
+      default: return <img src={iconBadge} alt="Icon" className="info-icon" />;
+    }
+  };
 
   return (
     <section className="hero-video-section" dir="rtl">
@@ -74,33 +102,18 @@ const HeroVideo = () => {
 
       {/* Info Bar */}
       <div className="info-bar">
-        <div className="info-item">
-          <img src={iconBadge} alt="Quality" className="info-icon" />
-          <div className="info-text">
-            <span className="info-title">מוצרים איכותיים</span>
-            <span className="info-subtitle">סטנדרט פרימיום</span>
+        {infoItems.map((item, index) => (
+          <div key={index} className="flex items-center">
+            <div className="info-item">
+              {getIcon(item.icon)}
+              <div className="info-text">
+                <span className="info-title">{item.title}</span>
+                <span className="info-subtitle">{item.subtitle}</span>
+              </div>
+            </div>
+            {index < infoItems.length - 1 && <div className="info-divider" />}
           </div>
-        </div>
-
-        <div className="info-divider" />
-
-        <div className="info-item">
-          <img src={iconShield} alt="Secure" className="info-icon" />
-          <div className="info-text">
-            <span className="info-title">קנייה בטוחה</span>
-            <span className="info-subtitle">תשלום מאובטח ומוגן</span>
-          </div>
-        </div>
-
-        <div className="info-divider" />
-
-        <div className="info-item">
-          <img src={iconTruck} alt="Delivery" className="info-icon" />
-          <div className="info-text">
-            <span className="info-title">משלוח חינם בקנייה מעל ₪349</span>
-            <span className="info-subtitle">אספקה מהירה ונוחה</span>
-          </div>
-        </div>
+        ))}
       </div>
 
       <style>{`

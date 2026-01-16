@@ -13,6 +13,7 @@ interface Product {
     title?: string;
     name?: string;
     price: number;
+    originalPrice?: number;
     description: string;
     mainImage?: string;
     hoverImage?: string;
@@ -130,9 +131,16 @@ const Catalog = () => {
                                                 </p>
 
                                                 <div className="flex items-center justify-between w-full absolute bottom-5 left-0 px-5">
-                                                    <span className="text-[#FFF] transition-colors duration-300 group-hover:text-[#22222A] font-bold text-2xl">
-                                                        ₪{product.price}
-                                                    </span>
+                                                    <div className="flex flex-col items-start gap-0">
+                                                        <span className="text-[#FFF] transition-colors duration-300 group-hover:text-[#22222A] font-bold text-2xl">
+                                                            ₪{product.price}
+                                                        </span>
+                                                        {product.originalPrice && product.originalPrice > product.price && (
+                                                            <span className="text-sm text-gray-400 line-through -mt-1 group-hover:text-gray-500">
+                                                                ₪{product.originalPrice}
+                                                            </span>
+                                                        )}
+                                                    </div>
                                                     <Link to={getProductLink(product)}>
                                                         <Button size="sm" className="rounded-[14px] border border-[#9F19FF] bg-[#3C3C43] text-[#F2F2F2] hover:bg-[#7DE400] hover:border-[#A6FF4D] hover:text-white transition-all">
                                                             צפו במוצר
