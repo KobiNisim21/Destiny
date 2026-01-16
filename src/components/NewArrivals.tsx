@@ -1,24 +1,79 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Sparkles, ArrowLeft } from "lucide-react";
-// Using the "crown" image as the Hoodie image based on previous context, or reusing one of the A* images if better suited.
-// The plan said "Signature Hoodie", usually associated with 'hoodie' slug.
-// Let's use the image matching the screenshot (white hoodie). 
-// Accessing assets... assuming we have a white hoodie image. 
-// In FeaturedProducts, "Signature Hoodie" used `crownImage` (product-crown.png). 
-// Let's check if there is a better "White Hoodie" image. 
-// The user uploaded A5-A8. A5=CatEars, A6=PinkHeadphones, A7=WhiteHeadphones(ClassicCap?), A8=Purple/Sticker.
-// Wait, `product-hoodie.jpg` was replaced by `product-crown.png` in a previous fix.
-// Let's stick with `crownImage` for now as the "Signature Hoodie" placeholder, or `realHeadphones` if it looks more like a product.
-// Actually, I'll use `trinket1Image` (A5) import style pattern if I need new images, but sticking to existing imports for now.
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import API_BASE_URL from "@/config";
 import protestShirtImage from "@/assets/A9.png";
 import protestShirtHoverImage from "@/assets/product-tshirt.jpg";
 
+// Types
+interface Product {
+  _id?: string;
+  id?: number | string;
+  title?: string;
+  name?: string;
+  price: number;
+  description: string;
+  images?: string[];
+  image?: string;
+  hoverImage?: string;
+  category?: string;
+  inStock?: boolean;
+  isNewArrival?: boolean;
+}
+
+const DEFAULT_NEW_ARRIVAL: Product = {
+  title: "Signature Hoodie",
+  name: "Signature Hoodie",
+  price: 99.00,
+  description: "חולצת פרימיום בעיצוב ייחודי ובלעדי.",
+  image: protestShirtImage,
+  hoverImage: protestShirtHoverImage
+};
+
 const NewArrivals = () => {
+  const [product, setProduct] = useState<Product | null>(DEFAULT_NEW_ARRIVAL);
+
+  useEffect(() => {
+    const fetchNewArrival = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/products`);
+        const data = await res.json();
+        const newArrival = data.find((p: Product) => p.isNewArrival);
+
+        if (newArrival) {
+          setProduct(newArrival);
+        } else if (data.length > 0) {
+          setProduct(data[0]);
+        }
+        // If neither, we stick with DEFAULT_NEW_ARRIVAL
+      } catch (error) {
+        console.error("Failed to fetch new arrival, using default", error);
+      }
+    };
+
+    fetchNewArrival();
+  }, []);
+
+  if (!product) return null; // Should not happen with default
+
+  const displayImage = (product.images && product.images.length > 0)
+    ? `${API_BASE_URL}${product.images[0]}`
+    : (product.image || '');
+
+  const hoverImage = (product.images && product.images.length > 1)
+    ? `${API_BASE_URL}${product.images[1]}`
+    : (product.hoverImage || displayImage || '');
+
+  const productName = product.title || product.name || '';
+  const productLink = product._id ? `/product/${product._id}` : '#';
+
   return (
     <section
       className="relative w-full flex justify-center items-center"
       dir="rtl"
+      id="new-arrivals-section"
       style={{
         backgroundColor: '#F5F2F8',
         padding: '31px 0',
@@ -60,8 +115,8 @@ const NewArrivals = () => {
                     borderRadius: '24px 24px 0 0',
                     backgroundColor: '#FFFFFF',
                   }}>
-                  <img src={protestShirtImage} alt="Signature Hoodie" className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0" />
-                  <img src={protestShirtHoverImage} alt="Signature Hoodie" className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+                  <img src={displayImage} alt={productName} className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0" />
+                  <img src={hoverImage} alt={productName} className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
 
                   <Badge className="relative z-10 font-bold px-3 py-1"
                     style={{
@@ -89,7 +144,7 @@ const NewArrivals = () => {
                     alignSelf: 'stretch',
                     marginTop: '4px'
                   }}>
-                    Signature Hoodie
+                    {productName}
                   </h3>
 
                   {/* Description */}
@@ -103,7 +158,7 @@ const NewArrivals = () => {
                     alignSelf: 'stretch',
                     marginTop: '8px'
                   }}>
-                    חולצת פרימיום בעיצוב ייחודי ובלעדי.
+                    {product.description && product.description.length > 80 ? product.description.substring(0, 80) + '...' : product.description}
                   </p>
 
                   {/* Footer: Price & Button */}
@@ -113,15 +168,17 @@ const NewArrivals = () => {
                       fontSize: '28px',
                       fontWeight: 700,
                     }}>
-                      ₪99.00
+                      ₪{product.price}
                     </span>
 
-                    <Button
-                      size="sm"
-                      className="w-[120px] h-[40px] px-[18px] py-[4px] flex flex-col justify-center items-center gap-[10px] rounded-[14px] border border-[#22222A] bg-white text-[#22222A] group-hover:bg-[#7DE400] group-hover:text-white group-hover:border-white font-['Noto_Sans_Hebrew'] text-[14px] font-normal transition-all duration-300"
-                    >
-                      צפו במוצר
-                    </Button>
+                    <Link to={productLink}>
+                      <Button
+                        size="sm"
+                        className="w-[120px] h-[40px] px-[18px] py-[4px] flex flex-col justify-center items-center gap-[10px] rounded-[14px] border border-[#22222A] bg-white text-[#22222A] group-hover:bg-[#7DE400] group-hover:text-white group-hover:border-white font-['Noto_Sans_Hebrew'] text-[14px] font-normal transition-all duration-300"
+                      >
+                        צפו במוצר
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -150,8 +207,10 @@ const NewArrivals = () => {
                 fontFamily: '"Noto Sans Hebrew", sans-serif',
                 fontSize: '20px',
                 fontStyle: 'normal',
-                fontWeight: 500,
-                lineHeight: 'normal'
+                fontWeight: 300,
+                lineHeight: 'normal',
+                position: 'relative',
+                top: '-1px'
               }}>
                 מוצרים שנחתו עכשיו
               </span>
@@ -174,7 +233,7 @@ const NewArrivals = () => {
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}>
-                Signature Hoodie.
+                {productName}
               </span>
             </h2>
 
@@ -275,37 +334,40 @@ const NewArrivals = () => {
             </div>
 
             {/* CTA Button */}
-            <button style={{
-              display: 'flex',
-              width: '184px',
-              height: '44px',
-              padding: '6px 22px',
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: '10px',
-              flexShrink: 0,
-              borderRadius: '60px',
-              background: 'linear-gradient(90deg, #C097E8 0%, #9F19FF 100%)',
-              boxShadow: '0px 5px 14px 0px rgba(0, 0, 0, 0.25)',
-              border: 'none',
-              cursor: 'pointer'
-            }}>
-              <span style={{
-                color: '#FFF',
-                textAlign: 'right',
-                fontFamily: '"Noto Sans Hebrew", sans-serif',
-                fontSize: '20px',
-                fontStyle: 'normal',
-                fontWeight: 600,
-                lineHeight: 'normal',
-                whiteSpace: 'nowrap'
+            <Link to={productLink}>
+              <button style={{
+                marginTop: '30px',
+                display: 'flex',
+                width: '184px',
+                height: '44px',
+                padding: '6px 22px',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '10px',
+                flexShrink: 0,
+                borderRadius: '60px',
+                background: 'linear-gradient(90deg, #C097E8 0%, #9F19FF 100%)',
+                boxShadow: '0px 5px 14px 0px rgba(0, 0, 0, 0.25)',
+                border: 'none',
+                cursor: 'pointer'
               }}>
-                הזמינו עכשיו
-              </span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
-                <path d="M7.25299 14.2563C7.49678 13.9977 7.4974 13.5777 7.25299 13.3191L2.13183 7.88804H19.3749C19.72 7.88804 20 7.59136 20 7.22513C20 6.8589 19.7199 6.56223 19.3749 6.56223H2.13183L7.25237 1.13116C7.49678 0.872563 7.49678 0.452539 7.25237 0.193945C7.00796 -0.0646484 6.6123 -0.0646484 6.36852 0.193945L0.180969 6.7565C-0.0603229 7.01247 -0.0603229 7.43839 0.180969 7.69437L6.36852 14.2569C6.61293 14.5156 7.00858 14.5156 7.25299 14.2563C7.00858 14.5156 7.49678 13.9977 7.25299 14.2563Z" fill="white" />
-              </svg>
-            </button>
+                <span style={{
+                  color: '#FFF',
+                  textAlign: 'right',
+                  fontFamily: '"Noto Sans Hebrew", sans-serif',
+                  fontSize: '20px',
+                  fontStyle: 'normal',
+                  fontWeight: 600,
+                  lineHeight: 'normal',
+                  whiteSpace: 'nowrap'
+                }}>
+                  הזמינו עכשיו
+                </span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
+                  <path d="M7.25299 14.2563C7.49678 13.9977 7.4974 13.5777 7.25299 13.3191L2.13183 7.88804H19.3749C19.72 7.88804 20 7.59136 20 7.22513C20 6.8589 19.7199 6.56223 19.3749 6.56223H2.13183L7.25237 1.13116C7.49678 0.872563 7.49678 0.452539 7.25237 0.193945C7.00796 -0.0646484 6.6123 -0.0646484 6.36852 0.193945L0.180969 6.7565C-0.0603229 7.01247 -0.0603229 7.43839 0.180969 7.69437L6.36852 14.2569C6.61293 14.5156 7.00858 14.5156 7.25299 14.2563C7.00858 14.5156 7.49678 13.9977 7.25299 14.2563Z" fill="white" />
+                </svg>
+              </button>
+            </Link>
           </div>
 
         </div>

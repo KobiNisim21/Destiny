@@ -33,23 +33,43 @@ const faqs = [
   },
 ];
 
+import { useEffect, useState } from "react";
+import API_BASE_URL from "@/config";
+
 const FAQ = () => {
+  const [content, setContent] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/content`);
+        const data = await res.json();
+        setContent(data);
+      } catch (error) {
+        console.error("Failed to fetch content", error);
+      }
+    };
+    fetchContent();
+  }, []);
+
+  const displayFaqs = content?.faqItems && content.faqItems.length > 0 ? content.faqItems : faqs;
+
   return (
     <section className="py-16 md:py-24" dir="rtl">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            שאלות נפוצות
+            {content?.faqTitle || "שאלות נפוצות"}
           </h2>
           <p className="text-lg text-muted-foreground">
-            כל מה שצריך לדעת על הזמנות, משלוחים והחזרות
+            {content?.faqSubtitle || "כל מה שצריך לדעת על הזמנות, משלוחים והחזרות"}
           </p>
         </div>
 
         {/* FAQ Accordion */}
         <Accordion type="single" collapsible className="space-y-4">
-          {faqs.map((faq, index) => (
+          {displayFaqs.map((faq: any, index: number) => (
             <AccordionItem
               key={index}
               value={`item-${index}`}

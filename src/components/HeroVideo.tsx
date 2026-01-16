@@ -1,9 +1,43 @@
 import iconBadge from "@/assets/icon-badge.svg";
 import iconShield from "@/assets/icon-shield.svg";
 import iconTruck from "@/assets/icon-truck.svg";
-import heroVideo from "@/assets/VideoProject.mp4";
+import defaultHeroVideo from "@/assets/VideoProject.mp4";
+import { useEffect, useState } from "react";
+import API_BASE_URL from "@/config";
 
 const HeroVideo = () => {
+  const [videoSrc, setVideoSrc] = useState(defaultHeroVideo);
+  const [youtubeId, setYoutubeId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/content`);
+        const data = await res.json();
+
+        if (data.heroYoutubeUrl) {
+          // Extract ID from various YouTube URL formats
+          const match = data.heroYoutubeUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/);
+          if (match && match[1]) {
+            setYoutubeId(match[1]);
+          } else {
+            setYoutubeId(null);
+          }
+        } else {
+          setYoutubeId(null);
+        }
+
+        if (data.heroVideo) {
+          setVideoSrc(`${API_BASE_URL}${data.heroVideo}`);
+        }
+      } catch (error) {
+        console.error("Failed to fetch hero video", error);
+      }
+    };
+
+    fetchContent();
+  }, []);
+
   return (
     <section className="hero-video-section" dir="rtl">
       {/* Hero Banner Container */}
@@ -11,17 +45,31 @@ const HeroVideo = () => {
         overflow: 'hidden',
         borderRadius: '124px',
         boxShadow: '0 0 20px 0 #872B8F',
-        height: '800px'
+        height: '800px',
+        position: 'relative'
       }}>
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+        {youtubeId ? (
+          <iframe
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&showinfo=0&rel=0&modestbranding=1`}
+            title="Hero Video"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', pointerEvents: 'none' }}
+          ></iframe>
+        ) : (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            key={videoSrc} // Force reload on source change
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+        )}
       </div>
 
       {/* Info Bar */}

@@ -1,14 +1,42 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ShoppingCart, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { ShoppingCart, Menu, X, User } from "lucide-react";
+import { useState, useEffect } from "react";
 import destinyLogo from "@/assets/destiny-logo-new.png";
+import { useAuth } from "@/context/AuthContext";
+import API_BASE_URL from "@/config";
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [menuItems, setMenuItems] = useState([
+    { id: 'home', label: 'דף הבית', type: 'scroll', target: 'hero-section' },
+    { id: 'featured', label: 'נבחרים', type: 'scroll', target: 'featured-section' },
+    { id: 'trinkets', label: 'טרינקטס', type: 'scroll', target: 'trinkets-section' },
+    { id: 'new', label: 'חדשים', type: 'scroll', target: 'new-arrivals-section' },
+    { id: 'about', label: 'אודות', type: 'route', target: '/about' },
+  ]);
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/content`);
+        const data = await res.json();
+        if (data.menuItems && Array.isArray(data.menuItems)) {
+          setMenuItems(data.menuItems);
+        }
+      } catch (error) {
+        console.error("Failed to fetch menu items", error);
+      }
+    };
+    fetchContent();
+  }, []);
 
   const isActive = (path: string) => (location.pathname === path ? "active" : "");
+  // Helper to check if scroll section is active - basic implementation based on hash could work, 
+  // but for now we keep simple logic or just highlight based on click/view if needed. 
+  // Since original code had simple check, we'll keep it simple.
 
   const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMenu = () => setIsMobileMenuOpen(false);
@@ -47,22 +75,50 @@ const Navbar = () => {
 
         {/* Center: Navigation Links */}
         <div className="nav-links">
-          {/* Use buttons for scrolling, Link for routes */}
-          <button onClick={() => handleScroll('hero-section')} className={`nav-link-btn ${location.pathname === '/' ? 'active' : ''}`}>
-            דף הבית
-          </button>
-          <button onClick={() => handleScroll('featured-section')} className="nav-link-btn">
-            נבחרים
-          </button>
-          <button onClick={() => handleScroll('trinkets-section')} className="nav-link-btn">
-            טרינקטס
-          </button>
-          <button onClick={() => handleScroll('new-arrivals-section')} className="nav-link-btn">
-            חדשים
-          </button>
-          <Link to="/about" className={isActive("/about")}>
-            אודות
-          </Link>
+          {menuItems.map((item) => (
+            item.type === 'scroll' ? (
+              <button key={item.id} onClick={() => handleScroll(item.target)} className={`nav-link-btn ${item.id === 'home' && location.pathname === '/' ? 'active' : ''}`}>
+                {item.label}
+              </button>
+            ) : (
+              <Link key={item.id} to={item.target} className={isActive(item.target)}>
+                {item.label}
+              </Link>
+            )
+          ))}
+
+          <div className="w-[1px] h-[20px] bg-white/20 mx-2"></div>
+
+          {user ? (
+            <div className="flex items-center gap-4">
+              <span className="text-white text-[16px] font-medium hidden xl:block">
+                ברוך הבא, {user.firstName}
+              </span>
+              {user.role === 'admin' && (
+                <Link to="/admin" className="nav-link-btn text-[#9F19FF] hover:text-[#9F19FF]/80 font-bold">
+                  לוח ניהול
+                </Link>
+              )}
+              <button
+                onClick={() => {
+                  logout();
+                  navigate('/');
+                }}
+                className="nav-link-btn text-[#FF4B4B] hover:text-[#FF4B4B]/80 font-bold"
+              >
+                התנתק
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-4">
+              <Link to="/login" className={isActive("/login")}>
+                התחברות
+              </Link>
+              <Link to="/register" className={isActive("/register")}>
+                הרשמה
+              </Link>
+            </div>
+          )}
         </div>
 
         {/* Left: Cart Icon */}
@@ -78,11 +134,47 @@ const Navbar = () => {
 
       {/* Mobile Menu Overlay */}
       <div className={`mobile-menu-overlay ${isMobileMenuOpen ? 'open' : ''}`} dir="rtl">
-        <button onClick={() => handleScroll('hero-section')} className="mobile-link">דף הבית</button>
-        <button onClick={() => handleScroll('featured-section')} className="mobile-link">נבחרים</button>
-        <button onClick={() => handleScroll('trinkets-section')} className="mobile-link">טרינקטס</button>
-        <button onClick={() => handleScroll('new-arrivals-section')} className="mobile-link">חדשים</button>
-        <Link to="/about" className="mobile-link" onClick={closeMenu}>אודות</Link>
+        {menuItems.map((item) => (
+          item.type === 'scroll' ? (
+            <button key={item.id} onClick={() => handleScroll(item.target)} className="mobile-link">
+              {item.label}
+            </button>
+          ) : (
+            <Link key={item.id} to={item.target} className="mobile-link" onClick={closeMenu}>
+              {item.label}
+            </Link>
+          )
+        ))}
+
+        <div className="w-full h-[1px] bg-white/10 my-2"></div>
+
+        {user ? (
+          <>
+            <div className="text-white text-center py-2 font-medium">
+              ברוך הבא, {user.firstName}
+            </div>
+            {user.role === 'admin' && (
+              <Link to="/admin" className="mobile-link text-[#9F19FF] border-[#9F19FF]/30" onClick={closeMenu}>
+                לוח ניהול
+              </Link>
+            )}
+            <button
+              onClick={() => {
+                logout();
+                closeMenu();
+                navigate('/');
+              }}
+              className="mobile-link text-[#FF4B4B] border-[#FF4B4B]/30"
+            >
+              התנתק
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="mobile-link" onClick={closeMenu}>התחברות</Link>
+            <Link to="/register" className="mobile-link" onClick={closeMenu}>הרשמה</Link>
+          </>
+        )}
       </div>
 
       {/* Component-scoped styles */}
