@@ -51,7 +51,7 @@ const Login = () => {
         } catch (error: any) {
             toast({
                 title: "שגיאה בהתחברות",
-                description: error.message,
+                description: error.message || "אירעה שגיאה בלתי צפויה",
                 variant: "destructive",
             });
         } finally {
@@ -89,6 +89,11 @@ const Login = () => {
                                 value={formData.password}
                                 onChange={handleChange}
                             />
+                            <div className="text-left">
+                                <a href="/forgot-password" className="text-sm text-gray-500 hover:text-[#9F19FF]">
+                                    שכחת סיסמה?
+                                </a>
+                            </div>
                         </div>
 
                         <Button

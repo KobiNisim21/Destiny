@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import HeroVideo from "@/components/HeroVideo";
 import FeaturedProducts from "@/components/FeaturedProducts";
@@ -9,8 +10,41 @@ import Influencers from "@/components/Influencers";
 import FAQ from "@/components/FAQ";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
+import API_BASE_URL from "@/config";
+import { Product } from "@/components/ProductListModal";
 
 const Index = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    // Track visit
+    const trackVisit = async () => {
+      const visited = sessionStorage.getItem('visited');
+      if (visited) return;
+      try {
+        await fetch(`${API_BASE_URL}/api/analytics/visit`, { method: 'POST' });
+        sessionStorage.setItem('visited', 'true');
+      } catch (error) {
+        console.error('Failed to track visit', error);
+      }
+    };
+    trackVisit();
+
+    // Fetch Products (Centralized)
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/products`);
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          setProducts(data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch products", error);
+      }
+    };
+    fetchProducts();
+  }, []);
+
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -19,14 +53,14 @@ const Index = () => {
           <HeroVideo />
         </div>
         <div id="featured-section">
-          <FeaturedProducts />
+          <FeaturedProducts products={products} />
         </div>
         <div id="trinkets-section">
-          <Collections />
+          <Collections products={products} />
         </div>
-        <PinsAndStickers />
+        <PinsAndStickers products={products} />
         <div id="new-arrivals-section">
-          <NewArrivals />
+          <NewArrivals products={products} />
         </div>
         <AboutCreator />
         <Influencers />

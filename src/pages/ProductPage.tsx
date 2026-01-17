@@ -6,6 +6,7 @@ import { ShoppingBag, Plus, Minus, Star, Truck, Shield, Award, ChevronLeft, Chev
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useToast } from "@/components/ui/use-toast";
+import { useCart } from "@/context/CartContext";
 import API_BASE_URL from "@/config";
 
 // Static Images (Need to import all used images)
@@ -129,7 +130,11 @@ const STATIC_PRODUCTS: Record<string, Product> = {
 
 const ProductPage = () => {
   const { productId } = useParams();
+  const { addToCart } = useCart();
   const { toast } = useToast();
+  // ... existing code
+
+
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -137,6 +142,18 @@ const ProductPage = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const displayImages = product?.images || [];
+
+  const handleAddToCart = () => {
+    if (product) {
+      // Ensure we pass a valid 'image' property to the cart
+      const cartImage = displayImages.length > 0 ? displayImages[0] : (product as any).image;
+      addToCart({ ...product, name: product.title, image: cartImage }, quantity);
+      toast({
+        title: "המוצר נוסף לסל",
+        description: `${product.title} נוסף בהצלחה לסל הקניות שלך`,
+      });
+    }
+  };
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -282,8 +299,12 @@ const ProductPage = () => {
           </div>
 
           {/* Add to Cart Section */}
-          <div className="flex items-center gap-4 mb-8">
-            <Button className="flex-1 h-14 text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground rounded-full gap-3" disabled={!product.inStock}>
+          <div className="flex items-center gap-4">
+            <Button
+              className="flex-1 h-14 text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground rounded-full gap-3"
+              onClick={handleAddToCart}
+              disabled={!product.inStock}
+            >
               <ShoppingBag className="w-5 h-5" />
               {product.inStock ? 'הוספה לעגלה' : 'אזל מהמלאי'}
             </Button>

@@ -26,12 +26,29 @@ const ContentSettings = () => {
         aboutImage: "",
         aboutVideoUrl: "",
         aboutButtonVideoText: "",
-        aboutButtonVideoText: "",
+
         aboutButtonCollectionText: "",
         faqTitle: "",
         faqSubtitle: "",
         faqItems: [] as { question: string; answer: string }[],
         heroInfoItems: [] as { icon: string; title: string; subtitle: string }[],
+        footerCopyright: "",
+        footerSocialYoutube: "",
+        footerSocialInstagram: "",
+        footerSocialTiktok: "",
+
+        // New separate About Page fields
+        pageAboutTitle1: "",
+        pageAboutTitle2: "",
+        pageAboutTitle3: "",
+        pageAboutDescription: "",
+        pageAboutImage: "",
+        pageAboutSubscribers: "",
+        pageAboutSubscribersLabel: "",
+        pageAboutFollowers: "",
+        pageAboutFollowersLabel: "",
+        pageAboutVideos: "",
+        pageAboutVideosLabel: "",
     });
     const [menuItems, setMenuItems] = useState([
         { id: 'home', label: 'דף הבית', type: 'scroll', target: 'hero-section' },
@@ -42,6 +59,7 @@ const ContentSettings = () => {
     ]);
     const [file, setFile] = useState<File | null>(null);
     const [aboutImageFile, setAboutImageFile] = useState<File | null>(null);
+    const [pageAboutImageFile, setPageAboutImageFile] = useState<File | null>(null);
 
     useEffect(() => {
         fetchContent();
@@ -106,6 +124,23 @@ const ContentSettings = () => {
                     { icon: 'shield', title: 'קנייה בטוחה', subtitle: 'תשלום מאובטח ומוגן' },
                     { icon: 'truck', title: 'משלוח חינם בקנייה מעל ₪349', subtitle: 'אספקה מהירה ונוחה' }
                 ],
+                footerCopyright: data.footerCopyright || "© 2025 כל הזכויות שמורות - שם העסק",
+                footerSocialYoutube: data.footerSocialYoutube || "https://youtube.com",
+                footerSocialInstagram: data.footerSocialInstagram || "https://instagram.com",
+                footerSocialTiktok: data.footerSocialTiktok || "https://tiktok.com",
+
+                // Page About Defaults (Fallback to homepage ones initially if empty)
+                pageAboutTitle1: data.pageAboutTitle1 || "לחלום.",
+                pageAboutTitle2: data.pageAboutTitle2 || "ליצור.",
+                pageAboutTitle3: data.pageAboutTitle3 || "להעניק.",
+                pageAboutDescription: data.pageAboutDescription || "ברוכים הבאים לקולקציית המרצ'נדייז הרשמית של דסטני...",
+                pageAboutImage: data.pageAboutImage || "",
+                pageAboutSubscribers: data.pageAboutSubscribers || "+153K",
+                pageAboutSubscribersLabel: data.pageAboutSubscribersLabel || "רשומים לערוץ",
+                pageAboutFollowers: data.pageAboutFollowers || "+35K",
+                pageAboutFollowersLabel: data.pageAboutFollowersLabel || "עוקבים בטיקטוק",
+                pageAboutVideos: data.pageAboutVideos || "+370",
+                pageAboutVideosLabel: data.pageAboutVideosLabel || "סירטונים ביוטיוב",
             });
             if (data.menuItems) {
                 setMenuItems(data.menuItems);
@@ -148,6 +183,7 @@ const ContentSettings = () => {
         try {
             let videoPath = settings.heroVideo;
             let aboutImagePath = settings.aboutImage;
+            let pageAboutImagePath = settings.pageAboutImage;
 
             if (file) {
                 const uploadedPath = await handleUpload(file);
@@ -159,12 +195,17 @@ const ContentSettings = () => {
                 if (uploadedPath) aboutImagePath = uploadedPath;
             }
 
+            if (pageAboutImageFile) {
+                const uploadedPath = await handleUpload(pageAboutImageFile);
+                if (uploadedPath) pageAboutImagePath = uploadedPath;
+            }
+
             const token = localStorage.getItem('token');
             const updates = {
                 ...settings,
-
                 heroVideo: videoPath,
                 aboutImage: aboutImagePath,
+                pageAboutImage: pageAboutImagePath,
                 menuItems: menuItems
             };
 
@@ -180,6 +221,7 @@ const ContentSettings = () => {
             setSettings(updates);
             setFile(null);
             setAboutImageFile(null);
+            setPageAboutImageFile(null);
             toast({ title: "נשמר בהצלחה", description: "ההגדרות עודכנו באתר" });
         } catch (error) {
             console.error(error);
@@ -196,16 +238,16 @@ const ContentSettings = () => {
                 <p className="text-gray-500 mt-2">כאן ניתן לערוך את האלמנטים הראשיים באתר שאינם מוצרים.</p>
             </div>
 
-            <Card className="border-none shadow-sm bg-white">
-                <CardHeader>
-                    <CardTitle>סרטון ראשי (Hero Video)</CardTitle>
+            <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
+                <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
+                    <CardTitle className="text-[#9F19FF]">סרטון ראשי (Hero Video)</CardTitle>
                     <CardDescription>
                         זהו הסרטון הגדול שמופיע בראש דף הבית מיד בכניסה לאתר.
                         <br />
                         מומלץ להעלות סרטון ביחס רוחב 16:9 ובמשקל סביר (עד 50MB).
                     </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-6">
+                <CardContent className="space-y-6 pt-6">
                     {/* YouTube URL Input */}
                     <div className="space-y-2">
                         <label className="text-sm font-medium">או: הדבק קישור מ-YouTube</label>
@@ -260,12 +302,12 @@ const ContentSettings = () => {
                 </CardContent>
             </Card>
 
-            <Card className="border-none shadow-sm bg-white">
-                <CardHeader>
-                    <CardTitle>סרגל מידע (מתחת לוידאו)</CardTitle>
+            <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
+                <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
+                    <CardTitle className="text-[#9F19FF]">סרגל מידע (מתחת לוידאו)</CardTitle>
                     <CardDescription>כאן ניתן לערוך את האייקונים והטקסטים המופיעים בשורה השחורה מתחת לוידאו הראשי.</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-6">
+                <CardContent className="space-y-6 pt-6">
                     <div className="space-y-4">
                         {settings.heroInfoItems.map((item, index) => (
                             <div key={index} className="flex gap-4 items-start p-4 border rounded-xl bg-gray-50">
@@ -344,12 +386,12 @@ const ContentSettings = () => {
                 </CardContent>
             </Card>
 
-            <Card className="border-none shadow-sm bg-white">
-                <CardHeader>
-                    <CardTitle>אודות היוצר (About Section)</CardTitle>
-                    <CardDescription>עריכת הטקסטים והתמונה באזור "אודות".</CardDescription>
+            <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
+                <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
+                    <CardTitle className="text-[#9F19FF]">אודות היוצר (About Section)</CardTitle>
+                    <CardDescription>עריכת הטקסטים והתמונה באזור "אודות" (דף הבית).</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-6">
+                <CardContent className="space-y-6 pt-6">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div className="space-y-2">
                             <label className="text-sm font-medium">כותרת 1</label>
@@ -367,7 +409,11 @@ const ContentSettings = () => {
 
                     <div className="space-y-2">
                         <label className="text-sm font-medium">תיאור ראשי</label>
-                        <Input value={settings.aboutDescription} onChange={e => setSettings({ ...settings, aboutDescription: e.target.value })} />
+                        <textarea
+                            className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                            value={settings.aboutDescription}
+                            onChange={e => setSettings({ ...settings, aboutDescription: e.target.value })}
+                        />
                     </div>
 
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-6 border-t pt-4">
@@ -429,12 +475,79 @@ const ContentSettings = () => {
                 </CardContent>
             </Card>
 
-            <Card className="border-none shadow-sm bg-white">
-                <CardHeader>
-                    <CardTitle>שאלות נפוצות (FAQ)</CardTitle>
+            <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
+                <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
+                    <CardTitle className="text-[#9F19FF]">דף אודות - עמוד ייעודי (About Page)</CardTitle>
+                    <CardDescription>כאן עורכים את התוכן של הדף הנפרד (destiny.co.il/about)</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6 pt-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium">כותרת 1</label>
+                            <Input value={settings.pageAboutTitle1} onChange={e => setSettings({ ...settings, pageAboutTitle1: e.target.value })} />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium">כותרת 2</label>
+                            <Input value={settings.pageAboutTitle2} onChange={e => setSettings({ ...settings, pageAboutTitle2: e.target.value })} />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium">כותרת 3</label>
+                            <Input value={settings.pageAboutTitle3} onChange={e => setSettings({ ...settings, pageAboutTitle3: e.target.value })} />
+                        </div>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">תיאור ראשי (דף אודות)</label>
+                        <textarea
+                            className="flex min-h-[200px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                            value={settings.pageAboutDescription}
+                            onChange={e => setSettings({ ...settings, pageAboutDescription: e.target.value })}
+                        />
+                    </div>
+
+                    <div className="space-y-2 border-t pt-4">
+                        <label className="text-sm font-medium">תמונה לדף אודות</label>
+                        <div className="flex items-center gap-4">
+                            {settings.pageAboutImage && (
+                                <img src={`${API_BASE_URL}${settings.pageAboutImage}`} alt="About Page" className="w-16 h-16 rounded-lg object-cover border" />
+                            )}
+                            <Input type="file" accept="image/*" onChange={(e) => e.target.files && setPageAboutImageFile(e.target.files[0])} />
+                        </div>
+                        {pageAboutImageFile && <p className="text-xs text-green-600">קובץ חדש נבחר: {pageAboutImageFile.name}</p>}
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 border-t pt-4">
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium">נתון 1 (מספר)</label>
+                            <Input value={settings.pageAboutSubscribers} onChange={e => setSettings({ ...settings, pageAboutSubscribers: e.target.value })} dir="ltr" />
+                            <Input value={settings.pageAboutSubscribersLabel} onChange={e => setSettings({ ...settings, pageAboutSubscribersLabel: e.target.value })} placeholder="תיאור" />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium">נתון 2 (מספר)</label>
+                            <Input value={settings.pageAboutFollowers} onChange={e => setSettings({ ...settings, pageAboutFollowers: e.target.value })} dir="ltr" />
+                            <Input value={settings.pageAboutFollowersLabel} onChange={e => setSettings({ ...settings, pageAboutFollowersLabel: e.target.value })} placeholder="תיאור" />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium">נתון 3 (מספר)</label>
+                            <Input value={settings.pageAboutVideos} onChange={e => setSettings({ ...settings, pageAboutVideos: e.target.value })} dir="ltr" />
+                            <Input value={settings.pageAboutVideosLabel} onChange={e => setSettings({ ...settings, pageAboutVideosLabel: e.target.value })} placeholder="תיאור" />
+                        </div>
+                    </div>
+
+                    <div className="flex justify-end">
+                        <Button onClick={handleSave} disabled={loading} className="bg-[#9F19FF] text-white">
+                            {loading ? 'שומר...' : 'שמור שינויים'}
+                        </Button>
+                    </div>
+                </CardContent>
+            </Card>
+
+            <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
+                <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
+                    <CardTitle className="text-[#9F19FF]">שאלות נפוצות (FAQ)</CardTitle>
                     <CardDescription>ניהול שאלות ותשובות המופיעות בדף הבית.</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-6">
+                <CardContent className="space-y-6 pt-6">
                     <div className="space-y-2">
                         <label className="text-sm font-medium">כותרת ראשית</label>
                         <Input value={settings.faqTitle} onChange={e => setSettings({ ...settings, faqTitle: e.target.value })} />
@@ -502,16 +615,16 @@ const ContentSettings = () => {
                 </CardContent>
             </Card>
 
-            <Card className="border-none shadow-sm bg-white">
-                <CardHeader>
-                    <CardTitle>תפריט ניווט (Navbar)</CardTitle>
+            <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
+                <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
+                    <CardTitle className="text-[#9F19FF]">תפריט ניווט (Navbar)</CardTitle>
                     <CardDescription>
                         עריכת הטקסטים של הכפתורים בתפריט העליון.
                         <br />
                         שים לב: שינוי הטקסט לא ישנה את לאן הכפתור מוביל, רק את המילה שמוצגת.
                     </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-4 pt-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {menuItems.map((item, index) => (
                             <div key={item.id} className="space-y-2">
@@ -535,6 +648,65 @@ const ContentSettings = () => {
                             onClick={handleSave}
                             disabled={loading}
                             className="bg-[#9F19FF] hover:bg-[#9F19FF]/90 text-white font-medium px-8 py-2 h-12 rounded-xl shadow-lg shadow-[#9F19FF]/20"
+                        >
+                            {loading ? 'שומר...' : 'שמור שינויים'}
+                        </Button>
+                    </div>
+                </CardContent>
+            </Card>
+
+            <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
+                <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
+                    <CardTitle className="text-[#9F19FF]">הגדרות פוטר (Footer)</CardTitle>
+                    <CardDescription>עריכת הקישורים והטקסטים בחלק התחתון של האתר.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6 pt-6">
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">זכויות יוצרים (שורת קרדיט)</label>
+                        <Input
+                            value={settings.footerCopyright}
+                            onChange={(e) => setSettings({ ...settings, footerCopyright: e.target.value })}
+                        />
+                    </div>
+
+                    <div className="space-y-4 pt-4 border-t">
+                        <label className="text-sm font-medium">קישורים לרשתות חברתיות</label>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div className="space-y-1">
+                                <label className="text-xs text-gray-500">YouTube</label>
+                                <Input
+                                    value={settings.footerSocialYoutube}
+                                    onChange={(e) => setSettings({ ...settings, footerSocialYoutube: e.target.value })}
+                                    dir="ltr"
+                                    placeholder="https://youtube.com/..."
+                                />
+                            </div>
+                            <div className="space-y-1">
+                                <label className="text-xs text-gray-500">Instagram</label>
+                                <Input
+                                    value={settings.footerSocialInstagram}
+                                    onChange={(e) => setSettings({ ...settings, footerSocialInstagram: e.target.value })}
+                                    dir="ltr"
+                                    placeholder="https://instagram.com/..."
+                                />
+                            </div>
+                            <div className="space-y-1">
+                                <label className="text-xs text-gray-500">TikTok</label>
+                                <Input
+                                    value={settings.footerSocialTiktok}
+                                    onChange={(e) => setSettings({ ...settings, footerSocialTiktok: e.target.value })}
+                                    dir="ltr"
+                                    placeholder="https://tiktok.com/..."
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex justify-end pt-4">
+                        <Button
+                            onClick={handleSave}
+                            disabled={loading}
+                            className="bg-[#9F19FF] hover:bg-[#9F19FF]/90 text-white font-medium"
                         >
                             {loading ? 'שומר...' : 'שמור שינויים'}
                         </Button>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useState, useEffect } from "react";
-import ProductListModal from "./ProductListModal";
+import ProductListModal, { Product } from "./ProductListModal";
 import API_BASE_URL from "@/config";
 import realHeadphonesImage from "@/assets/product-real-headphones.png";
 import cartoonHeadphonesImage from "@/assets/product-cartoon-headphones.png";
@@ -16,29 +16,7 @@ import hoodieHoverImage from "@/assets/A3.png";
 
 // Types
 // Types
-interface Product {
-  _id?: string; // Optional because static products use 'id'
-  id?: number | string;
-  title?: string;
-  name?: string; // Static products use 'name'
-  price: number;
-  originalPrice?: number;
-  description: string;
-  // DB Fields
-  mainImage?: string;
-  hoverImage?: string;
-  galleryImages?: string[];
-  // Legacy/Static Fields
-  images?: string[];
-  image?: string; // Static
-  badge?: string; // Static
-  category?: string;
-  inStock?: boolean;
-  isNewArrival?: boolean;
-  slug?: string;
-  section?: string;
-  displaySlot?: number | null;
-}
+
 
 const DEFAULT_PRODUCTS: Product[] = [{
   id: 1,
@@ -77,44 +55,37 @@ const DEFAULT_PRODUCTS: Product[] = [{
   description: "קפוצ'ון פרימיום רך במיוחד עם לוגו דסטיני בלעדי"
 }];
 
-const FeaturedProducts = () => {
+
+
+interface FeaturedProductsProps {
+  products?: Product[];
+}
+
+const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) => {
   const [products, setProducts] = useState<Product[]>(DEFAULT_PRODUCTS);
   const [loading, setLoading] = useState(true);
   const [allFeatured, setAllFeatured] = useState<Product[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await fetch(`${API_BASE_URL}/api/products`);
-        const data = await res.json();
+    if (dbProducts.length > 0) {
+      // Filter for featured products
+      const featured = dbProducts.filter((p: Product) => p.section === 'featured');
+      setAllFeatured(featured);
 
-        if (Array.isArray(data) && data.length > 0) {
-          // Filter for featured products
-          const featured = data.filter((p: Product) => p.section === 'featured');
-          setAllFeatured(featured);
-
-          // Logic to map to slots 1-4
-          const newSlots = [...DEFAULT_PRODUCTS];
-          featured.forEach((p: Product) => {
-            if (p.displaySlot && p.displaySlot >= 1 && p.displaySlot <= 4) {
-              newSlots[p.displaySlot - 1] = p;
-            }
-          });
-          setProducts(newSlots);
-        } else {
-          console.log("No DB products found or invalid data, using defaults");
-          if (!Array.isArray(data)) console.error("Received non-array data:", data);
-        }
-      } catch (error) {
-        console.error("Failed to fetch featured products, using defaults", error);
-      } finally {
-        setLoading(false);
+      // Logic to map to slots 1-4
+      if (featured.length > 0) {
+        const newSlots = [...DEFAULT_PRODUCTS];
+        featured.forEach((p: Product) => {
+          if (p.displaySlot && p.displaySlot >= 1 && p.displaySlot <= 4) {
+            newSlots[p.displaySlot - 1] = p;
+          }
+        });
+        setProducts(newSlots);
       }
-    };
-
-    fetchProducts();
-  }, []);
+      setLoading(false);
+    }
+  }, [dbProducts]);
 
   // Helper to get image URL safely
   const getImageUrl = (product: Product, isHover: boolean = false) => {

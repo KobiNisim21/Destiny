@@ -18,10 +18,15 @@ const Register = () => {
         phone: "",
         password: "",
         confirmPassword: "",
+        gender: "other",
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleGenderChange = (value: string) => {
+        setFormData({ ...formData, gender: value });
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -50,6 +55,7 @@ const Register = () => {
                     email: formData.email,
                     phone: formData.phone,
                     password: formData.password,
+                    gender: formData.gender,
                 }),
             });
 
@@ -131,6 +137,45 @@ const Register = () => {
                                 onChange={handleChange}
                                 placeholder="050-0000000"
                             />
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label>מין</Label>
+                            <div className="flex gap-4" dir="rtl">
+                                <label className="flex items-center gap-2 cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name="gender"
+                                        value="male"
+                                        checked={formData.gender === 'male'}
+                                        onChange={(e) => handleGenderChange(e.target.value)}
+                                        className="accent-[#9F19FF]"
+                                    />
+                                    <span>זכר</span>
+                                </label>
+                                <label className="flex items-center gap-2 cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name="gender"
+                                        value="female"
+                                        checked={formData.gender === 'female'}
+                                        onChange={(e) => handleGenderChange(e.target.value)}
+                                        className="accent-[#9F19FF]"
+                                    />
+                                    <span>נקבה</span>
+                                </label>
+                                <label className="flex items-center gap-2 cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name="gender"
+                                        value="other"
+                                        checked={formData.gender === 'other'}
+                                        onChange={(e) => handleGenderChange(e.target.value)}
+                                        className="accent-[#9F19FF]"
+                                    />
+                                    <span>אחר</span>
+                                </label>
+                            </div>
                         </div>
 
                         <div className="space-y-2">

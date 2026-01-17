@@ -10,7 +10,8 @@ import {
     Menu,
 
     X,
-    Globe
+    Globe,
+    Tag
 } from "lucide-react";
 import { useState } from "react";
 
@@ -26,7 +27,8 @@ const AdminLayout = () => {
         { label: "לוח בקרה", path: "/admin", icon: <LayoutDashboard size={20} /> },
         { label: "מוצרים", path: "/admin/products", icon: <ShoppingBag size={20} /> },
         { label: "הזמנות", path: "/admin/orders", icon: <Package size={20} /> },
-        { label: "לקוחות", path: "/admin/users", icon: <Users size={20} /> },
+        { label: "קופונים", path: "/admin/coupons", icon: <Tag size={20} /> },
+        { label: "ניהול צוות", path: "/admin/users", icon: <Users size={20} /> },
         { label: "תוכן והגדרות", path: "/admin/content", icon: <Settings size={20} /> },
     ];
 
@@ -36,7 +38,7 @@ const AdminLayout = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-100 flex" dir="rtl">
+        <div className="min-h-screen bg-gray-100 flex" dir="rtl" style={{ direction: 'rtl' }}>
             {/* Sidebar */}
             <aside
                 className={`bg-white border-l border-gray-200 shadow-sm transition-all duration-300 fixed md:relative z-50 h-full

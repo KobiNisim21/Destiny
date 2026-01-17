@@ -39,11 +39,25 @@ const Products = () => {
 
     const fetchProducts = async () => {
         try {
+            console.log(`Fetching products from: ${API_BASE_URL}/api/products`);
             const res = await fetch(`${API_BASE_URL}/api/products`);
+
+            if (!res.ok) {
+                const errorText = await res.text();
+                console.error(`Fetch failed: ${res.status} ${res.statusText}`, errorText);
+                throw new Error(`Failed to fetch: ${res.status}`);
+            }
+
             const data = await res.json();
+
+            if (!Array.isArray(data)) {
+                console.error("API returned non-array data:", data);
+                throw new Error("Invalid data format received");
+            }
+
             setProducts(data);
         } catch (error) {
-            console.error(error);
+            console.error("Fetch error details:", error);
             toast({ title: "שגיאה", description: "לא ניתן לטעון מוצרים", variant: "destructive" });
         } finally {
             setLoading(false);

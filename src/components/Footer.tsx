@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Instagram, Youtube } from "lucide-react";
 import logoImage from "@/assets/logo.png";
+import { useEffect, useState } from "react";
+import API_BASE_URL from "@/config";
 
 // TikTok icon component
 const TikTok = ({ className }: { className?: string }) => (
@@ -17,6 +19,33 @@ const TikTok = ({ className }: { className?: string }) => (
 );
 
 const Footer = () => {
+  const [footerContent, setFooterContent] = useState({
+    copyright: "© 2025 כל הזכויות שמורות - שם העסק",
+    youtube: "https://youtube.com",
+    instagram: "https://instagram.com",
+    tiktok: "https://tiktok.com"
+  });
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/content`);
+        const data = await res.json();
+        if (res.ok) {
+          setFooterContent({
+            copyright: data.footerCopyright || "© 2025 כל הזכויות שמורות - שם העסק",
+            youtube: data.footerSocialYoutube || "https://youtube.com",
+            instagram: data.footerSocialInstagram || "https://instagram.com",
+            tiktok: data.footerSocialTiktok || "https://tiktok.com"
+          });
+        }
+      } catch (error) {
+        console.error("Failed to fetch footer content:", error);
+      }
+    };
+    fetchContent();
+  }, []);
+
   return (
     <footer className="w-full site-footer" dir="rtl">
       <div className="footer-content">
@@ -41,7 +70,7 @@ const Footer = () => {
             fontWeight: 300,
             lineHeight: 'normal'
           }}>
-            © 2025 כל הזכויות שמורות - שם העסק
+            {footerContent.copyright}
           </div>
         </div>
 
@@ -57,9 +86,9 @@ const Footer = () => {
         {/* Left Column: Socials & Credits */}
         <div className="flex flex-col items-end gap-2 footer-section-end">
           <div className="flex gap-6">
-            <a href="https://youtube.com" target="_blank" rel="noreferrer" className="text-white hover:text-[#C097E8] transition-colors"><Youtube className="w-5 h-5" /></a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="text-white hover:text-[#C097E8] transition-colors"><Instagram className="w-5 h-5" /></a>
-            <a href="https://tiktok.com" target="_blank" rel="noreferrer" className="text-white hover:text-[#C097E8] transition-colors"><TikTok className="w-5 h-5" /></a>
+            {footerContent.youtube && <a href={footerContent.youtube} target="_blank" rel="noreferrer" className="text-white hover:text-[#C097E8] transition-colors"><Youtube className="w-5 h-5" /></a>}
+            {footerContent.instagram && <a href={footerContent.instagram} target="_blank" rel="noreferrer" className="text-white hover:text-[#C097E8] transition-colors"><Instagram className="w-5 h-5" /></a>}
+            {footerContent.tiktok && <a href={footerContent.tiktok} target="_blank" rel="noreferrer" className="text-white hover:text-[#C097E8] transition-colors"><TikTok className="w-5 h-5" /></a>}
           </div>
 
           <div className="flex gap-1" style={{

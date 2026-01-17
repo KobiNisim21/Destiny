@@ -3,12 +3,23 @@ import { ShoppingCart, Menu, X, User } from "lucide-react";
 import { useState, useEffect } from "react";
 import destinyLogo from "@/assets/destiny-logo-new.png";
 import { useAuth } from "@/context/AuthContext";
+import { useCart } from "@/context/CartContext";
 import API_BASE_URL from "@/config";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  const { cartCount, setIsCartOpen } = useCart();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [menuItems, setMenuItems] = useState([
     { id: 'home', label: 'דף הבית', type: 'scroll', target: 'hero-section' },
@@ -34,9 +45,6 @@ const Navbar = () => {
   }, []);
 
   const isActive = (path: string) => (location.pathname === path ? "active" : "");
-  // Helper to check if scroll section is active - basic implementation based on hash could work, 
-  // but for now we keep simple logic or just highlight based on click/view if needed. 
-  // Since original code had simple check, we'll keep it simple.
 
   const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMenu = () => setIsMobileMenuOpen(false);
@@ -57,6 +65,11 @@ const Navbar = () => {
         element.scrollIntoView({ behavior: "smooth" });
       }
     }
+  };
+
+  const getGreeting = () => {
+    if (!user) return "";
+    return user.gender === 'female' ? 'ברוכה הבאה' : user.gender === 'male' ? 'ברוך הבא' : 'ברוכים הבאים';
   };
 
   return (
@@ -92,22 +105,42 @@ const Navbar = () => {
           {user ? (
             <div className="flex items-center gap-4">
               <span className="text-white text-[16px] font-medium hidden xl:block">
-                ברוך הבא, {user.firstName}
+                {getGreeting()}, {user.firstName}
               </span>
-              {user.role === 'admin' && (
-                <Link to="/admin" className="nav-link-btn text-[#9F19FF] hover:text-[#9F19FF]/80 font-bold">
-                  לוח ניהול
-                </Link>
-              )}
-              <button
-                onClick={() => {
-                  logout();
-                  navigate('/');
-                }}
-                className="nav-link-btn text-[#FF4B4B] hover:text-[#FF4B4B]/80 font-bold"
-              >
-                התנתק
-              </button>
+
+              <DropdownMenu>
+                <DropdownMenuTrigger className="outline-none">
+                  <Avatar className="w-8 h-8 border border-white/20 cursor-pointer hover:border-[#9F19FF] transition-colors">
+                    <AvatarFallback className="bg-[#9F19FF] text-white text-xs">
+                      {user.firstName.charAt(0)}{user.lastName.charAt(0)}
+                    </AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-[#1a1a1a] border-white/10 text-white min-w-[200px]" align="end" style={{ direction: 'rtl' }}>
+                  <DropdownMenuLabel className="text-right pr-4">החשבון שלי</DropdownMenuLabel>
+                  <DropdownMenuSeparator className="bg-white/10" />
+                  <DropdownMenuItem className="flex items-center justify-start gap-2 cursor-pointer hover:bg-white/10 focus:bg-white/10" onClick={() => navigate('/profile')}>
+                    <User className="w-4 h-4 ml-0" />
+                    <span>פרופיל אישי</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-center justify-start gap-2 cursor-pointer hover:bg-white/10 focus:bg-white/10" onClick={() => navigate('/orders')}>
+                    <ShoppingCart className="w-4 h-4 ml-0" />
+                    <span>ההזמנות שלי</span>
+                  </DropdownMenuItem>
+                  {user.role === 'admin' && (
+                    <DropdownMenuItem className="flex items-center justify-start gap-2 cursor-pointer hover:bg-white/10 focus:bg-white/10 text-[#9F19FF]" onClick={() => navigate('/admin')}>
+                      <span>לוח ניהול</span>
+                    </DropdownMenuItem>
+                  )}
+                  <DropdownMenuSeparator className="bg-white/10" />
+                  <DropdownMenuItem className="flex items-center justify-start gap-2 cursor-pointer hover:bg-white/10 focus:bg-white/10 text-red-500 hover:text-red-400 focus:text-red-400" onClick={() => {
+                    logout();
+                    navigate('/');
+                  }}>
+                    <span>התנתק</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           ) : (
             <div className="flex items-center gap-4">
@@ -123,11 +156,11 @@ const Navbar = () => {
 
         {/* Left: Cart Icon */}
         <div className="nav-icons">
-          <button className="nav-icon-btn relative" aria-label="Cart">
+          <button className="nav-icon-btn relative" aria-label="Cart" onClick={() => setIsCartOpen(true)}>
             <svg xmlns="http://www.w3.org/2000/svg" width="37" height="36" viewBox="0 0 37 36" fill="none" className="icon">
               <path d="M29.8989 25.5655C31.4374 25.5494 32.7825 24.5104 33.1772 23.0202L36.9709 8.89235C37.0917 8.43324 36.8259 7.96606 36.3668 7.83719C36.2943 7.82108 36.2218 7.80497 36.1493 7.80497H7.61166L5.67049 0.636319C5.57383 0.265804 5.23553 0 4.84891 0H0V1.71564H4.17232L6.04905 8.7232C6.041 8.77959 6.041 8.83597 6.04905 8.89235L9.91529 23.0686C9.93946 23.1813 9.97973 23.3022 10.02 23.4149L11.3249 28.1672C10.0683 28.8357 9.21454 30.1567 9.21454 31.679C9.21454 33.8779 10.9946 35.658 13.1935 35.658C15.3925 35.658 17.1725 33.8779 17.1725 31.679C17.1725 30.9944 16.9953 30.3419 16.6893 29.7781C16.6168 29.6492 16.5443 29.5204 16.4557 29.3915H26.5804C26.1293 30.0358 25.8555 30.8252 25.8555 31.679C25.8555 33.8779 27.6356 35.658 29.8345 35.658C32.0334 35.658 33.8135 33.8779 33.8135 31.679C33.8135 30.64 33.4188 29.6976 32.7664 28.9887C32.0656 28.1913 31.0346 27.6839 29.8828 27.6758H13.0405L12.4364 25.4608C12.6942 25.5252 12.96 25.5655 13.2258 25.5655H29.8989ZM29.8425 29.3915C31.1071 29.3915 32.1301 30.4144 32.1301 31.679C32.1301 32.9436 31.1071 33.9665 29.8425 33.9665C28.578 33.9665 27.555 32.9436 27.555 31.679C27.555 30.4144 28.578 29.3915 29.8425 29.3915ZM13.1935 29.3915C14.4581 29.3915 15.473 30.4225 15.473 31.679C15.473 32.9436 14.4501 33.9665 13.1855 33.9665C11.9209 33.9665 10.906 32.9436 10.906 31.679C10.906 30.4144 11.929 29.3915 13.1935 29.3915ZM11.6632 22.7625L9.73809 15.7227L8.02245 9.53672H34.9975L31.5099 22.6336C31.3165 23.3827 30.648 23.9062 29.8748 23.9224H13.2097C12.5089 23.8821 11.8967 23.431 11.6632 22.7625Z" fill="white" />
             </svg>
-            <span className="cart-badge">0</span>
+            {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
           </button>
         </div>
       </nav>
@@ -151,7 +184,7 @@ const Navbar = () => {
         {user ? (
           <>
             <div className="text-white text-center py-2 font-medium">
-              ברוך הבא, {user.firstName}
+              {user.gender === 'female' ? 'ברוכה הבאה' : user.gender === 'male' ? 'ברוך הבא' : 'ברוכים הבאים'}, {user.firstName}
             </div>
             {user.role === 'admin' && (
               <Link to="/admin" className="mobile-link text-[#9F19FF] border-[#9F19FF]/30" onClick={closeMenu}>

@@ -59,37 +59,28 @@ const DEFAULT_TRINKETS: Product[] = [
   }
 ];
 
-const Collections = () => {
+const Collections = ({ products: dbProducts = [] }: { products?: Product[] }) => {
   const [displaySlots, setDisplaySlots] = useState<Product[]>(DEFAULT_TRINKETS);
   const [allTrinkets, setAllTrinkets] = useState<Product[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await fetch(`${API_BASE_URL}/api/products`);
-        const data = await res.json();
+    if (dbProducts.length > 0) {
+      const trinkets = dbProducts.filter((p: Product) => p.section === 'trinkets');
+      setAllTrinkets(trinkets);
 
-        const trinkets = data.filter((p: Product) => p.section === 'trinkets');
-        setAllTrinkets(trinkets);
-
-        // Map to slots
+      // Map to slots
+      if (trinkets.length > 0) {
         const newSlots = [...DEFAULT_TRINKETS];
         trinkets.forEach((p: Product) => {
           if (p.displaySlot && p.displaySlot >= 1 && p.displaySlot <= 4) {
             newSlots[p.displaySlot - 1] = p;
           }
         });
-
         setDisplaySlots(newSlots);
-
-      } catch (error) {
-        console.error("Failed to fetch trinkets", error);
       }
-    };
-
-    fetchProducts();
-  }, []);
+    }
+  }, [dbProducts]);
 
   // Helper to get image URL safely
   const getImageUrl = (product: Product, index: number) => {

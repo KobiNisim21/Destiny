@@ -13,6 +13,9 @@ interface User {
         country: string;
     };
     role: 'user' | 'admin';
+    permissions?: string[];
+    isSuperAdmin?: boolean;
+    gender?: 'male' | 'female' | 'other';
 }
 
 interface AuthContextType {

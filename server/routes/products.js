@@ -56,9 +56,12 @@ const processImages = (files, body) => {
 // Get all products
 router.get('/', async (req, res) => {
     try {
+        console.log('GET /api/products request received');
         const products = await Product.find().sort({ createdAt: -1 });
+        console.log(`Found ${products.length} products`);
         res.json(products);
     } catch (error) {
+        console.error('Error in GET /api/products:', error);
         res.status(500).json({ message: 'Server error' });
     }
 });

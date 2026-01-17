@@ -6,23 +6,9 @@ import { Link } from "react-router-dom";
 import API_BASE_URL from "@/config";
 import protestShirtImage from "@/assets/A9.png";
 import protestShirtHoverImage from "@/assets/product-tshirt.jpg";
+import { Product } from "./ProductListModal";
 
 // Types
-interface Product {
-  _id?: string;
-  id?: number | string;
-  title?: string;
-  name?: string;
-  price: number;
-  originalPrice?: number;
-  description: string;
-  images?: string[];
-  image?: string;
-  hoverImage?: string;
-  category?: string;
-  inStock?: boolean;
-  isNewArrival?: boolean;
-}
 
 const DEFAULT_NEW_ARRIVAL: Product = {
   title: "Signature Hoodie",
@@ -33,39 +19,30 @@ const DEFAULT_NEW_ARRIVAL: Product = {
   hoverImage: protestShirtHoverImage
 };
 
-const NewArrivals = () => {
+const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) => {
   const [product, setProduct] = useState<Product | null>(DEFAULT_NEW_ARRIVAL);
 
   useEffect(() => {
-    const fetchNewArrival = async () => {
-      try {
-        const res = await fetch(`${API_BASE_URL}/api/products`);
-        const data = await res.json();
-        const newArrival = data.find((p: Product) => p.isNewArrival);
-
-        if (newArrival) {
-          setProduct(newArrival);
-        } else if (data.length > 0) {
-          setProduct(data[0]);
-        }
-        // If neither, we stick with DEFAULT_NEW_ARRIVAL
-      } catch (error) {
-        console.error("Failed to fetch new arrival, using default", error);
+    if (dbProducts.length > 0) {
+      const newArrival = dbProducts.find((p: Product) => p.isNewArrival);
+      if (newArrival) {
+        setProduct(newArrival);
+      } else if (dbProducts.length > 0) {
+        setProduct(dbProducts[0]);
       }
-    };
-
-    fetchNewArrival();
-  }, []);
+    }
+  }, [dbProducts]);
 
   if (!product) return null; // Should not happen with default
 
-  const displayImage = (product.images && product.images.length > 0)
-    ? `${API_BASE_URL}${product.images[0]}`
-    : (product.image || '');
+  const getImageSrc = (img?: string) => {
+    if (!img) return '';
+    if (img.startsWith('/uploads')) return `${API_BASE_URL}${img}`;
+    return img;
+  };
 
-  const hoverImage = (product.images && product.images.length > 1)
-    ? `${API_BASE_URL}${product.images[1]}`
-    : (product.hoverImage || displayImage || '');
+  const displayImage = getImageSrc(product.mainImage || (product.images && product.images[0]) || product.image);
+  const hoverImage = getImageSrc(product.hoverImage || (product.images && product.images[1]) || displayImage);
 
   const productName = product.title || product.name || '';
   const productLink = product._id ? `/product/${product._id}` : '#';

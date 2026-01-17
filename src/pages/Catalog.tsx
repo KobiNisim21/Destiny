@@ -65,7 +65,7 @@ const Catalog = () => {
     return (
         <div className="min-h-screen flex flex-col" dir="rtl">
             <Navbar />
-            <main className="flex-grow pt-24 pb-16 bg-gray-50">
+            <main className="flex-grow pt-40 pb-16 bg-gray-50">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
                         <h1 className="text-4xl font-bold text-[#22222A] font-['Noto_Sans_Hebrew'] mb-4">כל הקולקציות</h1>

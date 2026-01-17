@@ -61,20 +61,17 @@ const DEFAULT_PINS: Product[] = [
     }
 ];
 
-const PinsAndStickers = () => {
+const PinsAndStickers = ({ products: dbProducts = [] }: { products?: Product[] }) => {
     const [displaySlots, setDisplaySlots] = useState<Product[]>(DEFAULT_PINS);
     const [allPins, setAllPins] = useState<Product[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const res = await fetch(`${API_BASE_URL}/api/products`);
-                const data = await res.json();
+        if (dbProducts.length > 0) {
+            const pins = dbProducts.filter((p: Product) => p.section === 'pins');
+            setAllPins(pins);
 
-                const pins = data.filter((p: Product) => p.section === 'pins');
-                setAllPins(pins);
-
+            if (pins.length > 0) {
                 // Map to slots
                 const newSlots = [...DEFAULT_PINS];
                 pins.forEach((p: Product) => {
@@ -82,16 +79,10 @@ const PinsAndStickers = () => {
                         newSlots[p.displaySlot - 1] = p;
                     }
                 });
-
                 setDisplaySlots(newSlots);
-
-            } catch (error) {
-                console.error("Failed to fetch pins", error);
             }
-        };
-
-        fetchProducts();
-    }, []);
+        }
+    }, [dbProducts]);
 
     // Helper to get image URL safely
     const getImageUrl = (product: Product, index: number) => {

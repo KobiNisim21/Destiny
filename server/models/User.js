@@ -22,6 +22,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
+    gender: {
+        type: String,
+        enum: ['male', 'female', 'other'],
+        default: 'other',
+    },
     password: {
         type: String,
         required: true,
@@ -36,6 +41,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['user', 'admin'],
         default: 'user',
+    },
+    permissions: [{
+        type: String,
+        enum: ['manage_products', 'manage_orders', 'manage_content', 'manage_team', 'view_dashboard'],
+    }],
+    isSuperAdmin: {
+        type: Boolean,
+        default: false,
     },
     createdAt: {
         type: Date,

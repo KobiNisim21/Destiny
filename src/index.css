@@ -198,6 +198,15 @@ All colors MUST be HSL.
   .animate-fade-in-out {
     animation: fade-in-out 3s infinite ease-in-out;
   }
+
+  .rtl {
+    direction: rtl !important;
+    text-align: right !important;
+  }
+
+  .text-right-forced {
+    text-align: right !important;
+  }
 }
 
 /* Navbar styles are now in Navbar.tsx component */

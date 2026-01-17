@@ -59,36 +59,32 @@ const AdminDashboard = () => {
 
                 <Card className="bg-white">
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-sm font-medium text-gray-500">הזמנות חדשות</CardTitle>
-                        <ShoppingBag className="w-4 h-4 text-gray-500" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">0</div>
-                        <p className="text-xs text-gray-500 mt-1">+0% מהחודש שעבר</p>
-                    </CardContent>
-                </Card>
-
-                <Card className="bg-white">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-sm font-medium text-gray-500">משתמשים רשומים</CardTitle>
-                        <Users className="w-4 h-4 text-gray-500" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">0</div>
-                        <p className="text-xs text-gray-500 mt-1">+0% מהחודש שעבר</p>
-                    </CardContent>
-                </Card>
-
-                <Card className="bg-white">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
                         <CardTitle className="text-sm font-medium text-gray-500">צפיות באתר</CardTitle>
                         <Eye className="w-4 h-4 text-gray-500" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">0</div>
-                        <p className="text-xs text-gray-500 mt-1">+0% מהחודש שעבר</p>
+                        <div className="text-2xl font-bold">
+                            {stats ? (stats.error ? '-' : stats.views || 0) : '...'}
+                        </div>
+                        <p className="text-xs text-gray-500 mt-1">סה"כ כניסות לדף הבית</p>
                     </CardContent>
                 </Card>
+
+                <Card className="bg-white">
+                    <CardHeader className="flex flex-row items-center justify-between pb-2">
+                        <CardTitle className="text-sm font-medium text-gray-500">נרשמו החודש</CardTitle>
+                        <Users className="w-4 h-4 text-gray-500" />
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-2xl font-bold">
+                            {stats ? (stats.error ? '-' : stats.users) : '...'}
+                        </div>
+                        <p className={`text-xs mt-1 ${stats && stats.userGrowth >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            {stats ? (stats.error ? '' : `${stats.userGrowth > 0 ? '+' : ''}${stats.userGrowth}% מהחודש שעבר`) : '...'}
+                        </p>
+                    </CardContent>
+                </Card>
+
                 <Card className="bg-white">
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                         <CardTitle className="text-sm font-medium text-gray-500">נפח אחסון (DB)</CardTitle>
@@ -96,11 +92,9 @@ const AdminDashboard = () => {
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">
-                            {stats
-                                ? (stats.error ? 'שגיאה' : formatBytes(stats.storageSize || 0))
-                                : '...'}
+                            {stats ? (stats.error ? '-' : formatBytes(stats.storageSize)) : '...'}
                         </div>
-                        <p className="text-xs text-gray-500 mt-1">מתוך MongoDB</p>
+                        <p className="text-xs text-gray-500 mt-1">נפח בשימוש ב-MongoDB</p>
                     </CardContent>
                 </Card>
             </div>
