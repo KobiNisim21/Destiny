@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const faqs = [
   {
@@ -91,9 +92,11 @@ const FAQ = () => {
           <p className="text-muted-foreground mb-4">
             עדיין יש שאלות? אנחנו כאן לעזור!
           </p>
-          <Button size="lg" variant="outline" className="border-2 font-semibold hover:bg-muted">
-            צרו קשר
-          </Button>
+          <Link to="/contact">
+            <Button size="lg" variant="outline" className="border-2 font-semibold hover:bg-muted">
+              צרו קשר
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

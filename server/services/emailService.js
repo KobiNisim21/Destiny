@@ -89,3 +89,35 @@ export const sendPasswordResetEmail = async (email, resetToken) => {
         return { success: false, error: err };
     }
 };
+
+export const sendContactEmail = async (name, email, message, phone = '') => {
+    try {
+        const transporter = getTransporter();
+        if (!transporter) throw new Error('Email service not initialized');
+
+        const mailOptions = {
+            from: '"Destiny Shop Contact" <' + process.env.EMAIL_USER + '>',
+            to: process.env.EMAIL_USER, // Send to admin
+            replyTo: email, // Allow reply to user
+            subject: `הודעה חדשה מהאתר: ${name}`,
+            html: `
+        <div dir="rtl" style="font-family: Arial, sans-serif; text-align: right;">
+          <h1>הודעה חדשה מטופס צור קשר</h1>
+          <p><strong>שם:</strong> ${name}</p>
+          <p><strong>אימייל:</strong> ${email}</p>
+          ${phone ? `<p><strong>טלפון:</strong> ${phone}</p>` : ''}
+          <p><strong>תוכן ההודעה:</strong></p>
+          <p style="background-color: #f5f5f5; padding: 15px; border-radius: 5px;">${message}</p>
+        </div>
+      `,
+        };
+
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Contact email sent: ' + info.response);
+        return { success: true, data: info };
+
+    } catch (err) {
+        console.error('Email service error:', err);
+        return { success: false, error: err };
+    }
+};

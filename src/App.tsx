@@ -8,6 +8,7 @@ import SessionTimeout from "./components/SessionTimeout";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Catalog from "./pages/Catalog";
+import Contact from "./pages/Contact";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -58,6 +59,7 @@ const App = () => (
               <Route path="/order-success" element={<OrderSuccess />} />
               <Route path="/orders" element={<UserOrders />} />
               <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
 
               {/* Admin Routes */}
               <Route element={<AdminRoute />}>
