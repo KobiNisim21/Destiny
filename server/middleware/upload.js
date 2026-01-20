@@ -23,8 +23,9 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'destiny_shop_products',
-    allowed_formats: ['jpg', 'png', 'jpeg', 'webp'],
-    transformation: [{ width: 1000, height: 1000, crop: 'limit' }]
+    allowed_formats: ['jpg', 'png', 'jpeg', 'webp', 'mp4', 'mov'],
+    resource_type: 'auto', // Auto-detect image or video
+    // transformation: [{ width: 1000, height: 1000, crop: 'limit' }] // Removed to avoid video errors
   },
 });
 
