@@ -19,7 +19,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Explicitly load .env from the root directory (one level up)
-dotenv.config({ path: path.join(__dirname, '../.env') });
+// Explicitly load .env from the root directory (one level up) - ONLY in development
+if (process.env.NODE_ENV !== 'production') {
+    dotenv.config({ path: path.join(__dirname, '../.env') });
+}
 
 const app = express();
 const PORT = process.env.PORT || 5000;
