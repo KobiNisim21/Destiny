@@ -1,44 +1,73 @@
 import { useEffect, useState } from "react";
-import thumbnailImage from "@/assets/Rectangle 7.png";
 import {
     Carousel,
     CarouselContent,
     CarouselItem,
     type CarouselApi,
 } from "@/components/ui/carousel";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+import API_BASE_URL from "@/config";
+import Autoplay from "embla-carousel-autoplay";
 
-const influencers = [
-    { id: 1, image: thumbnailImage },
-    { id: 2, image: thumbnailImage },
-    { id: 3, image: thumbnailImage },
-    { id: 4, image: thumbnailImage },
-    { id: 5, image: thumbnailImage },
-    { id: 6, image: thumbnailImage },
-];
+interface YouTubeVideo {
+    id: string;
+    videoId: string;
+    title: string;
+    thumbnail: string;
+}
 
 const Influencers = () => {
     const [api, setApi] = useState<CarouselApi>();
     const [current, setCurrent] = useState(0);
     const [count, setCount] = useState(0);
+    const [videos, setVideos] = useState<YouTubeVideo[]>([]);
+    const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchVideos = async () => {
+            try {
+                const res = await fetch(`${API_BASE_URL}/api/youtube/latest`);
+                const data = await res.json();
+                if (Array.isArray(data) && data.length > 0) {
+                    setVideos(data);
+                } else {
+                    // Fallback placeholders if API fails/empty
+                    setVideos([
+                        { id: '1', videoId: 'dQw4w9WgXcQ', title: 'Video 1', thumbnail: 'https://placehold.co/600x400' },
+                        { id: '2', videoId: 'dQw4w9WgXcQ', title: 'Video 2', thumbnail: 'https://placehold.co/600x400' },
+                        { id: '3', videoId: 'dQw4w9WgXcQ', title: 'Video 3', thumbnail: 'https://placehold.co/600x400' },
+                    ]);
+                }
+            } catch (error) {
+                console.error("Failed to fetch YouTube videos", error);
+            }
+        };
+        fetchVideos();
+    }, []);
 
     useEffect(() => {
         if (!api) {
             return;
         }
 
-        setCount(api.scrollSnapList().length);
-        setCurrent(api.selectedScrollSnap() + 1);
-
-        api.on("select", () => {
+        const onSelect = () => {
             setCurrent(api.selectedScrollSnap() + 1);
-        });
+        };
 
-        const interval = setInterval(() => {
-            api.scrollNext();
-        }, 3000);
+        const onInit = () => {
+            setCount(api.scrollSnapList().length);
+            setCurrent(api.selectedScrollSnap() + 1);
+        };
 
-        return () => clearInterval(interval);
+        onInit();
+        api.on("select", onSelect);
+        api.on("reInit", onInit);
+
+        return () => {
+            api.off("select", onSelect);
+            api.off("reInit", onInit);
+        };
     }, [api]);
 
     return (
@@ -63,6 +92,13 @@ const Influencers = () => {
             {/* Carousel */}
             <Carousel
                 setApi={setApi}
+                plugins={[
+                    Autoplay({
+                        delay: 3000,
+                        stopOnInteraction: false,
+                        stopOnMouseEnter: true,
+                    }),
+                ]}
                 opts={{
                     align: "center",
                     loop: true,
@@ -72,8 +108,8 @@ const Influencers = () => {
                 dir="rtl"
             >
                 <CarouselContent className="-ml-4">
-                    {influencers.map((item) => (
-                        <CarouselItem key={item.id} className="md:basis-1/3 pl-4 flex justify-center py-4">
+                    {videos.map((video) => (
+                        <CarouselItem key={video.id} className="md:basis-1/3 pl-4 flex justify-center py-4">
                             <div style={{
                                 display: 'flex',
                                 width: '400px',
@@ -86,15 +122,18 @@ const Influencers = () => {
                                 backgroundColor: '#FFF',
                                 boxShadow: '0px 4px 10px rgba(0,0,0,0.05)'
                             }}>
-                                <div style={{
-                                    height: '250px',
-                                    alignSelf: 'stretch',
-                                    borderRadius: '23px',
-                                    background: `url("${item.image}") lightgray 50% / cover no-repeat`,
-                                    backgroundColor: '#D9D9D9',
-                                    position: 'relative',
-                                    overflow: 'hidden'
-                                }}>
+                                <div
+                                    onClick={() => setSelectedVideo(video.videoId)}
+                                    style={{
+                                        height: '250px',
+                                        alignSelf: 'stretch',
+                                        borderRadius: '23px',
+                                        background: `url("${video.thumbnail}") lightgray 50% / cover no-repeat`,
+                                        backgroundColor: '#D9D9D9',
+                                        position: 'relative',
+                                        overflow: 'hidden',
+                                        cursor: 'pointer'
+                                    }}>
                                     {/* Play Button */}
                                     <div className="absolute inset-0 flex items-center justify-center group cursor-pointer">
                                         <div className="w-12 h-12 bg-[#FF0000] rounded-xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-110">
@@ -126,6 +165,25 @@ const Influencers = () => {
                     />
                 ))}
             </div>
+
+            {/* Video Modal */}
+            <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
+                <DialogContent className="sm:max-w-[800px] p-0 bg-black border-none overflow-hidden text-white">
+                    <div className="aspect-video w-full">
+                        {selectedVideo && (
+                            <iframe
+                                width="100%"
+                                height="100%"
+                                src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1`}
+                                title="YouTube video player"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
+                        )}
+                    </div>
+                </DialogContent>
+            </Dialog>
 
         </section>
     );

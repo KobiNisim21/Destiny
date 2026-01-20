@@ -10,6 +10,7 @@ import teamRoutes from './routes/team.js';
 import analyticsRoutes from './routes/analytics.js';
 import orderRoutes from './routes/orders.js';
 import couponRoutes from './routes/coupons.js';
+import youtubeRoutes from './routes/youtube.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
@@ -25,7 +26,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000; // Trigger Restart 2
 
 // Middleware
 app.use(express.json());
@@ -43,6 +44,7 @@ app.use('/api/content', contentRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/team', teamRoutes);
+app.use('/api/youtube', youtubeRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/coupons', couponRoutes);
