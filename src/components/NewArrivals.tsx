@@ -20,7 +20,7 @@ const DEFAULT_NEW_ARRIVAL: Product = {
 };
 
 const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) => {
-  const [product, setProduct] = useState<Product | null>(DEFAULT_NEW_ARRIVAL);
+  const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {
     if (dbProducts.length > 0) {
