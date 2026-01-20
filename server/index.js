@@ -45,19 +45,35 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/coupons', couponRoutes);
 
 // MongoDB Connection
+// MongoDB Connection
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/destiny_shop';
 
-mongoose
-    .connect(MONGODB_URI)
-    .then(() => {
+let isConnected = false; // Track connection status
+
+export const connectDB = async () => {
+    if (isConnected) {
+        console.log('Using existing MongoDB connection');
+        return;
+    }
+
+    try {
+        await mongoose.connect(MONGODB_URI);
+        isConnected = true;
         console.log('Connected to MongoDB');
         console.log('Using DB:', MONGODB_URI.includes('localhost') ? 'Localhost' : 'Atlas Cloud');
+    } catch (err) {
+        console.error('MongoDB connection error:', err);
+        throw err; // Re-throw to handle in caller
+    }
+};
+
+// Start server only if not in production (Vercel handles the server in prod)
+if (process.env.NODE_ENV !== 'production') {
+    connectDB().then(() => {
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);
         });
-    })
-    .catch((err) => {
-        console.error('MongoDB connection error:', err);
     });
+}
 
 export default app;
