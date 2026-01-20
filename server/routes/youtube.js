@@ -32,7 +32,7 @@ let cache = {
     data: null,
     lastFetch: 0
 };
-const CACHE_DURATION = 1000 * 60 * 60; // 1 hour
+const CACHE_DURATION = 1000 * 60 * 60 * 24; // 24 hours
 
 router.get('/latest', async (req, res) => {
     try {

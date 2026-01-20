@@ -23,16 +23,23 @@ const Influencers = () => {
     const [count, setCount] = useState(0);
     const [videos, setVideos] = useState<YouTubeVideo[]>([]);
     const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+    const [content, setContent] = useState<any>(null);
 
     useEffect(() => {
-        const fetchVideos = async () => {
+        const fetchData = async () => {
             try {
+                // Fetch Content Settings
+                const contentRes = await fetch(`${API_BASE_URL}/api/content`);
+                const contentData = await contentRes.json();
+                setContent(contentData);
+
+                // Fetch YouTube Videos
+                // We use the channel handle from content settings if available, otherwise default serves from backend env but here we just hit the endpoint
                 const res = await fetch(`${API_BASE_URL}/api/youtube/latest`);
                 const data = await res.json();
                 if (Array.isArray(data) && data.length > 0) {
                     setVideos(data);
                 } else {
-                    // Fallback placeholders if API fails/empty
                     setVideos([
                         { id: '1', videoId: 'dQw4w9WgXcQ', title: 'Video 1', thumbnail: 'https://placehold.co/600x400' },
                         { id: '2', videoId: 'dQw4w9WgXcQ', title: 'Video 2', thumbnail: 'https://placehold.co/600x400' },
@@ -40,10 +47,10 @@ const Influencers = () => {
                     ]);
                 }
             } catch (error) {
-                console.error("Failed to fetch YouTube videos", error);
+                console.error("Failed to fetch data", error);
             }
         };
-        fetchVideos();
+        fetchData();
     }, []);
 
     useEffect(() => {
@@ -76,7 +83,7 @@ const Influencers = () => {
             {/* Header */}
             <div className="text-center mb-8" dir="rtl">
                 <h2 className="text-[#22222A] font-['Noto_Sans_Hebrew'] text-[40px] font-bold leading-tight">
-                    הגיימרים הגדולים בארץ כבר התנסו ואהבו,
+                    {content?.youtubeTitle || "הגיימרים הגדולים בארץ כבר התנסו ואהבו,"}
                 </h2>
                 <h2 className="font-['Noto_Sans_Hebrew'] text-[40px] font-bold leading-tight"
                     style={{
@@ -85,7 +92,7 @@ const Influencers = () => {
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                     }}>
-                    מה איתכם?
+                    {content?.youtubeSubtitle || "מה איתכם?"}
                 </h2>
             </div>
 

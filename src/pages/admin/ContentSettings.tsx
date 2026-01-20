@@ -37,6 +37,10 @@ const ContentSettings = () => {
         footerSocialInstagram: "",
         footerSocialTiktok: "",
 
+        // YouTube Section
+        youtubeTitle: "",
+        youtubeSubtitle: "",
+
         // New separate About Page fields
         pageAboutTitle1: "",
         pageAboutTitle2: "",
@@ -128,6 +132,10 @@ const ContentSettings = () => {
                 footerSocialYoutube: data.footerSocialYoutube || "https://youtube.com",
                 footerSocialInstagram: data.footerSocialInstagram || "https://instagram.com",
                 footerSocialTiktok: data.footerSocialTiktok || "https://tiktok.com",
+
+                // YouTube Defaults
+                youtubeTitle: data.youtubeTitle || "הגיימרים הגדולים בארץ כבר התנסו ואהבו,",
+                youtubeSubtitle: data.youtubeSubtitle || "מה איתכם?",
 
                 // Page About Defaults (Fallback to homepage ones initially if empty)
                 pageAboutTitle1: data.pageAboutTitle1 || "לחלום.",
@@ -300,6 +308,36 @@ const ContentSettings = () => {
                             </Button>
                         </div>
                     )}
+                </CardContent>
+            </Card>
+
+            <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
+                <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
+                    <CardTitle className="text-[#9F19FF]">סקשן יוטיוב (משפיענים/גיימרים)</CardTitle>
+                    <CardDescription>עריכת הכותרות המופיעות מעל רצועת הסרטונים.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6 pt-6">
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">כותרת עליונה (שחור)</label>
+                        <Input
+                            value={settings.youtubeTitle}
+                            onChange={(e) => setSettings({ ...settings, youtubeTitle: e.target.value })}
+                            placeholder="הגיימרים הגדולים בארץ כבר התנסו ואהבו,"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">כותרת תחתונה (סגול)</label>
+                        <Input
+                            value={settings.youtubeSubtitle}
+                            onChange={(e) => setSettings({ ...settings, youtubeSubtitle: e.target.value })}
+                            placeholder="מה איתכם?"
+                        />
+                    </div>
+                    <div className="flex justify-end">
+                        <Button onClick={handleSave} disabled={loading} className="bg-[#9F19FF] text-white">
+                            {loading ? 'שומר...' : 'שמור שינויים'}
+                        </Button>
+                    </div>
                 </CardContent>
             </Card>
 
