@@ -280,9 +280,10 @@ const ContentSettings = () => {
                                     className="hidden"
                                 />
                             </label>
-                            <div className="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-full font-medium">
-                                ✓ קיים סרטון פעיל באתר
-                            </div>
+                            {settings.heroVideo && !file && (
+                                <div className="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-full font-medium">
+                                    ✓ קיים סרטון פעיל באתר
+                                </div>
                             )}
                             <p className="text-xs text-gray-400 mt-1">פורמטים נתמכים: MP4, MOV</p>
                         </div>

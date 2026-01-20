@@ -371,8 +371,7 @@ const ProductForm = () => {
                                         </div>
                                     </div>
                                 )}
-                                    </div>
-                                )}
+
                                 <Input type="file" accept="image/*" onChange={handleMainImageChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
                             </div>
                             <div className="text-center">
@@ -427,7 +426,6 @@ const ProductForm = () => {
                                     <span className="font-medium text-gray-700">לחץ להוספת תמונות לגלריה</span>
                                     <span className="text-xs">ניתן לבחור מספר תמונות יחד</span>
                                 </div>
-                            </div>
                             </div>
                         </div>
                         <p className="text-xs text-gray-400 text-center mt-2">פורמטים נתמכים: JPG, PNG, WEBP</p>
