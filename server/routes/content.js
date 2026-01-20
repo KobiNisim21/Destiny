@@ -48,8 +48,8 @@ router.post('/upload', isAdmin, upload.single('file'), (req, res) => {
     if (!req.file) {
       return res.status(400).json({ message: 'No file uploaded' });
     }
-    // Return the path relative to the server
-    const filePath = `/uploads/${req.file.filename}`;
+    // Return the Cloudinary URL
+    const filePath = req.file.path;
     res.json({ filePath });
   } catch (error) {
     console.error('Error uploading file:', error);
