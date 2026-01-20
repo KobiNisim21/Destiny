@@ -1,11 +1,9 @@
-import 'dotenv/config';
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import helmet from 'helmet';
 import authRoutes from './routes/auth.js';
 import contentRoutes from './routes/content.js';
-
 import productRoutes from './routes/products.js';
 import adminRoutes from './routes/admin.js';
 import teamRoutes from './routes/team.js';
@@ -14,9 +12,14 @@ import orderRoutes from './routes/orders.js';
 import couponRoutes from './routes/coupons.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
 
+// Resolve paths
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Explicitly load .env from the root directory (one level up)
+dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const app = express();
 const PORT = process.env.PORT || 5000;

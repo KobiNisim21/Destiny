@@ -1,29 +1,39 @@
 import nodemailer from 'nodemailer';
 
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-    },
-});
+let transporter = null;
 
-console.log('Email Config:', {
-    user: process.env.EMAIL_USER ? 'Set' : 'Missing',
-    pass: process.env.EMAIL_PASS ? 'Set' : 'Missing'
-});
+const getTransporter = () => {
+    if (!transporter) {
+        if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+            console.error('Email Service Error: Missing EMAIL_USER or EMAIL_PASS');
+            return null;
+        }
 
-// Verify connection configuration
-transporter.verify(function (error, success) {
-    if (error) {
-        console.log('Nodemailer connection error:', error);
-    } else {
-        console.log('Server is ready to take our messages (Nodemailer)');
+        transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS,
+            },
+        });
+
+        // Verify connection configuration only once
+        transporter.verify(function (error, success) {
+            if (error) {
+                console.log('Nodemailer connection error:', error);
+            } else {
+                console.log('Server is ready to take our messages (Nodemailer)');
+            }
+        });
     }
-});
+    return transporter;
+};
 
 export const sendWelcomeEmail = async (email, firstName) => {
     try {
+        const transporter = getTransporter();
+        if (!transporter) throw new Error('Email service not initialized');
+
         const mailOptions = {
             from: '"Destiny Shop" <' + process.env.EMAIL_USER + '>', // Sender address
             to: email,
@@ -52,6 +62,9 @@ export const sendPasswordResetEmail = async (email, resetToken) => {
     try {
         const baseUrl = process.env.FRONTEND_URL || 'http://localhost:8080';
         const resetLink = `${baseUrl}/reset-password?token=${resetToken}`;
+
+        const transporter = getTransporter();
+        if (!transporter) throw new Error('Email service not initialized');
 
         const mailOptions = {
             from: '"Destiny Shop" <' + process.env.EMAIL_USER + '>',
