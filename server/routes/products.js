@@ -15,14 +15,14 @@ const processImages = (files, body) => {
 
     // 1. Process Main Image
     if (files.mainImage && files.mainImage[0]) {
-        filePaths.mainImage = `/uploads/${files.mainImage[0].filename}`;
+        filePaths.mainImage = files.mainImage[0].path;
     } else if (body.existingMainImage) {
         filePaths.mainImage = body.existingMainImage;
     }
 
     // 2. Process Hover Image
     if (files.hoverImage && files.hoverImage[0]) {
-        filePaths.hoverImage = `/uploads/${files.hoverImage[0].filename}`;
+        filePaths.hoverImage = files.hoverImage[0].path;
     } else if (body.existingHoverImage) {
         filePaths.hoverImage = body.existingHoverImage;
     } else if (body.clearHoverImage === 'true') {
@@ -38,7 +38,7 @@ const processImages = (files, body) => {
     }
 
     if (files.galleryImages) {
-        const newGalleryPaths = files.galleryImages.map(file => `/uploads/${file.filename}`);
+        const newGalleryPaths = files.galleryImages.map(file => file.path);
         gallery = [...gallery, ...newGalleryPaths];
     }
     filePaths.galleryImages = gallery;
