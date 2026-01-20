@@ -371,9 +371,14 @@ const ProductForm = () => {
                                         </div>
                                     </div>
                                 )}
+                                    </div>
+                                )}
                                 <Input type="file" accept="image/*" onChange={handleMainImageChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
                             </div>
-                            <p className="text-xs text-muted-foreground text-center">זו התמונה שתוצג כברירת מחדל בכל רשימות המוצרים.</p>
+                            <div className="text-center">
+                                <p className="text-xs text-muted-foreground">זו התמונה שתוצג כברירת מחדל בכל רשימות המוצרים.</p>
+                                <p className="text-xs text-gray-400 mt-0.5">פורמטים נתמכים: JPG, PNG, WEBP</p>
+                            </div>
                         </CardContent>
                     </Card>
 
@@ -401,7 +406,10 @@ const ProductForm = () => {
                                 )}
                                 <Input type="file" accept="image/*" onChange={handleHoverImageChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
                             </div>
-                            <p className="text-xs text-muted-foreground text-center">תמונה זו תופיע כאשר הלקוח יעבור עם העכבר על המוצר.</p>
+                            <div className="text-center">
+                                <p className="text-xs text-muted-foreground">תמונה זו תופיע כאשר הלקוח יעבור עם העכבר על המוצר.</p>
+                                <p className="text-xs text-gray-400 mt-0.5">פורמטים נתמכים: JPG, PNG, WEBP</p>
+                            </div>
                         </CardContent>
                     </Card>
                 </div>
@@ -420,7 +428,9 @@ const ProductForm = () => {
                                     <span className="text-xs">ניתן לבחור מספר תמונות יחד</span>
                                 </div>
                             </div>
+                            </div>
                         </div>
+                        <p className="text-xs text-gray-400 text-center mt-2">פורמטים נתמכים: JPG, PNG, WEBP</p>
 
                         {(existingGalleryImages.length > 0 || galleryPreviews.length > 0) && (
                             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-6">
@@ -439,7 +449,7 @@ const ProductForm = () => {
                             </div>
                         )}
                     </CardContent>
-                </Card>
+                </Card >
 
 
 
@@ -512,7 +522,7 @@ const ProductForm = () => {
                         {loading ? 'שומר שינויים...' : 'שמור מוצר'}
                     </Button>
                 </div>
-            </form>
+            </form >
         </div >
     );
 };

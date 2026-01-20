@@ -280,11 +280,11 @@ const ContentSettings = () => {
                                     className="hidden"
                                 />
                             </label>
-                            {settings.heroVideo && !file && (
-                                <div className="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-full font-medium">
-                                    ✓ קיים סרטון פעיל באתר
-                                </div>
+                            <div className="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-full font-medium">
+                                ✓ קיים סרטון פעיל באתר
+                            </div>
                             )}
+                            <p className="text-xs text-gray-400 mt-1">פורמטים נתמכים: MP4, MOV</p>
                         </div>
                     </div>
 
@@ -464,6 +464,7 @@ const ContentSettings = () => {
                             )}
                             <Input type="file" accept="image/*" onChange={(e) => e.target.files && setAboutImageFile(e.target.files[0])} />
                         </div>
+                        <p className="text-xs text-gray-400 mt-1">פורמטים נתמכים: JPG, PNG, WEBP</p>
                         {aboutImageFile && <p className="text-xs text-green-600">קובץ חדש נבחר: {aboutImageFile.name}</p>}
                     </div>
 
@@ -513,6 +514,7 @@ const ContentSettings = () => {
                             )}
                             <Input type="file" accept="image/*" onChange={(e) => e.target.files && setPageAboutImageFile(e.target.files[0])} />
                         </div>
+                        <p className="text-xs text-gray-400 mt-1">פורמטים נתמכים: JPG, PNG, WEBP</p>
                         {pageAboutImageFile && <p className="text-xs text-green-600">קובץ חדש נבחר: {pageAboutImageFile.name}</p>}
                     </div>
 
