@@ -21,6 +21,20 @@ const DEFAULT_NEW_ARRIVAL: Product = {
 
 const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) => {
   const [product, setProduct] = useState<Product | null>(null);
+  const [content, setContent] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/content`);
+        const data = await res.json();
+        setContent(data);
+      } catch (error) {
+        console.error("Failed to fetch content", error);
+      }
+    };
+    fetchContent();
+  }, []);
 
   useEffect(() => {
     if (dbProducts.length > 0) {
@@ -46,6 +60,14 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
 
   const productName = product.title || product.name || '';
   const productLink = product._id ? `/product/${product._id}` : '#';
+
+  const features = content?.newArrivalsFeatures && content.newArrivalsFeatures.length > 0 ? content.newArrivalsFeatures : [
+    { title: "מהדורות במהדורה מוגבלת", description: "עיצובים בלעדיים שלא תמצאו בשום מקום אחר" },
+    { title: "חומרים איכותיים", description: "בדים איכותיים לנוחות מרבית" },
+    { title: "משלוח מהיר", description: "קבלו את הסחורה שלכם תוך 3-5 ימים" }
+  ];
+
+  const featureColors = ['#E487E8', '#F4CAB8', '#F3A4E6'];
 
   return (
     <section
@@ -197,7 +219,7 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                 position: 'relative',
                 top: '-1px'
               }}>
-                מוצרים שנחתו עכשיו
+                {content?.newArrivalsTagText || "מוצרים שנחתו עכשיו"}
               </span>
             </div>
 
@@ -210,7 +232,7 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
               lineHeight: '109.725%',
               color: '#22222A'
             }}>
-              פריטים חדשים.
+              {content?.newArrivalsTitle || "פריטים חדשים."}
               <br />
               <span style={{
                 background: 'linear-gradient(90deg, #C097E8 0%, #9F19FF 100%)',
@@ -232,89 +254,38 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
               lineHeight: 'normal',
               textAlign: 'right'
             }}>
-              היו הראשונים להשיג את המוצר החדש ביותר. כמות מוגבלת זמינה - ברגע שהם נגמרים, הם נגמרים לתמיד!
+              {content?.newArrivalsSubtitle || "היו הראשונים להשיג את המוצר החדש ביותר. כמות מוגבלת זמינה - ברגע שהם נגמרים, הם נגמרים לתמיד!"}
             </p>
 
             {/* Feature List */}
             <div className="space-y-6 pt-4">
 
-              {/* Feature 1 */}
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style={{ backgroundColor: '#E487E8' }}>
-                  1
+              {features.map((feature: any, index: number) => (
+                <div key={index} className="flex items-start gap-4">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style={{ backgroundColor: featureColors[index % featureColors.length] }}>
+                    {index + 1}
+                  </div>
+                  <div>
+                    <h4 style={{
+                      color: '#4B5563',
+                      fontFamily: '"Noto Sans Hebrew", sans-serif',
+                      fontSize: '16px',
+                      fontWeight: 600,
+                      marginBottom: '4px'
+                    }}>
+                      {feature.title}
+                    </h4>
+                    <p style={{
+                      color: '#4B5563',
+                      fontFamily: '"Noto Sans Hebrew", sans-serif',
+                      fontSize: '16px',
+                      fontWeight: 300
+                    }}>
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h4 style={{
-                    color: '#4B5563',
-                    fontFamily: '"Noto Sans Hebrew", sans-serif',
-                    fontSize: '16px',
-                    fontWeight: 600,
-                    marginBottom: '4px'
-                  }}>
-                    מהדורות במהדורה מוגבלת
-                  </h4>
-                  <p style={{
-                    color: '#4B5563',
-                    fontFamily: '"Noto Sans Hebrew", sans-serif',
-                    fontSize: '16px',
-                    fontWeight: 300
-                  }}>
-                    עיצובים בלעדיים שלא תמצאו בשום מקום אחר
-                  </p>
-                </div>
-              </div>
-
-              {/* Feature 2 */}
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style={{ backgroundColor: '#F4CAB8' }}>
-                  2
-                </div>
-                <div>
-                  <h4 style={{
-                    color: '#4B5563',
-                    fontFamily: '"Noto Sans Hebrew", sans-serif',
-                    fontSize: '16px',
-                    fontWeight: 600,
-                    marginBottom: '4px'
-                  }}>
-                    חומרים איכותיים
-                  </h4>
-                  <p style={{
-                    color: '#4B5563',
-                    fontFamily: '"Noto Sans Hebrew", sans-serif',
-                    fontSize: '16px',
-                    fontWeight: 300
-                  }}>
-                    בדים איכותיים לנוחות מרבית
-                  </p>
-                </div>
-              </div>
-
-              {/* Feature 3 */}
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style={{ backgroundColor: '#F3A4E6' }}>
-                  3
-                </div>
-                <div>
-                  <h4 style={{
-                    color: '#4B5563',
-                    fontFamily: '"Noto Sans Hebrew", sans-serif',
-                    fontSize: '16px',
-                    fontWeight: 600,
-                    marginBottom: '4px'
-                  }}>
-                    משלוח מהיר
-                  </h4>
-                  <p style={{
-                    color: '#4B5563',
-                    fontFamily: '"Noto Sans Hebrew", sans-serif',
-                    fontSize: '16px',
-                    fontWeight: 300
-                  }}>
-                    קבלו את הסחורה שלכם תוך 3-5 ימים
-                  </p>
-                </div>
-              </div>
+              ))}
 
             </div>
 
@@ -346,7 +317,7 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                   lineHeight: 'normal',
                   whiteSpace: 'nowrap'
                 }}>
-                  הזמינו עכשיו
+                  {content?.newArrivalsButtonText || "הזמינו עכשיו"}
                 </span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
                   <path d="M7.25299 14.2563C7.49678 13.9977 7.4974 13.5777 7.25299 13.3191L2.13183 7.88804H19.3749C19.72 7.88804 20 7.59136 20 7.22513C20 6.8589 19.7199 6.56223 19.3749 6.56223H2.13183L7.25237 1.13116C7.49678 0.872563 7.49678 0.452539 7.25237 0.193945C7.00796 -0.0646484 6.6123 -0.0646484 6.36852 0.193945L0.180969 6.7565C-0.0603229 7.01247 -0.0603229 7.43839 0.180969 7.69437L6.36852 14.2569C6.61293 14.5156 7.00858 14.5156 7.25299 14.2563C7.00858 14.5156 7.49678 13.9977 7.25299 14.2563Z" fill="white" />
