@@ -11,7 +11,8 @@ import {
 
     X,
     Globe,
-    Tag
+    Tag,
+    Mail
 } from "lucide-react";
 import { useState } from "react";
 
@@ -29,6 +30,7 @@ const AdminLayout = () => {
         { label: "הזמנות", path: "/admin/orders", icon: <Package size={20} /> },
         { label: "קופונים", path: "/admin/coupons", icon: <Tag size={20} /> },
         { label: "ניהול צוות", path: "/admin/users", icon: <Users size={20} /> },
+        { label: "שיווק וניוזלטר", path: "/admin/marketing", icon: <Mail size={20} /> },
         { label: "תוכן והגדרות", path: "/admin/content", icon: <Settings size={20} /> },
     ];
 

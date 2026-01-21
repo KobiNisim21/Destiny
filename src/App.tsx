@@ -28,6 +28,7 @@ import ProductForm from "./pages/admin/ProductForm";
 import AdminTeam from "./pages/admin/AdminTeam";
 import AdminOrders from "./pages/admin/AdminOrders";
 import AdminCoupons from "./pages/admin/AdminCoupons";
+import Marketing from "./pages/admin/Marketing";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import CartDrawer from "./components/CartDrawer";
@@ -67,6 +68,7 @@ const App = () => (
                   <Route index element={<AdminDashboard />} />
                   <Route path="orders" element={<AdminOrders />} />
                   <Route path="coupons" element={<AdminCoupons />} />
+                  <Route path="marketing" element={<Marketing />} />
                   <Route path="users" element={<AdminTeam />} />
                   <Route path="content" element={<ContentSettings />} />
 

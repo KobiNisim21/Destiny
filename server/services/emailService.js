@@ -121,3 +121,87 @@ export const sendContactEmail = async (name, email, message, phone = '') => {
         return { success: false, error: err };
     }
 };
+
+export const sendNewsletterWelcome = async (email, subject, body, couponCode) => {
+    try {
+        const transporter = getTransporter();
+        if (!transporter) throw new Error('Email service not initialized');
+
+        // Replace placeholders in body
+        let finalBody = body.replace('{{couponCode}}', couponCode || '');
+
+        // Wrap in common styling if not present
+        if (!finalBody.includes('<div dir="rtl"')) {
+            finalBody = `
+                <div dir="rtl" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: right; color: #333; background-color: #f9f9f9; padding: 20px;">
+                    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+                         <div style="background-color: #22222A; color: #ffffff; padding: 20px; text-align: center;">
+                            <h1 style="margin: 0; color: #9F19FF;">Destiny</h1>
+                        </div>
+                        <div style="padding: 30px;">
+                            ${finalBody}
+                        </div>
+                         <div style="background-color: #eee; padding: 15px; text-align: center; font-size: 12px; color: #666;">
+                            &copy; ${new Date().getFullYear()} Destiny. כל הזכויות שמורות.
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        const mailOptions = {
+            from: '"Destiny Team" <' + process.env.EMAIL_USER + '>',
+            to: email,
+            subject: subject || 'ברוכים הבאים ל-Destiny!',
+            html: finalBody,
+        };
+
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Newsletter welcome email sent: ' + info.response);
+        return { success: true, data: info };
+
+    } catch (err) {
+        console.error('Email service error:', err);
+        return { success: false, error: err };
+    }
+};
+
+export const sendCampaignEmail = async (email, subject, body) => {
+    try {
+        const transporter = getTransporter();
+        if (!transporter) throw new Error('Email service not initialized');
+
+        // Wrap in common styling
+        const finalBody = `
+            <div dir="rtl" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: right; color: #333; background-color: #f9f9f9; padding: 20px;">
+                <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+                    <div style="background-color: #22222A; color: #ffffff; padding: 20px; text-align: center;">
+                        <h1 style="margin: 0; color: #9F19FF;">Destiny</h1>
+                    </div>
+                    <div style="padding: 30px;">
+                        ${body}
+                    </div>
+                    <div style="background-color: #eee; padding: 15px; text-align: center; font-size: 12px; color: #666;">
+                        <a href="#" style="color: #9F19FF; text-decoration: none;">להסרה מרשימת התפוצה</a>
+                        <br/>
+                        &copy; ${new Date().getFullYear()} Destiny. כל הזכויות שמורות.
+                    </div>
+                </div>
+            </div>
+        `;
+
+        const mailOptions = {
+            from: '"Destiny Shop" <' + process.env.EMAIL_USER + '>',
+            to: email,
+            subject: subject,
+            html: finalBody,
+        };
+
+        const info = await transporter.sendMail(mailOptions);
+        return { success: true, data: info };
+
+    } catch (err) {
+        console.error('Email service error:', err);
+        return { success: false, error: err };
+    }
+};

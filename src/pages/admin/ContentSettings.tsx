@@ -41,6 +41,12 @@ const ContentSettings = () => {
         youtubeTitle: "",
         youtubeSubtitle: "",
 
+        // Newsletter Section
+        newsletterTitle: "",
+        newsletterSubtitle: "",
+        newsletterButtonText: "",
+        newsletterBenefits: [] as { text: string }[],
+
         // New Arrivals Section
         newArrivalsTitle: "",
         newArrivalsSubtitle: "",
@@ -143,6 +149,16 @@ const ContentSettings = () => {
                 // YouTube Defaults
                 youtubeTitle: data.youtubeTitle || "הגיימרים הגדולים בארץ כבר התנסו ואהבו,",
                 youtubeSubtitle: data.youtubeSubtitle || "מה איתכם?",
+
+                // Newsletter Defaults
+                newsletterTitle: data.newsletterTitle || "הצטרפו לקבוצה שלי",
+                newsletterSubtitle: data.newsletterSubtitle || "קבלו גישה בלעדית לדרופים חדשים, הנחות מיוחדות, ותוכן מאחורי הקלעים. וגם - 15% הנחה על ההזמנה הראשונה!",
+                newsletterButtonText: data.newsletterButtonText || "הצטרפו עכשיו",
+                newsletterBenefits: data.newsletterBenefits && data.newsletterBenefits.length > 0 ? data.newsletterBenefits : [
+                    { text: "משלוח חינם מעל ₪395" },
+                    { text: "הטבות בלעדיות לחברים" },
+                    { text: "גישה מוקדמת להטבות" }
+                ],
 
                 // New Arrivals Defaults
                 newArrivalsTitle: data.newArrivalsTitle || "פריטים חדשים.",
@@ -351,6 +367,80 @@ const ContentSettings = () => {
                             placeholder="מה איתכם?"
                         />
                     </div>
+                    <div className="flex justify-end">
+                        <Button onClick={handleSave} disabled={loading} className="bg-[#9F19FF] text-white">
+                            {loading ? 'שומר...' : 'שמור שינויים'}
+                        </Button>
+                    </div>
+                </CardContent>
+            </Card>
+
+            <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
+                <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
+                    <CardTitle className="text-[#9F19FF]">סקשן הצטרפות (ניוזלטר)</CardTitle>
+                    <CardDescription>עריכת הטקסטים וההטבות המופיעים ב"הצטרפו לקבוצה שלי".</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6 pt-6">
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">כותרת ראשית</label>
+                        <Input
+                            value={settings.newsletterTitle}
+                            onChange={(e) => setSettings({ ...settings, newsletterTitle: e.target.value })}
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">כותרת משנה</label>
+                        <textarea
+                            className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                            value={settings.newsletterSubtitle}
+                            onChange={e => setSettings({ ...settings, newsletterSubtitle: e.target.value })}
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">טקסט כפתור</label>
+                        <Input
+                            value={settings.newsletterButtonText}
+                            onChange={(e) => setSettings({ ...settings, newsletterButtonText: e.target.value })}
+                        />
+                    </div>
+
+                    <div className="space-y-4 pt-4 border-t">
+                        <label className="text-sm font-medium">הטבות (אייקונים למטה)</label>
+                        {settings.newsletterBenefits.map((item, index) => (
+                            <div key={index} className="flex gap-4 items-center p-3 border rounded-xl bg-gray-50">
+                                <span className="font-bold text-gray-400">#{index + 1}</span>
+                                <Input
+                                    value={item.text}
+                                    onChange={(e) => {
+                                        const newItems = [...settings.newsletterBenefits];
+                                        newItems[index].text = e.target.value;
+                                        setSettings({ ...settings, newsletterBenefits: newItems });
+                                    }}
+                                />
+                                <Button
+                                    variant="destructive"
+                                    size="icon"
+                                    onClick={() => {
+                                        const newItems = settings.newsletterBenefits.filter((_, i) => i !== index);
+                                        setSettings({ ...settings, newsletterBenefits: newItems });
+                                    }}
+                                >
+                                    X
+                                </Button>
+                            </div>
+                        ))}
+                        <Button
+                            variant="outline"
+                            onClick={() => setSettings({
+                                ...settings,
+                                newsletterBenefits: [...settings.newsletterBenefits, { text: "" }]
+                            })}
+                            className="w-full border-dashed"
+                        >
+                            + הוסף הטבה
+                        </Button>
+                    </div>
+
                     <div className="flex justify-end">
                         <Button onClick={handleSave} disabled={loading} className="bg-[#9F19FF] text-white">
                             {loading ? 'שומר...' : 'שמור שינויים'}
