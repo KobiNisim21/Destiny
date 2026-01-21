@@ -223,8 +223,15 @@ const HeroVideo = () => {
             padding: 20px 24px;
             border-radius: 16px;
             height: auto;
-            background: #111; /* Fallback/Simple dark background for mobile until specific design provided */
+            background: #111;
           }
+        }
+
+        /* Tablet/Laptop responsive */
+        @media (min-width: 769px) and (max-width: 1500px) {
+            .info-bar {
+                padding: 0 50px;
+            }
         }
       `}</style>
     </section>
