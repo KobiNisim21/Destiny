@@ -40,11 +40,22 @@ router.post('/subscribe', async (req, res) => {
         const body = bodySetting?.value;
         const couponCode = couponSetting?.value;
 
+        console.log('Fetching welcome email settings:', {
+            subject: subject ? 'Found' : 'Missing',
+            body: body ? 'Found' : 'Missing',
+            couponCode: couponCode ? 'Found' : 'Missing'
+        });
+
         // Send welcome email (asynchronously)
         if (subject && body) {
-            sendNewsletterWelcome(email, subject, body, couponCode).catch(err =>
+            console.log('Attempting to send welcome email to:', email);
+            sendNewsletterWelcome(email, subject, body, couponCode).then(result => {
+                console.log('Welcome email execution result:', result);
+            }).catch(err =>
                 console.error('Failed to send welcome email:', err)
             );
+        } else {
+            console.log('Skipping welcome email: Subject or Body missing in Content settings.');
         }
 
         res.status(201).json({ message: 'Successfully subscribed!' });

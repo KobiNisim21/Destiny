@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useToast } from "@/components/ui/use-toast";
 import API_BASE_URL from "@/config";
-import { Mail, Users, Send, Settings, Sparkles } from "lucide-react";
+import { Mail, Users, Send, Sparkles } from "lucide-react";
 
 interface Subscriber {
     _id: string;
@@ -140,9 +140,9 @@ const Marketing = () => {
 
                 {/* Automation Tab */}
                 <TabsContent value="automation" className="mt-6 space-y-6">
-                    <Card>
+                    <Card className="bg-white border-2 border-[#9F19FF]/20">
                         <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
-                            <CardTitle className="flex items-center gap-2">
+                            <CardTitle className="flex items-center gap-2 text-[#9F19FF]">
                                 <Sparkles className="w-5 h-5 text-[#9F19FF]" />
                                 מייל ״ברוכים הבאים״ אוטומטי
                             </CardTitle>
@@ -157,6 +157,7 @@ const Marketing = () => {
                                     value={welcomeSubject}
                                     onChange={(e) => setWelcomeSubject(e.target.value)}
                                     placeholder="ברוכים הבאים ל-Destiny! ✨ קוד הקופון שלך בפנים"
+                                    className="bg-white text-gray-900 text-right"
                                 />
                             </div>
 
@@ -166,7 +167,7 @@ const Marketing = () => {
                                     value={couponCode}
                                     onChange={(e) => setCouponCode(e.target.value)}
                                     placeholder="WELCOME15"
-                                    className="font-mono text-center text-lg tracking-wider border-[#9F19FF]/50"
+                                    className="font-mono text-center text-lg tracking-wider border-[#9F19FF]/50 bg-white text-gray-900"
                                 />
                                 <p className="text-xs text-gray-500">
                                     ניתן להשתמש ב-<code>{`{{couponCode}}`}</code> בתוך גוף המייל כדי לשתול את הקוד אוטומטית.
@@ -178,8 +179,8 @@ const Marketing = () => {
                                 <Textarea
                                     value={welcomeBody}
                                     onChange={(e) => setWelcomeBody(e.target.value)}
-                                    className="min-h-[300px] font-mono text-sm"
-                                    dir="ltr"
+                                    className="min-h-[300px] font-mono text-sm bg-white text-gray-900 text-right"
+                                    dir="rtl"
                                 />
                                 <p className="text-xs text-gray-500">
                                     טיפ: המערכת עוטפת את התוכן הזה בעיצוב הכללי של המותג אוטומטית. אין צורך להוסיף <code>&lt;html&gt;</code> וכו'.
@@ -187,7 +188,7 @@ const Marketing = () => {
                             </div>
 
                             <div className="flex justify-end">
-                                <Button onClick={saveSettings} disabled={loading} className="bg-[#9F19FF]">
+                                <Button onClick={saveSettings} disabled={loading} className="bg-[#9F19FF] hover:bg-[#9F19FF]/90 text-white">
                                     {loading ? 'שומר...' : 'שמור הגדרות'}
                                 </Button>
                             </div>
@@ -197,9 +198,9 @@ const Marketing = () => {
 
                 {/* Campaign Tab */}
                 <TabsContent value="campaign" className="mt-6 space-y-6">
-                    <Card>
+                    <Card className="bg-white border-2 border-[#9F19FF]/20">
                         <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
-                            <CardTitle className="flex items-center gap-2">
+                            <CardTitle className="flex items-center gap-2 text-[#9F19FF]">
                                 <Send className="w-5 h-5 text-[#9F19FF]" />
                                 שליחת קמפיין חדש
                             </CardTitle>
@@ -214,6 +215,7 @@ const Marketing = () => {
                                     value={campaignSubject}
                                     onChange={(e) => setCampaignSubject(e.target.value)}
                                     placeholder="מבצע מטורף ל-24 שעות בלבד! ⏰"
+                                    className="bg-white text-gray-900 text-right"
                                 />
                             </div>
 
@@ -222,8 +224,8 @@ const Marketing = () => {
                                 <Textarea
                                     value={campaignBody}
                                     onChange={(e) => setCampaignBody(e.target.value)}
-                                    className="min-h-[400px] font-mono text-sm"
-                                    dir="ltr"
+                                    className="min-h-[400px] font-mono text-sm bg-white text-gray-900 text-right"
+                                    dir="rtl"
                                     placeholder="<h1>המבצע התחיל!</h1><p>...</p>"
                                 />
                             </div>
@@ -232,7 +234,7 @@ const Marketing = () => {
                                 <Button
                                     onClick={sendCampaign}
                                     disabled={sending || !campaignSubject || !campaignBody}
-                                    className="bg-[#22222A] hover:bg-[#9F19FF]"
+                                    className="bg-[#22222A] hover:bg-[#9F19FF] text-white"
                                 >
                                     {sending ? 'שולח...' : 'שלח קמפיין לכולם 🚀'}
                                 </Button>
@@ -243,7 +245,7 @@ const Marketing = () => {
 
                 {/* Subscribers Tab */}
                 <TabsContent value="subscribers" className="mt-6 space-y-6">
-                    <Card>
+                    <Card className="bg-white border-none shadow-sm">
                         <CardHeader>
                             <CardTitle className="flex items-center gap-2">
                                 <Users className="w-5 h-5" />
@@ -251,7 +253,7 @@ const Marketing = () => {
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="rounded-md border">
+                            <div className="rounded-md border bg-white">
                                 <Table>
                                     <TableHeader>
                                         <TableRow>
@@ -263,9 +265,9 @@ const Marketing = () => {
                                     <TableBody>
                                         {subscribers.map((sub) => (
                                             <TableRow key={sub._id}>
-                                                <TableCell className="font-medium">{sub.email}</TableCell>
-                                                <TableCell>{new Date(sub.subscribedAt).toLocaleDateString('he-IL')}</TableCell>
-                                                <TableCell>
+                                                <TableCell className="font-medium text-right">{sub.email}</TableCell>
+                                                <TableCell className="text-right">{new Date(sub.subscribedAt).toLocaleDateString('he-IL')}</TableCell>
+                                                <TableCell className="text-right">
                                                     <span className={`px-2 py-1 rounded-full text-xs ${sub.isActive ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                                                         {sub.isActive ? 'פעיל' : 'לא פעיל'}
                                                     </span>
