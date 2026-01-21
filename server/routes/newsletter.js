@@ -129,6 +129,18 @@ router.post('/unsubscribe', async (req, res) => {
     }
 });
 
+// Delete subscriber (Admin only)
+router.delete('/subscribers/:id', authenticateToken, isAdmin, async (req, res) => {
+    try {
+        const { id } = req.params;
+        await Subscriber.findByIdAndDelete(id);
+        res.status(200).json({ message: 'Subscriber removed successfully' });
+    } catch (error) {
+        console.error('Delete subscriber error:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 // Get all subscribers (Admin only)
 router.get('/subscribers', authenticateToken, isAdmin, async (req, res) => {
     try {
