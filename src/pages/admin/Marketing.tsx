@@ -154,10 +154,10 @@ const Marketing = () => {
             </div>
 
             <Tabs defaultValue="automation" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 lg:w-[400px]">
-                    <TabsTrigger value="automation">אוטומציה</TabsTrigger>
-                    <TabsTrigger value="campaign">קמפיין חדש</TabsTrigger>
-                    <TabsTrigger value="subscribers">מנויים</TabsTrigger>
+                <TabsList className="flex w-full justify-start h-auto p-1 bg-muted/20 rounded-lg gap-2">
+                    <TabsTrigger value="automation" className="px-6 py-2">אוטומציה</TabsTrigger>
+                    <TabsTrigger value="campaign" className="px-6 py-2">קמפיין חדש</TabsTrigger>
+                    <TabsTrigger value="subscribers" className="px-6 py-2">מנויים</TabsTrigger>
                 </TabsList>
 
                 {/* Automation Tab */}
@@ -180,6 +180,7 @@ const Marketing = () => {
                                     onChange={(e) => setWelcomeSubject(e.target.value)}
                                     placeholder="ברוכים הבאים ל-Destiny! ✨ קוד הקופון שלך בפנים"
                                     className="bg-white text-gray-900 text-right"
+                                    dir="rtl"
                                 />
                             </div>
 
@@ -238,6 +239,7 @@ const Marketing = () => {
                                     onChange={(e) => setCampaignSubject(e.target.value)}
                                     placeholder="מבצע מטורף ל-24 שעות בלבד! ⏰"
                                     className="bg-white text-gray-900 text-right"
+                                    dir="rtl"
                                 />
                             </div>
 
