@@ -144,6 +144,18 @@ const Contact = () => {
                                 </div>
 
                                 <div className="space-y-2">
+                                    <label className="text-sm font-medium text-gray-700">טלפון (אופציונלי)</label>
+                                    <Input
+                                        type="tel"
+                                        name="phone"
+                                        value={formData.phone}
+                                        onChange={handleChange}
+                                        className="bg-gray-50 border-gray-200 focus:bg-white transition-all"
+                                        placeholder="050-0000000"
+                                    />
+                                </div>
+
+                                <div className="space-y-2">
                                     <label className="text-sm font-medium text-gray-700">תוכן ההודעה <span className="text-red-500">*</span></label>
                                     <Textarea
                                         name="message"

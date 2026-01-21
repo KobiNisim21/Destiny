@@ -17,37 +17,76 @@ interface YouTubeVideo {
     thumbnail: string;
 }
 
+const SkeletonVideo = () => (
+    <div style={{
+        display: 'flex',
+        width: '400px',
+        padding: '10px',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        gap: '10px',
+        borderRadius: '27px',
+        border: '1px solid #E5E7EB',
+        backgroundColor: '#FFF',
+        boxShadow: '0px 4px 10px rgba(0,0,0,0.05)'
+    }}>
+        <div className="w-full h-[250px] bg-gray-200 animate-pulse rounded-[23px]" />
+    </div>
+);
+
 const Influencers = () => {
     const [api, setApi] = useState<CarouselApi>();
     const [current, setCurrent] = useState(0);
     const [count, setCount] = useState(0);
     const [videos, setVideos] = useState<YouTubeVideo[]>([]);
+    const [loading, setLoading] = useState(true);
     const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
     const [content, setContent] = useState<any>(null);
 
     useEffect(() => {
         const fetchData = async () => {
+            // 1. Try to load from LocalStorage first for instant render
+            const cachedVideos = localStorage.getItem('youtube_videos_cache');
+            const cachedTimestamp = localStorage.getItem('youtube_cache_time');
+            const now = Date.now();
+
+            if (cachedVideos && cachedTimestamp) {
+                const age = now - parseInt(cachedTimestamp);
+                // Use cache if less than 24 hours old
+                if (age < 1000 * 60 * 60 * 24) {
+                    setVideos(JSON.parse(cachedVideos));
+                    setLoading(false);
+                }
+            }
+
             try {
                 // Fetch Content Settings
                 const contentRes = await fetch(`${API_BASE_URL}/api/content`);
                 const contentData = await contentRes.json();
                 setContent(contentData);
 
-                // Fetch YouTube Videos
-                // We use the channel handle from content settings if available, otherwise default serves from backend env but here we just hit the endpoint
+                // Fetch YouTube Videos (Background update)
                 const res = await fetch(`${API_BASE_URL}/api/youtube/latest`);
                 const data = await res.json();
+
                 if (Array.isArray(data) && data.length > 0) {
                     setVideos(data);
-                } else {
+                    setLoading(false);
+                    // Update cache
+                    localStorage.setItem('youtube_videos_cache', JSON.stringify(data));
+                    localStorage.setItem('youtube_cache_time', now.toString());
+                } else if (!cachedVideos) {
+                    // Only fallback if no cache and no data
                     setVideos([
                         { id: '1', videoId: 'dQw4w9WgXcQ', title: 'Video 1', thumbnail: 'https://placehold.co/600x400' },
                         { id: '2', videoId: 'dQw4w9WgXcQ', title: 'Video 2', thumbnail: 'https://placehold.co/600x400' },
                         { id: '3', videoId: 'dQw4w9WgXcQ', title: 'Video 3', thumbnail: 'https://placehold.co/600x400' },
                     ]);
+                    setLoading(false);
                 }
             } catch (error) {
                 console.error("Failed to fetch data", error);
+                setLoading(false);
             }
         };
         fetchData();
@@ -115,44 +154,52 @@ const Influencers = () => {
                 dir="rtl"
             >
                 <CarouselContent className="-ml-4">
-                    {videos.map((video) => (
-                        <CarouselItem key={video.id} className="md:basis-1/3 pl-4 flex justify-center py-4">
-                            <div style={{
-                                display: 'flex',
-                                width: '400px',
-                                padding: '10px',
-                                flexDirection: 'column',
-                                alignItems: 'flex-start',
-                                gap: '10px',
-                                borderRadius: '27px',
-                                border: '1px solid #C097E8',
-                                backgroundColor: '#FFF',
-                                boxShadow: '0px 4px 10px rgba(0,0,0,0.05)'
-                            }}>
-                                <div
-                                    onClick={() => setSelectedVideo(video.videoId)}
-                                    style={{
-                                        height: '250px',
-                                        alignSelf: 'stretch',
-                                        borderRadius: '23px',
-                                        background: `url("${video.thumbnail}") lightgray 50% / cover no-repeat`,
-                                        backgroundColor: '#D9D9D9',
-                                        position: 'relative',
-                                        overflow: 'hidden',
-                                        cursor: 'pointer'
-                                    }}>
-                                    {/* Play Button */}
-                                    <div className="absolute inset-0 flex items-center justify-center group cursor-pointer">
-                                        <div className="w-12 h-12 bg-[#FF0000] rounded-xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-110">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M8 5V19L19 12L8 5Z" fill="white" />
-                                            </svg>
+                    {loading ? (
+                        Array.from({ length: 3 }).map((_, i) => (
+                            <CarouselItem key={i} className="md:basis-1/3 pl-4 flex justify-center py-4">
+                                <SkeletonVideo />
+                            </CarouselItem>
+                        ))
+                    ) : (
+                        videos.map((video) => (
+                            <CarouselItem key={video.id} className="md:basis-1/3 pl-4 flex justify-center py-4">
+                                <div style={{
+                                    display: 'flex',
+                                    width: '400px',
+                                    padding: '10px',
+                                    flexDirection: 'column',
+                                    alignItems: 'flex-start',
+                                    gap: '10px',
+                                    borderRadius: '27px',
+                                    border: '1px solid #C097E8',
+                                    backgroundColor: '#FFF',
+                                    boxShadow: '0px 4px 10px rgba(0,0,0,0.05)'
+                                }}>
+                                    <div
+                                        onClick={() => setSelectedVideo(video.videoId)}
+                                        style={{
+                                            height: '250px',
+                                            alignSelf: 'stretch',
+                                            borderRadius: '23px',
+                                            background: `url("${video.thumbnail}") lightgray 50% / cover no-repeat`,
+                                            backgroundColor: '#D9D9D9',
+                                            position: 'relative',
+                                            overflow: 'hidden',
+                                            cursor: 'pointer'
+                                        }}>
+                                        {/* Play Button */}
+                                        <div className="absolute inset-0 flex items-center justify-center group cursor-pointer">
+                                            <div className="w-12 h-12 bg-[#FF0000] rounded-xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-110">
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M8 5V19L19 12L8 5Z" fill="white" />
+                                                </svg>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </CarouselItem>
-                    ))}
+                            </CarouselItem>
+                        ))
+                    )}
                 </CarouselContent>
             </Carousel>
 
