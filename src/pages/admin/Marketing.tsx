@@ -154,7 +154,7 @@ const Marketing = () => {
             </div>
 
             <Tabs defaultValue="automation" className="w-full">
-                <TabsList className="flex w-full justify-start h-auto p-1 bg-muted/20 rounded-lg gap-2">
+                <TabsList className="flex w-full justify-start h-auto p-1 bg-muted/20 rounded-lg gap-2" dir="rtl">
                     <TabsTrigger value="automation" className="px-6 py-2">אוטומציה</TabsTrigger>
                     <TabsTrigger value="campaign" className="px-6 py-2">קמפיין חדש</TabsTrigger>
                     <TabsTrigger value="subscribers" className="px-6 py-2">מנויים</TabsTrigger>

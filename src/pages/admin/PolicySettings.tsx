@@ -116,7 +116,7 @@ const PolicySettings = () => {
             </div>
 
             <Tabs defaultValue="shipping" className="w-full">
-                <TabsList className="flex flex-wrap h-auto gap-2 bg-transparent justify-start w-full">
+                <TabsList className="flex flex-wrap h-auto gap-2 bg-transparent justify-start w-full" dir="rtl">
                     <TabsTrigger value="shipping" className="data-[state=active]:bg-[#9F19FF] data-[state=active]:text-white border bg-white px-4 py-2">
                         מדיניות משלוחים
                     </TabsTrigger>
