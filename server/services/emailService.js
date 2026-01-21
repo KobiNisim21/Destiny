@@ -153,6 +153,8 @@ export const sendNewsletterWelcome = async (email, subject, body, couponCode, su
         const transporter = getTransporter();
         if (!transporter) throw new Error('Email service not initialized');
 
+        const baseUrl = process.env.FRONTEND_URL || 'http://localhost:8080';
+
         let htmlContent = body.replace('{{couponCode}}', `
             <div style="margin: 30px 0; text-align: center;">
                 <div style="background: #f3e8ff; border: 2px dashed #9F19FF; color: #9F19FF; display: inline-block; padding: 15px 30px; font-size: 24px; font-weight: bold; letter-spacing: 2px; border-radius: 8px;">
@@ -163,7 +165,7 @@ export const sendNewsletterWelcome = async (email, subject, body, couponCode, su
         `);
 
         // Add ID if provided
-        const unsubscribeLink = subscriberId ? `${process.env.FRONTEND_URL}/unsubscribe?id=${subscriberId}` : "";
+        const unsubscribeLink = subscriberId ? `${baseUrl}/unsubscribe?id=${subscriberId}` : "";
         const fullHtml = getEmailTemplate(htmlContent, unsubscribeLink);
 
         const info = await transporter.sendMail({
@@ -186,7 +188,8 @@ export const sendCampaignEmail = async (email, subject, body, subscriberId) => {
         const transporter = getTransporter();
         if (!transporter) throw new Error('Email service not initialized');
 
-        const unsubscribeLink = subscriberId ? `${process.env.FRONTEND_URL}/unsubscribe?id=${subscriberId}` : "";
+        const baseUrl = process.env.FRONTEND_URL || 'http://localhost:8080';
+        const unsubscribeLink = subscriberId ? `${baseUrl}/unsubscribe?id=${subscriberId}` : "";
         const fullHtml = getEmailTemplate(body, unsubscribeLink);
 
         const info = await transporter.sendMail({
@@ -208,7 +211,8 @@ export const sendVerificationEmail = async (email, token) => {
         const transporter = getTransporter();
         if (!transporter) throw new Error('Email service not initialized');
 
-        const verificationLink = `${process.env.FRONTEND_URL}/verify?token=${token}`;
+        const baseUrl = process.env.FRONTEND_URL || 'http://localhost:8080';
+        const verificationLink = `${baseUrl}/verify?token=${token}`;
 
         const content = `
             <h2 style="color: #1a1a1a; margin-top: 0; text-align: center;">אימות כתובת אימייל</h2>
