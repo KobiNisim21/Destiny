@@ -19,6 +19,8 @@ import OrderSuccess from "./pages/OrderSuccess";
 import UserOrders from "./pages/UserOrders";
 import ProductPage from "./pages/ProductPage";
 import NotFound from "./pages/NotFound";
+import VerifyEmail from "./pages/VerifyEmail";
+import Unsubscribe from "./pages/Unsubscribe";
 import AdminRoute from "./components/AdminRoute";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminDashboard from "./pages/admin/Dashboard";
@@ -53,7 +55,6 @@ const App = () => (
               <Route path="/product/:productId" element={<ProductPage />} />
               <Route path="/catalog" element={<Catalog />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
-              <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/checkout" element={<Checkout />} />
@@ -61,6 +62,8 @@ const App = () => (
               <Route path="/orders" element={<UserOrders />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/verify" element={<VerifyEmail />} />
+              <Route path="/unsubscribe" element={<Unsubscribe />} />
 
               {/* Admin Routes */}
               <Route element={<AdminRoute />}>

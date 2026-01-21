@@ -127,8 +127,8 @@ const Marketing = () => {
     return (
         <div className="space-y-6" dir="rtl">
             <div>
-                <h1 className="text-3xl font-bold font-['Assistant'] text-gray-900">שיווק וניוזלטר</h1>
-                <p className="text-gray-500 mt-2">ניהול רשימת התפוצה, אוטומציות וקמפיינים במייל.</p>
+                <h1 className="text-3xl font-bold font-['Assistant'] text-gray-900 text-right">שיווק וניוזלטר</h1>
+                <p className="text-gray-500 mt-2 text-right">ניהול רשימת התפוצה, אוטומציות וקמפיינים במייל.</p>
             </div>
 
             <Tabs defaultValue="automation" className="w-full">
@@ -142,16 +142,16 @@ const Marketing = () => {
                 <TabsContent value="automation" className="mt-6 space-y-6">
                     <Card className="bg-white border-2 border-[#9F19FF]/20">
                         <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
-                            <CardTitle className="flex items-center gap-2 text-[#9F19FF]">
+                            <CardTitle className="flex items-center gap-2 text-[#9F19FF] justify-start">
                                 <Sparkles className="w-5 h-5 text-[#9F19FF]" />
                                 מייל ״ברוכים הבאים״ אוטומטי
                             </CardTitle>
-                            <CardDescription>
+                            <CardDescription className="text-right">
                                 מייל זה נשלח אוטומטית לכל משתמש חדש שנרשם לרשימת התפוצה.
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-6 pt-6">
-                            <div className="space-y-2">
+                            <div className="space-y-2 text-right">
                                 <label className="text-sm font-medium">כותרת המייל (Subject)</label>
                                 <Input
                                     value={welcomeSubject}
@@ -161,7 +161,7 @@ const Marketing = () => {
                                 />
                             </div>
 
-                            <div className="space-y-2">
+                            <div className="space-y-2 text-right">
                                 <label className="text-sm font-medium">קוד קופון להזמנה ראשונה</label>
                                 <Input
                                     value={couponCode}
@@ -174,7 +174,7 @@ const Marketing = () => {
                                 </p>
                             </div>
 
-                            <div className="space-y-2">
+                            <div className="space-y-2 text-right">
                                 <label className="text-sm font-medium">תוכן המייל (HTML)</label>
                                 <Textarea
                                     value={welcomeBody}
@@ -187,7 +187,7 @@ const Marketing = () => {
                                 </p>
                             </div>
 
-                            <div className="flex justify-end">
+                            <div className="flex justify-start">
                                 <Button onClick={saveSettings} disabled={loading} className="bg-[#9F19FF] hover:bg-[#9F19FF]/90 text-white">
                                     {loading ? 'שומר...' : 'שמור הגדרות'}
                                 </Button>
@@ -200,16 +200,16 @@ const Marketing = () => {
                 <TabsContent value="campaign" className="mt-6 space-y-6">
                     <Card className="bg-white border-2 border-[#9F19FF]/20">
                         <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
-                            <CardTitle className="flex items-center gap-2 text-[#9F19FF]">
+                            <CardTitle className="flex items-center gap-2 text-[#9F19FF] justify-start">
                                 <Send className="w-5 h-5 text-[#9F19FF]" />
                                 שליחת קמפיין חדש
                             </CardTitle>
-                            <CardDescription>
+                            <CardDescription className="text-right">
                                 שליחת מייל יזום לכל {subscribers.filter(s => s.isActive).length} המנויים הפעילים.
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-6 pt-6">
-                            <div className="space-y-2">
+                            <div className="space-y-2 text-right">
                                 <label className="text-sm font-medium">כותרת המייל</label>
                                 <Input
                                     value={campaignSubject}
@@ -219,7 +219,7 @@ const Marketing = () => {
                                 />
                             </div>
 
-                            <div className="space-y-2">
+                            <div className="space-y-2 text-right">
                                 <label className="text-sm font-medium">תוכן המייל (HTML)</label>
                                 <Textarea
                                     value={campaignBody}
@@ -230,7 +230,7 @@ const Marketing = () => {
                                 />
                             </div>
 
-                            <div className="flex justify-end">
+                            <div className="flex justify-start">
                                 <Button
                                     onClick={sendCampaign}
                                     disabled={sending || !campaignSubject || !campaignBody}
@@ -247,7 +247,7 @@ const Marketing = () => {
                 <TabsContent value="subscribers" className="mt-6 space-y-6">
                     <Card className="bg-white border-none shadow-sm">
                         <CardHeader>
-                            <CardTitle className="flex items-center gap-2">
+                            <CardTitle className="flex items-center gap-2 text-right justify-start">
                                 <Users className="w-5 h-5" />
                                 רשימת מנויים ({subscribers.length})
                             </CardTitle>
@@ -257,9 +257,9 @@ const Marketing = () => {
                                 <Table>
                                     <TableHeader>
                                         <TableRow>
-                                            <TableHead className="text-right">אימייל</TableHead>
-                                            <TableHead className="text-right">תאריך הרשמה</TableHead>
-                                            <TableHead className="text-right">סטטוס</TableHead>
+                                            <TableHead className="text-right text-right">אימייל</TableHead>
+                                            <TableHead className="text-right text-right">תאריך הרשמה</TableHead>
+                                            <TableHead className="text-right text-right">סטטוס</TableHead>
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
