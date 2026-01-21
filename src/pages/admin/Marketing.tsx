@@ -7,13 +7,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useToast } from "@/components/ui/use-toast";
 import API_BASE_URL from "@/config";
-import { Mail, Users, Send, Sparkles } from "lucide-react";
+import { Mail, Users, Send, Settings, Sparkles, Trash2 } from "lucide-react";
 
 interface Subscriber {
     _id: string;
     email: string;
     subscribedAt: string;
     isActive: boolean;
+    isVerified: boolean;
 }
 
 const Marketing = () => {
@@ -63,6 +64,27 @@ const Marketing = () => {
             setSubscribers(data);
         } catch (error) {
             console.error(error);
+        }
+    };
+
+    const deleteSubscriber = async (id: string) => {
+        if (!confirm("האם אתה בטוח שברצונך למחוק מנוי זה מהרשימה?")) return;
+
+        try {
+            const token = localStorage.getItem('token');
+            const res = await fetch(`${API_BASE_URL}/api/newsletter/subscribers/${id}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+
+            if (res.ok) {
+                toast({ title: "מנוי נמחק", description: "המנוי הוסר בהצלחה מהרשימה." });
+                fetchSubscribers();
+            } else {
+                throw new Error("Failed");
+            }
+        } catch (error) {
+            toast({ title: "שגיאה", description: "לא ניתן למחוק את המנוי", variant: "destructive" });
         }
     };
 
@@ -142,9 +164,9 @@ const Marketing = () => {
                 <TabsContent value="automation" className="mt-6 space-y-6">
                     <Card className="bg-white border-2 border-[#9F19FF]/20">
                         <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
-                            <CardTitle className="flex items-center gap-2 text-[#9F19FF] justify-start">
-                                <Sparkles className="w-5 h-5 text-[#9F19FF]" />
-                                מייל ״ברוכים הבאים״ אוטומטי
+                            <CardTitle className="flex items-center gap-2 text-[#9F19FF] justify-start flex-row-reverse">
+                                <span className="mr-auto text-right w-full">מייל ״ברוכים הבאים״ אוטומטי</span>
+                                <Sparkles className="w-5 h-5 text-[#9F19FF] ml-2" />
                             </CardTitle>
                             <CardDescription className="text-right">
                                 מייל זה נשלח אוטומטית לכל משתמש חדש שנרשם לרשימת התפוצה.
@@ -152,7 +174,7 @@ const Marketing = () => {
                         </CardHeader>
                         <CardContent className="space-y-6 pt-6">
                             <div className="space-y-2 text-right">
-                                <label className="text-sm font-medium">כותרת המייל (Subject)</label>
+                                <label className="text-sm font-medium w-full block text-right">כותרת המייל (Subject)</label>
                                 <Input
                                     value={welcomeSubject}
                                     onChange={(e) => setWelcomeSubject(e.target.value)}
@@ -162,27 +184,27 @@ const Marketing = () => {
                             </div>
 
                             <div className="space-y-2 text-right">
-                                <label className="text-sm font-medium">קוד קופון להזמנה ראשונה</label>
+                                <label className="text-sm font-medium w-full block text-right">קוד קופון להזמנה ראשונה</label>
                                 <Input
                                     value={couponCode}
                                     onChange={(e) => setCouponCode(e.target.value)}
                                     placeholder="WELCOME15"
                                     className="font-mono text-center text-lg tracking-wider border-[#9F19FF]/50 bg-white text-gray-900"
                                 />
-                                <p className="text-xs text-gray-500">
+                                <p className="text-xs text-gray-500 text-right w-full block">
                                     ניתן להשתמש ב-<code>{`{{couponCode}}`}</code> בתוך גוף המייל כדי לשתול את הקוד אוטומטית.
                                 </p>
                             </div>
 
                             <div className="space-y-2 text-right">
-                                <label className="text-sm font-medium">תוכן המייל (HTML)</label>
+                                <label className="text-sm font-medium w-full block text-right">תוכן המייל (HTML)</label>
                                 <Textarea
                                     value={welcomeBody}
                                     onChange={(e) => setWelcomeBody(e.target.value)}
                                     className="min-h-[300px] font-mono text-sm bg-white text-gray-900 text-right"
                                     dir="rtl"
                                 />
-                                <p className="text-xs text-gray-500">
+                                <p className="text-xs text-gray-500 text-right w-full block">
                                     טיפ: המערכת עוטפת את התוכן הזה בעיצוב הכללי של המותג אוטומטית. אין צורך להוסיף <code>&lt;html&gt;</code> וכו'.
                                 </p>
                             </div>
@@ -200,9 +222,9 @@ const Marketing = () => {
                 <TabsContent value="campaign" className="mt-6 space-y-6">
                     <Card className="bg-white border-2 border-[#9F19FF]/20">
                         <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
-                            <CardTitle className="flex items-center gap-2 text-[#9F19FF] justify-start">
-                                <Send className="w-5 h-5 text-[#9F19FF]" />
-                                שליחת קמפיין חדש
+                            <CardTitle className="flex items-center gap-2 text-[#9F19FF] justify-start flex-row-reverse">
+                                <span className="mr-auto text-right w-full">שליחת קמפיין חדש</span>
+                                <Send className="w-5 h-5 text-[#9F19FF] ml-2" />
                             </CardTitle>
                             <CardDescription className="text-right">
                                 שליחת מייל יזום לכל {subscribers.filter(s => s.isActive).length} המנויים הפעילים.
@@ -210,7 +232,7 @@ const Marketing = () => {
                         </CardHeader>
                         <CardContent className="space-y-6 pt-6">
                             <div className="space-y-2 text-right">
-                                <label className="text-sm font-medium">כותרת המייל</label>
+                                <label className="text-sm font-medium w-full block text-right">כותרת המייל</label>
                                 <Input
                                     value={campaignSubject}
                                     onChange={(e) => setCampaignSubject(e.target.value)}
@@ -220,7 +242,7 @@ const Marketing = () => {
                             </div>
 
                             <div className="space-y-2 text-right">
-                                <label className="text-sm font-medium">תוכן המייל (HTML)</label>
+                                <label className="text-sm font-medium w-full block text-right">תוכן המייל (HTML)</label>
                                 <Textarea
                                     value={campaignBody}
                                     onChange={(e) => setCampaignBody(e.target.value)}
@@ -247,9 +269,9 @@ const Marketing = () => {
                 <TabsContent value="subscribers" className="mt-6 space-y-6">
                     <Card className="bg-white border-none shadow-sm">
                         <CardHeader>
-                            <CardTitle className="flex items-center gap-2 text-right justify-start">
-                                <Users className="w-5 h-5" />
-                                רשימת מנויים ({subscribers.length})
+                            <CardTitle className="flex items-center gap-2 text-right justify-start flex-row-reverse">
+                                <span className="mr-auto text-right w-full">רשימת מנויים ({subscribers.length})</span>
+                                <Users className="w-5 h-5 ml-2" />
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
@@ -257,9 +279,10 @@ const Marketing = () => {
                                 <Table>
                                     <TableHeader>
                                         <TableRow>
-                                            <TableHead className="text-right text-right">אימייל</TableHead>
-                                            <TableHead className="text-right text-right">תאריך הרשמה</TableHead>
-                                            <TableHead className="text-right text-right">סטטוס</TableHead>
+                                            <TableHead className="text-right">אימייל</TableHead>
+                                            <TableHead className="text-right">תאריך הרשמה</TableHead>
+                                            <TableHead className="text-right">סטטוס</TableHead>
+                                            <TableHead className="text-center w-[100px]">פעולות</TableHead>
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
@@ -268,15 +291,30 @@ const Marketing = () => {
                                                 <TableCell className="font-medium text-right">{sub.email}</TableCell>
                                                 <TableCell className="text-right">{new Date(sub.subscribedAt).toLocaleDateString('he-IL')}</TableCell>
                                                 <TableCell className="text-right">
-                                                    <span className={`px-2 py-1 rounded-full text-xs ${sub.isActive ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                                                        {sub.isActive ? 'פעיל' : 'לא פעיל'}
-                                                    </span>
+                                                    <div className="flex gap-2 justify-start">
+                                                        <span className={`px-2 py-1 rounded-full text-xs ${sub.isActive ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                                                            {sub.isActive ? 'פעיל' : 'לא פעיל'}
+                                                        </span>
+                                                        <span className={`px-2 py-1 rounded-full text-xs ${sub.isVerified ? 'bg-blue-100 text-blue-700' : 'bg-yellow-100 text-yellow-700'}`}>
+                                                            {sub.isVerified ? 'מאומת' : 'לא מאומת'}
+                                                        </span>
+                                                    </div>
+                                                </TableCell>
+                                                <TableCell className="text-center">
+                                                    <Button
+                                                        variant="ghost"
+                                                        size="icon"
+                                                        className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                                                        onClick={() => deleteSubscriber(sub._id)}
+                                                    >
+                                                        <Trash2 className="w-4 h-4" />
+                                                    </Button>
                                                 </TableCell>
                                             </TableRow>
                                         ))}
                                         {subscribers.length === 0 && (
                                             <TableRow>
-                                                <TableCell colSpan={3} className="text-center py-8 text-gray-500">
+                                                <TableCell colSpan={4} className="text-center py-8 text-gray-500">
                                                     אין עדיין מנויים ברשימה.
                                                 </TableCell>
                                             </TableRow>
