@@ -62,8 +62,21 @@ const App = () => (
               <Route path="/orders" element={<UserOrders />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              import PolicyPage from "./pages/PolicyPage";
+              import PolicySettings from "./pages/admin/PolicySettings"; // Added import
+
+              // ... imports remain same ...
+
+              // inside Routes:
               <Route path="/verify" element={<VerifyEmail />} />
               <Route path="/unsubscribe" element={<Unsubscribe />} />
+
+              {/* Policy Routes */}
+              <Route path="/shipping" element={<PolicyPage type="shipping" />} />
+              <Route path="/returns" element={<PolicyPage type="returns" />} />
+              <Route path="/privacy" element={<PolicyPage type="privacy" />} />
+              <Route path="/legal" element={<PolicyPage type="legal" />} />
+              <Route path="/terms" element={<PolicyPage type="terms" />} />
 
               {/* Admin Routes */}
               <Route element={<AdminRoute />}>
@@ -72,6 +85,7 @@ const App = () => (
                   <Route path="orders" element={<AdminOrders />} />
                   <Route path="coupons" element={<AdminCoupons />} />
                   <Route path="marketing" element={<Marketing />} />
+                  <Route path="policies" element={<PolicySettings />} />
                   <Route path="users" element={<AdminTeam />} />
                   <Route path="content" element={<ContentSettings />} />
 

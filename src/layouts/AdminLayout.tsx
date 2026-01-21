@@ -12,7 +12,8 @@ import {
     X,
     Globe,
     Tag,
-    Mail
+    Mail,
+    BookOpen
 } from "lucide-react";
 import { useState } from "react";
 
@@ -31,6 +32,7 @@ const AdminLayout = () => {
         { label: "קופונים", path: "/admin/coupons", icon: <Tag size={20} /> },
         { label: "ניהול צוות", path: "/admin/users", icon: <Users size={20} /> },
         { label: "שיווק וניוזלטר", path: "/admin/marketing", icon: <Mail size={20} /> },
+        { label: "דפי מדיניות ותנאים", path: "/admin/policies", icon: <BookOpen size={20} /> },
         { label: "תוכן והגדרות", path: "/admin/content", icon: <Settings size={20} /> },
     ];
 
