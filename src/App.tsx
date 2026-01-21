@@ -34,6 +34,9 @@ import Marketing from "./pages/admin/Marketing";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import CartDrawer from "./components/CartDrawer";
+import PolicyPage from "./pages/PolicyPage";
+import PolicySettings from "./pages/admin/PolicySettings";
+
 
 const queryClient = new QueryClient();
 
@@ -62,12 +65,9 @@ const App = () => (
               <Route path="/orders" element={<UserOrders />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
-              import PolicyPage from "./pages/PolicyPage";
-              import PolicySettings from "./pages/admin/PolicySettings"; // Added import
 
-              // ... imports remain same ...
 
-              // inside Routes:
+
               <Route path="/verify" element={<VerifyEmail />} />
               <Route path="/unsubscribe" element={<Unsubscribe />} />
 
