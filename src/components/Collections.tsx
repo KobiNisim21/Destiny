@@ -97,6 +97,7 @@ const Collections = ({ products: dbProducts = [] }: { products?: Product[] }) =>
   const getProductName = (p: Product) => p.title || p.name || '';
   const getProductLink = (p: Product) => p._id ? `/product/${p._id}` : (p.slug ? `/product/${p.slug}` : '#');
   const getProductBadge = (p: Product) => {
+    if (p.customLabel) return p.customLabel;
     if (p.badge) return p.badge;
     if (p.isNewArrival) return "חדש";
     return null;
