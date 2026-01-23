@@ -54,10 +54,6 @@ const processImages = (files, body) => {
     return filePaths;
 };
 
-import mongoose from 'mongoose';
-
-// ... (existing imports)
-
 // Get all products
 router.get('/', async (req, res) => {
     try {
