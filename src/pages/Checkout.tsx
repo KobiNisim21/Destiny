@@ -16,89 +16,26 @@ const Checkout = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const { toast } = useToast();
-    const [isLoading, setIsLoading] = useState(false);
+    // Payment Simulation State
+    const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+    const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
-    const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
-        street: "",
-        city: "",
-        zipCode: "",
-        phone: "",
-        email: ""
-    });
-
-    // Coupon State
-    const [couponCode, setCouponCode] = useState("");
-    const [appliedCouponCode, setAppliedCouponCode] = useState("");
-    const [couponDiscount, setCouponDiscount] = useState(0);
-    const [couponMessage, setCouponMessage] = useState("");
-    const [isValidatingCoupon, setIsValidatingCoupon] = useState(false);
-
-    const handleApplyCoupon = async () => {
-        if (!couponCode) return;
-        setIsValidatingCoupon(true);
-        setCouponMessage("");
-
-        try {
-            const res = await fetch(`${API_BASE_URL}/api/coupons/validate`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    code: couponCode,
-                    cartItems: items,
-                    cartTotal: cartTotal
-                })
-            });
-
-            const data = await res.json();
-
-            if (data.valid) {
-                setCouponDiscount(data.discountAmount);
-                setAppliedCouponCode(data.code);
-                setCouponMessage("קופון הופעל בהצלחה!");
-                toast({ title: "קופון הופעל בהצלחה" });
-            } else {
-                setCouponDiscount(0);
-                setAppliedCouponCode("");
-                setCouponMessage(data.message || "קופון לא תקין");
-                toast({ title: data.message || "קופון לא תקין", variant: "destructive" });
-            }
-        } catch (error) {
-            console.error(error);
-            setCouponMessage("שגיאה בבדיקת קופון");
-        } finally {
-            setIsValidatingCoupon(false);
-        }
-    };
-
-    useEffect(() => {
-        if (user) {
-            setFormData({
-                firstName: user.firstName || "",
-                lastName: user.lastName || "",
-                email: user.email || "",
-                phone: user.phone || "",
-                street: user.address?.street || "",
-                city: user.address?.city || "",
-                zipCode: user.address?.zipCode || ""
-            });
-        }
-    }, [user]);
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
+    // Initial form validation
+    const handleProceedToPayment = (e: React.FormEvent) => {
         e.preventDefault();
-
         if (items.length === 0) {
             toast({ title: "הסל ריק", variant: "destructive" });
             return;
         }
+        setIsPaymentModalOpen(true);
+    };
 
-        setIsLoading(true);
+    const handlePaymentSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsProcessingPayment(true);
+
+        // Simulate external payment processing delay
+        await new Promise(resolve => setTimeout(resolve, 2000));
 
         try {
             const token = localStorage.getItem('token');
@@ -125,7 +62,7 @@ const Checkout = () => {
                     zipCode: formData.zipCode,
                     phone: formData.phone
                 },
-                couponCode: appliedCouponCode, // Optional: if backend supports it
+                couponCode: appliedCouponCode,
                 discountAmount: couponDiscount
             };
 
@@ -143,13 +80,15 @@ const Checkout = () => {
             const newOrder = await res.json();
 
             clearCart();
-            toast({ title: "ההזמנה בוצעה בהצלחה!" });
-            navigate('/order-success'); // We assume this route will exist
+            setIsPaymentModalOpen(false);
+            toast({ title: "התשלום עבר בהצלחה! ההזמנה בוצעה." });
+            navigate('/order-success', { state: { orderId: newOrder._id } });
 
         } catch (error) {
             console.error(error);
             toast({ title: "שגיאה בביצוע ההזמנה", variant: "destructive" });
         } finally {
+            setIsProcessingPayment(false);
             setIsLoading(false);
         }
     };
@@ -180,7 +119,7 @@ const Checkout = () => {
                                 <CardTitle>פרטי משלוח</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <form id="checkout-form" onSubmit={handleSubmit} className="space-y-4">
+                                <form id="checkout-form" onSubmit={handleProceedToPayment} className="space-y-4">
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="space-y-2">
                                             <Label htmlFor="firstName">שם פרטי</Label>
@@ -215,28 +154,6 @@ const Checkout = () => {
                                         </div>
                                     </div>
                                 </form>
-                            </CardContent>
-                        </Card>
-
-                        <Card className="bg-white border-none shadow-sm">
-                            <CardHeader>
-                                <CardTitle>תשלום</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                {/* Mock Payment Fields */}
-                                <div className="space-y-4 opacity-70 pointer-events-none filter grayscale">
-                                    <div className="space-y-2">
-                                        <Label>מספר כרטיס אשראי (הדמיה)</Label>
-                                        <Input placeholder="0000 0000 0000 0000" />
-                                    </div>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <Input placeholder="MM/YY" />
-                                        <Input placeholder="CVV" />
-                                    </div>
-                                </div>
-                                <div className="bg-yellow-50 text-yellow-800 p-4 rounded mt-4 text-sm">
-                                    הערה: זהו אתר הדגמה. התשלום מדומק וההזמנה תירשם ללא חיוב בפועל.
-                                </div>
                             </CardContent>
                         </Card>
                     </div>
@@ -304,13 +221,73 @@ const Checkout = () => {
                                     form="checkout-form"
                                     disabled={isLoading}
                                 >
-                                    {isLoading ? "מעבד הזמנה..." : "בצע הזמנה"}
+                                    המשך לתשלום
                                 </Button>
                             </CardContent>
                         </Card>
                     </div>
                 </div>
             </div>
+
+            {/* Simulated Payment Modal */}
+            {isPaymentModalOpen && (
+                <div className="fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4 animate-in fade-in duration-200">
+                    <Card className="w-full max-w-md bg-white border-0 shadow-2xl scale-100 animate-in zoom-in-95 duration-200">
+                        <CardHeader className="bg-gray-50/50 border-b relative">
+                            <CardTitle className="text-center">תשלום מאובטח</CardTitle>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                onClick={() => setIsPaymentModalOpen(false)}
+                            >
+                                ✕
+                            </Button>
+                        </CardHeader>
+                        <CardContent className="pt-6">
+                            <form onSubmit={handlePaymentSubmit} className="space-y-4">
+                                <div className="space-y-2">
+                                    <Label>מספר כרטיס אשראי</Label>
+                                    <Input
+                                        placeholder="0000 0000 0000 0000"
+                                        className="text-center tracking-widest"
+                                        required
+                                        pattern=".{10,}"
+                                        dir="ltr"
+                                    />
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                        <Label>תוקף (MM/YY)</Label>
+                                        <Input placeholder="MM/YY" className="text-center" required dir="ltr" />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label>CVV</Label>
+                                        <Input placeholder="123" className="text-center" required maxLength={3} dir="ltr" />
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>שם בעל הכרטיס</Label>
+                                    <Input placeholder="ישראל ישראלי" required />
+                                </div>
+
+                                <div className="bg-blue-50 text-blue-800 p-3 rounded text-xs text-center mt-4">
+                                    🔒 זוהי סביבת הדגמה. כרטיסך לא יחויב באמת.
+                                </div>
+
+                                <Button
+                                    type="submit"
+                                    className="w-full bg-[#9F19FF] hover:bg-[#8F00FF] h-12 text-lg mt-4"
+                                    disabled={isProcessingPayment}
+                                >
+                                    {isProcessingPayment ? "מעבד תשלום..." : `שלם ₪${(Math.max(0, cartTotal - couponDiscount)).toFixed(2)}`}
+                                </Button>
+                            </form>
+                        </CardContent>
+                    </Card>
+                </div>
+            )}
+
             <Footer />
         </div>
     );
