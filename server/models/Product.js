@@ -53,6 +53,9 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    customLabel: {
+        type: String, // Optional "Hot", "Sale", "Limited"
+    },
     faq: [{
         question: String,
         answer: String

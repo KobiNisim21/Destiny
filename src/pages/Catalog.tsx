@@ -21,6 +21,7 @@ interface Product {
     image?: string;
     badge?: string;
     isNewArrival?: boolean;
+    customLabel?: string;
     slug?: string;
 }
 
@@ -79,7 +80,7 @@ const Catalog = () => {
                             {products.map((product, index) => {
                                 const displayImage = getImageUrl(product, false);
                                 const hoverImage = getImageUrl(product, true);
-                                const badgeText = product.badge || (product.isNewArrival ? "חדש!" : null);
+                                const badgeText = product.customLabel || product.badge || (product.isNewArrival ? "חדש!" : null);
 
                                 return (
                                     <div key={product._id || product.id} className="group animate-slide-up" style={{

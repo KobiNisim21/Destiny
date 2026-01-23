@@ -30,6 +30,7 @@ const ProductForm = () => {
         displaySlot: null,
         inStock: true,
         isNewArrival: false,
+        customLabel: "",
         faq: [] as { question: string; answer: string }[],
     });
 
@@ -80,6 +81,7 @@ const ProductForm = () => {
                 displaySlot: data.displaySlot || null,
                 inStock: data.inStock,
                 isNewArrival: data.isNewArrival || false,
+                customLabel: data.customLabel || "",
                 faq: data.faq && data.faq.length > 0 ? data.faq : DEFAULT_FAQS,
             });
 
@@ -179,6 +181,7 @@ const ProductForm = () => {
             if (formData.displaySlot) data.append('displaySlot', formData.displaySlot.toString());
             data.append('inStock', String(formData.inStock));
             data.append('isNewArrival', String(formData.isNewArrival));
+            if (formData.customLabel) data.append('customLabel', formData.customLabel);
             data.append('faq', JSON.stringify(formData.faq));
 
             // 1. Main Image
@@ -510,6 +513,17 @@ const ProductForm = () => {
                                 <p className="text-sm text-gray-500">האם להציג תגית "חדש" על המוצר?</p>
                             </div>
                             <input type="checkbox" checked={formData.isNewArrival} onChange={e => setFormData({ ...formData, isNewArrival: e.target.checked })} className="w-5 h-5 accent-[#9F19FF] cursor-pointer" />
+                        </div>
+
+                        <div className="space-y-2 pt-2 border-t mt-4">
+                            <label className="text-sm font-medium">תווית מיוחדת (Custom Badge)</label>
+                            <Input
+                                placeholder='לדוגמה: "מבצע חם", "נמכר", "מוגבל"'
+                                value={formData.customLabel}
+                                onChange={e => setFormData({ ...formData, customLabel: e.target.value })}
+                                className="bg-white"
+                            />
+                            <p className="text-xs text-gray-500">טקסט זה יופיע בתגית צבעונית על גבי המוצר (במקום או בנוסף ל"חדש")</p>
                         </div>
                     </CardContent>
                 </Card>

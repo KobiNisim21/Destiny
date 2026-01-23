@@ -136,6 +136,7 @@ router.post('/', isAdmin, upload.fields([
             displaySlot: req.body.displaySlot ? Number(req.body.displaySlot) : null,
             inStock: req.body.inStock === 'true',
             isNewArrival: req.body.isNewArrival === 'true',
+            customLabel: req.body.customLabel || null,
             faq: req.body.faq ? JSON.parse(req.body.faq) : [],
 
             // New Fields
@@ -173,6 +174,7 @@ router.put('/:id', isAdmin, upload.fields([
             displaySlot: req.body.displaySlot ? Number(req.body.displaySlot) : null,
             inStock: req.body.inStock === 'true' || req.body.inStock === true,
             isNewArrival: req.body.isNewArrival === 'true' || req.body.isNewArrival === true,
+            customLabel: req.body.customLabel || null,
             faq: req.body.faq ? JSON.parse(req.body.faq) : undefined,
 
             // New Fields

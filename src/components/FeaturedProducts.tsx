@@ -150,7 +150,7 @@ const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) 
           const hoverImage = getImageUrl(product, true);
 
           // Determine badge text
-          let badgeText = product.badge;
+          let badgeText = product.customLabel || product.badge;
           if (!badgeText && product.isNewArrival) badgeText = "חדש!";
 
           return (
