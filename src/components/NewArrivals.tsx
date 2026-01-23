@@ -7,6 +7,7 @@ import API_BASE_URL from "@/config";
 import protestShirtImage from "@/assets/A9.png";
 import protestShirtHoverImage from "@/assets/product-tshirt.jpg";
 import { Product } from "./ProductListModal";
+import { Skeleton } from "@/components/ui/skeleton";
 
 // Types
 
@@ -22,6 +23,7 @@ const DEFAULT_NEW_ARRIVAL: Product = {
 const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) => {
   const [product, setProduct] = useState<Product | null>(null);
   const [content, setContent] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchContent = async () => {
@@ -44,10 +46,80 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
       } else if (dbProducts.length > 0) {
         setProduct(dbProducts[0]);
       }
+      setLoading(false);
     }
+    // If dbProducts is empty but we've waited "long enough"? 
+    // Actually, usually dbProducts starts empty then populates. 
+    // If it never populates (network error), loading stays true. 
+    // This is acceptable for now.
   }, [dbProducts]);
 
-  if (!product) return null; // Should not happen with default
+  if (loading) {
+    return (
+      <section
+        className="relative w-full flex justify-center items-center"
+        dir="rtl"
+        id="new-arrivals-section"
+        style={{
+          backgroundColor: '#F5F2F8',
+          padding: '31px 0',
+          boxShadow: '0px 0px 15.2px 0px #8AFF00',
+          zIndex: 10
+        }}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 items-center" style={{ gap: '200px' }}>
+            {/* Skeleton Right (Image) */}
+            <div className="relative flex lg:justify-end justify-center">
+              <div style={{ width: '360px', height: '540px' }} className="rounded-[24px] overflow-hidden bg-white shadow-sm border border-gray-100 p-0">
+                <Skeleton className="h-[350px] w-full" />
+                <div className="p-5 flex flex-col gap-4">
+                  <Skeleton className="h-8 w-3/4 ml-auto" />
+                  <Skeleton className="h-4 w-full ml-auto" />
+                  <div className="mt-8 flex justify-between items-center">
+                    <Skeleton className="h-10 w-20" />
+                    <Skeleton className="h-10 w-32 rounded-xl" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Skeleton Left (Text) */}
+            <div className="space-y-8 text-right">
+              <Skeleton className="h-10 w-48 ml-auto rounded-full" />
+              <div className="space-y-2">
+                <Skeleton className="h-14 w-3/4 ml-auto" />
+                <Skeleton className="h-14 w-1/2 ml-auto" />
+              </div>
+              <div className="space-y-2">
+                <Skeleton className="h-6 w-full ml-auto" />
+                <Skeleton className="h-6 w-5/6 ml-auto" />
+              </div>
+              <div className="space-y-4 pt-4">
+                <div className="flex items-center gap-4 justify-end">
+                  <div className="text-right space-y-2">
+                    <Skeleton className="h-6 w-32 ml-auto" />
+                    <Skeleton className="h-4 w-48 ml-auto" />
+                  </div>
+                  <Skeleton className="h-8 w-8 rounded-full" />
+                </div>
+                <div className="flex items-center gap-4 justify-end">
+                  <div className="text-right space-y-2">
+                    <Skeleton className="h-6 w-32 ml-auto" />
+                    <Skeleton className="h-4 w-48 ml-auto" />
+                  </div>
+                  <Skeleton className="h-8 w-8 rounded-full" />
+                </div>
+              </div>
+              <Skeleton className="h-12 w-48 ml-auto rounded-full mt-8" />
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!product) return null;
 
   const getImageSrc = (img?: string) => {
     if (!img) return '';
