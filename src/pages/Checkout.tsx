@@ -16,6 +16,81 @@ const Checkout = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const { toast } = useToast();
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    const [formData, setFormData] = useState({
+        firstName: "",
+        lastName: "",
+        street: "",
+        city: "",
+        zipCode: "",
+        phone: "",
+        email: ""
+    });
+
+    // Coupon State
+    const [couponCode, setCouponCode] = useState("");
+    const [appliedCouponCode, setAppliedCouponCode] = useState("");
+    const [couponDiscount, setCouponDiscount] = useState(0);
+    const [couponMessage, setCouponMessage] = useState("");
+    const [isValidatingCoupon, setIsValidatingCoupon] = useState(false);
+
+    const handleApplyCoupon = async () => {
+        if (!couponCode) return;
+        setIsValidatingCoupon(true);
+        setCouponMessage("");
+
+        try {
+            const res = await fetch(`${API_BASE_URL}/api/coupons/validate`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    code: couponCode,
+                    cartItems: items,
+                    cartTotal: cartTotal
+                })
+            });
+
+            const data = await res.json();
+
+            if (data.valid) {
+                setCouponDiscount(data.discountAmount);
+                setAppliedCouponCode(data.code);
+                setCouponMessage("קופון הופעל בהצלחה!");
+                toast({ title: "קופון הופעל בהצלחה" });
+            } else {
+                setCouponDiscount(0);
+                setAppliedCouponCode("");
+                setCouponMessage(data.message || "קופון לא תקין");
+                toast({ title: data.message || "קופון לא תקין", variant: "destructive" });
+            }
+        } catch (error) {
+            console.error(error);
+            setCouponMessage("שגיאה בבדיקת קופון");
+        } finally {
+            setIsValidatingCoupon(false);
+        }
+    };
+
+    useEffect(() => {
+        if (user) {
+            setFormData({
+                firstName: user.firstName || "",
+                lastName: user.lastName || "",
+                email: user.email || "",
+                phone: user.phone || "",
+                street: user.address?.street || "",
+                city: user.address?.city || "",
+                zipCode: user.address?.zipCode || ""
+            });
+        }
+    }, [user]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
     // Payment Simulation State
     const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
     const [isProcessingPayment, setIsProcessingPayment] = useState(false);
