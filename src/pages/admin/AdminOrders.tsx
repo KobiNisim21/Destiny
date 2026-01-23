@@ -186,8 +186,10 @@ const AdminOrders = () => {
                             <div className="bg-gray-50 p-4 rounded-lg grid grid-cols-2 gap-4">
                                 <div>
                                     <h3 className="font-bold text-gray-700 mb-2">פרטי לקוח</h3>
-                                    <p><strong>שם:</strong> {selectedOrder.user?.firstName} {selectedOrder.user?.lastName}</p>
-                                    <p><strong>אימייל:</strong> {selectedOrder.user?.email}</p>
+                                    <p><strong>שם:</strong> {selectedOrder.shippingAddress?.firstName} {selectedOrder.shippingAddress?.lastName} (משתמש: {selectedOrder.user?.firstName})</p>
+                                    <p><strong>אימייל:</strong> {selectedOrder.shippingAddress?.email || selectedOrder.user?.email}</p>
+                                    <p><strong>טלפון:</strong> {selectedOrder.shippingAddress?.phone}</p>
+                                    <p><strong>כתובת:</strong> {selectedOrder.shippingAddress?.street}, {selectedOrder.shippingAddress?.city} {selectedOrder.shippingAddress?.zipCode && `(${selectedOrder.shippingAddress.zipCode})`}</p>
                                 </div>
                                 <div className="text-left rtl:text-right">
                                     <Button onClick={() => handleContactUser(selectedOrder)} className="gap-2">
