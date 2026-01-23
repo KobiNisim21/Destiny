@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, DollarSign, ShoppingBag, Eye, Database } from "lucide-react";
 import { useEffect, useState } from "react";
 import API_BASE_URL from "@/config";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 
 const AdminDashboard = () => {
     const [stats, setStats] = useState<any>(null);
@@ -48,14 +49,16 @@ const AdminDashboard = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <Card className="bg-white">
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-sm font-medium text-gray-500">כל המכירות</CardTitle>
+                        <CardTitle className="text-sm font-medium text-gray-500">מכירות החודש</CardTitle>
                         <DollarSign className="w-4 h-4 text-gray-500" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">
-                            {stats ? (stats.error ? '-' : `₪${stats.totalSales?.toFixed(0) || '0'}`) : '...'}
+                            {stats ? (stats.error ? '-' : `₪${stats.monthlySales?.toFixed(0) || '0'}`) : '...'}
                         </div>
-                        <p className="text-xs text-gray-500 mt-1">עדכון חי בזמן אמת</p>
+                        <p className="text-xs text-gray-500 mt-1">
+                            {stats?.yearlySales ? `שנתי: ₪${stats.yearlySales.toFixed(0)}` : 'טוען...'}
+                        </p>
                     </CardContent>
                 </Card>
 
@@ -128,9 +131,9 @@ const AdminDashboard = () => {
                                                 <td className="p-3">₪{order.totalAmount.toFixed(2)}</td>
                                                 <td className="p-3">
                                                     <span className={`px-2 py-1 rounded-full text-xs ${order.status === 'delivered' ? 'bg-green-100 text-green-700' :
-                                                            order.status === 'shipped' ? 'bg-purple-100 text-purple-700' :
-                                                                order.status === 'cancelled' ? 'bg-red-100 text-red-700' :
-                                                                    'bg-yellow-100 text-yellow-700'
+                                                        order.status === 'shipped' ? 'bg-purple-100 text-purple-700' :
+                                                            order.status === 'cancelled' ? 'bg-red-100 text-red-700' :
+                                                                'bg-yellow-100 text-yellow-700'
                                                         }`}>
                                                         {order.status === 'pending' ? 'ממתין' :
                                                             order.status === 'processing' ? 'בטיפול' :
@@ -152,13 +155,41 @@ const AdminDashboard = () => {
                     </CardContent>
                 </Card>
 
-                {/* Sales Graph Placeholder (keeping it simple as requested) */}
-                <Card className="bg-white flex flex-col justify-center items-center text-center p-6 border-dashed">
-                    <div className="bg-purple-50 p-4 rounded-full mb-4">
-                        <ShoppingBag className="w-8 h-8 text-purple-600" />
-                    </div>
-                    <h3 className="font-bold text-gray-900">ניתוח מכירות</h3>
-                    <p className="text-sm text-gray-500 mt-2">גרפים מפורטים יתווספו בעדכון הבא</p>
+                {/* Sales Graph */}
+                <Card className="bg-white">
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                            <ShoppingBag className="w-5 h-5 text-purple-600" />
+                            ניתוח מכירות (14 ימים)
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent className="h-[300px]">
+                        {stats?.salesGraph ? (
+                            <ResponsiveContainer width="100%" height="100%">
+                                <BarChart data={stats.salesGraph}>
+                                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                                    <XAxis
+                                        dataKey="name"
+                                        tick={{ fontSize: 12 }}
+                                        interval={1}
+                                        angle={-45}
+                                        textAnchor="end"
+                                        height={60}
+                                    />
+                                    <YAxis tick={{ fontSize: 12 }} />
+                                    <Tooltip
+                                        formatter={(value: number) => [`₪${value}`, 'מכירות']}
+                                        labelStyle={{ textAlign: 'right', direction: 'rtl' }}
+                                    />
+                                    <Bar dataKey="sales" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+                                </BarChart>
+                            </ResponsiveContainer>
+                        ) : (
+                            <div className="flex h-full items-center justify-center text-gray-500 text-sm">
+                                טוען נתונים...
+                            </div>
+                        )}
+                    </CardContent>
                 </Card>
             </div>
         </div>

@@ -24,9 +24,43 @@ router.get('/stats', isAdmin, async (req, res) => {
         // Product Count
         const productsCount = await mongoose.model('Product').countDocuments();
 
-        // Order Stats
-        const orders = await mongoose.model('Order').find({ status: { $ne: 'cancelled' } });
-        const totalSales = orders.reduce((sum, order) => sum + (order.totalAmount || 0), 0);
+        // Order Stats logic
+        const allNonCancelledOrders = await mongoose.model('Order').find({ status: { $ne: 'cancelled' } });
+
+        // Calculate sales totals
+        const totalSales = allNonCancelledOrders.reduce((sum, order) => sum + (order.totalAmount || 0), 0);
+
+        const monthlySales = allNonCancelledOrders
+            .filter(o => new Date(o.createdAt) >= startOfMonth)
+            .reduce((sum, o) => sum + (o.totalAmount || 0), 0);
+
+        const startOfYear = new Date(now.getFullYear(), 0, 1);
+        const yearlySales = allNonCancelledOrders
+            .filter(o => new Date(o.createdAt) >= startOfYear)
+            .reduce((sum, o) => sum + (o.totalAmount || 0), 0);
+
+        // Sales Graph (Last 14 days)
+        const salesGraph = [];
+        for (let i = 13; i >= 0; i--) {
+            const d = new Date();
+            d.setDate(d.getDate() - i);
+            const dateStr = d.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit' });
+            salesGraph.push({ name: dateStr, sales: 0 });
+        }
+
+        const fourteenDaysAgo = new Date();
+        fourteenDaysAgo.setDate(fourteenDaysAgo.getDate() - 14);
+
+        allNonCancelledOrders.forEach(order => {
+            const d = new Date(order.createdAt);
+            if (d >= fourteenDaysAgo) {
+                const dateStr = d.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit' });
+                const entry = salesGraph.find(item => item.name === dateStr);
+                if (entry) {
+                    entry.sales += (order.totalAmount || 0);
+                }
+            }
+        });
 
         // Recent Orders
         const recentOrders = await mongoose.model('Order').find()
@@ -44,8 +78,11 @@ router.get('/stats', isAdmin, async (req, res) => {
             users: usersThisMonth,
             userGrowth: userGrowth.toFixed(1),
             products: productsCount,
-            totalSales: totalSales,
-            recentOrders: recentOrders,
+            totalSales,    // All time
+            monthlySales,  // This month
+            yearlySales,   // This year
+            salesGraph,    // Graph data
+            recentOrders,
             views: siteStats ? siteStats.views : 0,
             dbName: dbStats.db || 'destiny_shop',
             storageSize: dbStats.storageSize || 0
