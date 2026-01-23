@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import Product from '../models/Product.js';
 import { isAdmin } from '../middleware/adminAuth.js';
 import upload from '../middleware/upload.js';
@@ -53,13 +54,44 @@ const processImages = (files, body) => {
     return filePaths;
 };
 
+import mongoose from 'mongoose';
+
+// ... (existing imports)
+
 // Get all products
 router.get('/', async (req, res) => {
     try {
         console.log('GET /api/products request received');
+
+        // 1. Fetch all products
         const products = await Product.find().sort({ createdAt: -1 });
-        console.log(`Found ${products.length} products`);
-        res.json(products);
+
+        // 2. Aggregate sales count from Orders
+        const salesAggregation = await mongoose.model('Order').aggregate([
+            { $match: { status: { $ne: 'cancelled' } } },
+            { $unwind: "$items" },
+            {
+                $group: {
+                    _id: "$items.productId",
+                    totalSold: { $sum: "$items.quantity" }
+                }
+            }
+        ]);
+
+        // 3. Create a map for quick lookup
+        const salesMap = {};
+        salesAggregation.forEach(item => {
+            salesMap[item._id.toString()] = item.totalSold;
+        });
+
+        // 4. Attach sales count to products
+        const productsWithSales = products.map(product => ({
+            ...product.toObject(),
+            salesCount: salesMap[product._id.toString()] || 0
+        }));
+
+        console.log(`Found ${products.length} products with sales data`);
+        res.json(productsWithSales);
     } catch (error) {
         console.error('Error in GET /api/products:', error);
         res.status(500).json({ message: 'Server error' });

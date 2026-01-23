@@ -24,6 +24,7 @@ interface Product {
     category: string;
     images: string[];
     inStock: boolean;
+    salesCount?: number;
 }
 
 const Products = () => {
@@ -132,6 +133,7 @@ const Products = () => {
                                 <th className="p-4">שם המוצר</th>
                                 <th className="p-4">קטגוריה</th>
                                 <th className="p-4">מחיר</th>
+                                <th className="p-4">מכירות</th>
                                 <th className="p-4">סטטוס</th>
                                 <th className="p-4 text-left">פעולות</th>
                             </tr>
@@ -153,6 +155,7 @@ const Products = () => {
                                     <td className="p-4 font-medium text-gray-900">{product.title}</td>
                                     <td className="p-4 text-gray-500">{product.category}</td>
                                     <td className="p-4 font-bold text-gray-900">₪{product.price}</td>
+                                    <td className="p-4 font-medium text-purple-600">{product.salesCount || 0}</td>
                                     <td className="p-4">
                                         <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${product.inStock
                                             ? "bg-green-100 text-green-700"
