@@ -2,6 +2,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import Order from '../models/Order.js';
 import User from '../models/User.js';
+import { sendOrderConfirmationEmail } from '../services/emailService.js';
 
 const router = express.Router();
 
@@ -33,6 +34,21 @@ router.post('/', verifyToken, async (req, res) => {
         });
 
         const savedOrder = await newOrder.save();
+
+        // Send confirmation email asynchronously (don't block response)
+        // We need user email. Let's fetch the user.
+        User.findById(req.user.id).then(user => {
+            if (user && user.email) {
+                sendOrderConfirmationEmail(
+                    user.email,
+                    user.firstName || shippingAddress.firstName,
+                    savedOrder._id.toString(),
+                    items,
+                    totalAmount
+                ).catch(err => console.error('Failed to send order email:', err));
+            }
+        });
+
         res.status(201).json(savedOrder);
     } catch (error) {
         console.error('Create order error:', error);
