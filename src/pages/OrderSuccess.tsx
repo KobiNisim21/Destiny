@@ -12,7 +12,7 @@ const OrderSuccess = () => {
     return (
         <div className="min-h-screen bg-gray-50 font-['Assistant']" dir="rtl">
             <Navbar />
-            <div className="container mx-auto px-4 py-24 flex flex-col items-center justify-center text-center">
+            <div className="container mx-auto px-4 pt-40 pb-24 flex flex-col items-center justify-center text-center">
                 <CheckCircle className="w-24 h-24 text-green-500 mb-6" />
                 <h1 className="text-4xl font-bold text-gray-900 mb-4">ההזמנה התקבלה בהצלחה!</h1>
                 {orderId && (
