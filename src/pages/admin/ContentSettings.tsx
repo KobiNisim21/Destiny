@@ -688,7 +688,7 @@ const ContentSettings = () => {
                             )}
                             <Input type="file" accept="image/*" onChange={(e) => e.target.files && setAboutImageFile(e.target.files[0])} />
                         </div>
-                        <p className="text-xs text-gray-400 mt-1">פורמטים נתמכים: JPG, PNG, WEBP</p>
+                        <p className="text-xs text-gray-400 mt-1">פורמטים נתמכים: JPG, PNG, WEBP • גודל העלאה מקסימלי: 4MB</p>
                         {aboutImageFile && <p className="text-xs text-green-600">קובץ חדש נבחר: {aboutImageFile.name}</p>}
                     </div>
 
@@ -738,7 +738,7 @@ const ContentSettings = () => {
                             )}
                             <Input type="file" accept="image/*" onChange={(e) => e.target.files && setPageAboutImageFile(e.target.files[0])} />
                         </div>
-                        <p className="text-xs text-gray-400 mt-1">פורמטים נתמכים: JPG, PNG, WEBP</p>
+                        <p className="text-xs text-gray-400 mt-1">פורמטים נתמכים: JPG, PNG, WEBP • גודל העלאה מקסימלי: 4MB</p>
                         {pageAboutImageFile && <p className="text-xs text-green-600">קובץ חדש נבחר: {pageAboutImageFile.name}</p>}
                     </div>
 

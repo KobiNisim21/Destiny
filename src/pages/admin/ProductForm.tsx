@@ -379,7 +379,7 @@ const ProductForm = () => {
                             </div>
                             <div className="text-center">
                                 <p className="text-xs text-muted-foreground">זו התמונה שתוצג כברירת מחדל בכל רשימות המוצרים.</p>
-                                <p className="text-xs text-gray-400 mt-0.5">פורמטים נתמכים: JPG, PNG, WEBP</p>
+                                <p className="text-xs text-gray-400 mt-0.5">פורמטים נתמכים: JPG, PNG, WEBP • גודל העלאה מקסימלי: 4MB</p>
                             </div>
                         </CardContent>
                     </Card>
@@ -410,7 +410,7 @@ const ProductForm = () => {
                             </div>
                             <div className="text-center">
                                 <p className="text-xs text-muted-foreground">תמונה זו תופיע כאשר הלקוח יעבור עם העכבר על המוצר.</p>
-                                <p className="text-xs text-gray-400 mt-0.5">פורמטים נתמכים: JPG, PNG, WEBP</p>
+                                <p className="text-xs text-gray-400 mt-0.5">פורמטים נתמכים: JPG, PNG, WEBP • גודל העלאה מקסימלי: 4MB</p>
                             </div>
                         </CardContent>
                     </Card>
@@ -431,7 +431,7 @@ const ProductForm = () => {
                                 </div>
                             </div>
                         </div>
-                        <p className="text-xs text-gray-400 text-center mt-2">פורמטים נתמכים: JPG, PNG, WEBP</p>
+                        <p className="text-xs text-gray-400 text-center mt-2">פורמטים נתמכים: JPG, PNG, WEBP • גודל העלאה מקסימלי: 4MB</p>
 
                         {(existingGalleryImages.length > 0 || galleryPreviews.length > 0) && (
                             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-6">
