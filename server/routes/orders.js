@@ -2,22 +2,9 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import Order from '../models/Order.js';
 import User from '../models/User.js';
-import { sendOrderConfirmationEmail } from '../services/emailService.js';
+import { sendOrderConfirmationEmail, sendAdminNewOrderNotification } from '../services/emailService.js';
 
-const router = express.Router();
-
-// Middleware to verify token
-const verifyToken = (req, res, next) => {
-    const token = req.headers.authorization?.split(' ')[1];
-    if (!token) return res.status(401).json({ message: 'No token provided' });
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret_key_123');
-        req.user = decoded;
-        next();
-    } catch (error) {
-        return res.status(401).json({ message: 'Invalid token' });
-    }
-};
+// ... (existing helper)
 
 // Create New Order
 router.post('/', verifyToken, async (req, res) => {
@@ -35,8 +22,7 @@ router.post('/', verifyToken, async (req, res) => {
 
         const savedOrder = await newOrder.save();
 
-        // Send confirmation email asynchronously (don't block response)
-        // We need user email. Let's fetch the user.
+        // 1. Send confirmation to user
         User.findById(req.user.id).then(user => {
             if (user && user.email) {
                 sendOrderConfirmationEmail(
@@ -47,6 +33,20 @@ router.post('/', verifyToken, async (req, res) => {
                     totalAmount
                 ).catch(err => console.error('Failed to send order email:', err));
             }
+        });
+
+        // 2. Notify Admins
+        User.find({ role: 'admin' }).then(admins => {
+            admins.forEach(admin => {
+                if (admin.email) {
+                    sendAdminNewOrderNotification(
+                        admin.email,
+                        savedOrder._id.toString(),
+                        `${shippingAddress.firstName} ${shippingAddress.lastName}`,
+                        totalAmount
+                    ).catch(err => console.error('Failed to notify admin:', err));
+                }
+            });
         });
 
         res.status(201).json(savedOrder);

@@ -328,5 +328,36 @@ export const sendOrderConfirmationEmail = async (email, firstName, orderId, item
     } catch (err) {
         console.error('Email service error:', err);
         return { success: false, error: err };
-    }
-};
+
+        export const sendAdminNewOrderNotification = async (adminEmail, orderId, customerName, totalAmount) => {
+            try {
+                const transporter = getTransporter();
+                if (!transporter) return;
+
+                const baseUrl = process.env.FRONTEND_URL || 'http://localhost:8080';
+
+                const content = `
+            <h2 style="color: #1a1a1a; margin-top: 0;">התקבלה הזמנה חדשה! 🎉</h2>
+            <div style="background: #eef2ff; padding: 20px; border-radius: 8px; border-right: 4px solid #6366f1;">
+                <p style="margin: 0 0 10px 0;"><strong>מספר הזמנה:</strong> #${orderId.slice(-6).toUpperCase()}</p>
+                <p style="margin: 0 0 10px 0;"><strong>לקוח:</strong> ${customerName}</p>
+                <p style="margin: 0 0 10px 0;"><strong>סכום:</strong> ₪${totalAmount.toFixed(2)}</p>
+                <p style="margin: 15px 0 0 0;">
+                    <a href="${baseUrl}/admin/orders" style="color: #6366f1; font-weight: bold;">לצפייה וניהול ההזמנה >></a>
+                </p>
+            </div>
+        `;
+
+                const fullHtml = getEmailTemplate(content);
+
+                await transporter.sendMail({
+                    from: '"Destiny System" <' + process.env.EMAIL_USER + '>',
+                    to: adminEmail,
+                    subject: `הזמנה חדשה #${orderId.slice(-6).toUpperCase()} - ${customerName}`,
+                    html: fullHtml
+                });
+
+            } catch (err) {
+                console.error('Admin notification error:', err);
+            }
+        };

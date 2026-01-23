@@ -52,8 +52,10 @@ const AdminDashboard = () => {
                         <DollarSign className="w-4 h-4 text-gray-500" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">₪0.00</div>
-                        <p className="text-xs text-gray-500 mt-1">+0% מהחודש שעבר</p>
+                        <div className="text-2xl font-bold">
+                            {stats ? (stats.error ? '-' : `₪${stats.totalSales?.toFixed(0) || '0'}`) : '...'}
+                        </div>
+                        <p className="text-xs text-gray-500 mt-1">עדכון חי בזמן אמת</p>
                     </CardContent>
                 </Card>
 
@@ -99,13 +101,64 @@ const AdminDashboard = () => {
                 </Card>
             </div>
 
-            {/* Placeholder for future graphs */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card className="h-[300px] flex items-center justify-center bg-white border-dashed">
-                    <span className="text-gray-400">גרף מכירות (בקרוב)</span>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {/* Recent Orders - Takes up 2 columns */}
+                <Card className="lg:col-span-2 bg-white">
+                    <CardHeader>
+                        <CardTitle>הזמנות אחרונות</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        {stats?.recentOrders && stats.recentOrders.length > 0 ? (
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-sm text-right">
+                                    <thead className="bg-gray-50 text-gray-600">
+                                        <tr>
+                                            <th className="p-3 rounded-r-lg">מספר</th>
+                                            <th className="p-3">לקוח</th>
+                                            <th className="p-3">סכום</th>
+                                            <th className="p-3">סטטוס</th>
+                                            <th className="p-3 rounded-l-lg">תאריך</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y">
+                                        {stats.recentOrders.map((order: any) => (
+                                            <tr key={order._id}>
+                                                <td className="p-3 font-medium">#{order._id.slice(-6)}</td>
+                                                <td className="p-3">{order.user?.firstName} {order.user?.lastName}</td>
+                                                <td className="p-3">₪{order.totalAmount.toFixed(2)}</td>
+                                                <td className="p-3">
+                                                    <span className={`px-2 py-1 rounded-full text-xs ${order.status === 'delivered' ? 'bg-green-100 text-green-700' :
+                                                            order.status === 'shipped' ? 'bg-purple-100 text-purple-700' :
+                                                                order.status === 'cancelled' ? 'bg-red-100 text-red-700' :
+                                                                    'bg-yellow-100 text-yellow-700'
+                                                        }`}>
+                                                        {order.status === 'pending' ? 'ממתין' :
+                                                            order.status === 'processing' ? 'בטיפול' :
+                                                                order.status === 'shipped' ? 'נשלח' :
+                                                                    order.status === 'delivered' ? 'נמסר' : order.status}
+                                                    </span>
+                                                </td>
+                                                <td className="p-3 text-gray-500">
+                                                    {new Date(order.createdAt).toLocaleDateString('he-IL')}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        ) : (
+                            <div className="text-center py-10 text-gray-500">אין הזמנות אחרונות</div>
+                        )}
+                    </CardContent>
                 </Card>
-                <Card className="h-[300px] flex items-center justify-center bg-white border-dashed">
-                    <span className="text-gray-400">הזמנות אחרונות (בקרוב)</span>
+
+                {/* Sales Graph Placeholder (keeping it simple as requested) */}
+                <Card className="bg-white flex flex-col justify-center items-center text-center p-6 border-dashed">
+                    <div className="bg-purple-50 p-4 rounded-full mb-4">
+                        <ShoppingBag className="w-8 h-8 text-purple-600" />
+                    </div>
+                    <h3 className="font-bold text-gray-900">ניתוח מכירות</h3>
+                    <p className="text-sm text-gray-500 mt-2">גרפים מפורטים יתווספו בעדכון הבא</p>
                 </Card>
             </div>
         </div>
