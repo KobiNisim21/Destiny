@@ -145,147 +145,26 @@ const AdminOrders = () => {
                                     <TableCell>₪{order.totalAmount.toFixed(2)}</TableCell>
                                     <TableCell>{getStatusBadge(order.status)}</TableCell>
                                     <TableCell>
-                                        const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
-
-    // ... existing fetchOrders, handleStatusUpdate, getStatusBadge ...
-
-    const handleContactUser = (order: Order) => {
-        const subject = `פנייה בנוגע להזמנה #${order._id.slice(-6).toUpperCase()}`;
-                                        const body = `שלום ${order.user?.firstName},\n\nבנוגע להזמנתך באתר Destiny...`;
-                                        window.location.href = `mailto:${order.user?.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    };
-
-                                        if (loading) return <div className="flex justify-center py-10"><Loader2 className="animate-spin" /></div>;
-
-                                        return (
-                                        <div className="space-y-6" dir="rtl">
-                                            <h1 className="text-3xl font-bold font-['Assistant']">ניהול הזמנות</h1>
-
-                                            <Card className="bg-white">
-                                                <CardHeader>
-                                                    <CardTitle>כל ההזמנות</CardTitle>
-                                                </CardHeader>
-                                                <CardContent>
-                                                    <Table>
-                                                        <TableHeader>
-                                                            <TableRow>
-                                                                <TableHead className="text-right">מספר הזמנה</TableHead>
-                                                                <TableHead className="text-right">לקוח</TableHead>
-                                                                <TableHead className="text-right">תאריך</TableHead>
-                                                                <TableHead className="text-right">סכום</TableHead>
-                                                                <TableHead className="text-right">סטטוס</TableHead>
-                                                                <TableHead className="text-right">פעולות</TableHead>
-                                                            </TableRow>
-                                                        </TableHeader>
-                                                        <TableBody>
-                                                            {orders.map((order) => (
-                                                                <TableRow key={order._id}>
-                                                                    <TableCell className="font-medium">#{order._id.slice(-6)}</TableCell>
-                                                                    <TableCell>
-                                                                        <div>{order.user?.firstName} {order.user?.lastName}</div>
-                                                                        <div className="text-xs text-gray-500">{order.user?.email}</div>
-                                                                    </TableCell>
-                                                                    <TableCell>{new Date(order.createdAt).toLocaleDateString('he-IL')}</TableCell>
-                                                                    <TableCell>₪{order.totalAmount.toFixed(2)}</TableCell>
-                                                                    <TableCell>{getStatusBadge(order.status)}</TableCell>
-                                                                    <TableCell>
-                                                                        <div className="flex items-center gap-2">
-                                                                            <Button variant="ghost" size="icon" onClick={() => setSelectedOrder(order)}>
-                                                                                <Eye className="w-5 h-5 text-gray-600" />
-                                                                            </Button>
-                                                                            <Select
-                                                                                defaultValue={order.status}
-                                                                                onValueChange={(val) => handleStatusUpdate(order._id, val)}
-                                                                            >
-                                                                                <SelectTrigger className="w-[130px]">
-                                                                                    <SelectValue />
-                                                                                </SelectTrigger>
-                                                                                <SelectContent dir="rtl">
-                                                                                    <SelectItem value="pending">ממתין</SelectItem>
-                                                                                    <SelectItem value="processing">בטיפול</SelectItem>
-                                                                                    <SelectItem value="shipped">נשלח</SelectItem>
-                                                                                    <SelectItem value="delivered">נמסר</SelectItem>
-                                                                                    <SelectItem value="cancelled">בוטל</SelectItem>
-                                                                                </SelectContent>
-                                                                            </Select>
-                                                                        </div>
-                                                                    </TableCell>
-                                                                </TableRow>
-                                                            ))}
-                                                        </TableBody>
-                                                    </Table>
-                                                </CardContent>
-                                            </Card>
-
-                                            {/* Order Details Modal */}
-                                            <Dialog open={!!selectedOrder} onOpenChange={(open) => !open && setSelectedOrder(null)}>
-                                                <DialogContent className="max-w-3xl font-['Assistant']" dir="rtl">
-                                                    <DialogHeader>
-                                                        <DialogTitle>פרטי הזמנה #{selectedOrder?._id.slice(-6).toUpperCase()}</DialogTitle>
-                                                    </DialogHeader>
-
-                                                    {selectedOrder && (
-                                                        <div className="space-y-6">
-                                                            {/* User Details */}
-                                                            <div className="bg-gray-50 p-4 rounded-lg grid grid-cols-2 gap-4">
-                                                                <div>
-                                                                    <h3 className="font-bold text-gray-700 mb-2">פרטי לקוח</h3>
-                                                                    <p><strong>שם:</strong> {selectedOrder.user?.firstName} {selectedOrder.user?.lastName}</p>
-                                                                    <p><strong>אימייל:</strong> {selectedOrder.user?.email}</p>
-                                                                    {/* Phone and Address are usually in shippingAddress, not user root, but checking TS interface */}
-                                                                    {/* The interface defined shows only basic user info, let's assume fetching brings basic. 
-                                        Wait, backend orders.js populate('user') only brings name/email. 
-                                        WE NEED PHONE/ADDRESS from Order.shippingAddress! 
-                                        I need to update the Interface to include shippingAddress. 
-                                    */}
-                                                                </div>
-                                                                <div className="text-left rtl:text-right">
-                                                                    <Button onClick={() => handleContactUser(selectedOrder)} className="gap-2">
-                                                                        <Mail className="w-4 h-4" />
-                                                                        צור קשר
-                                                                    </Button>
-                                                                </div>
-                                                            </div>
-
-                                                            {/* Order Items */}
-                                                            <div className="border rounded-lg overflow-hidden">
-                                                                <Table>
-                                                                    <TableHeader className="bg-gray-50">
-                                                                        <TableRow>
-                                                                            <TableHead className="text-right w-[100px]">תמונה</TableHead>
-                                                                            <TableHead className="text-right">מוצר</TableHead>
-                                                                            <TableHead className="text-right">כמות</TableHead>
-                                                                            <TableHead className="text-right">מחיר</TableHead>
-                                                                            <TableHead className="text-right">סה"כ</TableHead>
-                                                                        </TableRow>
-                                                                    </TableHeader>
-                                                                    <TableBody>
-                                                                        {selectedOrder.items.map((item, idx) => (
-                                                                            <TableRow key={idx}>
-                                                                                <TableCell>
-                                                                                    <img src={item.image} alt={item.name} className="w-12 h-12 object-cover rounded shadow-sm" />
-                                                                                </TableCell>
-                                                                                <TableCell className="font-medium">{item.name}</TableCell>
-                                                                                <TableCell>{item.quantity}</TableCell>
-                                                                                <TableCell>₪{item.price.toFixed(2)}</TableCell>
-                                                                                <TableCell>₪{(item.price * item.quantity).toFixed(2)}</TableCell>
-                                                                            </TableRow>
-                                                                        ))}
-                                                                    </TableBody>
-                                                                </Table>
-                                                            </div>
-
-                                                            <div className="flex justify-between items-center text-lg font-bold border-t pt-4">
-                                                                <span>סה"כ לתשלום:</span>
-                                                                <span>₪{selectedOrder.totalAmount.toFixed(2)}</span>
-                                                            </div>
-                                                        </div>
-                                                    )}
-                                                </DialogContent>
-                                            </Dialog>
+                                        <div className="flex items-center gap-2">
+                                            <Button variant="ghost" size="icon" onClick={() => setSelectedOrder(order)}>
+                                                <Eye className="w-5 h-5 text-gray-600" />
+                                            </Button>
+                                            <Select
+                                                defaultValue={order.status}
+                                                onValueChange={(val) => handleStatusUpdate(order._id, val)}
+                                            >
+                                                <SelectTrigger className="w-[130px]">
+                                                    <SelectValue />
+                                                </SelectTrigger>
+                                                <SelectContent dir="rtl">
+                                                    <SelectItem value="pending">ממתין</SelectItem>
+                                                    <SelectItem value="processing">בטיפול</SelectItem>
+                                                    <SelectItem value="shipped">נשלח</SelectItem>
+                                                    <SelectItem value="delivered">נמסר</SelectItem>
+                                                    <SelectItem value="cancelled">בוטל</SelectItem>
+                                                </SelectContent>
+                                            </Select>
                                         </div>
-                                        );
-};
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -293,6 +172,67 @@ const AdminOrders = () => {
                     </Table>
                 </CardContent>
             </Card>
+
+            {/* Order Details Modal */}
+            <Dialog open={!!selectedOrder} onOpenChange={(open) => !open && setSelectedOrder(null)}>
+                <DialogContent className="max-w-3xl font-['Assistant']" dir="rtl">
+                    <DialogHeader>
+                        <DialogTitle>פרטי הזמנה #{selectedOrder?._id.slice(-6).toUpperCase()}</DialogTitle>
+                    </DialogHeader>
+
+                    {selectedOrder && (
+                        <div className="space-y-6">
+                            {/* User Details */}
+                            <div className="bg-gray-50 p-4 rounded-lg grid grid-cols-2 gap-4">
+                                <div>
+                                    <h3 className="font-bold text-gray-700 mb-2">פרטי לקוח</h3>
+                                    <p><strong>שם:</strong> {selectedOrder.user?.firstName} {selectedOrder.user?.lastName}</p>
+                                    <p><strong>אימייל:</strong> {selectedOrder.user?.email}</p>
+                                </div>
+                                <div className="text-left rtl:text-right">
+                                    <Button onClick={() => handleContactUser(selectedOrder)} className="gap-2">
+                                        <Mail className="w-4 h-4" />
+                                        צור קשר
+                                    </Button>
+                                </div>
+                            </div>
+
+                            {/* Order Items */}
+                            <div className="border rounded-lg overflow-hidden">
+                                <Table>
+                                    <TableHeader className="bg-gray-50">
+                                        <TableRow>
+                                            <TableHead className="text-right w-[100px]">תמונה</TableHead>
+                                            <TableHead className="text-right">מוצר</TableHead>
+                                            <TableHead className="text-right">כמות</TableHead>
+                                            <TableHead className="text-right">מחיר</TableHead>
+                                            <TableHead className="text-right">סה"כ</TableHead>
+                                        </TableRow>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {selectedOrder.items.map((item, idx) => (
+                                            <TableRow key={idx}>
+                                                <TableCell>
+                                                    <img src={item.image} alt={item.name} className="w-12 h-12 object-cover rounded shadow-sm" />
+                                                </TableCell>
+                                                <TableCell className="font-medium">{item.name}</TableCell>
+                                                <TableCell>{item.quantity}</TableCell>
+                                                <TableCell>₪{item.price.toFixed(2)}</TableCell>
+                                                <TableCell>₪{(item.price * item.quantity).toFixed(2)}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </div>
+
+                            <div className="flex justify-between items-center text-lg font-bold border-t pt-4">
+                                <span>סה"כ לתשלום:</span>
+                                <span>₪{selectedOrder.totalAmount.toFixed(2)}</span>
+                            </div>
+                        </div>
+                    )}
+                </DialogContent>
+            </Dialog>
         </div>
     );
 };
