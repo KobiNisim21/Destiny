@@ -270,3 +270,63 @@ export const sendVerificationEmail = async (email, token) => {
         return { success: false, error: err };
     }
 };
+
+export const sendOrderConfirmationEmail = async (email, firstName, orderId, items, totalAmount) => {
+    try {
+        const transporter = getTransporter();
+        if (!transporter) throw new Error('Email service not initialized');
+
+        const baseUrl = process.env.FRONTEND_URL || 'http://localhost:8080';
+
+        const itemsHtml = items.map(item => `
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                <div style="flex: 1;">
+                    <strong style="color: #333;">${item.name}</strong>
+                    <div style="font-size: 14px; color: #666;">כמות: ${item.quantity} </div>
+                </div>
+                <div style="font-weight: bold;">
+                    ₪${(item.price * item.quantity).toFixed(2)}
+                </div>
+            </div>
+        `).join('');
+
+        const content = `
+            <h1 style="color: #1a1a1a; margin-top: 0; text-align: center;">תודה על ההזמנה, ${firstName}! ✨</h1>
+            <p style="text-align: center; color: #666; font-size: 16px;">ההזמנה שלך התקבלה בהצלחה ומעובדת ברגעים אלו.</p>
+            
+            <div style="background-color: #f8f9fa; border-radius: 8px; padding: 20px; margin: 30px 0;">
+                <h3 style="margin-top: 0; margin-bottom: 20px; border-bottom: 2px solid #9F19FF; padding-bottom: 10px; display: inline-block;">סיכום הזמנה #${orderId.slice(-6).toUpperCase()}</h3>
+                
+                ${itemsHtml}
+                
+                <div style="margin-top: 20px; text-align: left; font-size: 18px; font-weight: bold; color: #9F19FF;">
+                    סה"כ לתשלום: ₪${totalAmount.toFixed(2)}
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 30px;">
+                <a href="${baseUrl}/orders" style="background-color: #1a1a1a; color: white; padding: 12px 25px; text-decoration: none; border-radius: 6px; font-weight: bold;">לצפייה בהזמנה באתר</a>
+            </p>
+            
+            <p style="text-align: center; font-size: 14px; color: #888; margin-top: 30px;">
+                אם יש לך שאלות נוספות, אנחנו כאן לכל דבר ועניין.
+            </p>
+        `;
+
+        const fullHtml = getEmailTemplate(content);
+
+        const info = await transporter.sendMail({
+            from: '"Destiny Orders" <' + process.env.EMAIL_USER + '>',
+            to: email,
+            subject: `אישור הזמנה #${orderId.slice(-6).toUpperCase()} - Destiny`,
+            html: fullHtml,
+        });
+
+        console.log('Order confirmation email sent: ' + info.response);
+        return { success: true, data: info };
+
+    } catch (err) {
+        console.error('Email service error:', err);
+        return { success: false, error: err };
+    }
+};
