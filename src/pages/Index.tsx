@@ -13,8 +13,21 @@ import Footer from "@/components/Footer";
 import API_BASE_URL from "@/config";
 import { Product } from "@/components/ProductListModal";
 
+import { useQuery } from "@tanstack/react-query";
+
+// Fetch Products Function
+const fetchProducts = async (): Promise<Product[]> => {
+  const res = await fetch(`${API_BASE_URL}/api/products`);
+  if (!res.ok) throw new Error("Failed to fetch products");
+  return res.json();
+};
+
 const Index = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const { data: products = [] } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+    staleTime: 60 * 1000, // 1 minute stale time
+  });
 
   useEffect(() => {
     // Track visit
@@ -29,20 +42,6 @@ const Index = () => {
       }
     };
     trackVisit();
-
-    // Fetch Products (Centralized)
-    const fetchProducts = async () => {
-      try {
-        const res = await fetch(`${API_BASE_URL}/api/products`);
-        const data = await res.json();
-        if (Array.isArray(data)) {
-          setProducts(data);
-        }
-      } catch (error) {
-        console.error("Failed to fetch products", error);
-      }
-    };
-    fetchProducts();
   }, []);
 
   return (

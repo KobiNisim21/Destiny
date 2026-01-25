@@ -6,6 +6,18 @@ import upload from '../middleware/upload.js';
 
 const router = express.Router();
 
+// --- Simple In-Memory Cache ---
+let productsCache = {
+    data: null,
+    timestamp: 0
+};
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+const invalidateCache = () => {
+    productsCache = { data: null, timestamp: 0 };
+    console.log('Products cache invalidated');
+};
+
 // Helper to process images
 const processImages = (files, body) => {
     const filePaths = {
@@ -57,7 +69,13 @@ const processImages = (files, body) => {
 // Get all products
 router.get('/', async (req, res) => {
     try {
-        console.log('GET /api/products request received');
+        // Check Cache
+        if (productsCache.data && (Date.now() - productsCache.timestamp < CACHE_DURATION)) {
+            console.log('Serving products from cache');
+            return res.json(productsCache.data);
+        }
+
+        console.log('GET /api/products request received (Not Cached)');
 
         // 1. Fetch all products
         const products = await Product.find().sort({ createdAt: -1 });
@@ -85,6 +103,12 @@ router.get('/', async (req, res) => {
             ...product.toObject(),
             salesCount: salesMap[product._id.toString()] || 0
         }));
+
+        // Update Cache
+        productsCache = {
+            data: productsWithSales,
+            timestamp: Date.now()
+        };
 
         console.log(`Found ${products.length} products with sales data`);
         res.json(productsWithSales);
@@ -148,6 +172,7 @@ router.post('/', isAdmin, upload.fields([
         });
 
         const newProduct = await product.save();
+        invalidateCache(); // Invalidate cache
         res.status(201).json(newProduct);
     } catch (error) {
         console.error(error);
@@ -200,6 +225,7 @@ router.put('/:id', isAdmin, upload.fields([
         if (!updatedProduct) {
             return res.status(404).json({ message: 'Product not found' });
         }
+        invalidateCache(); // Invalidate cache
         res.json(updatedProduct);
     } catch (error) {
         console.error(error);
@@ -214,6 +240,7 @@ router.delete('/:id', isAdmin, async (req, res) => {
         if (!product) {
             return res.status(404).json({ message: 'Product not found' });
         }
+        invalidateCache(); // Invalidate cache
         res.json({ message: 'Product deleted' });
     } catch (error) {
         res.status(500).json({ message: 'Server error' });

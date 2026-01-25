@@ -240,7 +240,7 @@ const AdminTeam = () => {
                                 <TableBody>
                                     {admins.map((admin) => (
                                         <TableRow key={admin._id} className="hover:bg-gray-50/50 transition-colors border-b last:border-0 border-gray-100">
-                                            <TableCell className="font-medium py-4 text-right !text-right">
+                                            <TableCell className="font-medium py-4 !text-right">
                                                 <div className="flex items-center gap-3">
                                                     <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-[#9F19FF] font-bold text-xs">
                                                         {admin.firstName[0]}{admin.lastName[0]}
@@ -248,8 +248,8 @@ const AdminTeam = () => {
                                                     {admin.firstName} {admin.lastName}
                                                 </div>
                                             </TableCell>
-                                            <TableCell className="text-gray-600 font-sans text-right !text-right">{admin.email}</TableCell>
-                                            <TableCell className="text-right !text-right">
+                                            <TableCell className="text-gray-600 font-sans !text-right">{admin.email}</TableCell>
+                                            <TableCell className="!text-right">
                                                 {admin.isSuperAdmin ? (
                                                     <Badge className="bg-[#9F19FF] hover:bg-[#9F19FF]/90 text-white shadow-sm shadow-purple-200">
                                                         Super Admin
@@ -260,7 +260,7 @@ const AdminTeam = () => {
                                                     </Badge>
                                                 )}
                                             </TableCell>
-                                            <TableCell className="flex gap-2 text-right !text-right">
+                                            <TableCell className="flex gap-2 !text-right">
                                                 <Dialog>
                                                     <DialogTrigger asChild>
                                                         <Button
@@ -324,7 +324,7 @@ const AdminTeam = () => {
                                 <TableBody>
                                     {users.filter(u => u.role !== 'admin').map((user) => (
                                         <TableRow key={user._id} className="hover:bg-gray-50/50 transition-colors border-b last:border-0 border-gray-100">
-                                            <TableCell className="font-medium py-4 text-right !text-right">
+                                            <TableCell className="font-medium py-4 !text-right">
                                                 <div className="flex items-center gap-3">
                                                     <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 font-bold text-xs">
                                                         {user.firstName[0]}{user.lastName[0]}
@@ -332,9 +332,9 @@ const AdminTeam = () => {
                                                     {user.firstName} {user.lastName}
                                                 </div>
                                             </TableCell>
-                                            <TableCell className="text-gray-600 font-sans text-right !text-right">{user.email}</TableCell>
-                                            <TableCell className="text-gray-500 font-sans text-right !text-right">{new Date(user.createdAt).toLocaleDateString('he-IL')}</TableCell>
-                                            <TableCell className="text-right !text-right">
+                                            <TableCell className="text-gray-600 font-sans !text-right">{user.email}</TableCell>
+                                            <TableCell className="text-gray-500 font-sans !text-right">{new Date(user.createdAt).toLocaleDateString('he-IL')}</TableCell>
+                                            <TableCell className="!text-right">
                                                 <Button
                                                     onClick={() => handleEditClick(user)}
                                                     className="bg-white border-2 border-[#9F19FF] text-[#9F19FF] hover:bg-[#9F19FF] hover:text-white transition-all shadow-none hover:shadow-lg hover:shadow-[#9F19FF]/20 font-medium"
