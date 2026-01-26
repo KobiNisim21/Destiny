@@ -347,82 +347,63 @@ const ContentSettings = () => {
 
             <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
                 <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
-                    <CardTitle className="text-[#9F19FF]">סקשן יוטיוב (משפיענים/גיימרים)</CardTitle>
-                    <CardDescription>עריכת הכותרות המופיעות מעל רצועת הסרטונים.</CardDescription>
+                    <CardTitle className="text-[#9F19FF]">סרגל מידע (מתחת לוידאו)</CardTitle>
+                    <CardDescription>כאן ניתן לערוך את האייקונים והטקסטים המופיעים בשורה השחורה מתחת לוידאו הראשי.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6 pt-6">
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium">כותרת עליונה (שחור)</label>
-                        <Input
-                            value={settings.youtubeTitle}
-                            onChange={(e) => setSettings({ ...settings, youtubeTitle: e.target.value })}
-                            placeholder="הגיימרים הגדולים בארץ כבר התנסו ואהבו,"
-                        />
-                    </div>
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium">כותרת תחתונה (סגול)</label>
-                        <Input
-                            value={settings.youtubeSubtitle}
-                            onChange={(e) => setSettings({ ...settings, youtubeSubtitle: e.target.value })}
-                            placeholder="מה איתכם?"
-                        />
-                    </div>
-                    <div className="flex justify-end">
-                        <Button onClick={handleSave} disabled={loading} className="bg-[#9F19FF] text-white">
-                            {loading ? 'שומר...' : 'שמור שינויים'}
-                        </Button>
-                    </div>
-                </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
-                <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
-                    <CardTitle className="text-[#9F19FF]">סקשן הצטרפות (ניוזלטר)</CardTitle>
-                    <CardDescription>עריכת הטקסטים וההטבות המופיעים ב"הצטרפו לקבוצה שלי".</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6 pt-6">
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium">כותרת ראשית</label>
-                        <Input
-                            value={settings.newsletterTitle}
-                            onChange={(e) => setSettings({ ...settings, newsletterTitle: e.target.value })}
-                        />
-                    </div>
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium">כותרת משנה</label>
-                        <textarea
-                            className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                            value={settings.newsletterSubtitle}
-                            onChange={e => setSettings({ ...settings, newsletterSubtitle: e.target.value })}
-                        />
-                    </div>
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium">טקסט כפתור</label>
-                        <Input
-                            value={settings.newsletterButtonText}
-                            onChange={(e) => setSettings({ ...settings, newsletterButtonText: e.target.value })}
-                        />
-                    </div>
-
-                    <div className="space-y-4 pt-4 border-t">
-                        <label className="text-sm font-medium">הטבות (אייקונים למטה)</label>
-                        {settings.newsletterBenefits.map((item, index) => (
-                            <div key={index} className="flex gap-4 items-center p-3 border rounded-xl bg-gray-50">
-                                <span className="font-bold text-gray-400">#{index + 1}</span>
-                                <Input
-                                    value={item.text}
-                                    onChange={(e) => {
-                                        const newItems = [...settings.newsletterBenefits];
-                                        newItems[index].text = e.target.value;
-                                        setSettings({ ...settings, newsletterBenefits: newItems });
-                                    }}
-                                />
+                    <div className="space-y-4">
+                        {settings.heroInfoItems.map((item, index) => (
+                            <div key={index} className="flex gap-4 items-start p-4 border rounded-xl bg-gray-50">
+                                <div className="space-y-2 w-[150px]">
+                                    <label className="text-xs font-medium">אייקון</label>
+                                    <select
+                                        className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        value={item.icon}
+                                        onChange={(e) => {
+                                            const newItems = [...settings.heroInfoItems];
+                                            newItems[index].icon = e.target.value;
+                                            setSettings({ ...settings, heroInfoItems: newItems });
+                                        }}
+                                    >
+                                        <option value="badge">תג (Badge)</option>
+                                        <option value="shield">מגן (Shield)</option>
+                                        <option value="truck">משאית (Truck)</option>
+                                        <option value="credit-card">כרטיס אשראי</option>
+                                        <option value="star">כוכב</option>
+                                        <option value="heart">לב</option>
+                                    </select>
+                                </div>
+                                <div className="flex-1 space-y-2">
+                                    <div className="space-y-1">
+                                        <label className="text-xs font-medium">כותרת</label>
+                                        <Input
+                                            value={item.title}
+                                            onChange={(e) => {
+                                                const newItems = [...settings.heroInfoItems];
+                                                newItems[index].title = e.target.value;
+                                                setSettings({ ...settings, heroInfoItems: newItems });
+                                            }}
+                                        />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <label className="text-xs font-medium">כותרת משנה</label>
+                                        <Input
+                                            value={item.subtitle}
+                                            onChange={(e) => {
+                                                const newItems = [...settings.heroInfoItems];
+                                                newItems[index].subtitle = e.target.value;
+                                                setSettings({ ...settings, heroInfoItems: newItems });
+                                            }}
+                                        />
+                                    </div>
+                                </div>
                                 <Button
                                     variant="destructive"
                                     size="icon"
+                                    className="mt-6"
                                     onClick={() => {
-                                        const newItems = settings.newsletterBenefits.filter((_, i) => i !== index);
-                                        setSettings({ ...settings, newsletterBenefits: newItems });
+                                        const newItems = settings.heroInfoItems.filter((_, i) => i !== index);
+                                        setSettings({ ...settings, heroInfoItems: newItems });
                                     }}
                                 >
                                     X
@@ -433,14 +414,13 @@ const ContentSettings = () => {
                             variant="outline"
                             onClick={() => setSettings({
                                 ...settings,
-                                newsletterBenefits: [...settings.newsletterBenefits, { text: "" }]
+                                heroInfoItems: [...settings.heroInfoItems, { icon: "star", title: "חדש", subtitle: "תיאור" }]
                             })}
                             className="w-full border-dashed"
                         >
-                            + הוסף הטבה
+                            + הוסף פריט חדש
                         </Button>
                     </div>
-
                     <div className="flex justify-end">
                         <Button onClick={handleSave} disabled={loading} className="bg-[#9F19FF] text-white">
                             {loading ? 'שומר...' : 'שמור שינויים'}
@@ -518,90 +498,6 @@ const ContentSettings = () => {
                         ))}
                     </div>
 
-                    <div className="flex justify-end">
-                        <Button onClick={handleSave} disabled={loading} className="bg-[#9F19FF] text-white">
-                            {loading ? 'שומר...' : 'שמור שינויים'}
-                        </Button>
-                    </div>
-                </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
-                <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
-                    <CardTitle className="text-[#9F19FF]">סרגל מידע (מתחת לוידאו)</CardTitle>
-                    <CardDescription>כאן ניתן לערוך את האייקונים והטקסטים המופיעים בשורה השחורה מתחת לוידאו הראשי.</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6 pt-6">
-                    <div className="space-y-4">
-                        {settings.heroInfoItems.map((item, index) => (
-                            <div key={index} className="flex gap-4 items-start p-4 border rounded-xl bg-gray-50">
-                                <div className="space-y-2 w-[150px]">
-                                    <label className="text-xs font-medium">אייקון</label>
-                                    <select
-                                        className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                        value={item.icon}
-                                        onChange={(e) => {
-                                            const newItems = [...settings.heroInfoItems];
-                                            newItems[index].icon = e.target.value;
-                                            setSettings({ ...settings, heroInfoItems: newItems });
-                                        }}
-                                    >
-                                        <option value="badge">תג (Badge)</option>
-                                        <option value="shield">מגן (Shield)</option>
-                                        <option value="truck">משאית (Truck)</option>
-                                        <option value="credit-card">כרטיס אשראי</option>
-                                        <option value="star">כוכב</option>
-                                        <option value="heart">לב</option>
-                                    </select>
-                                </div>
-                                <div className="flex-1 space-y-2">
-                                    <div className="space-y-1">
-                                        <label className="text-xs font-medium">כותרת</label>
-                                        <Input
-                                            value={item.title}
-                                            onChange={(e) => {
-                                                const newItems = [...settings.heroInfoItems];
-                                                newItems[index].title = e.target.value;
-                                                setSettings({ ...settings, heroInfoItems: newItems });
-                                            }}
-                                        />
-                                    </div>
-                                    <div className="space-y-1">
-                                        <label className="text-xs font-medium">כותרת משנה</label>
-                                        <Input
-                                            value={item.subtitle}
-                                            onChange={(e) => {
-                                                const newItems = [...settings.heroInfoItems];
-                                                newItems[index].subtitle = e.target.value;
-                                                setSettings({ ...settings, heroInfoItems: newItems });
-                                            }}
-                                        />
-                                    </div>
-                                </div>
-                                <Button
-                                    variant="destructive"
-                                    size="icon"
-                                    className="mt-6"
-                                    onClick={() => {
-                                        const newItems = settings.heroInfoItems.filter((_, i) => i !== index);
-                                        setSettings({ ...settings, heroInfoItems: newItems });
-                                    }}
-                                >
-                                    X
-                                </Button>
-                            </div>
-                        ))}
-                        <Button
-                            variant="outline"
-                            onClick={() => setSettings({
-                                ...settings,
-                                heroInfoItems: [...settings.heroInfoItems, { icon: "star", title: "חדש", subtitle: "תיאור" }]
-                            })}
-                            className="w-full border-dashed"
-                        >
-                            + הוסף פריט חדש
-                        </Button>
-                    </div>
                     <div className="flex justify-end">
                         <Button onClick={handleSave} disabled={loading} className="bg-[#9F19FF] text-white">
                             {loading ? 'שומר...' : 'שמור שינויים'}
@@ -702,64 +598,26 @@ const ContentSettings = () => {
 
             <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
                 <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
-                    <CardTitle className="text-[#9F19FF]">דף אודות - עמוד ייעודי (About Page)</CardTitle>
-                    <CardDescription>כאן עורכים את התוכן של הדף הנפרד (destiny.co.il/about)</CardDescription>
+                    <CardTitle className="text-[#9F19FF]">סקשן יוטיוב (משפיענים/גיימרים)</CardTitle>
+                    <CardDescription>עריכת הכותרות המופיעות מעל רצועת הסרטונים.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6 pt-6">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium">כותרת 1</label>
-                            <Input value={settings.pageAboutTitle1} onChange={e => setSettings({ ...settings, pageAboutTitle1: e.target.value })} />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium">כותרת 2</label>
-                            <Input value={settings.pageAboutTitle2} onChange={e => setSettings({ ...settings, pageAboutTitle2: e.target.value })} />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium">כותרת 3</label>
-                            <Input value={settings.pageAboutTitle3} onChange={e => setSettings({ ...settings, pageAboutTitle3: e.target.value })} />
-                        </div>
-                    </div>
-
                     <div className="space-y-2">
-                        <label className="text-sm font-medium">תיאור ראשי (דף אודות)</label>
-                        <textarea
-                            className="flex min-h-[200px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                            value={settings.pageAboutDescription}
-                            onChange={e => setSettings({ ...settings, pageAboutDescription: e.target.value })}
+                        <label className="text-sm font-medium">כותרת עליונה (שחור)</label>
+                        <Input
+                            value={settings.youtubeTitle}
+                            onChange={(e) => setSettings({ ...settings, youtubeTitle: e.target.value })}
+                            placeholder="הגיימרים הגדולים בארץ כבר התנסו ואהבו,"
                         />
                     </div>
-
-                    <div className="space-y-2 border-t pt-4">
-                        <label className="text-sm font-medium">תמונה לדף אודות</label>
-                        <div className="flex items-center gap-4">
-                            {settings.pageAboutImage && (
-                                <img src={`${API_BASE_URL}${settings.pageAboutImage}`} alt="About Page" className="w-16 h-16 rounded-lg object-cover border" />
-                            )}
-                            <Input type="file" accept="image/*" onChange={(e) => e.target.files && setPageAboutImageFile(e.target.files[0])} />
-                        </div>
-                        <p className="text-xs text-gray-400 mt-1">פורמטים נתמכים: JPG, PNG, WEBP • גודל העלאה מקסימלי: 4MB</p>
-                        {pageAboutImageFile && <p className="text-xs text-green-600">קובץ חדש נבחר: {pageAboutImageFile.name}</p>}
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">כותרת תחתונה (סגול)</label>
+                        <Input
+                            value={settings.youtubeSubtitle}
+                            onChange={(e) => setSettings({ ...settings, youtubeSubtitle: e.target.value })}
+                            placeholder="מה איתכם?"
+                        />
                     </div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 border-t pt-4">
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium">נתון 1 (מספר)</label>
-                            <Input value={settings.pageAboutSubscribers} onChange={e => setSettings({ ...settings, pageAboutSubscribers: e.target.value })} dir="ltr" />
-                            <Input value={settings.pageAboutSubscribersLabel} onChange={e => setSettings({ ...settings, pageAboutSubscribersLabel: e.target.value })} placeholder="תיאור" />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium">נתון 2 (מספר)</label>
-                            <Input value={settings.pageAboutFollowers} onChange={e => setSettings({ ...settings, pageAboutFollowers: e.target.value })} dir="ltr" />
-                            <Input value={settings.pageAboutFollowersLabel} onChange={e => setSettings({ ...settings, pageAboutFollowersLabel: e.target.value })} placeholder="תיאור" />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium">נתון 3 (מספר)</label>
-                            <Input value={settings.pageAboutVideos} onChange={e => setSettings({ ...settings, pageAboutVideos: e.target.value })} dir="ltr" />
-                            <Input value={settings.pageAboutVideosLabel} onChange={e => setSettings({ ...settings, pageAboutVideosLabel: e.target.value })} placeholder="תיאור" />
-                        </div>
-                    </div>
-
                     <div className="flex justify-end">
                         <Button onClick={handleSave} disabled={loading} className="bg-[#9F19FF] text-white">
                             {loading ? 'שומר...' : 'שמור שינויים'}
@@ -843,6 +701,80 @@ const ContentSettings = () => {
 
             <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
                 <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
+                    <CardTitle className="text-[#9F19FF]">סקשן הצטרפות (ניוזלטר)</CardTitle>
+                    <CardDescription>עריכת הטקסטים וההטבות המופיעים ב"הצטרפו לקבוצה שלי".</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6 pt-6">
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">כותרת ראשית</label>
+                        <Input
+                            value={settings.newsletterTitle}
+                            onChange={(e) => setSettings({ ...settings, newsletterTitle: e.target.value })}
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">כותרת משנה</label>
+                        <textarea
+                            className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                            value={settings.newsletterSubtitle}
+                            onChange={e => setSettings({ ...settings, newsletterSubtitle: e.target.value })}
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">טקסט כפתור</label>
+                        <Input
+                            value={settings.newsletterButtonText}
+                            onChange={(e) => setSettings({ ...settings, newsletterButtonText: e.target.value })}
+                        />
+                    </div>
+
+                    <div className="space-y-4 pt-4 border-t">
+                        <label className="text-sm font-medium">הטבות (אייקונים למטה)</label>
+                        {settings.newsletterBenefits.map((item, index) => (
+                            <div key={index} className="flex gap-4 items-center p-3 border rounded-xl bg-gray-50">
+                                <span className="font-bold text-gray-400">#{index + 1}</span>
+                                <Input
+                                    value={item.text}
+                                    onChange={(e) => {
+                                        const newItems = [...settings.newsletterBenefits];
+                                        newItems[index].text = e.target.value;
+                                        setSettings({ ...settings, newsletterBenefits: newItems });
+                                    }}
+                                />
+                                <Button
+                                    variant="destructive"
+                                    size="icon"
+                                    onClick={() => {
+                                        const newItems = settings.newsletterBenefits.filter((_, i) => i !== index);
+                                        setSettings({ ...settings, newsletterBenefits: newItems });
+                                    }}
+                                >
+                                    X
+                                </Button>
+                            </div>
+                        ))}
+                        <Button
+                            variant="outline"
+                            onClick={() => setSettings({
+                                ...settings,
+                                newsletterBenefits: [...settings.newsletterBenefits, { text: "" }]
+                            })}
+                            className="w-full border-dashed"
+                        >
+                            + הוסף הטבה
+                        </Button>
+                    </div>
+
+                    <div className="flex justify-end">
+                        <Button onClick={handleSave} disabled={loading} className="bg-[#9F19FF] text-white">
+                            {loading ? 'שומר...' : 'שמור שינויים'}
+                        </Button>
+                    </div>
+                </CardContent>
+            </Card>
+
+            <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
+                <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
                     <CardTitle className="text-[#9F19FF]">תפריט ניווט (Navbar)</CardTitle>
                     <CardDescription>
                         עריכת הטקסטים של הכפתורים בתפריט העליון.
@@ -875,6 +807,74 @@ const ContentSettings = () => {
                             disabled={loading}
                             className="bg-[#9F19FF] hover:bg-[#9F19FF]/90 text-white font-medium px-8 py-2 h-12 rounded-xl shadow-lg shadow-[#9F19FF]/20"
                         >
+                            {loading ? 'שומר...' : 'שמור שינויים'}
+                        </Button>
+                    </div>
+                </CardContent>
+            </Card>
+
+            <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
+                <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
+                    <CardTitle className="text-[#9F19FF]">דף אודות - עמוד ייעודי (About Page)</CardTitle>
+                    <CardDescription>כאן עורכים את התוכן של הדף הנפרד (destiny.co.il/about)</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6 pt-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium">כותרת 1</label>
+                            <Input value={settings.pageAboutTitle1} onChange={e => setSettings({ ...settings, pageAboutTitle1: e.target.value })} />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium">כותרת 2</label>
+                            <Input value={settings.pageAboutTitle2} onChange={e => setSettings({ ...settings, pageAboutTitle2: e.target.value })} />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium">כותרת 3</label>
+                            <Input value={settings.pageAboutTitle3} onChange={e => setSettings({ ...settings, pageAboutTitle3: e.target.value })} />
+                        </div>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">תיאור ראשי (דף אודות)</label>
+                        <textarea
+                            className="flex min-h-[200px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                            value={settings.pageAboutDescription}
+                            onChange={e => setSettings({ ...settings, pageAboutDescription: e.target.value })}
+                        />
+                    </div>
+
+                    <div className="space-y-2 border-t pt-4">
+                        <label className="text-sm font-medium">תמונה לדף אודות</label>
+                        <div className="flex items-center gap-4">
+                            {settings.pageAboutImage && (
+                                <img src={`${API_BASE_URL}${settings.pageAboutImage}`} alt="About Page" className="w-16 h-16 rounded-lg object-cover border" />
+                            )}
+                            <Input type="file" accept="image/*" onChange={(e) => e.target.files && setPageAboutImageFile(e.target.files[0])} />
+                        </div>
+                        <p className="text-xs text-gray-400 mt-1">פורמטים נתמכים: JPG, PNG, WEBP • גודל העלאה מקסימלי: 4MB</p>
+                        {pageAboutImageFile && <p className="text-xs text-green-600">קובץ חדש נבחר: {pageAboutImageFile.name}</p>}
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 border-t pt-4">
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium">נתון 1 (מספר)</label>
+                            <Input value={settings.pageAboutSubscribers} onChange={e => setSettings({ ...settings, pageAboutSubscribers: e.target.value })} dir="ltr" />
+                            <Input value={settings.pageAboutSubscribersLabel} onChange={e => setSettings({ ...settings, pageAboutSubscribersLabel: e.target.value })} placeholder="תיאור" />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium">נתון 2 (מספר)</label>
+                            <Input value={settings.pageAboutFollowers} onChange={e => setSettings({ ...settings, pageAboutFollowers: e.target.value })} dir="ltr" />
+                            <Input value={settings.pageAboutFollowersLabel} onChange={e => setSettings({ ...settings, pageAboutFollowersLabel: e.target.value })} placeholder="תיאור" />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium">נתון 3 (מספר)</label>
+                            <Input value={settings.pageAboutVideos} onChange={e => setSettings({ ...settings, pageAboutVideos: e.target.value })} dir="ltr" />
+                            <Input value={settings.pageAboutVideosLabel} onChange={e => setSettings({ ...settings, pageAboutVideosLabel: e.target.value })} placeholder="תיאור" />
+                        </div>
+                    </div>
+
+                    <div className="flex justify-end">
+                        <Button onClick={handleSave} disabled={loading} className="bg-[#9F19FF] text-white">
                             {loading ? 'שומר...' : 'שמור שינויים'}
                         </Button>
                     </div>
