@@ -148,6 +148,7 @@ const Products = () => {
                                                     src={`${API_BASE_URL}${product.images[0]}`}
                                                     alt={product.title}
                                                     className="w-full h-full object-cover"
+                                                    loading="lazy"
                                                 />
                                             )}
                                         </div>
