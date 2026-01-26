@@ -22,11 +22,24 @@ const fetchProducts = async (): Promise<Product[]> => {
   return res.json();
 };
 
+// Fetch Content Function
+const fetchContent = async () => {
+  const res = await fetch(`${API_BASE_URL}/api/content`);
+  if (!res.ok) throw new Error("Failed to fetch content");
+  return res.json();
+};
+
 const Index = () => {
   const { data: products = [] } = useQuery({
     queryKey: ["products"],
     queryFn: fetchProducts,
     staleTime: 60 * 1000, // 1 minute stale time
+  });
+
+  const { data: content = {} } = useQuery({
+    queryKey: ["content"],
+    queryFn: fetchContent,
+    staleTime: 60 * 1000,
   });
 
   useEffect(() => {
@@ -49,7 +62,11 @@ const Index = () => {
       <Navbar />
       <main>
         <div id="hero-section">
-          <HeroVideo />
+          <HeroVideo
+            heroVideo={content.heroVideo}
+            heroYoutubeUrl={content.heroYoutubeUrl}
+            heroInfoItems={content.heroInfoItems}
+          />
         </div>
         <div id="featured-section">
           <FeaturedProducts products={products} />

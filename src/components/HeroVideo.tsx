@@ -2,9 +2,9 @@ import iconBadge from "@/assets/icon-badge.svg";
 import iconShield from "@/assets/icon-shield.svg";
 import iconTruck from "@/assets/icon-truck.svg";
 import defaultHeroVideo from "@/assets/VideoProject.mp4";
-import { useEffect, useState } from "react";
 import API_BASE_URL from "@/config";
 import { CreditCard, Star, Heart } from "lucide-react";
+import { useMemo } from "react";
 
 interface InfoItem {
   icon: string;
@@ -12,47 +12,29 @@ interface InfoItem {
   subtitle: string;
 }
 
-const HeroVideo = () => {
-  const [videoSrc, setVideoSrc] = useState(defaultHeroVideo);
-  const [youtubeId, setYoutubeId] = useState<string | null>(null);
-  const [infoItems, setInfoItems] = useState<InfoItem[]>([
+interface HeroVideoProps {
+  heroVideo?: string | null;
+  heroYoutubeUrl?: string | null;
+  heroInfoItems?: InfoItem[] | null;
+}
+
+const HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps) => {
+
+  const videoSrc = heroVideo ? `${API_BASE_URL}${heroVideo}` : defaultHeroVideo;
+
+  const youtubeId = useMemo(() => {
+    if (!heroYoutubeUrl) return null;
+    const match = heroYoutubeUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/);
+    return match && match[1] ? match[1] : null;
+  }, [heroYoutubeUrl]);
+
+  const defaultInfoItems: InfoItem[] = [
     { icon: 'badge', title: 'מוצרים איכותיים', subtitle: 'סטנדרט פרימיום' },
     { icon: 'shield', title: 'קנייה בטוחה', subtitle: 'תשלום מאובטח ומוגן' },
     { icon: 'truck', title: 'משלוח חינם בקנייה מעל ₪349', subtitle: 'אספקה מהירה ונוחה' }
-  ]);
+  ];
 
-  useEffect(() => {
-    const fetchContent = async () => {
-      try {
-        const res = await fetch(`${API_BASE_URL}/api/content`);
-        const data = await res.json();
-
-        if (data.heroYoutubeUrl) {
-          // Extract ID from various YouTube URL formats
-          const match = data.heroYoutubeUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/);
-          if (match && match[1]) {
-            setYoutubeId(match[1]);
-          } else {
-            setYoutubeId(null);
-          }
-        } else {
-          setYoutubeId(null);
-        }
-
-        if (data.heroVideo) {
-          setVideoSrc(`${API_BASE_URL}${data.heroVideo}`);
-        }
-
-        if (data.heroInfoItems) {
-          setInfoItems(data.heroInfoItems);
-        }
-      } catch (error) {
-        console.error("Failed to fetch hero video", error);
-      }
-    };
-
-    fetchContent();
-  }, []);
+  const displayInfoItems = heroInfoItems && heroInfoItems.length > 0 ? heroInfoItems : defaultInfoItems;
 
   const getIcon = (iconName: string) => {
     switch (iconName) {
@@ -102,7 +84,7 @@ const HeroVideo = () => {
 
       {/* Info Bar */}
       <div className="info-bar">
-        {infoItems.map((item, index) => (
+        {displayInfoItems.map((item, index) => (
           <div key={index} className="flex items-center">
             <div className="info-item">
               {getIcon(item.icon)}
@@ -111,7 +93,7 @@ const HeroVideo = () => {
                 <span className="info-subtitle">{item.subtitle}</span>
               </div>
             </div>
-            {index < infoItems.length - 1 && <div className="info-divider" />}
+            {index < displayInfoItems.length - 1 && <div className="info-divider" />}
           </div>
         ))}
       </div>
