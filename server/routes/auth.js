@@ -107,16 +107,20 @@ router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // Check if user exists
-        const user = await User.findOne({ email });
+        // Check if user exists (explicitly select password)
+        const user = await User.findOne({ email }).select('+password');
+
+        // Generic error message for security (prevents user enumeration)
+        const invalidCredentialsMsg = 'אימייל או סיסמה שגויים';
+
         if (!user) {
-            return res.status(400).json({ message: 'כתובת האימייל אינה קיימת במערכת' });
+            return res.status(400).json({ message: invalidCredentialsMsg });
         }
 
         // Validate password
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(400).json({ message: 'הסיסמה שהזנת שגויה' });
+            return res.status(400).json({ message: invalidCredentialsMsg });
         }
 
         // Create token

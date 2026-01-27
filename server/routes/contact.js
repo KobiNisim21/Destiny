@@ -1,9 +1,19 @@
 import express from 'express';
+import rateLimit from 'express-rate-limit';
 import { sendContactEmail } from '../services/emailService.js';
 
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+// Strict rate limiter for contact form: 3 emails per hour per IP
+const contactLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour
+    max: 3,
+    message: { message: 'Too many messages sent from this IP, please try again after an hour' },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+
+router.post('/', contactLimiter, async (req, res) => {
     try {
         const { firstName, lastName, email, phone, message } = req.body;
 

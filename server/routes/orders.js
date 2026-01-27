@@ -2,32 +2,42 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import Order from '../models/Order.js';
 import User from '../models/User.js';
+import Product from '../models/Product.js'; // Import Product model
 import { sendOrderConfirmationEmail, sendAdminNewOrderNotification } from '../services/emailService.js';
+import { verifyToken } from '../middleware/auth.js';
 
 const router = express.Router();
-
-// Middleware to verify token
-const verifyToken = (req, res, next) => {
-    const token = req.headers.authorization?.split(' ')[1];
-    if (!token) return res.status(401).json({ message: 'No token provided' });
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret_key_123');
-        req.user = decoded;
-        next();
-    } catch (error) {
-        return res.status(401).json({ message: 'Invalid token' });
-    }
-};
 
 // Create New Order
 router.post('/', verifyToken, async (req, res) => {
     try {
-        const { items, totalAmount, shippingAddress } = req.body;
+        const { items, shippingAddress } = req.body; // Removed totalAmount from destructuring
+
+        // Server-side price calculation
+        let calculatedTotal = 0;
+        const verifiedItems = [];
+
+        for (const item of items) {
+            const product = await Product.findById(item.product || item._id); // Handle both formats if needed, usually item.product is the ID ref
+            if (!product) {
+                return res.status(404).json({ message: `Product not found: ${item.name}` });
+            }
+
+            // Verify price from DB
+            const itemTotal = product.price * item.quantity;
+            calculatedTotal += itemTotal;
+
+            verifiedItems.push({
+                ...item,
+                price: product.price, // Force DB price
+                product: product._id
+            });
+        }
 
         const newOrder = new Order({
             user: req.user.id,
-            items,
-            totalAmount,
+            items: verifiedItems,
+            totalAmount: calculatedTotal, // Use server-calculated total
             shippingAddress,
             paymentStatus: 'paid', // Mocking payment success for now
             status: 'processing'
@@ -42,8 +52,8 @@ router.post('/', verifyToken, async (req, res) => {
                     user.email,
                     user.firstName || shippingAddress.firstName,
                     savedOrder._id.toString(),
-                    items,
-                    totalAmount
+                    verifiedItems,
+                    calculatedTotal
                 ).catch(err => console.error('Failed to send order email:', err));
             }
         });
@@ -56,7 +66,7 @@ router.post('/', verifyToken, async (req, res) => {
                         admin.email,
                         savedOrder._id.toString(),
                         `${shippingAddress.firstName} ${shippingAddress.lastName}`,
-                        totalAmount
+                        calculatedTotal
                     ).catch(err => console.error('Failed to notify admin:', err));
                 }
             });

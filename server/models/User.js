@@ -30,6 +30,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
+        select: false, // Do not return password by default
     },
     address: {
         street: String,
