@@ -28,6 +28,7 @@ const UserOrders = lazy(() => import("./pages/UserOrders"));
 const ProductPage = lazy(() => import("./pages/ProductPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const VerifyEmail = lazy(() => import("./pages/VerifyEmail"));
+const VerifyAccount = lazy(() => import("./pages/VerifyAccount"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 
@@ -75,6 +76,7 @@ const App = () => (
 
 
                 <Route path="/verify" element={<VerifyEmail />} />
+                <Route path="/verify-account" element={<VerifyAccount />} />
                 <Route path="/unsubscribe" element={<Unsubscribe />} />
 
                 {/* Policy Routes */}

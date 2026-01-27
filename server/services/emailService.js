@@ -271,6 +271,43 @@ export const sendVerificationEmail = async (email, token) => {
     }
 };
 
+export const sendAccountVerificationEmail = async (email, token) => {
+    try {
+        const transporter = getTransporter();
+        if (!transporter) throw new Error('Email service not initialized');
+
+        const baseUrl = process.env.FRONTEND_URL || 'http://localhost:8080';
+        const verificationLink = `${baseUrl}/verify-account?token=${token}`;
+
+        const content = `
+            <h2 style="color: #1a1a1a; margin-top: 0; text-align: center; font-size: 24px;">אימות חשבון חדש</h2>
+            <p style="text-align: center; font-size: 16px; color: #555;">תודה שנרשמת לאתר Destiny!</p>
+            <p style="text-align: center; margin-bottom: 30px; color: #555;">כדי להפעיל את החשבון שלך, יש לאמת את כתובת האימייל:</p>
+            
+            <div style="text-align: center; margin: 40px 0;">
+                <a href="${verificationLink}" style="background-color: #9F19FF; color: white; padding: 15px 40px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 18px; display: inline-block; box-shadow: 0 10px 20px rgba(159, 25, 255, 0.2);">אמת את החשבון שלי</a>
+            </div>
+            
+            <p style="font-size: 13px; color: #999; text-align: center; margin-top: 40px;">אם לא נרשמת לאתר, ניתן להתעלם ממייל זה.</p>
+        `;
+
+        const fullHtml = getEmailTemplate(content);
+
+        const info = await transporter.sendMail({
+            from: '"Destiny Team" <' + process.env.EMAIL_USER + '>',
+            to: email,
+            subject: 'אימות חשבון - Destiny',
+            html: fullHtml
+        });
+        console.log('Account verification email sent: ' + info.response);
+        return { success: true, data: info };
+
+    } catch (err) {
+        console.error('Email service error:', err);
+        return { success: false, error: err };
+    }
+};
+
 export const sendOrderConfirmationEmail = async (email, firstName, orderId, items, totalAmount) => {
     try {
         const transporter = getTransporter();

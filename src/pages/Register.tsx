@@ -19,10 +19,12 @@ const Register = () => {
         password: "",
         confirmPassword: "",
         gender: "other",
+        newsletterOptIn: false
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+        setFormData({ ...formData, [e.target.name]: value });
     };
 
     const handleGenderChange = (value: string) => {
@@ -56,6 +58,7 @@ const Register = () => {
                     phone: formData.phone,
                     password: formData.password,
                     gender: formData.gender,
+                    newsletterOptIn: formData.newsletterOptIn
                 }),
             });
 
@@ -67,7 +70,7 @@ const Register = () => {
 
             toast({
                 title: "ההרשמה הצליחה!",
-                description: "כעת ניתן להתחבר למערכת",
+                description: "שלחנו לך מייל לאימות החשבון. יש לאמת את המייל לפני ההתחברות.",
             });
 
             navigate("/login");
@@ -200,6 +203,20 @@ const Register = () => {
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
                             />
+                        </div>
+
+                        <div className="flex items-center gap-2" dir="rtl">
+                            <input
+                                type="checkbox"
+                                id="newsletterOptIn"
+                                name="newsletterOptIn"
+                                checked={formData.newsletterOptIn}
+                                onChange={handleChange}
+                                className="w-5 h-5 accent-[#9F19FF] cursor-pointer"
+                            />
+                            <Label htmlFor="newsletterOptIn" className="cursor-pointer">
+                                אני רוצה להצטרף לניוזלטר ולקבל עדכונים ומבצעים בלעדיים
+                            </Label>
                         </div>
 
                         <Button
