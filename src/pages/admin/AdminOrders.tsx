@@ -3,6 +3,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
 import API_BASE_URL from "@/config";
@@ -100,6 +101,9 @@ const AdminOrders = () => {
         }
     };
 
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filterDate, setFilterDate] = useState("");
+
     const getStatusBadge = (status: string) => {
         switch (status) {
             case 'pending': return <Badge variant="outline" className="bg-yellow-50 text-yellow-600 border-yellow-200">ממתין</Badge>;
@@ -111,6 +115,22 @@ const AdminOrders = () => {
         }
     };
 
+    const filteredOrders = orders.filter(order => {
+        const term = searchTerm.toLowerCase();
+        const matchesSearch =
+            order._id.toLowerCase().includes(term) ||
+            order.user?.firstName?.toLowerCase().includes(term) ||
+            order.user?.lastName?.toLowerCase().includes(term) ||
+            order.user?.email?.toLowerCase().includes(term) ||
+            order.shippingAddress?.firstName?.toLowerCase().includes(term) ||
+            order.shippingAddress?.lastName?.toLowerCase().includes(term);
+
+        const orderDate = new Date(order.createdAt).toISOString().split('T')[0];
+        const matchesDate = filterDate ? orderDate === filterDate : true;
+
+        return matchesSearch && matchesDate;
+    });
+
     if (loading) return <div className="flex justify-center py-10"><Loader2 className="animate-spin" /></div>;
 
     return (
@@ -119,9 +139,36 @@ const AdminOrders = () => {
 
             <Card className="bg-white">
                 <CardHeader>
-                    <CardTitle>כל ההזמנות</CardTitle>
+                    <CardTitle>כל ההזמנות ({filteredOrders.length})</CardTitle>
                 </CardHeader>
                 <CardContent>
+                    <div className="flex flex-col md:flex-row gap-4 mb-6">
+                        <div className="flex-1">
+                            <Input
+                                placeholder="חפש לפי מספר הזמנה, שם לקוח או אימייל..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="text-right"
+                            />
+                        </div>
+                        <div className="w-full md:w-[200px]">
+                            <Input
+                                type="date"
+                                value={filterDate}
+                                onChange={(e) => setFilterDate(e.target.value)}
+                                className="text-right"
+                            />
+                        </div>
+                        {(searchTerm || filterDate) && (
+                            <Button
+                                variant="outline"
+                                onClick={() => { setSearchTerm(""); setFilterDate(""); }}
+                                className="shrink-0"
+                            >
+                                נקה סינון
+                            </Button>
+                        )}
+                    </div>
                     <div className="overflow-x-auto">
                         <Table>
                             <TableHeader>
@@ -135,7 +182,7 @@ const AdminOrders = () => {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {orders.map((order) => (
+                                {filteredOrders.map((order) => (
                                     <TableRow key={order._id}>
                                         <TableCell className="font-medium">#{order._id.slice(-6)}</TableCell>
                                         <TableCell>
