@@ -145,7 +145,7 @@ const Collections = ({ products: dbProducts = [] }: { products?: Product[] }) =>
               {loading ? (
                 // Skeleton Loader
                 [1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-[310px] h-[450px] rounded-[24px] overflow-hidden bg-white shadow-sm border border-gray-100">
+                  <div key={i} className="w-full max-w-[350px] h-[450px] rounded-[24px] overflow-hidden bg-white shadow-sm border border-gray-100">
                     <Skeleton className="h-[265px] w-full" />
                     <div className="p-5 flex flex-col gap-4">
                       <Skeleton className="h-6 w-3/4 ml-auto" />
@@ -166,7 +166,8 @@ const Collections = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                   return (
                     <div key={product._id || product.id} className="group animate-slide-up" style={{
                       animationDelay: `${index * 0.1}s`,
-                      width: '310px',
+                      width: '100%',
+                      maxWidth: '350px',
                       height: '450px'
                     }}>
                       <div
@@ -178,7 +179,7 @@ const Collections = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                           gap: '2px',
                           borderRadius: '24px',
                           height: '450px',
-                          width: '310px'
+                          width: '100%'
                         }}>
 
                         {/* Image Container - White BG for Trinkets */}

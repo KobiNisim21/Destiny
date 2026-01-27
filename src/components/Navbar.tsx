@@ -366,8 +366,8 @@ const Navbar = () => {
 
         /* ===== Main nav layout ===== */
         .floating-nav {
-          width: 991px;
-          max-width: calc(100% - 24px);
+          width: 100%;
+          max-width: 991px;
           height: 74px;
           padding: 16px 55px 16px 35px;
           display: flex;

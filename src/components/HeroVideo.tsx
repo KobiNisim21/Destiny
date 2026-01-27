@@ -51,13 +51,7 @@ const HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)
   return (
     <section className="hero-video-section" dir="rtl">
       {/* Hero Banner Container */}
-      <div className="hero-video-container" style={{
-        overflow: 'hidden',
-        borderRadius: '124px',
-        boxShadow: '0 0 20px 0 #872B8F',
-        height: '800px',
-        position: 'relative'
-      }}>
+      <div className="hero-video-container">
         {youtubeId ? (
           <iframe
             width="100%"
@@ -100,32 +94,43 @@ const HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)
 
       <style>{`
         .hero-video-section {
-          padding-top: 70px;
-          padding-left: 0;
-          padding-right: 0;
+          padding-top: 80px;
+          padding-left: 16px;
+          padding-right: 16px;
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 0;
+          width: 100%;
+          overflow: hidden;
         }
 
         /* Hero Container */
         .hero-video-container {
           position: relative;
-          width: 1600px;
-          max-width: 100%;
-          height: 800px;
-          flex-shrink: 0;
-          align-self: stretch;
+          width: 100%;
+          max-width: 1400px;
+          aspect-ratio: 16/9;
+          max-height: 80vh; /* Prevent it from being too tall on huge screens */
           margin: 0 auto;
           display: block;
-          border-radius: 124px;
+          border-radius: 24px;
+          overflow: hidden;
+          box-shadow: 0 0 20px 0 #872B8F;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-video-container {
+                border-radius: 64px;
+                aspect-ratio: 21/9; /* Cinematic on desktop */
+                max-height: 700px;
+            }
         }
 
         /* Info Bar */
         .info-bar {
           width: 100%;
-          height: 80px;
+          max-width: 1400px;
+          min-height: 80px;
           background: linear-gradient(
             90deg,
             #271C2F 0%,
@@ -135,31 +140,33 @@ const HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)
             #19260A 100%
           );
           box-shadow: 0 0 11.6px 0 rgba(0, 0, 0, 0.22) inset;
-          border-radius: 0;
-          padding: 0 390px;
+          border-radius: 16px;
+          padding: 20px;
           display: flex;
+          flex-wrap: wrap; 
           align-items: center;
-          justify-content: space-between;
-          margin-top: 40px;
+          justify-content: space-around; /* Distribute items evenly */
+          gap: 20px;
+          margin-top: 30px;
         }
 
         .info-item {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 10px;
-          padding: 4px 0;
+          gap: 12px;
+          min-width: 200px;
         }
 
         .info-icon {
-          width: 50px;
-          height: 50px;
+          width: 40px; /* Slightly smaller for better fit */
+          height: 40px;
           flex-shrink: 0;
           filter: brightness(0) invert(1);
         }
 
         .info-text {
-          display: inline-flex;
+          display: flex;
           flex-direction: column;
           align-items: flex-start;
           gap: 2px;
@@ -167,53 +174,50 @@ const HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)
 
         .info-title {
           color: #ffffff;
-          font-size: 20px;
-          font-weight: 400;
-          font-family: "Noto Sans Hebrew", "Assistant", Helvetica, sans-serif;
+          font-size: clamp(16px, 1.5vw, 20px); /* Fluid font size */
+          font-weight: 600;
+          font-family: "Noto Sans Hebrew", "Assistant", sans-serif;
           direction: rtl;
         }
 
         .info-subtitle {
-          color: rgba(255, 255, 255, 0.6);
-          font-size: 14px;
+          color: rgba(255, 255, 255, 0.7);
+          font-size: clamp(12px, 1vw, 14px);
           font-weight: 400;
-          font-family: "Noto Sans Hebrew", "Assistant", Helvetica, sans-serif;
+          font-family: "Noto Sans Hebrew", "Assistant", sans-serif;
           direction: rtl;
         }
 
         .info-divider {
-          display: none;
+          display: none; /* Flex gap handles spacing */
         }
 
-        /* Mobile responsive */
+        /* Mobile specific adjustments */
         @media (max-width: 768px) {
           .hero-video-section {
-            padding-top: 100px;
-            padding-left: 16px;
-            padding-right: 16px;
+            padding-top: 100px; /* Space for fixed navbar */
+            padding-bottom: 20px;
           }
 
           .hero-video-container {
-            aspect-ratio: 16 / 9;
-            height: auto;
-            border-radius: 24px;
+            border-radius: 16px;
+            aspect-ratio: 4/3; /* Taller on mobile for impact */
+            max-height: 60vh;
           }
 
           .info-bar {
             flex-direction: column;
+            align-items: stretch; /* Full width items */
             gap: 16px;
-            padding: 20px 24px;
-            border-radius: 16px;
-            height: auto;
-            background: #111;
+            padding: 20px;
+            margin-top: 20px;
+            background: #111; /* Simpler background logic */
           }
-        }
 
-        /* Tablet/Laptop responsive */
-        @media (min-width: 769px) and (max-width: 1500px) {
-            .info-bar {
-                padding: 0 50px;
-            }
+          .info-item {
+            justify-content: flex-start;
+            width: 100%;
+          }
         }
       `}</style>
     </section>

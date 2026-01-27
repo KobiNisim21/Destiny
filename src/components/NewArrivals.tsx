@@ -68,10 +68,10 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
         }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 items-center" style={{ gap: '200px' }}>
+          <div className="grid lg:grid-cols-2 items-center gap-12 lg:gap-32">
             {/* Skeleton Right (Image) */}
             <div className="relative flex lg:justify-end justify-center">
-              <div style={{ width: '360px', height: '540px' }} className="rounded-[24px] overflow-hidden bg-white shadow-sm border border-gray-100 p-0">
+              <div style={{ width: '100%', maxWidth: '360px', height: '540px' }} className="rounded-[24px] overflow-hidden bg-white shadow-sm border border-gray-100 p-0">
                 <Skeleton className="h-[350px] w-full" />
                 <div className="p-5 flex flex-col gap-4">
                   <Skeleton className="h-8 w-3/4 ml-auto" />
@@ -154,12 +154,13 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
       }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 items-center" style={{ gap: '200px' }}> {/* Requested Gap: Increased to 200px */}
+        <div className="grid lg:grid-cols-2 items-center gap-12 lg:gap-32">
 
           {/* Right - Product Card (First Position) */}
           <div className="relative animate-slide-up flex lg:justify-end justify-center">
             <div className="group" style={{
-              width: '360px',
+              width: '100%',
+              maxWidth: '360px',
               height: '540px'
             }}>
               <div
@@ -171,7 +172,7 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                   gap: '2px',
                   borderRadius: '24px',
                   height: '540px',
-                  width: '360px'
+                  width: '100%'
                 }}>
 
                 {/* Image Container */}
