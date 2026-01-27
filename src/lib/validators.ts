@@ -53,10 +53,10 @@ export const validateAddress = (street: string): ValidationResult => {
     // Hebrew letters and numbers only.
     // Must contain at least 2 consecutive Hebrew letters? Requirements: "Hebrew letters and numbers only. (Minimum 2 letters and 1 digit)"
 
-    // Check for invalid chars (non-hebrew, non-digit, non-space)
-    const validCharsRegex = /^[\u0590-\u05FF0-9\s]+$/;
+    // Check for invalid chars (non-hebrew, non-digit, non-space, non-comma)
+    const validCharsRegex = /^[\u0590-\u05FF0-9\s,]+$/;
     if (!validCharsRegex.test(street)) {
-        return { isValid: false, message: "הכתובת חייבת להכיל עברית ומספרים בלבד" };
+        return { isValid: false, message: "הכתובת חייבת להכיל עברית, מספרים או פסיקים בלבד" };
     }
 
     // Count Hebrew letters
