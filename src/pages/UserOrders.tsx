@@ -64,7 +64,7 @@ const UserOrders = () => {
     return (
         <div className="min-h-screen bg-gray-50 font-['Assistant']" dir="rtl">
             <Navbar />
-            <div className="container mx-auto px-4 pt-40 pb-24 max-w-4xl">
+            <div className="container mx-auto px-4 pt-28 md:pt-40 pb-24 max-w-4xl">
                 <h1 className="text-3xl font-bold text-gray-900 mb-8">ההזמנות שלי</h1>
 
                 {loading ? (

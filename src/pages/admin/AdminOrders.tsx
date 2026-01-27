@@ -122,54 +122,56 @@ const AdminOrders = () => {
                     <CardTitle>כל ההזמנות</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead className="text-right">מספר הזמנה</TableHead>
-                                <TableHead className="text-right">לקוח</TableHead>
-                                <TableHead className="text-right">תאריך</TableHead>
-                                <TableHead className="text-right">סכום</TableHead>
-                                <TableHead className="text-right">סטטוס</TableHead>
-                                <TableHead className="text-right">פעולות</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {orders.map((order) => (
-                                <TableRow key={order._id}>
-                                    <TableCell className="font-medium">#{order._id.slice(-6)}</TableCell>
-                                    <TableCell>
-                                        <div>{order.user?.firstName} {order.user?.lastName}</div>
-                                        <div className="text-xs text-gray-500">{order.user?.email}</div>
-                                    </TableCell>
-                                    <TableCell>{new Date(order.createdAt).toLocaleDateString('he-IL')}</TableCell>
-                                    <TableCell>₪{order.totalAmount.toFixed(2)}</TableCell>
-                                    <TableCell>{getStatusBadge(order.status)}</TableCell>
-                                    <TableCell>
-                                        <div className="flex items-center gap-2">
-                                            <Button variant="ghost" size="icon" onClick={() => setSelectedOrder(order)}>
-                                                <Eye className="w-5 h-5 text-gray-600" />
-                                            </Button>
-                                            <Select
-                                                defaultValue={order.status}
-                                                onValueChange={(val) => handleStatusUpdate(order._id, val)}
-                                            >
-                                                <SelectTrigger className="w-[130px]">
-                                                    <SelectValue />
-                                                </SelectTrigger>
-                                                <SelectContent dir="rtl">
-                                                    <SelectItem value="pending">ממתין</SelectItem>
-                                                    <SelectItem value="processing">בטיפול</SelectItem>
-                                                    <SelectItem value="shipped">נשלח</SelectItem>
-                                                    <SelectItem value="delivered">נמסר</SelectItem>
-                                                    <SelectItem value="cancelled">בוטל</SelectItem>
-                                                </SelectContent>
-                                            </Select>
-                                        </div>
-                                    </TableCell>
+                    <div className="overflow-x-auto">
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead className="text-right">מספר הזמנה</TableHead>
+                                    <TableHead className="text-right">לקוח</TableHead>
+                                    <TableHead className="text-right">תאריך</TableHead>
+                                    <TableHead className="text-right">סכום</TableHead>
+                                    <TableHead className="text-right">סטטוס</TableHead>
+                                    <TableHead className="text-right">פעולות</TableHead>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                            </TableHeader>
+                            <TableBody>
+                                {orders.map((order) => (
+                                    <TableRow key={order._id}>
+                                        <TableCell className="font-medium">#{order._id.slice(-6)}</TableCell>
+                                        <TableCell>
+                                            <div>{order.user?.firstName} {order.user?.lastName}</div>
+                                            <div className="text-xs text-gray-500">{order.user?.email}</div>
+                                        </TableCell>
+                                        <TableCell>{new Date(order.createdAt).toLocaleDateString('he-IL')}</TableCell>
+                                        <TableCell>₪{order.totalAmount.toFixed(2)}</TableCell>
+                                        <TableCell>{getStatusBadge(order.status)}</TableCell>
+                                        <TableCell>
+                                            <div className="flex items-center gap-2">
+                                                <Button variant="ghost" size="icon" onClick={() => setSelectedOrder(order)}>
+                                                    <Eye className="w-5 h-5 text-gray-600" />
+                                                </Button>
+                                                <Select
+                                                    defaultValue={order.status}
+                                                    onValueChange={(val) => handleStatusUpdate(order._id, val)}
+                                                >
+                                                    <SelectTrigger className="w-[130px]">
+                                                        <SelectValue />
+                                                    </SelectTrigger>
+                                                    <SelectContent dir="rtl">
+                                                        <SelectItem value="pending">ממתין</SelectItem>
+                                                        <SelectItem value="processing">בטיפול</SelectItem>
+                                                        <SelectItem value="shipped">נשלח</SelectItem>
+                                                        <SelectItem value="delivered">נמסר</SelectItem>
+                                                        <SelectItem value="cancelled">בוטל</SelectItem>
+                                                    </SelectContent>
+                                                </Select>
+                                            </div>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </div>
                 </CardContent>
             </Card>
 

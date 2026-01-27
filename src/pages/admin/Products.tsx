@@ -125,7 +125,7 @@ const Products = () => {
             {loading ? (
                 <div className="text-center py-20 text-gray-500">טוען מוצרים...</div>
             ) : (
-                <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden overflow-x-auto">
                     <table className="w-full text-sm text-right">
                         <thead className="bg-gray-50 text-gray-500 font-medium border-b border-gray-100">
                             <tr>

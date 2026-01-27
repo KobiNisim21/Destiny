@@ -54,7 +54,7 @@ const Contact = () => {
         <div className="min-h-screen bg-background font-['Noto_Sans_Hebrew']" dir="rtl">
             <Navbar />
 
-            <main className="pt-40 pb-16">
+            <main className="pt-28 md:pt-40 pb-16">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
                     <div className="text-center mb-12 animate-fade-in">

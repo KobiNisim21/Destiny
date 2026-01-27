@@ -188,6 +188,14 @@ const Navbar = () => {
             <div className="text-white text-center py-2 font-medium">
               {user.gender === 'female' ? 'ברוכה הבאה' : user.gender === 'male' ? 'ברוך הבא' : 'ברוכים הבאים'}, {user.firstName}
             </div>
+
+            <Link to="/profile" className="mobile-link" onClick={closeMenu}>
+              פרופיל אישי
+            </Link>
+            <Link to="/orders" className="mobile-link" onClick={closeMenu}>
+              ההזמנות שלי
+            </Link>
+
             {user.role === 'admin' && (
               <Link to="/admin" className="mobile-link text-[#9F19FF] border-[#9F19FF]/30" onClick={closeMenu}>
                 לוח ניהול

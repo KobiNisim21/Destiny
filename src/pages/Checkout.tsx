@@ -183,7 +183,7 @@ const Checkout = () => {
     return (
         <div className="min-h-screen bg-gray-50 font-['Assistant']" dir="rtl">
             <Navbar />
-            <div className="container mx-auto px-4 pt-40 pb-24 max-w-6xl">
+            <div className="container mx-auto px-4 pt-28 md:pt-40 pb-24 max-w-6xl">
                 <h1 className="text-3xl font-bold text-gray-900 mb-8">קופה</h1>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -195,7 +195,7 @@ const Checkout = () => {
                             </CardHeader>
                             <CardContent>
                                 <form id="checkout-form" onSubmit={handleProceedToPayment} className="space-y-4">
-                                    <div className="grid grid-cols-2 gap-4">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <div className="space-y-2">
                                             <Label htmlFor="firstName">שם פרטי</Label>
                                             <Input id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} required />
@@ -218,7 +218,7 @@ const Checkout = () => {
                                         <Label htmlFor="street">רחוב ומספר בית</Label>
                                         <Input id="street" name="street" value={formData.street} onChange={handleChange} required />
                                     </div>
-                                    <div className="grid grid-cols-2 gap-4">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <div className="space-y-2">
                                             <Label htmlFor="city">עיר</Label>
                                             <Input id="city" name="city" value={formData.city} onChange={handleChange} required />
