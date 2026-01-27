@@ -2,7 +2,8 @@ import express from 'express';
 import Subscriber from '../models/Subscriber.js';
 import Content from '../models/Content.js';
 import { sendNewsletterWelcome, sendCampaignEmail, sendVerificationEmail } from '../services/emailService.js';
-import { authenticateToken, isAdmin } from '../middleware/auth.js';
+import { verifyToken } from '../middleware/auth.js';
+import { isAdmin } from '../middleware/adminAuth.js';
 import { v4 as uuidv4 } from 'uuid';
 
 const router = express.Router();
@@ -130,7 +131,7 @@ router.post('/unsubscribe', async (req, res) => {
 });
 
 // Delete subscriber (Admin only)
-router.delete('/subscribers/:id', authenticateToken, isAdmin, async (req, res) => {
+router.delete('/subscribers/:id', verifyToken, isAdmin, async (req, res) => {
     try {
         const { id } = req.params;
         await Subscriber.findByIdAndDelete(id);
@@ -142,7 +143,7 @@ router.delete('/subscribers/:id', authenticateToken, isAdmin, async (req, res) =
 });
 
 // Get all subscribers (Admin only)
-router.get('/subscribers', authenticateToken, isAdmin, async (req, res) => {
+router.get('/subscribers', verifyToken, isAdmin, async (req, res) => {
     try {
         const subscribers = await Subscriber.find().sort({ subscribedAt: -1 });
         res.json(subscribers);
@@ -153,7 +154,7 @@ router.get('/subscribers', authenticateToken, isAdmin, async (req, res) => {
 });
 
 // Send campaign to all active subscribers (Admin only)
-router.post('/send-campaign', authenticateToken, isAdmin, async (req, res) => {
+router.post('/send-campaign', verifyToken, isAdmin, async (req, res) => {
     try {
         const { subject, body } = req.body;
 

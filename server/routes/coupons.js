@@ -1,7 +1,8 @@
 import express from 'express';
 import Coupon from '../models/Coupon.js';
 import Product from '../models/Product.js';
-import { authenticateToken, isAdmin } from '../middleware/auth.js';
+import { verifyToken } from '../middleware/auth.js';
+import { isAdmin } from '../middleware/adminAuth.js';
 
 const router = express.Router();
 
@@ -96,7 +97,7 @@ router.post('/validate', async (req, res) => {
 });
 
 // Admin: List Coupons
-router.get('/', authenticateToken, isAdmin, async (req, res) => {
+router.get('/', verifyToken, isAdmin, async (req, res) => {
     try {
         const coupons = await Coupon.find().sort({ createdAt: -1 });
         res.json(coupons);
@@ -106,7 +107,7 @@ router.get('/', authenticateToken, isAdmin, async (req, res) => {
 });
 
 // Admin: Create Coupon
-router.post('/', authenticateToken, isAdmin, async (req, res) => {
+router.post('/', verifyToken, isAdmin, async (req, res) => {
     try {
         const { code, discountType, discountValue, expirationDate, applicableType, applicableIds } = req.body;
 
@@ -134,7 +135,7 @@ router.post('/', authenticateToken, isAdmin, async (req, res) => {
 });
 
 // Admin: Delete Coupon
-router.delete('/:id', authenticateToken, isAdmin, async (req, res) => {
+router.delete('/:id', verifyToken, isAdmin, async (req, res) => {
     try {
         await Coupon.findByIdAndDelete(req.params.id);
         res.json({ message: 'Coupon deleted' });
