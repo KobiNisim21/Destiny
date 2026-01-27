@@ -27,6 +27,7 @@ interface User {
     role: 'user' | 'admin';
     permissions?: string[];
     isSuperAdmin?: boolean;
+    isVerified?: boolean;
     createdAt: string;
 }
 
@@ -317,6 +318,7 @@ const AdminTeam = () => {
                                     <TableRow>
                                         <TableHead className="!text-right py-4 font-bold text-gray-700">שם מלא</TableHead>
                                         <TableHead className="!text-right py-4 font-bold text-gray-700">אימייל</TableHead>
+                                        <TableHead className="!text-right py-4 font-bold text-gray-700">סטטוס</TableHead>
                                         <TableHead className="!text-right py-4 font-bold text-gray-700">תאריך הצטרפות</TableHead>
                                         <TableHead className="!text-right py-4 font-bold text-gray-700">פעולות</TableHead>
                                     </TableRow>
@@ -333,6 +335,14 @@ const AdminTeam = () => {
                                                 </div>
                                             </TableCell>
                                             <TableCell className="text-gray-600 font-sans !text-right">{user.email}</TableCell>
+                                            <TableCell className="!text-right">
+                                                <Badge
+                                                    variant="secondary"
+                                                    className={`${user.isVerified ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'} border-0`}
+                                                >
+                                                    {user.isVerified ? 'מאומת' : 'ממתין לאימות'}
+                                                </Badge>
+                                            </TableCell>
                                             <TableCell className="text-gray-500 font-sans !text-right">{new Date(user.createdAt).toLocaleDateString('he-IL')}</TableCell>
                                             <TableCell className="!text-right">
                                                 <Button
