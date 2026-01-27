@@ -142,35 +142,35 @@ const AdminOrders = () => {
                     <CardTitle>כל ההזמנות ({filteredOrders.length})</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <div className="flex flex-col md:flex-row gap-4 mb-6">
-                        <div className="flex-1">
+                    <div className="flex flex-col gap-4 mb-6">
+                        <div className="w-full">
                             <Input
                                 placeholder="חפש לפי מספר הזמנה, שם לקוח או אימייל..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="text-right"
+                                className="text-right w-full"
                             />
                         </div>
-                        <div className="w-full md:w-[200px]">
+                        <div className="flex flex-col md:flex-row gap-4 w-full">
                             <Input
                                 type="date"
                                 value={filterDate}
                                 onChange={(e) => setFilterDate(e.target.value)}
-                                className="text-right"
+                                className="text-right w-full md:w-[200px]"
                             />
+                            {(searchTerm || filterDate) && (
+                                <Button
+                                    variant="outline"
+                                    onClick={() => { setSearchTerm(""); setFilterDate(""); }}
+                                    className="shrink-0 w-full md:w-auto"
+                                >
+                                    נקה סינון
+                                </Button>
+                            )}
                         </div>
-                        {(searchTerm || filterDate) && (
-                            <Button
-                                variant="outline"
-                                onClick={() => { setSearchTerm(""); setFilterDate(""); }}
-                                className="shrink-0"
-                            >
-                                נקה סינון
-                            </Button>
-                        )}
                     </div>
-                    <div className="overflow-x-auto">
-                        <Table>
+                    <div className="overflow-x-auto -mx-6 md:mx-0 px-6 md:px-0 pb-4">
+                        <Table className="min-w-[800px]">
                             <TableHeader>
                                 <TableRow>
                                     <TableHead className="text-right">מספר הזמנה</TableHead>

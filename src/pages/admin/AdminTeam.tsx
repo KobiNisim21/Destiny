@@ -229,69 +229,71 @@ const AdminTeam = () => {
                             </div>
                         </CardHeader>
                         <CardContent className="p-0">
-                            <Table className="text-right">
-                                <TableHeader className="bg-gray-50">
-                                    <TableRow>
-                                        <TableHead className="!text-right py-4 font-bold text-gray-700">שם מלא</TableHead>
-                                        <TableHead className="!text-right py-4 font-bold text-gray-700">אימייל</TableHead>
-                                        <TableHead className="!text-right py-4 font-bold text-gray-700">תפקיד</TableHead>
-                                        <TableHead className="!text-right py-4 font-bold text-gray-700">פעולות</TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {admins.map((admin) => (
-                                        <TableRow key={admin._id} className="hover:bg-gray-50/50 transition-colors border-b last:border-0 border-gray-100">
-                                            <TableCell className="font-medium py-4 !text-right">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-[#9F19FF] font-bold text-xs">
-                                                        {admin.firstName[0]}{admin.lastName[0]}
-                                                    </div>
-                                                    {admin.firstName} {admin.lastName}
-                                                </div>
-                                            </TableCell>
-                                            <TableCell className="text-gray-600 font-sans !text-right">{admin.email}</TableCell>
-                                            <TableCell className="!text-right">
-                                                {admin.isSuperAdmin ? (
-                                                    <Badge className="bg-[#9F19FF] hover:bg-[#9F19FF]/90 text-white shadow-sm shadow-purple-200">
-                                                        Super Admin
-                                                    </Badge>
-                                                ) : (
-                                                    <Badge variant="secondary" className="bg-gray-100 text-gray-700">
-                                                        Admin
-                                                    </Badge>
-                                                )}
-                                            </TableCell>
-                                            <TableCell className="flex gap-2 !text-right">
-                                                <Dialog>
-                                                    <DialogTrigger asChild>
-                                                        <Button
-                                                            variant="outline"
-                                                            size="sm"
-                                                            onClick={() => handleEditClick(admin)}
-                                                            className="hover:border-[#9F19FF] hover:text-[#9F19FF] transition-colors"
-                                                        >
-                                                            <UserCog className="w-4 h-4 ml-2" />
-                                                            ערוך הרשאות
-                                                        </Button>
-                                                    </DialogTrigger>
-                                                    {/* Dialog content handles update */}
-                                                </Dialog>
-
-                                                {!admin.isSuperAdmin && (
-                                                    <Button
-                                                        variant="ghost"
-                                                        size="sm"
-                                                        onClick={() => handleRemoveAdmin(admin)}
-                                                        className="text-red-500 hover:text-red-600 hover:bg-red-50"
-                                                    >
-                                                        הסר
-                                                    </Button>
-                                                )}
-                                            </TableCell>
+                            <div className="overflow-x-auto">
+                                <Table className="text-right min-w-[800px]">
+                                    <TableHeader className="bg-gray-50">
+                                        <TableRow>
+                                            <TableHead className="!text-right py-4 font-bold text-gray-700">שם מלא</TableHead>
+                                            <TableHead className="!text-right py-4 font-bold text-gray-700">אימייל</TableHead>
+                                            <TableHead className="!text-right py-4 font-bold text-gray-700">תפקיד</TableHead>
+                                            <TableHead className="!text-right py-4 font-bold text-gray-700">פעולות</TableHead>
                                         </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {admins.map((admin) => (
+                                            <TableRow key={admin._id} className="hover:bg-gray-50/50 transition-colors border-b last:border-0 border-gray-100">
+                                                <TableCell className="font-medium py-4 !text-right">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-[#9F19FF] font-bold text-xs">
+                                                            {admin.firstName[0]}{admin.lastName[0]}
+                                                        </div>
+                                                        {admin.firstName} {admin.lastName}
+                                                    </div>
+                                                </TableCell>
+                                                <TableCell className="text-gray-600 font-sans !text-right">{admin.email}</TableCell>
+                                                <TableCell className="!text-right">
+                                                    {admin.isSuperAdmin ? (
+                                                        <Badge className="bg-[#9F19FF] hover:bg-[#9F19FF]/90 text-white shadow-sm shadow-purple-200">
+                                                            Super Admin
+                                                        </Badge>
+                                                    ) : (
+                                                        <Badge variant="secondary" className="bg-gray-100 text-gray-700">
+                                                            Admin
+                                                        </Badge>
+                                                    )}
+                                                </TableCell>
+                                                <TableCell className="flex gap-2 !text-right">
+                                                    <Dialog>
+                                                        <DialogTrigger asChild>
+                                                            <Button
+                                                                variant="outline"
+                                                                size="sm"
+                                                                onClick={() => handleEditClick(admin)}
+                                                                className="hover:border-[#9F19FF] hover:text-[#9F19FF] transition-colors"
+                                                            >
+                                                                <UserCog className="w-4 h-4 ml-2" />
+                                                                ערוך הרשאות
+                                                            </Button>
+                                                        </DialogTrigger>
+                                                        {/* Dialog content handles update */}
+                                                    </Dialog>
+
+                                                    {!admin.isSuperAdmin && (
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="sm"
+                                                            onClick={() => handleRemoveAdmin(admin)}
+                                                            className="text-red-500 hover:text-red-600 hover:bg-red-50"
+                                                        >
+                                                            הסר
+                                                        </Button>
+                                                    )}
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </div>
                         </CardContent>
                     </Card>
                 </TabsContent>
@@ -313,51 +315,53 @@ const AdminTeam = () => {
                             </div>
                         </CardHeader>
                         <CardContent className="p-0">
-                            <Table className="text-right">
-                                <TableHeader className="bg-gray-50">
-                                    <TableRow>
-                                        <TableHead className="!text-right py-4 font-bold text-gray-700">שם מלא</TableHead>
-                                        <TableHead className="!text-right py-4 font-bold text-gray-700">אימייל</TableHead>
-                                        <TableHead className="!text-right py-4 font-bold text-gray-700">סטטוס</TableHead>
-                                        <TableHead className="!text-right py-4 font-bold text-gray-700">תאריך הצטרפות</TableHead>
-                                        <TableHead className="!text-right py-4 font-bold text-gray-700">פעולות</TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {users.filter(u => u.role !== 'admin').map((user) => (
-                                        <TableRow key={user._id} className="hover:bg-gray-50/50 transition-colors border-b last:border-0 border-gray-100">
-                                            <TableCell className="font-medium py-4 !text-right">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 font-bold text-xs">
-                                                        {user.firstName[0]}{user.lastName[0]}
-                                                    </div>
-                                                    {user.firstName} {user.lastName}
-                                                </div>
-                                            </TableCell>
-                                            <TableCell className="text-gray-600 font-sans !text-right">{user.email}</TableCell>
-                                            <TableCell className="!text-right">
-                                                <Badge
-                                                    variant="secondary"
-                                                    className={`${user.isVerified ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'} border-0`}
-                                                >
-                                                    {user.isVerified ? 'מאומת' : 'ממתין לאימות'}
-                                                </Badge>
-                                            </TableCell>
-                                            <TableCell className="text-gray-500 font-sans !text-right">{new Date(user.createdAt).toLocaleDateString('he-IL')}</TableCell>
-                                            <TableCell className="!text-right">
-                                                <Button
-                                                    onClick={() => handleEditClick(user)}
-                                                    className="bg-white border-2 border-[#9F19FF] text-[#9F19FF] hover:bg-[#9F19FF] hover:text-white transition-all shadow-none hover:shadow-lg hover:shadow-[#9F19FF]/20 font-medium"
-                                                    size="sm"
-                                                >
-                                                    <ShieldCheck className="w-4 h-4 ml-2" />
-                                                    הפוך למנהל
-                                                </Button>
-                                            </TableCell>
+                            <div className="overflow-x-auto">
+                                <Table className="text-right min-w-[800px]">
+                                    <TableHeader className="bg-gray-50">
+                                        <TableRow>
+                                            <TableHead className="!text-right py-4 font-bold text-gray-700">שם מלא</TableHead>
+                                            <TableHead className="!text-right py-4 font-bold text-gray-700">אימייל</TableHead>
+                                            <TableHead className="!text-right py-4 font-bold text-gray-700">סטטוס</TableHead>
+                                            <TableHead className="!text-right py-4 font-bold text-gray-700">תאריך הצטרפות</TableHead>
+                                            <TableHead className="!text-right py-4 font-bold text-gray-700">פעולות</TableHead>
                                         </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {users.filter(u => u.role !== 'admin').map((user) => (
+                                            <TableRow key={user._id} className="hover:bg-gray-50/50 transition-colors border-b last:border-0 border-gray-100">
+                                                <TableCell className="font-medium py-4 !text-right">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 font-bold text-xs">
+                                                            {user.firstName[0]}{user.lastName[0]}
+                                                        </div>
+                                                        {user.firstName} {user.lastName}
+                                                    </div>
+                                                </TableCell>
+                                                <TableCell className="text-gray-600 font-sans !text-right">{user.email}</TableCell>
+                                                <TableCell className="!text-right">
+                                                    <Badge
+                                                        variant="secondary"
+                                                        className={`${user.isVerified ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'} border-0`}
+                                                    >
+                                                        {user.isVerified ? 'מאומת' : 'ממתין לאימות'}
+                                                    </Badge>
+                                                </TableCell>
+                                                <TableCell className="text-gray-500 font-sans !text-right">{new Date(user.createdAt).toLocaleDateString('he-IL')}</TableCell>
+                                                <TableCell className="!text-right">
+                                                    <Button
+                                                        onClick={() => handleEditClick(user)}
+                                                        className="bg-white border-2 border-[#9F19FF] text-[#9F19FF] hover:bg-[#9F19FF] hover:text-white transition-all shadow-none hover:shadow-lg hover:shadow-[#9F19FF]/20 font-medium"
+                                                        size="sm"
+                                                    >
+                                                        <ShieldCheck className="w-4 h-4 ml-2" />
+                                                        הפוך למנהל
+                                                    </Button>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </div>
                         </CardContent>
                     </Card>
                 </TabsContent>
