@@ -23,7 +23,8 @@
         "nodemailer": "^7.0.12",
         "resend": "^6.7.0",
         "uuid": "^13.0.0",
-        "xss-clean": "^0.1.4"
+        "xss-clean": "^0.1.4",
+        "zod": "^4.3.6"
     },
     "devDependencies": {
         "nodemon": "^3.1.0"

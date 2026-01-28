@@ -5,11 +5,12 @@ import User from '../models/User.js';
 import Product from '../models/Product.js'; // Import Product model
 import { sendOrderConfirmationEmail, sendAdminNewOrderNotification } from '../services/emailService.js';
 import { verifyToken } from '../middleware/auth.js';
+import { validateRequest, orderSchema } from '../middleware/validate.js';
 
 const router = express.Router();
 
 // Create New Order
-router.post('/', verifyToken, async (req, res) => {
+router.post('/', verifyToken, validateRequest(orderSchema), async (req, res) => {
     try {
         const { items, shippingAddress } = req.body; // Removed totalAmount from destructuring
 

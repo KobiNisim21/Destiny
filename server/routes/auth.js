@@ -7,6 +7,8 @@ import Subscriber from '../models/Subscriber.js';
 import Content from '../models/Content.js';
 import { sendWelcomeEmail, sendPasswordResetEmail, sendAccountVerificationEmail, sendNewsletterWelcome } from '../services/emailService.js';
 
+import { validateRequest, registerSchema, loginSchema } from '../middleware/validate.js';
+
 const router = express.Router();
 
 // Register
@@ -16,7 +18,7 @@ router.put('/update-profile', async (req, res) => {
         const token = req.headers.authorization?.split(' ')[1];
         if (!token) return res.status(401).json({ message: 'No token provided' });
 
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret_key_123');
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const userId = decoded.id;
 
         const { firstName, lastName, email, phone, address } = req.body;
@@ -69,7 +71,7 @@ router.put('/update-profile', async (req, res) => {
     }
 });
 
-router.post('/register', async (req, res) => {
+router.post('/register', validateRequest(registerSchema), async (req, res) => {
     try {
         const { firstName, lastName, email, phone, password, gender, newsletterOptIn } = req.body;
 
@@ -77,6 +79,12 @@ router.post('/register', async (req, res) => {
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: 'User already exists' });
+        }
+
+        // Strong Password Validation (Min 8 chars, at least 1 letter and 1 number)
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
+        if (!passwordRegex.test(password)) {
+            return res.status(400).json({ message: 'הסיסמה חייבת להכיל לפחות 8 תווים, כולל אות אחת ומספר אחד' });
         }
 
         // Hash password
@@ -178,7 +186,7 @@ router.post('/verify-email', async (req, res) => {
 
 
 // Login
-router.post('/login', async (req, res) => {
+router.post('/login', validateRequest(loginSchema), async (req, res) => {
     try {
         const { email, password } = req.body;
 
@@ -206,7 +214,7 @@ router.post('/login', async (req, res) => {
         // Create token
         const token = jwt.sign(
             { id: user._id, role: user.role },
-            process.env.JWT_SECRET || 'secret_key_123', // Default secret for dev
+            process.env.JWT_SECRET,
             { expiresIn: '1d' }
         );
 
@@ -244,7 +252,7 @@ router.post('/forgot-password', async (req, res) => {
         // Generate reset token (valid for 1 hour)
         const resetToken = jwt.sign(
             { id: user._id },
-            process.env.JWT_SECRET || 'secret_key_123',
+            process.env.JWT_SECRET,
             { expiresIn: '1h' }
         );
 
@@ -276,7 +284,7 @@ router.post('/reset-password', async (req, res) => {
         // Verify token
         const decoded = jwt.verify(
             token,
-            process.env.JWT_SECRET || 'secret_key_123'
+            process.env.JWT_SECRET
         );
 
         const user = await User.findById(decoded.id);
