@@ -150,6 +150,23 @@ router.post('/', isAdmin, upload.fields([
             return res.status(400).json({ message: 'Main image is required' });
         }
 
+        // --- Slot Bump Logic ---
+        if (req.body.displaySlot && req.body.section && req.body.section !== 'none') {
+            const slot = Number(req.body.displaySlot);
+            if (slot >= 1 && slot <= 4) {
+                // Find existing product in this slot and clear it
+                await Product.updateMany(
+                    {
+                        section: req.body.section,
+                        displaySlot: slot
+                    },
+                    { $set: { displaySlot: null } }
+                );
+                console.log(`Bumped existing products from slot ${slot} in section ${req.body.section}`);
+            }
+        }
+        // -----------------------
+
         const product = new Product({
             title: req.body.title,
             description: req.body.description,
@@ -215,6 +232,22 @@ router.put('/:id', isAdmin, upload.fields([
         // If both null -> null. 
         // In UPDATE, if the user didn't change the main image, `existingMainImage` should be sent by frontend.
         // The frontend `ProductForm` logic does send `existingMainImage`.
+
+        // Slot Bump Logic for Update
+        if (req.body.displaySlot && req.body.section && req.body.section !== 'none') {
+            const slot = Number(req.body.displaySlot);
+            if (slot >= 1 && slot <= 4) {
+                await Product.updateMany(
+                    {
+                        section: req.body.section,
+                        displaySlot: slot,
+                        _id: { $ne: req.params.id } // Exclude current product
+                    },
+                    { $set: { displaySlot: null } }
+                );
+                console.log(`Bumped existing products from slot ${slot} in section ${req.body.section} (excluding current)`);
+            }
+        }
 
         const updatedProduct = await Product.findByIdAndUpdate(
             req.params.id,

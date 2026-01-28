@@ -72,8 +72,32 @@ const Collections = ({ products: dbProducts = [] }: { products?: Product[] }) =>
       setAllTrinkets(trinkets);
 
       if (trinkets.length > 0) {
-        // Display actual trinkets
-        setDisplaySlots(trinkets.slice(0, 4));
+        // Smart Slotting Logic
+        const slots: (Product | null)[] = [null, null, null, null];
+        const assignedIds = new Set();
+
+        // 1. Place products with explicit slots
+        trinkets.forEach(p => {
+          if (p.displaySlot && p.displaySlot >= 1 && p.displaySlot <= 4) {
+            slots[p.displaySlot - 1] = p;
+            assignedIds.add(p._id);
+          }
+        });
+
+        // 2. Fill gaps with newest (that aren't already assigned)
+        let fillingIndex = 0;
+        const productsToFill = trinkets.filter(p => !assignedIds.has(p._id));
+
+        for (let i = 0; i < 4; i++) {
+          if (slots[i] === null && fillingIndex < productsToFill.length) {
+            slots[i] = productsToFill[fillingIndex];
+            fillingIndex++;
+          }
+        }
+
+        // Filter out nulls (in case we have fewer than 4 total products)
+        const finalSlots = slots.filter(p => p !== null) as Product[];
+        setDisplaySlots(finalSlots);
       }
       setLoading(false);
     }

@@ -66,6 +66,12 @@ const ContentSettings = () => {
         pageAboutFollowersLabel: "",
         pageAboutVideos: "",
         pageAboutVideosLabel: "",
+
+        // Contact Page
+        contactEmail: "",
+        contactAddress: "",
+        contactHours: "",
+        contactWeekendMsg: "",
     });
     const [menuItems, setMenuItems] = useState([
         { id: 'home', label: 'דף הבית', type: 'scroll', target: 'hero-section' },
@@ -183,6 +189,12 @@ const ContentSettings = () => {
                 pageAboutFollowersLabel: data.pageAboutFollowersLabel || "עוקבים בטיקטוק",
                 pageAboutVideos: data.pageAboutVideos || "+370",
                 pageAboutVideosLabel: data.pageAboutVideosLabel || "סירטונים ביוטיוב",
+
+                // Contact Page Defaults
+                contactEmail: data.contactEmail || "support@destiny.co.il",
+                contactAddress: data.contactAddress || "תל אביב, ישראל",
+                contactHours: data.contactHours || "אנחנו זמינים למענה בימים א'-ה' בין השעות 09:00 - 18:00.",
+                contactWeekendMsg: data.contactWeekendMsg || 'פניות שיתקבלו בסופ"ש יענו ביום ראשון.',
             });
             if (data.menuItems) {
                 setMenuItems(data.menuItems);
@@ -800,19 +812,58 @@ const ContentSettings = () => {
                             </div>
                         ))}
                     </div>
+                </CardContent>
+            </Card>
 
-                    <div className="flex justify-end pt-4">
-                        <Button
-                            onClick={handleSave}
-                            disabled={loading}
-                            className="bg-[#9F19FF] hover:bg-[#9F19FF]/90 text-white font-medium px-8 py-2 h-12 rounded-xl shadow-lg shadow-[#9F19FF]/20"
-                        >
+            <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
+                <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
+                    <CardTitle className="text-[#9F19FF]">דף צור קשר (Contact Page)</CardTitle>
+                    <CardDescription>עריכת המידע המוצג בדף צור קשר.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6 pt-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium">אימייל ליצירת קשר</label>
+                            <Input
+                                value={settings.contactEmail}
+                                onChange={(e) => setSettings({ ...settings, contactEmail: e.target.value })}
+                                dir="ltr"
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium">כתובת</label>
+                            <Input
+                                value={settings.contactAddress}
+                                onChange={(e) => setSettings({ ...settings, contactAddress: e.target.value })}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">שעות פעילות</label>
+                        <Input
+                            value={settings.contactHours}
+                            onChange={(e) => setSettings({ ...settings, contactHours: e.target.value })}
+                            placeholder="לדוגמה: אנחנו זמינים למענה בימים א'-ה' בין השעות 09:00 - 18:00."
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">הודעה משלימה (סופ&quot;ש/חגים)</label>
+                        <Input
+                            value={settings.contactWeekendMsg}
+                            onChange={(e) => setSettings({ ...settings, contactWeekendMsg: e.target.value })}
+                            placeholder='לדוגמה: פניות שיתקבלו בסופ"ש יענו ביום ראשון.'
+                        />
+                    </div>
+
+                    <div className="flex justify-end">
+                        <Button onClick={handleSave} disabled={loading} className="bg-[#9F19FF] text-white">
                             {loading ? 'שומר...' : 'שמור שינויים'}
                         </Button>
                     </div>
                 </CardContent>
             </Card>
-
             <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
                 <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
                     <CardTitle className="text-[#9F19FF]">דף אודות - עמוד ייעודי (About Page)</CardTitle>

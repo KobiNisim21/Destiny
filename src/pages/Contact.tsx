@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -18,6 +18,31 @@ const Contact = () => {
         phone: "",
         message: ""
     });
+
+    const [content, setContent] = useState({
+        contactEmail: "support@destiny.co.il",
+        contactAddress: "תל אביב, ישראל",
+        contactHours: "אנחנו זמינים למענה בימים א'-ה' בין השעות 09:00 - 18:00.",
+        contactWeekendMsg: "פניות שיתקבלו בסופ\"ש יענו ביום ראשון."
+    });
+
+    useEffect(() => {
+        const fetchContent = async () => {
+            try {
+                const res = await fetch(`${API_BASE_URL}/api/content`);
+                const data = await res.json();
+                setContent({
+                    contactEmail: data.contactEmail || "support@destiny.co.il",
+                    contactAddress: data.contactAddress || "תל אביב, ישראל",
+                    contactHours: data.contactHours || "אנחנו זמינים למענה בימים א'-ה' בין השעות 09:00 - 18:00.",
+                    contactWeekendMsg: data.contactWeekendMsg || "פניות שיתקבלו בסופ\"ש יענו ביום ראשון."
+                });
+            } catch (error) {
+                console.error("Failed to fetch contact content:", error);
+            }
+        };
+        fetchContent();
+    }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -77,7 +102,7 @@ const Contact = () => {
                                     </div>
                                     <div>
                                         <p className="font-semibold">אימייל</p>
-                                        <p>support@destiny.co.il</p>
+                                        <p>{content.contactEmail}</p>
                                     </div>
                                 </div>
 
@@ -87,7 +112,7 @@ const Contact = () => {
                                     </div>
                                     <div>
                                         <p className="font-semibold">כתובת</p>
-                                        <p>תל אביב, ישראל</p>
+                                        <p>{content.contactAddress}</p>
                                     </div>
                                 </div>
                             </div>
@@ -96,8 +121,9 @@ const Contact = () => {
                             <div className="bg-gradient-to-br from-[#9F19FF] to-[#7DE400] p-8 rounded-2xl text-white shadow-lg">
                                 <h3 className="text-2xl font-bold mb-4">שירות לקוחות</h3>
                                 <p className="mb-4 text-white/90">
-                                    אנחנו זמינים למענה בימים א'-ה' בין השעות 09:00 - 18:00.
-                                    פניות שיתקבלו בסופ"ש יענו ביום ראשון.
+                                    {content.contactHours}
+                                    <br />
+                                    {content.contactWeekendMsg}
                                 </p>
                             </div>
                         </div>
