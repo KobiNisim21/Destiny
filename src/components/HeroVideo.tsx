@@ -51,57 +51,69 @@ const HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)
   return (
     <section className="hero-video-section" dir="rtl">
       {/* Hero Banner Container */}
-      <div className="hero-video-container">
-        {youtubeId ? (
-          <iframe
-            width="100%"
-            height="100%"
-            src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&showinfo=0&rel=0&modestbranding=1`}
-            title="Hero Video"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', pointerEvents: 'none' }}
-          ></iframe>
-        ) : (
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            key={videoSrc} // Force reload on source change
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          >
-            <source src={videoSrc} type="video/mp4" />
-          </video>
-        )}
+      <div className="hero-video-wrapper">
+        <div className="hero-video-container">
+          {youtubeId ? (
+            <iframe
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&showinfo=0&rel=0&modestbranding=1`}
+              title="Hero Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', pointerEvents: 'none' }}
+            ></iframe>
+          ) : (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              key={videoSrc} // Force reload on source change
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            >
+              <source src={videoSrc} type="video/mp4" />
+            </video>
+          )}
+        </div>
       </div>
 
       {/* Info Bar */}
       <div className="info-bar">
-        {displayInfoItems.map((item, index) => (
-          <div key={index} className="flex items-center">
-            <div className="info-item">
-              {getIcon(item.icon)}
-              <div className="info-text">
-                <span className="info-title">{item.title}</span>
-                <span className="info-subtitle">{item.subtitle}</span>
+        <div className="info-bar-content">
+          {displayInfoItems.map((item, index) => (
+            <div key={index} className="flex items-center">
+              <div className="info-item">
+                {getIcon(item.icon)}
+                <div className="info-text">
+                  <span className="info-title">{item.title}</span>
+                  <span className="info-subtitle">{item.subtitle}</span>
+                </div>
               </div>
+              {index < displayInfoItems.length - 1 && <div className="info-divider" />}
             </div>
-            {index < displayInfoItems.length - 1 && <div className="info-divider" />}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       <style>{`
         .hero-video-section {
           padding-top: 80px;
-          padding-left: 16px;
-          padding-right: 16px;
+          /* Removed side padding from section to allow full width info bar */
           display: flex;
           flex-direction: column;
           align-items: center;
           width: 100%;
           overflow: hidden;
+        }
+
+        /* Wrapper for video to maintain side spacing */
+        .hero-video-wrapper {
+          width: 100%;
+          padding-left: 16px;
+          padding-right: 16px;
+          display: flex;
+          justify-content: center;
         }
 
         /* Hero Container */
@@ -110,7 +122,7 @@ const HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)
           width: 100%;
           max-width: 1400px;
           aspect-ratio: 16/9;
-          max-height: 80vh; /* Prevent it from being too tall on huge screens */
+          max-height: 80vh; 
           margin: 0 auto;
           display: block;
           border-radius: 24px;
@@ -121,15 +133,14 @@ const HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)
         @media (min-width: 1024px) {
             .hero-video-container {
                 border-radius: 64px;
-                aspect-ratio: 21/9; /* Cinematic on desktop */
+                aspect-ratio: 21/9; 
                 max-height: 700px;
             }
         }
 
-        /* Info Bar */
+        /* Info Bar Background Strip */
         .info-bar {
           width: 100%;
-          max-width: 1400px;
           min-height: 80px;
           background: linear-gradient(
             90deg,
@@ -140,14 +151,23 @@ const HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)
             #19260A 100%
           );
           box-shadow: 0 0 11.6px 0 rgba(0, 0, 0, 0.22) inset;
-          border-radius: 16px;
-          padding: 20px;
-          display: flex;
-          flex-wrap: wrap; 
-          align-items: center;
-          justify-content: space-around; /* Distribute items evenly */
-          gap: 20px;
           margin-top: 30px;
+          display: flex;
+          justify-content: center;
+          /* Explicitly No Border Radius on Desktop/Default */
+          border-radius: 0;
+        }
+
+        /* Info Bar Content Container */
+        .info-bar-content {
+           width: 100%;
+           max-width: 1400px;
+           display: flex;
+           flex-wrap: wrap; 
+           align-items: center;
+           justify-content: space-around;
+           gap: 20px;
+           padding: 20px;
         }
 
         .info-item {
@@ -159,7 +179,7 @@ const HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)
         }
 
         .info-icon {
-          width: 40px; /* Slightly smaller for better fit */
+          width: 40px; 
           height: 40px;
           flex-shrink: 0;
           filter: brightness(0) invert(1);
@@ -174,7 +194,7 @@ const HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)
 
         .info-title {
           color: #ffffff;
-          font-size: clamp(16px, 1.5vw, 20px); /* Fluid font size */
+          font-size: clamp(16px, 1.5vw, 20px); 
           font-weight: 600;
           font-family: "Noto Sans Hebrew", "Assistant", sans-serif;
           direction: rtl;
@@ -189,29 +209,47 @@ const HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)
         }
 
         .info-divider {
-          display: none; /* Flex gap handles spacing */
+          display: none; 
         }
 
         /* Mobile specific adjustments */
         @media (max-width: 768px) {
           .hero-video-section {
-            padding-top: 100px; /* Space for fixed navbar */
+            padding-top: 100px; 
             padding-bottom: 20px;
+            /* Restore structural padding for mobile so card looks contained */
+            padding-left: 16px;
+            padding-right: 16px;
+          }
+
+          .hero-video-wrapper {
+             padding: 0; /* Padding is handled by section on mobile */
           }
 
           .hero-video-container {
             border-radius: 16px;
-            aspect-ratio: 4/3; /* Taller on mobile for impact */
+            aspect-ratio: 4/3; 
             max-height: 60vh;
           }
 
+          /* Restore Card Look for Info Bar on Mobile */
           .info-bar {
+             background: transparent; /* Reset background of wrapper */
+             box-shadow: none;
+             margin-top: 20px;
+             display: block; /* Simplifies layout */
+             border-radius: 16px;
+             overflow: hidden; /* For the inner background */
+          }
+
+          .info-bar-content {
             flex-direction: column;
-            align-items: stretch; /* Full width items */
+            align-items: stretch; 
             gap: 16px;
             padding: 20px;
-            margin-top: 20px;
-            background: #111; /* Simpler background logic */
+            background: #111; /* Actual mobile background */
+            border-radius: 16px;
+            width: 100%;
           }
 
           .info-item {
