@@ -207,6 +207,12 @@ All colors MUST be HSL.
   .text-right-forced {
     text-align: right !important;
   }
+
+  /* SweetAlert2 RTL Support */
+  div:where(.swal2-container) div:where(.swal2-popup) {
+    direction: rtl !important;
+    font-family: "Noto Sans Hebrew", sans-serif !important;
+  }
 }
 
 /* Navbar styles are now in Navbar.tsx component */

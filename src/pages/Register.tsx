@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -68,9 +69,24 @@ const Register = () => {
                 throw new Error(data.message || "Something went wrong");
             }
 
-            toast({
-                title: "ההרשמה הצליחה!",
-                description: "שלחנו לך מייל לאימות החשבון. יש לאמת את המייל לפני ההתחברות.",
+
+
+            // ... (inside component)
+
+            if (!response.ok) {
+                throw new Error(data.message || "Something went wrong");
+            }
+
+            // Replace Toast with SweetAlert2
+            await Swal.fire({
+                title: 'הרשמה בוצעה בהצלחה!',
+                text: 'שלחנו לך מייל לאימות החשבון. חובה לאמת את כתובת המייל לפני שתוכל להתחבר לאתר.',
+                icon: 'success',
+                confirmButtonText: 'הבנתי, תודה',
+                confirmButtonColor: '#9F19FF',
+                customClass: {
+                    popup: 'rtl-swal' // Optional class if we need specific RTL tweaks beyond browser default
+                }
             });
 
             navigate("/login");
