@@ -57,10 +57,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
             }
 
             return [...currentItems, {
-                productId: product._id,
-                name: product.name,
+                productId: product._id || product.id,
+                name: product.name || product.title || "Product",
                 price: product.price,
-                image: product.images && product.images.length > 0 ? product.images[0] : '', // Handle dynamic image structure
+                // Robust image selection: explicit image -> mainImage -> images[0] -> fallback
+                image: product.image || product.mainImage || (product.images && product.images.length > 0 ? product.images[0] : '') || '',
                 quantity
             }];
         });

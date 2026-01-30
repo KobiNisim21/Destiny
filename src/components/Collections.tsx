@@ -232,7 +232,11 @@ const Collections = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                             onClick={(e) => {
                               e.preventDefault();
                               e.stopPropagation();
-                              addToCart(product);
+                              addToCart({
+                                ...product,
+                                name: getProductName(product),
+                                image: getImageUrl(product, 0)
+                              });
                             }}
                             className="absolute top-4 left-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 bg-transparent border-none p-0 cursor-pointer"
                           >
