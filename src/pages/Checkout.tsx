@@ -169,7 +169,7 @@ const Checkout = () => {
 
             const orderData = {
                 items: items.map(item => ({
-                    productId: item.productId,
+                    product: item.productId,
                     name: item.name,
                     price: item.price,
                     quantity: item.quantity,
