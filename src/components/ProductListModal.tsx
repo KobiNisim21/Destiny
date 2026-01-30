@@ -90,12 +90,6 @@ const ProductListModal = ({ isOpen, onClose, title, products }: ProductListModal
                     <DialogTitle className="text-3xl font-bold text-center text-[#22222A] font-['Noto_Sans_Hebrew']">
                         {title}
                     </DialogTitle>
-                    <button
-                        onClick={onClose}
-                        className="absolute left-4 top-4 p-2 rounded-full hover:bg-black/5 transition-colors"
-                    >
-                        <X size={24} className="text-[#22222A]" />
-                    </button>
                 </DialogHeader>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center pb-8">

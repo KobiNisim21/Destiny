@@ -191,7 +191,7 @@ All colors MUST be HSL.
     }
 
     50% {
-      opacity: 0;
+      opacity: 0.3;
     }
   }
 
