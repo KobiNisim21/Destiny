@@ -347,9 +347,30 @@ const Checkout = () => {
                             <CardContent className="space-y-4">
                                 <div className="space-y-2">
                                     {items.map(item => (
-                                        <div key={item.productId} className="flex justify-between text-sm">
-                                            <span>{item.name} x {item.quantity}</span>
-                                            <span>₪{(item.price * item.quantity).toFixed(2)}</span>
+                                        <div key={item.productId} className="flex justify-between items-center text-sm gap-4">
+                                            <div className="flex items-center gap-3 flex-1">
+                                                <div className="w-12 h-12 bg-gray-100 rounded-md overflow-hidden shrink-0 border border-gray-200">
+                                                    {item.image ? (
+                                                        <img
+                                                            src={item.image}
+                                                            alt={item.name}
+                                                            className="w-full h-full object-cover"
+                                                            onError={(e) => {
+                                                                (e.target as HTMLImageElement).style.display = 'none';
+                                                            }}
+                                                        />
+                                                    ) : (
+                                                        <div className="w-full h-full flex items-center justify-center bg-gray-100 text-xs text-gray-400">
+                                                            <span>אין תמונה</span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                <div className="flex flex-col">
+                                                    <span className="font-medium text-gray-800">{item.name}</span>
+                                                    <span className="text-xs text-gray-500">כמות: {item.quantity}</span>
+                                                </div>
+                                            </div>
+                                            <span className="font-semibold text-gray-900">₪{(item.price * item.quantity).toFixed(2)}</span>
                                         </div>
                                     ))}
                                 </div>
