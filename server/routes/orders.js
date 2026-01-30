@@ -31,7 +31,7 @@ router.post('/', verifyToken, validateRequest(orderSchema), async (req, res) => 
             verifiedItems.push({
                 ...item,
                 price: product.price, // Force DB price
-                product: product._id
+                productId: product._id // Mapped to productId as expected by Mongoose model
             });
         }
 
