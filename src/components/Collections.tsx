@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useState, useEffect } from "react";
 import ProductListModal, { Product } from "./ProductListModal";
+import { useCart } from "@/context/CartContext";
 import API_BASE_URL from "@/config";
 
 // New Trinkets Images
@@ -62,6 +63,7 @@ const DEFAULT_TRINKETS: Product[] = [
 
 const Collections = ({ products: dbProducts = [] }: { products?: Product[] }) => {
   const [displaySlots, setDisplaySlots] = useState<Product[]>([]);
+  const { addToCart } = useCart();
   const [loading, setLoading] = useState(true);
   const [allTrinkets, setAllTrinkets] = useState<Product[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -226,11 +228,18 @@ const Collections = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                           <img src={hoverImage} alt={getProductName(product)} className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100 z-0" />
 
                           {/* Cart Icon (Hover) */}
-                          <div className="absolute top-4 left-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                            <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg" style={{ backgroundColor: '#7DE400' }}>
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              addToCart(product);
+                            }}
+                            className="absolute top-4 left-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 bg-transparent border-none p-0 cursor-pointer"
+                          >
+                            <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg hover:scale-110 transition-transform" style={{ backgroundColor: '#7DE400' }}>
                               <ShoppingBag className="w-5 h-5 text-white" />
                             </div>
-                          </div>
+                          </button>
 
                           {badgeText && <Badge className="relative z-10 font-bold px-3 py-1"
                             style={{
