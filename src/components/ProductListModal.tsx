@@ -87,6 +87,13 @@ const ProductListModal = ({ isOpen, onClose, title, products }: ProductListModal
         <Dialog open={isOpen} onOpenChange={onClose}>
             <DialogContent className="max-w-6xl h-[90vh] max-h-[90vh] flex flex-col bg-[#F9F5FF] border-none p-0 overflow-hidden" dir="rtl">
                 <DialogHeader className="p-6 pb-2 mb-0 shrink-0 relative z-10 bg-[#F9F5FF]">
+                    <button
+                        onClick={onClose}
+                        className="absolute right-6 top-6 p-2 rounded-full hover:bg-black/5 transition-colors z-50"
+                        aria-label="Close"
+                    >
+                        <X className="w-6 h-6 text-[#22222A]" />
+                    </button>
                     <DialogTitle className="text-3xl font-bold text-center text-[#22222A] font-['Noto_Sans_Hebrew']">
                         {title}
                     </DialogTitle>
