@@ -117,7 +117,7 @@ const Footer = () => {
       <style>{`
         .site-footer {
             background: linear-gradient(180deg, #16172E 0%, #3E1B63 100%);
-            padding: 20px 300px;
+            padding: 20px 4%;
             height: 118px;
             display: flex;
             align-items: center;
