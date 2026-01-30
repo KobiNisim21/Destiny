@@ -19,11 +19,10 @@ import { useState, useEffect } from "react";
 import destinyLogo from "@/assets/destiny-logo-new.png";
 
 const AdminLayout = () => {
-    const { logout } = useAuth();
+    const { logout, user } = useAuth(); // Destructure user
     const location = useLocation();
     const navigate = useNavigate();
 
-    // Check if mobile (initially and on resize)
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     // On mobile, default to closed (false). On desktop, default to open (true).
     const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
@@ -49,17 +48,24 @@ const AdminLayout = () => {
         }
     }, [location.pathname, isMobile]);
 
-
-    const navItems = [
-        { label: "לוח בקרה", path: "/admin", icon: <LayoutDashboard size={20} /> },
-        { label: "מוצרים", path: "/admin/products", icon: <ShoppingBag size={20} /> },
-        { label: "הזמנות", path: "/admin/orders", icon: <Package size={20} /> },
-        { label: "קופונים", path: "/admin/coupons", icon: <Tag size={20} /> },
-        { label: "ניהול צוות", path: "/admin/users", icon: <Users size={20} /> },
-        { label: "שיווק וניוזלטר", path: "/admin/marketing", icon: <Mail size={20} /> },
-        { label: "דפי מדיניות ותנאים", path: "/admin/policies", icon: <BookOpen size={20} /> },
-        { label: "תוכן והגדרות", path: "/admin/content", icon: <Settings size={20} /> },
+    // Navigation Items with Permissions
+    const allNavItems = [
+        { label: "לוח בקרה", path: "/admin", icon: <LayoutDashboard size={20} />, requiredPermission: 'view_dashboard' },
+        { label: "מוצרים", path: "/admin/products", icon: <ShoppingBag size={20} />, requiredPermission: 'manage_products' },
+        { label: "הזמנות", path: "/admin/orders", icon: <Package size={20} />, requiredPermission: 'manage_orders' },
+        { label: "קופונים", path: "/admin/coupons", icon: <Tag size={20} />, requiredPermission: 'manage_orders' },
+        { label: "ניהול צוות", path: "/admin/users", icon: <Users size={20} />, requiredPermission: 'manage_team' },
+        { label: "שיווק וניוזלטר", path: "/admin/marketing", icon: <Mail size={20} />, requiredPermission: 'manage_content' },
+        { label: "דפי מדיניות ותנאים", path: "/admin/policies", icon: <BookOpen size={20} />, requiredPermission: 'manage_content' },
+        { label: "תוכן והגדרות", path: "/admin/content", icon: <Settings size={20} />, requiredPermission: 'manage_content' },
     ];
+
+    // Filter items based on user role/permissions
+    const navItems = allNavItems.filter(item => {
+        if (!user) return false;
+        if (user.isSuperAdmin) return true; // Super Admin sees everything
+        return user.permissions?.includes(item.requiredPermission);
+    });
 
     const handleLogout = () => {
         logout();
