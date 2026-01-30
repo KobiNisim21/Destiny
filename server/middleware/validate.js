@@ -43,9 +43,9 @@ export const orderSchema = z.object({
     shippingAddress: z.object({
         firstName: z.string().min(2, "First name is required"),
         lastName: z.string().min(2, "Last name is required"),
-        email: z.string().email("Invalid email"),
+        // email: z.string().email("Invalid email").optional(), // Not required in shipping address as we use authenticated user
         phone: z.string().min(9, "Phone number is required"),
-        address: z.string().min(5, "Address is required"),
+        street: z.string().min(5, "Address is required"), // Renamed from address to street
         city: z.string().min(2, "City is required"),
         zipCode: z.string().min(2, "Zip code is required")
     })
