@@ -236,14 +236,12 @@ const Navbar = () => {
           border-radius: 140px;
           border: none;
           background: linear-gradient(
-            90deg,
-            #271C2F 0%,
-            #0A0A0A 31.73%,
-            #0A0A0A 56.4%,
-            #0A0A0A 66.83%,
-            #19260A 100%
+            180deg,
+            #16172E 0%,
+            #3E1B63 100%
           );
           box-shadow: 0 0 15px 0 #872B8F;
+          overflow: visible; /* Allow neon glow to spread freely */
         }
 
         /* Inner frame with white border */
@@ -321,12 +319,13 @@ const Navbar = () => {
           display: flex;
           align-items: center;
           gap: 12px;
+          overflow: visible; /* Allow neon glow to spread freely */
         }
 
         .nav-icon-btn {
           position: relative;
-          width: 44px;
-          height: 44px;
+          width: 60px;
+          height: 60px;
           background: transparent;
           border: 0;
           box-shadow: none;
@@ -336,6 +335,7 @@ const Navbar = () => {
           justify-content: center;
           cursor: pointer;
           transition: transform 0.15s ease, opacity 0.15s ease;
+          overflow: visible; /* Allow neon glow to spread freely */
         }
 
         .nav-icon-btn:hover {
@@ -349,9 +349,12 @@ const Navbar = () => {
           transition: all 0.3s ease;
         }
 
+        .nav-icon-btn:hover .icon {
+          filter: drop-shadow(0 0 3px #E6FFB3) drop-shadow(0 0 8px #ccff00) drop-shadow(0 0 12px #ccff00);
+        }
+
         .nav-icon-btn:hover .icon path {
           fill: #E6FFB3;
-          filter: drop-shadow(0 0 2px #E6FFB3) drop-shadow(0 0 5px #ccff00);
         }
 
         /* badge */

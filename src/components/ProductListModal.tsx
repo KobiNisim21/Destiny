@@ -119,10 +119,11 @@ const ProductListModal = ({ isOpen, onClose, title, products }: ProductListModal
                                         height: '450px'
                                     }}>
                                         <div
-                                            className="overflow-hidden h-full flex flex-col transition-all duration-300 relative group-hover:-translate-y-1 bg-[#202027] group-hover:bg-white shadow-md hover:shadow-xl"
+                                            className="overflow-hidden h-full flex flex-col transition-all duration-300 relative group-hover:-translate-y-1 group-hover:bg-white shadow-md hover:shadow-xl"
                                             style={{
                                                 borderRadius: '24px',
-                                                height: '450px'
+                                                height: '450px',
+                                                background: 'linear-gradient(180deg, #16172E 0%, #3E1B63 100%)'
                                             }}>
 
                                             {/* Image Container */}

@@ -38,7 +38,7 @@ All colors MUST be HSL.
 
     --radius: 1rem;
 
-    --gradient-primary: linear-gradient(135deg, hsl(270 60% 75%), hsl(290 65% 85%));
+    --gradient-primary: linear-gradient(90deg, #391B5C 0%, #9F19FF 100%);
     --gradient-warm: linear-gradient(135deg, hsl(20 90% 80%), hsl(340 85% 85%));
     --gradient-hero: linear-gradient(180deg, hsl(270 40% 97%), hsl(0 0% 100%));
     --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(270 30% 98%));
@@ -96,7 +96,7 @@ All colors MUST be HSL.
     --input: 240 10% 25%;
     --ring: 270 60% 70%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(270 50% 40%), hsl(290 55% 50%));
+    --gradient-primary: linear-gradient(90deg, #391B5C 0%, #9F19FF 100%);
     --gradient-warm: linear-gradient(135deg, hsl(20 80% 45%), hsl(340 75% 55%));
     --gradient-hero: linear-gradient(180deg, hsl(240 10% 15%), hsl(240 10% 12%));
     --gradient-card: linear-gradient(135deg, hsl(240 10% 15%), hsl(270 20% 18%));

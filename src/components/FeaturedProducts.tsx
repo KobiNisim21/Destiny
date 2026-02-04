@@ -180,7 +180,7 @@ const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) 
                 height: '450px'
               }}>
                 <div
-                  className="overflow-hidden h-full flex flex-col transition-all duration-300 relative group-hover:-translate-y-1 bg-[#202027] group-hover:bg-white shadow-[0_8px_18.7px_-7px_#9F19FF] group-hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2),0_10px_20px_-5px_rgba(125,228,0,0.4)]"
+                  className="overflow-hidden h-full flex flex-col transition-all duration-300 relative group-hover:-translate-y-1 group-hover:bg-white shadow-[0_8px_18.7px_-7px_#9F19FF] group-hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2),0_10px_20px_-5px_rgba(125,228,0,0.4)]"
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -188,7 +188,8 @@ const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) 
                     gap: '2px', // GAP REDUCED TO 2PX as requested
                     borderRadius: '24px',
                     height: '450px',
-                    width: '100%'
+                    width: '100%',
+                    background: 'linear-gradient(180deg, #16172E 0%, #3E1B63 100%)'
                   }}>
 
                   {/* Image Container */}

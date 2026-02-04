@@ -112,6 +112,7 @@ const HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)
           width: 100%;
           padding-left: 16px;
           padding-right: 16px;
+          padding-bottom: 40px; /* Space for shadow glow */
           display: flex;
           justify-content: center;
         }
@@ -122,7 +123,6 @@ const HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)
           width: 100%;
           max-width: 1400px;
           aspect-ratio: 16/9;
-          max-height: 80vh; 
           margin: 0 auto;
           display: block;
           border-radius: 24px;
@@ -140,6 +140,7 @@ const HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)
 
         /* Info Bar Background Strip */
         .info-bar {
+          display: none !important; /* HIDDEN - Remove this line to restore the info bar */
           width: 100%;
           min-height: 80px;
           background: linear-gradient(
@@ -152,7 +153,6 @@ const HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)
           );
           box-shadow: 0 0 11.6px 0 rgba(0, 0, 0, 0.22) inset;
           margin-top: 30px;
-          display: flex;
           justify-content: center;
           /* Explicitly No Border Radius on Desktop/Default */
           border-radius: 0;

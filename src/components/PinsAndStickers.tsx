@@ -170,7 +170,7 @@ const PinsAndStickers = ({ products: dbProducts = [] }: { products?: Product[] }
                                             height: '450px'
                                         }}>
                                             <div
-                                                className="overflow-hidden h-full flex flex-col transition-all duration-300 relative group-hover:-translate-y-1 bg-[#202027] group-hover:bg-white shadow-[0_8px_18.7px_-7px_#9F19FF] group-hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2),0_10px_20px_-5px_rgba(125,228,0,0.4)]"
+                                                className="overflow-hidden h-full flex flex-col transition-all duration-300 relative group-hover:-translate-y-1 group-hover:bg-white shadow-[0_8px_18.7px_-7px_#9F19FF] group-hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2),0_10px_20px_-5px_rgba(125,228,0,0.4)]"
                                                 style={{
                                                     display: 'flex',
                                                     flexDirection: 'column',
@@ -178,7 +178,8 @@ const PinsAndStickers = ({ products: dbProducts = [] }: { products?: Product[] }
                                                     gap: '2px',
                                                     borderRadius: '24px',
                                                     height: '450px',
-                                                    width: '310px'
+                                                    width: '310px',
+                                                    background: 'linear-gradient(180deg, #16172E 0%, #3E1B63 100%)'
                                                 }}>
 
                                                 {/* Image Container - White BG */}
@@ -234,7 +235,7 @@ const PinsAndStickers = ({ products: dbProducts = [] }: { products?: Product[] }
                                                 <div className="w-full px-5 pb-[70px] flex flex-col flex-1 relative duration-300">
 
                                                     {/* Dark BG base to allow hover light */}
-                                                    <div className="absolute inset-0 bg-[#202027] group-hover:bg-white transition-colors duration-300 -z-10" />
+                                                    <div className="absolute inset-0 group-hover:bg-white transition-colors duration-300 -z-10" style={{ background: 'linear-gradient(180deg, #16172E 0%, #3E1B63 100%)' }} />
 
                                                     {/* Title */}
                                                     <h3 className="mb-1 text-[#F2F2F2] transition-colors duration-300 group-hover:text-[#7DE400]" style={{
