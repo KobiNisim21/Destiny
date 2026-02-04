@@ -1,0 +1,2456 @@
+[1mdiff --git a/.agent/skills/responsive-design/SKILL.md b/.agent/skills/responsive-design/SKILL.md[m
+[1mdeleted file mode 100644[m
+[1mindex f4232ea..0000000[m
+[1m--- a/.agent/skills/responsive-design/SKILL.md[m
+[1m+++ /dev/null[m
+[36m@@ -1,524 +0,0 @@[m
+[31m----[m
+[31m-name: responsive-design[m
+[31m-description: Implement modern responsive layouts using container queries, fluid typography, CSS Grid, and mobile-first breakpoint strategies. Use when building adaptive interfaces, implementing fluid layouts, or creating component-level responsive behavior.[m
+[31m----[m
+[31m-[m
+[31m-# Responsive Design[m
+[31m-[m
+[31m-Master modern responsive design techniques to create interfaces that adapt seamlessly across all screen sizes and device contexts.[m
+[31m-[m
+[31m-## When to Use This Skill[m
+[31m-[m
+[31m-- Implementing mobile-first responsive layouts[m
+[31m-- Using container queries for component-based responsiveness[m
+[31m-- Creating fluid typography and spacing scales[m
+[31m-- Building complex layouts with CSS Grid and Flexbox[m
+[31m-- Designing breakpoint strategies for design systems[m
+[31m-- Implementing responsive images and media[m
+[31m-- Creating adaptive navigation patterns[m
+[31m-- Building responsive tables and data displays[m
+[31m-[m
+[31m-## Core Capabilities[m
+[31m-[m
+[31m-### 1. Container Queries[m
+[31m-[m
+[31m-- Component-level responsiveness independent of viewport[m
+[31m-- Container query units (cqi, cqw, cqh)[m
+[31m-- Style queries for conditional styling[m
+[31m-- Fallbacks for browser support[m
+[31m-[m
+[31m-### 2. Fluid Typography & Spacing[m
+[31m-[m
+[31m-- CSS clamp() for fluid scaling[m
+[31m-- Viewport-relative units (vw, vh, dvh)[m
+[31m-- Fluid type scales with min/max bounds[m
+[31m-- Responsive spacing systems[m
+[31m-[m
+[31m-### 3. Layout Patterns[m
+[31m-[m
+[31m-- CSS Grid for 2D layouts[m
+[31m-- Flexbox for 1D distribution[m
+[31m-- Intrinsic layouts (content-based sizing)[m
+[31m-- Subgrid for nested grid alignment[m
+[31m-[m
+[31m-### 4. Breakpoint Strategy[m
+[31m-[m
+[31m-- Mobile-first media queries[m
+[31m-- Content-based breakpoints[m
+[31m-- Design token integration[m
+[31m-- Feature queries (@supports)[m
+[31m-[m
+[31m-## Quick Reference[m
+[31m-[m
+[31m-### Modern Breakpoint Scale[m
+[31m-[m
+[31m-```css[m
+[31m-/* Mobile-first breakpoints */[m
+[31m-/* Base: Mobile (< 640px) */[m
+[31m-@media (min-width: 640px) {[m
+[31m-  /* sm: Landscape phones, small tablets */[m
+[31m-}[m
+[31m-@media (min-width: 768px) {[m
+[31m-  /* md: Tablets */[m
+[31m-}[m
+[31m-@media (min-width: 1024px) {[m
+[31m-  /* lg: Laptops, small desktops */[m
+[31m-}[m
+[31m-@media (min-width: 1280px) {[m
+[31m-  /* xl: Desktops */[m
+[31m-}[m
+[31m-@media (min-width: 1536px) {[m
+[31m-  /* 2xl: Large desktops */[m
+[31m-}[m
+[31m-[m
+[31m-/* Tailwind CSS equivalent */[m
+[31m-/* sm:  @media (min-width: 640px) */[m
+[31m-/* md:  @media (min-width: 768px) */[m
+[31m-/* lg:  @media (min-width: 1024px) */[m
+[31m-/* xl:  @media (min-width: 1280px) */[m
+[31m-/* 2xl: @media (min-width: 1536px) */[m
+[31m-```[m
+[31m-[m
+[31m-## Key Patterns[m
+[31m-[m
+[31m-### Pattern 1: Container Queries[m
+[31m-[m
+[31m-```css[m
+[31m-/* Define a containment context */[m
+[31m-.card-container {[m
+[31m-  container-type: inline-size;[m
+[31m-  container-name: card;[m
+[31m-}[m
+[31m-[m
+[31m-/* Query the container, not the viewport */[m
+[31m-@container card (min-width: 400px) {[m
+[31m-  .card {[m
+[31m-    display: grid;[m
+[31m-    grid-template-columns: 200px 1fr;[m
+[31m-    gap: 1rem;[m
+[31m-  }[m
+[31m-[m
+[31m-  .card-image {[m
+[31m-    aspect-ratio: 1;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-@container card (min-width: 600px) {[m
+[31m-  .card {[m
+[31m-    grid-template-columns: 250px 1fr;[m
+[31m-  }[m
+[31m-[m
+[31m-  .card-title {[m
+[31m-    font-size: 1.5rem;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* Container query units */[m
+[31m-.card-title {[m
+[31m-  /* 5% of container width, clamped between 1rem and 2rem */[m
+[31m-  font-size: clamp(1rem, 5cqi, 2rem);[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-```tsx[m
+[31m-// React component with container queries[m
+[31m-function ResponsiveCard({ title, image, description }) {[m
+[31m-  return ([m
+[31m-    <div className="@container">[m
+[31m-      <article className="flex flex-col @md:flex-row @md:gap-4">[m
+[31m-        <img[m
+[31m-          src={image}[m
+[31m-          alt=""[m
+[31m-          className="w-full @md:w-48 @lg:w-64 aspect-video @md:aspect-square object-cover"[m
+[31m-        />[m
+[31m-        <div className="p-4 @md:p-0">[m
+[31m-          <h2 className="text-lg @md:text-xl @lg:text-2xl font-semibold">[m
+[31m-            {title}[m
+[31m-          </h2>[m
+[31m-          <p className="mt-2 text-muted-foreground @md:line-clamp-3">[m
+[31m-            {description}[m
+[31m-          </p>[m
+[31m-        </div>[m
+[31m-      </article>[m
+[31m-    </div>[m
+[31m-  );[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Pattern 2: Fluid Typography[m
+[31m-[m
+[31m-```css[m
+[31m-/* Fluid type scale using clamp() */[m
+[31m-:root {[m
+[31m-  /* Min size, preferred (fluid), max size */[m
+[31m-  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);[m
+[31m-  --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);[m
+[31m-  --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);[m
+[31m-  --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);[m
+[31m-  --text-xl: clamp(1.25rem, 1rem + 1.25vw, 1.5rem);[m
+[31m-  --text-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);[m
+[31m-  --text-3xl: clamp(1.875rem, 1.5rem + 1.875vw, 2.5rem);[m
+[31m-  --text-4xl: clamp(2.25rem, 1.75rem + 2.5vw, 3.5rem);[m
+[31m-}[m
+[31m-[m
+[31m-/* Usage */[m
+[31m-h1 {[m
+[31m-  font-size: var(--text-4xl);[m
+[31m-}[m
+[31m-h2 {[m
+[31m-  font-size: var(--text-3xl);[m
+[31m-}[m
+[31m-h3 {[m
+[31m-  font-size: var(--text-2xl);[m
+[31m-}[m
+[31m-p {[m
+[31m-  font-size: var(--text-base);[m
+[31m-}[m
+[31m-[m
+[31m-/* Fluid spacing scale */[m
+[31m-:root {[m
+[31m-  --space-xs: clamp(0.25rem, 0.2rem + 0.25vw, 0.5rem);[m
+[31m-  --space-sm: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);[m
+[31m-  --space-md: clamp(1rem, 0.8rem + 1vw, 1.5rem);[m
+[31m-  --space-lg: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);[m
+[31m-  --space-xl: clamp(2rem, 1.5rem + 2.5vw, 4rem);[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-```tsx[m
+[31m-// Utility function for fluid values[m
+[31m-function fluidValue([m
+[31m-  minSize: number,[m
+[31m-  maxSize: number,[m
+[31m-  minWidth = 320,[m
+[31m-  maxWidth = 1280,[m
+[31m-) {[m
+[31m-  const slope = (maxSize - minSize) / (maxWidth - minWidth);[m
+[31m-  const yAxisIntersection = -minWidth * slope + minSize;[m
+[31m-[m
+[31m-  return `clamp(${minSize}rem, ${yAxisIntersection.toFixed(4)}rem + ${(slope * 100).toFixed(4)}vw, ${maxSize}rem)`;[m
+[31m-}[m
+[31m-[m
+[31m-// Generate fluid type scale[m
+[31m-const fluidTypeScale = {[m
+[31m-  sm: fluidValue(0.875, 1),[m
+[31m-  base: fluidValue(1, 1.125),[m
+[31m-  lg: fluidValue(1.25, 1.5),[m
+[31m-  xl: fluidValue(1.5, 2),[m
+[31m-  "2xl": fluidValue(2, 3),[m
+[31m-};[m
+[31m-```[m
+[31m-[m
+[31m-### Pattern 3: CSS Grid Responsive Layout[m
+[31m-[m
+[31m-```css[m
+[31m-/* Auto-fit grid - items wrap automatically */[m
+[31m-.grid-auto {[m
+[31m-  display: grid;[m
+[31m-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));[m
+[31m-  gap: 1.5rem;[m
+[31m-}[m
+[31m-[m
+[31m-/* Auto-fill grid - maintains empty columns */[m
+[31m-.grid-auto-fill {[m
+[31m-  display: grid;[m
+[31m-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));[m
+[31m-  gap: 1rem;[m
+[31m-}[m
+[31m-[m
+[31m-/* Responsive grid with named areas */[m
+[31m-.page-layout {[m
+[31m-  display: grid;[m
+[31m-  grid-template-areas:[m
+[31m-    "header"[m
+[31m-    "main"[m
+[31m-    "sidebar"[m
+[31m-    "footer";[m
+[31m-  gap: 1rem;[m
+[31m-}[m
+[31m-[m
+[31m-@media (min-width: 768px) {[m
+[31m-  .page-layout {[m
+[31m-    grid-template-columns: 1fr 300px;[m
+[31m-    grid-template-areas:[m
+[31m-      "header header"[m
+[31m-      "main sidebar"[m
+[31m-      "footer footer";[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-@media (min-width: 1024px) {[m
+[31m-  .page-layout {[m
+[31m-    grid-template-columns: 250px 1fr 300px;[m
+[31m-    grid-template-areas:[m
+[31m-      "header header header"[m
+[31m-      "nav main sidebar"[m
+[31m-      "footer footer footer";[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-.header {[m
+[31m-  grid-area: header;[m
+[31m-}[m
+[31m-.main {[m
+[31m-  grid-area: main;[m
+[31m-}[m
+[31m-.sidebar {[m
+[31m-  grid-area: sidebar;[m
+[31m-}[m
+[31m-.footer {[m
+[31m-  grid-area: footer;[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-```tsx[m
+[31m-// Responsive grid component[m
+[31m-function ResponsiveGrid({ children, minItemWidth = "250px", gap = "1.5rem" }) {[m
+[31m-  return ([m
+[31m-    <div[m
+[31m-      className="grid"[m
+[31m-      style={{[m
+[31m-        gridTemplateColumns: `repeat(auto-fit, minmax(min(${minItemWidth}, 100%), 1fr))`,[m
+[31m-        gap,[m
+[31m-      }}[m
+[31m-    >[m
+[31m-      {children}[m
+[31m-    </div>[m
+[31m-  );[m
+[31m-}[m
+[31m-[m
+[31m-// Usage with Tailwind[m
+[31m-function ProductGrid({ products }) {[m
+[31m-  return ([m
+[31m-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">[m
+[31m-      {products.map((product) => ([m
+[31m-        <ProductCard key={product.id} product={product} />[m
+[31m-      ))}[m
+[31m-    </div>[m
+[31m-  );[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Pattern 4: Responsive Navigation[m
+[31m-[m
+[31m-```tsx[m
+[31m-function ResponsiveNav({ items }) {[m
+[31m-  const [isOpen, setIsOpen] = useState(false);[m
+[31m-[m
+[31m-  return ([m
+[31m-    <nav className="relative">[m
+[31m-      {/* Mobile menu button */}[m
+[31m-      <button[m
+[31m-        className="lg:hidden p-2"[m
+[31m-        onClick={() => setIsOpen(!isOpen)}[m
+[31m-        aria-expanded={isOpen}[m
+[31m-        aria-controls="nav-menu"[m
+[31m-      >[m
+[31m-        <span className="sr-only">Toggle navigation</span>[m
+[31m-        {isOpen ? <X /> : <Menu />}[m
+[31m-      </button>[m
+[31m-[m
+[31m-      {/* Navigation links */}[m
+[31m-      <ul[m
+[31m-        id="nav-menu"[m
+[31m-        className={cn([m
+[31m-          // Base: hidden on mobile[m
+[31m-          "absolute top-full left-0 right-0 bg-background border-b",[m
+[31m-          "flex flex-col",[m
+[31m-          // Mobile: slide down[m
+[31m-          isOpen ? "flex" : "hidden",[m
+[31m-          // Desktop: always visible, horizontal[m
+[31m-          "lg:static lg:flex lg:flex-row lg:border-0 lg:bg-transparent",[m
+[31m-        )}[m
+[31m-      >[m
+[31m-        {items.map((item) => ([m
+[31m-          <li key={item.href}>[m
+[31m-            <a[m
+[31m-              href={item.href}[m
+[31m-              className={cn([m
+[31m-                "block px-4 py-3",[m
+[31m-                "lg:px-3 lg:py-2",[m
+[31m-                "hover:bg-muted lg:hover:bg-transparent lg:hover:text-primary",[m
+[31m-              )}[m
+[31m-            >[m
+[31m-              {item.label}[m
+[31m-            </a>[m
+[31m-          </li>[m
+[31m-        ))}[m
+[31m-      </ul>[m
+[31m-    </nav>[m
+[31m-  );[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Pattern 5: Responsive Images[m
+[31m-[m
+[31m-```tsx[m
+[31m-// Responsive image with art direction[m
+[31m-function ResponsiveHero() {[m
+[31m-  return ([m
+[31m-    <picture>[m
+[31m-      {/* Art direction: different crops for different screens */}[m
+[31m-      <source[m
+[31m-        media="(min-width: 1024px)"[m
+[31m-        srcSet="/hero-wide.webp"[m
+[31m-        type="image/webp"[m
+[31m-      />[m
+[31m-      <source[m
+[31m-        media="(min-width: 768px)"[m
+[31m-        srcSet="/hero-medium.webp"[m
+[31m-        type="image/webp"[m
+[31m-      />[m
+[31m-      <source srcSet="/hero-mobile.webp" type="image/webp" />[m
+[31m-[m
+[31m-      {/* Fallback */}[m
+[31m-      <img[m
+[31m-        src="/hero-mobile.jpg"[m
+[31m-        alt="Hero image description"[m
+[31m-        className="w-full h-auto"[m
+[31m-        loading="eager"[m
+[31m-        fetchpriority="high"[m
+[31m-      />[m
+[31m-    </picture>[m
+[31m-  );[m
+[31m-}[m
+[31m-[m
+[31m-// Responsive image with srcset for resolution switching[m
+[31m-function ProductImage({ product }) {[m
+[31m-  return ([m
+[31m-    <img[m
+[31m-      src={product.image}[m
+[31m-      srcSet={`[m
+[31m-        ${product.image}?w=400 400w,[m
+[31m-        ${product.image}?w=800 800w,[m
+[31m-        ${product.image}?w=1200 1200w[m
+[31m-      `}[m
+[31m-      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"[m
+[31m-      alt={product.name}[m
+[31m-      className="w-full h-auto object-cover"[m
+[31m-      loading="lazy"[m
+[31m-    />[m
+[31m-  );[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Pattern 6: Responsive Tables[m
+[31m-[m
+[31m-```tsx[m
+[31m-// Responsive table with horizontal scroll[m
+[31m-function ResponsiveTable({ data, columns }) {[m
+[31m-  return ([m
+[31m-    <div className="w-full overflow-x-auto">[m
+[31m-      <table className="w-full min-w-[600px]">[m
+[31m-        <thead>[m
+[31m-          <tr>[m
+[31m-            {columns.map((col) => ([m
+[31m-              <th key={col.key} className="text-left p-3">[m
+[31m-                {col.label}[m
+[31m-              </th>[m
+[31m-            ))}[m
+[31m-          </tr>[m
+[31m-        </thead>[m
+[31m-        <tbody>[m
+[31m-          {data.map((row, i) => ([m
+[31m-            <tr key={i} className="border-t">[m
+[31m-              {columns.map((col) => ([m
+[31m-                <td key={col.key} className="p-3">[m
+[31m-                  {row[col.key]}[m
+[31m-                </td>[m
+[31m-              ))}[m
+[31m-            </tr>[m
+[31m-          ))}[m
+[31m-        </tbody>[m
+[31m-      </table>[m
+[31m-    </div>[m
+[31m-  );[m
+[31m-}[m
+[31m-[m
+[31m-// Card-based table for mobile[m
+[31m-function ResponsiveDataTable({ data, columns }) {[m
+[31m-  return ([m
+[31m-    <>[m
+[31m-      {/* Desktop table */}[m
+[31m-      <table className="hidden md:table w-full">[m
+[31m-        {/* ... standard table */}[m
+[31m-      </table>[m
+[31m-[m
+[31m-      {/* Mobile cards */}[m
+[31m-      <div className="md:hidden space-y-4">[m
+[31m-        {data.map((row, i) => ([m
+[31m-          <div key={i} className="border rounded-lg p-4 space-y-2">[m
+[31m-            {columns.map((col) => ([m
+[31m-              <div key={col.key} className="flex justify-between">[m
+[31m-                <span className="font-medium text-muted-foreground">[m
+[31m-                  {col.label}[m
+[31m-                </span>[m
+[31m-                <span>{row[col.key]}</span>[m
+[31m-              </div>[m
+[31m-            ))}[m
+[31m-          </div>[m
+[31m-        ))}[m
+[31m-      </div>[m
+[31m-    </>[m
+[31m-  );[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Viewport Units[m
+[31m-[m
+[31m-```css[m
+[31m-/* Standard viewport units */[m
+[31m-.full-height {[m
+[31m-  height: 100vh; /* May cause issues on mobile */[m
+[31m-}[m
+[31m-[m
+[31m-/* Dynamic viewport units (recommended for mobile) */[m
+[31m-.full-height-dynamic {[m
+[31m-  height: 100dvh; /* Accounts for mobile browser UI */[m
+[31m-}[m
+[31m-[m
+[31m-/* Small viewport (minimum) */[m
+[31m-.min-full-height {[m
+[31m-  min-height: 100svh;[m
+[31m-}[m
+[31m-[m
+[31m-/* Large viewport (maximum) */[m
+[31m-.max-full-height {[m
+[31m-  max-height: 100lvh;[m
+[31m-}[m
+[31m-[m
+[31m-/* Viewport-relative font sizing */[m
+[31m-.hero-title {[m
+[31m-  /* 5vw with min/max bounds */[m
+[31m-  font-size: clamp(2rem, 5vw, 4rem);[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Best Practices[m
+[31m-[m
+[31m-1. **Mobile-First**: Start with mobile styles, enhance for larger screens[m
+[31m-2. **Content Breakpoints**: Set breakpoints based on content, not devices[m
+[31m-3. **Fluid Over Fixed**: Use fluid values for typography and spacing[m
+[31m-4. **Container Queries**: Use for component-level responsiveness[m
+[31m-5. **Test Real Devices**: Simulators don't catch all issues[m
+[31m-6. **Performance**: Optimize images, lazy load off-screen content[m
+[31m-7. **Touch Targets**: Maintain 44x44px minimum on mobile[m
+[31m-8. **Logical Properties**: Use inline/block for internationalization[m
+[31m-[m
+[31m-## Common Issues[m
+[31m-[m
+[31m-- **Horizontal Overflow**: Content breaking out of viewport[m
+[31m-- **Fixed Widths**: Using px instead of relative units[m
+[31m-- **Viewport Height**: 100vh issues on mobile browsers[m
+[31m-- **Font Size**: Text too small on mobile[m
+[31m-- **Touch Targets**: Buttons too small to tap accurately[m
+[31m-- **Aspect Ratio**: Images squishing or stretching[m
+[31m-- **Z-Index Stacking**: Overlays breaking on different screens[m
+[31m-[m
+[31m-## Resources[m
+[31m-[m
+[31m-- [CSS Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries)[m
+[31m-- [Utopia Fluid Type Calculator](https://utopia.fyi/type/calculator/)[m
+[31m-- [Every Layout](https://every-layout.dev/)[m
+[31m-- [Responsive Images Guide](https://web.dev/responsive-images/)[m
+[31m-- [CSS Grid Garden](https://cssgridgarden.com/)[m
+[1mdiff --git a/.agent/skills/responsive-design/references/breakpoint-strategies.md b/.agent/skills/responsive-design/references/breakpoint-strategies.md[m
+[1mdeleted file mode 100644[m
+[1mindex 97620dd..0000000[m
+[1m--- a/.agent/skills/responsive-design/references/breakpoint-strategies.md[m
+[1m+++ /dev/null[m
+[36m@@ -1,591 +0,0 @@[m
+[31m-# Breakpoint Strategies[m
+[31m-[m
+[31m-## Overview[m
+[31m-[m
+[31m-Effective breakpoint strategies focus on content needs rather than device sizes. Modern responsive design uses fewer, content-driven breakpoints combined with fluid techniques.[m
+[31m-[m
+[31m-## Mobile-First Approach[m
+[31m-[m
+[31m-### Core Philosophy[m
+[31m-[m
+[31m-Start with the smallest screen, then progressively enhance for larger screens.[m
+[31m-[m
+[31m-```css[m
+[31m-/* Base styles (mobile first) */[m
+[31m-.component {[m
+[31m-  display: flex;[m
+[31m-  flex-direction: column;[m
+[31m-  padding: 1rem;[m
+[31m-}[m
+[31m-[m
+[31m-/* Enhance for larger screens */[m
+[31m-@media (min-width: 640px) {[m
+[31m-  .component {[m
+[31m-    flex-direction: row;[m
+[31m-    padding: 1.5rem;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-@media (min-width: 1024px) {[m
+[31m-  .component {[m
+[31m-    padding: 2rem;[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Benefits[m
+[31m-[m
+[31m-1. **Performance**: Mobile devices load only necessary CSS[m
+[31m-2. **Progressive Enhancement**: Features add rather than subtract[m
+[31m-3. **Content Priority**: Forces focus on essential content first[m
+[31m-4. **Simplicity**: Easier to reason about cascading styles[m
+[31m-[m
+[31m-## Common Breakpoint Scales[m
+[31m-[m
+[31m-### Tailwind CSS Default[m
+[31m-[m
+[31m-```css[m
+[31m-/* Tailwind breakpoints */[m
+[31m-/* sm: 640px  - Landscape phones */[m
+[31m-/* md: 768px  - Tablets */[m
+[31m-/* lg: 1024px - Laptops */[m
+[31m-/* xl: 1280px - Desktops */[m
+[31m-/* 2xl: 1536px - Large desktops */[m
+[31m-[m
+[31m-@media (min-width: 640px) {[m
+[31m-  /* sm */[m
+[31m-}[m
+[31m-@media (min-width: 768px) {[m
+[31m-  /* md */[m
+[31m-}[m
+[31m-@media (min-width: 1024px) {[m
+[31m-  /* lg */[m
+[31m-}[m
+[31m-@media (min-width: 1280px) {[m
+[31m-  /* xl */[m
+[31m-}[m
+[31m-@media (min-width: 1536px) {[m
+[31m-  /* 2xl */[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Bootstrap 5[m
+[31m-[m
+[31m-```css[m
+[31m-/* Bootstrap breakpoints */[m
+[31m-/* sm: 576px */[m
+[31m-/* md: 768px */[m
+[31m-/* lg: 992px */[m
+[31m-/* xl: 1200px */[m
+[31m-/* xxl: 1400px */[m
+[31m-[m
+[31m-@media (min-width: 576px) {[m
+[31m-  /* sm */[m
+[31m-}[m
+[31m-@media (min-width: 768px) {[m
+[31m-  /* md */[m
+[31m-}[m
+[31m-@media (min-width: 992px) {[m
+[31m-  /* lg */[m
+[31m-}[m
+[31m-@media (min-width: 1200px) {[m
+[31m-  /* xl */[m
+[31m-}[m
+[31m-@media (min-width: 1400px) {[m
+[31m-  /* xxl */[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Minimalist Scale[m
+[31m-[m
+[31m-```css[m
+[31m-/* Simplified 3-breakpoint system */[m
+[31m-/* Base: Mobile (< 600px) */[m
+[31m-/* Medium: Tablets and small laptops (600px - 1024px) */[m
+[31m-/* Large: Desktops (> 1024px) */[m
+[31m-[m
+[31m-:root {[m
+[31m-  --bp-md: 600px;[m
+[31m-  --bp-lg: 1024px;[m
+[31m-}[m
+[31m-[m
+[31m-@media (min-width: 600px) {[m
+[31m-  /* Medium */[m
+[31m-}[m
+[31m-@media (min-width: 1024px) {[m
+[31m-  /* Large */[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Content-Based Breakpoints[m
+[31m-[m
+[31m-### Finding Natural Breakpoints[m
+[31m-[m
+[31m-Instead of using device-based breakpoints, identify where your content naturally needs to change.[m
+[31m-[m
+[31m-```css[m
+[31m-/* Bad: Device-based thinking */[m
+[31m-@media (min-width: 768px) {[m
+[31m-  /* iPad breakpoint */[m
+[31m-}[m
+[31m-[m
+[31m-/* Good: Content-based thinking */[m
+[31m-/* Breakpoint where sidebar fits comfortably next to content */[m
+[31m-@media (min-width: 50rem) {[m
+[31m-  .layout {[m
+[31m-    display: grid;[m
+[31m-    grid-template-columns: 1fr 300px;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* Breakpoint where cards can show 3 across without crowding */[m
+[31m-@media (min-width: 65rem) {[m
+[31m-  .card-grid {[m
+[31m-    grid-template-columns: repeat(3, 1fr);[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Testing Content Breakpoints[m
+[31m-[m
+[31m-```javascript[m
+[31m-// Find where content breaks[m
+[31m-function findBreakpoints(selector) {[m
+[31m-  const element = document.querySelector(selector);[m
+[31m-  const breakpoints = [];[m
+[31m-[m
+[31m-  for (let width = 320; width <= 1920; width += 10) {[m
+[31m-    element.style.width = `${width}px`;[m
+[31m-[m
+[31m-    // Check for overflow, wrapping, or layout issues[m
+[31m-    if (element.scrollWidth > element.clientWidth) {[m
+[31m-      breakpoints.push({ width, issue: "overflow" });[m
+[31m-    }[m
+[31m-  }[m
+[31m-[m
+[31m-  return breakpoints;[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Design Token Integration[m
+[31m-[m
+[31m-### Breakpoint Tokens[m
+[31m-[m
+[31m-```css[m
+[31m-:root {[m
+[31m-  /* Breakpoint values */[m
+[31m-  --breakpoint-sm: 640px;[m
+[31m-  --breakpoint-md: 768px;[m
+[31m-  --breakpoint-lg: 1024px;[m
+[31m-  --breakpoint-xl: 1280px;[m
+[31m-  --breakpoint-2xl: 1536px;[m
+[31m-[m
+[31m-  /* Container widths for each breakpoint */[m
+[31m-  --container-sm: 640px;[m
+[31m-  --container-md: 768px;[m
+[31m-  --container-lg: 1024px;[m
+[31m-  --container-xl: 1280px;[m
+[31m-  --container-2xl: 1536px;[m
+[31m-}[m
+[31m-[m
+[31m-.container {[m
+[31m-  width: 100%;[m
+[31m-  max-width: var(--container-lg);[m
+[31m-  margin-inline: auto;[m
+[31m-  padding-inline: var(--space-4);[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### JavaScript Integration[m
+[31m-[m
+[31m-```typescript[m
+[31m-// Breakpoint constants[m
+[31m-export const breakpoints = {[m
+[31m-  sm: 640,[m
+[31m-  md: 768,[m
+[31m-  lg: 1024,[m
+[31m-  xl: 1280,[m
+[31m-  "2xl": 1536,[m
+[31m-} as const;[m
+[31m-[m
+[31m-// Media query hook[m
+[31m-function useMediaQuery(query: string): boolean {[m
+[31m-  const [matches, setMatches] = useState(false);[m
+[31m-[m
+[31m-  useEffect(() => {[m
+[31m-    const media = window.matchMedia(query);[m
+[31m-    setMatches(media.matches);[m
+[31m-[m
+[31m-    const listener = () => setMatches(media.matches);[m
+[31m-    media.addEventListener("change", listener);[m
+[31m-    return () => media.removeEventListener("change", listener);[m
+[31m-  }, [query]);[m
+[31m-[m
+[31m-  return matches;[m
+[31m-}[m
+[31m-[m
+[31m-// Breakpoint hook[m
+[31m-function useBreakpoint() {[m
+[31m-  const isSmall = useMediaQuery(`(min-width: ${breakpoints.sm}px)`);[m
+[31m-  const isMedium = useMediaQuery(`(min-width: ${breakpoints.md}px)`);[m
+[31m-  const isLarge = useMediaQuery(`(min-width: ${breakpoints.lg}px)`);[m
+[31m-  const isXLarge = useMediaQuery(`(min-width: ${breakpoints.xl}px)`);[m
+[31m-[m
+[31m-  return {[m
+[31m-    isMobile: !isSmall,[m
+[31m-    isTablet: isSmall && !isLarge,[m
+[31m-    isDesktop: isLarge,[m
+[31m-    current: isXLarge[m
+[31m-      ? "xl"[m
+[31m-      : isLarge[m
+[31m-        ? "lg"[m
+[31m-        : isMedium[m
+[31m-          ? "md"[m
+[31m-          : isSmall[m
+[31m-            ? "sm"[m
+[31m-            : "base",[m
+[31m-  };[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Feature Queries[m
+[31m-[m
+[31m-### @supports for Progressive Enhancement[m
+[31m-[m
+[31m-```css[m
+[31m-/* Feature detection instead of browser detection */[m
+[31m-@supports (display: grid) {[m
+[31m-  .layout {[m
+[31m-    display: grid;[m
+[31m-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-@supports (container-type: inline-size) {[m
+[31m-  .card-container {[m
+[31m-    container-type: inline-size;[m
+[31m-  }[m
+[31m-[m
+[31m-  @container (min-width: 400px) {[m
+[31m-    .card {[m
+[31m-      flex-direction: row;[m
+[31m-    }[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-@supports (aspect-ratio: 16/9) {[m
+[31m-  .video-container {[m
+[31m-    aspect-ratio: 16/9;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* Fallback for older browsers */[m
+[31m-@supports not (gap: 1rem) {[m
+[31m-  .flex-container > * + * {[m
+[31m-    margin-left: 1rem;[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Combining Feature and Size Queries[m
+[31m-[m
+[31m-```css[m
+[31m-/* Only apply grid layout if supported and screen is large enough */[m
+[31m-@supports (display: grid) {[m
+[31m-  @media (min-width: 768px) {[m
+[31m-    .layout {[m
+[31m-      display: grid;[m
+[31m-      grid-template-columns: 250px 1fr;[m
+[31m-    }[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Responsive Patterns by Component[m
+[31m-[m
+[31m-### Navigation[m
+[31m-[m
+[31m-```css[m
+[31m-.nav {[m
+[31m-  /* Mobile: vertical stack */[m
+[31m-  display: flex;[m
+[31m-  flex-direction: column;[m
+[31m-}[m
+[31m-[m
+[31m-@media (min-width: 768px) {[m
+[31m-  .nav {[m
+[31m-    /* Tablet+: horizontal */[m
+[31m-    flex-direction: row;[m
+[31m-    align-items: center;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* Or with container queries */[m
+[31m-.nav-container {[m
+[31m-  container-type: inline-size;[m
+[31m-}[m
+[31m-[m
+[31m-@container (min-width: 600px) {[m
+[31m-  .nav {[m
+[31m-    flex-direction: row;[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Cards Grid[m
+[31m-[m
+[31m-```css[m
+[31m-.cards {[m
+[31m-  display: grid;[m
+[31m-  gap: 1.5rem;[m
+[31m-  grid-template-columns: 1fr;[m
+[31m-}[m
+[31m-[m
+[31m-@media (min-width: 640px) {[m
+[31m-  .cards {[m
+[31m-    grid-template-columns: repeat(2, 1fr);[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-@media (min-width: 1024px) {[m
+[31m-  .cards {[m
+[31m-    grid-template-columns: repeat(3, 1fr);[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-@media (min-width: 1280px) {[m
+[31m-  .cards {[m
+[31m-    grid-template-columns: repeat(4, 1fr);[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* Better: auto-fit with minimum size */[m
+[31m-.cards-auto {[m
+[31m-  display: grid;[m
+[31m-  gap: 1.5rem;[m
+[31m-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Hero Section[m
+[31m-[m
+[31m-```css[m
+[31m-.hero {[m
+[31m-  min-height: 50vh;[m
+[31m-  padding: var(--space-lg) var(--space-md);[m
+[31m-  text-align: center;[m
+[31m-}[m
+[31m-[m
+[31m-.hero-title {[m
+[31m-  font-size: clamp(2rem, 5vw + 1rem, 4rem);[m
+[31m-}[m
+[31m-[m
+[31m-.hero-subtitle {[m
+[31m-  font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem);[m
+[31m-}[m
+[31m-[m
+[31m-@media (min-width: 768px) {[m
+[31m-  .hero {[m
+[31m-    min-height: 70vh;[m
+[31m-    display: flex;[m
+[31m-    align-items: center;[m
+[31m-    text-align: left;[m
+[31m-  }[m
+[31m-[m
+[31m-  .hero-content {[m
+[31m-    max-width: 60%;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-@media (min-width: 1024px) {[m
+[31m-  .hero {[m
+[31m-    min-height: 80vh;[m
+[31m-  }[m
+[31m-[m
+[31m-  .hero-content {[m
+[31m-    max-width: 50%;[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Tables[m
+[31m-[m
+[31m-```css[m
+[31m-/* Mobile: cards or horizontal scroll */[m
+[31m-.table-container {[m
+[31m-  overflow-x: auto;[m
+[31m-}[m
+[31m-[m
+[31m-.responsive-table {[m
+[31m-  min-width: 600px;[m
+[31m-}[m
+[31m-[m
+[31m-/* Alternative: transform to cards on mobile */[m
+[31m-@media (max-width: 639px) {[m
+[31m-  .responsive-table {[m
+[31m-    min-width: 0;[m
+[31m-  }[m
+[31m-[m
+[31m-  .responsive-table thead {[m
+[31m-    display: none;[m
+[31m-  }[m
+[31m-[m
+[31m-  .responsive-table tr {[m
+[31m-    display: block;[m
+[31m-    margin-bottom: 1rem;[m
+[31m-    border: 1px solid var(--border);[m
+[31m-    border-radius: 0.5rem;[m
+[31m-    padding: 1rem;[m
+[31m-  }[m
+[31m-[m
+[31m-  .responsive-table td {[m
+[31m-    display: flex;[m
+[31m-    justify-content: space-between;[m
+[31m-    padding: 0.5rem 0;[m
+[31m-    border: none;[m
+[31m-  }[m
+[31m-[m
+[31m-  .responsive-table td::before {[m
+[31m-    content: attr(data-label);[m
+[31m-    font-weight: 600;[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Print Styles[m
+[31m-[m
+[31m-```css[m
+[31m-@media print {[m
+[31m-  /* Remove non-essential elements */[m
+[31m-  .nav,[m
+[31m-  .sidebar,[m
+[31m-  .footer,[m
+[31m-  .ads {[m
+[31m-    display: none;[m
+[31m-  }[m
+[31m-[m
+[31m-  /* Reset colors and backgrounds */[m
+[31m-  * {[m
+[31m-    background: white !important;[m
+[31m-    color: black !important;[m
+[31m-    box-shadow: none !important;[m
+[31m-  }[m
+[31m-[m
+[31m-  /* Ensure content fits on page */[m
+[31m-  .container {[m
+[31m-    max-width: 100%;[m
+[31m-    padding: 0;[m
+[31m-  }[m
+[31m-[m
+[31m-  /* Handle page breaks */[m
+[31m-  h1,[m
+[31m-  h2,[m
+[31m-  h3 {[m
+[31m-    page-break-after: avoid;[m
+[31m-  }[m
+[31m-[m
+[31m-  img,[m
+[31m-  table {[m
+[31m-    page-break-inside: avoid;[m
+[31m-  }[m
+[31m-[m
+[31m-  /* Show URLs for links */[m
+[31m-  a[href^="http"]::after {[m
+[31m-    content: " (" attr(href) ")";[m
+[31m-    font-size: 0.8em;[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Preference Queries[m
+[31m-[m
+[31m-```css[m
+[31m-/* Dark mode preference */[m
+[31m-@media (prefers-color-scheme: dark) {[m
+[31m-  :root {[m
+[31m-    --bg: #1a1a1a;[m
+[31m-    --text: #f0f0f0;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* Reduced motion preference */[m
+[31m-@media (prefers-reduced-motion: reduce) {[m
+[31m-  *,[m
+[31m-  *::before,[m
+[31m-  *::after {[m
+[31m-    animation-duration: 0.01ms !important;[m
+[31m-    animation-iteration-count: 1 !important;[m
+[31m-    transition-duration: 0.01ms !important;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* High contrast preference */[m
+[31m-@media (prefers-contrast: high) {[m
+[31m-  :root {[m
+[31m-    --text: #000;[m
+[31m-    --bg: #fff;[m
+[31m-    --border: #000;[m
+[31m-  }[m
+[31m-[m
+[31m-  .button {[m
+[31m-    border: 2px solid currentColor;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* Reduced data preference */[m
+[31m-@media (prefers-reduced-data: reduce) {[m
+[31m-  .hero-video {[m
+[31m-    display: none;[m
+[31m-  }[m
+[31m-[m
+[31m-  .hero-image {[m
+[31m-    display: block;[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Testing Breakpoints[m
+[31m-[m
+[31m-```javascript[m
+[31m-// Automated breakpoint testing[m
+[31m-async function testBreakpoints(page, breakpoints) {[m
+[31m-  const results = [];[m
+[31m-[m
+[31m-  for (const [name, width] of Object.entries(breakpoints)) {[m
+[31m-    await page.setViewportSize({ width, height: 800 });[m
+[31m-[m
+[31m-    // Check for horizontal overflow[m
+[31m-    const hasOverflow = await page.evaluate(() => {[m
+[31m-      return ([m
+[31m-        document.documentElement.scrollWidth >[m
+[31m-        document.documentElement.clientWidth[m
+[31m-      );[m
+[31m-    });[m
+[31m-[m
+[31m-    // Check for elements going off-screen[m
+[31m-    const offscreenElements = await page.evaluate(() => {[m
+[31m-      const elements = document.querySelectorAll("*");[m
+[31m-      return Array.from(elements).filter((el) => {[m
+[31m-        const rect = el.getBoundingClientRect();[m
+[31m-        return rect.right > window.innerWidth || rect.left < 0;[m
+[31m-      }).length;[m
+[31m-    });[m
+[31m-[m
+[31m-    results.push({[m
+[31m-      breakpoint: name,[m
+[31m-      width,[m
+[31m-      hasOverflow,[m
+[31m-      offscreenElements,[m
+[31m-    });[m
+[31m-  }[m
+[31m-[m
+[31m-  return results;[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Resources[m
+[31m-[m
+[31m-- [Tailwind CSS Breakpoints](https://tailwindcss.com/docs/responsive-design)[m
+[31m-- [The 100% Correct Way to Do CSS Breakpoints](https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/)[m
+[31m-- [Modern CSS Solutions](https://moderncss.dev/)[m
+[31m-- [Defensive CSS](https://defensivecss.dev/)[m
+[1mdiff --git a/.agent/skills/responsive-design/references/container-queries.md b/.agent/skills/responsive-design/references/container-queries.md[m
+[1mdeleted file mode 100644[m
+[1mindex 98471f8..0000000[m
+[1m--- a/.agent/skills/responsive-design/references/container-queries.md[m
+[1m+++ /dev/null[m
+[36m@@ -1,564 +0,0 @@[m
+[31m-# Container Queries Deep Dive[m
+[31m-[m
+[31m-## Overview[m
+[31m-[m
+[31m-Container queries enable component-based responsive design by allowing elements to respond to their container's size rather than the viewport. This paradigm shift makes truly reusable components possible.[m
+[31m-[m
+[31m-## Browser Support[m
+[31m-[m
+[31m-Container queries have excellent modern browser support (Chrome 105+, Firefox 110+, Safari 16+). For older browsers, provide graceful fallbacks.[m
+[31m-[m
+[31m-## Containment Basics[m
+[31m-[m
+[31m-### Container Types[m
+[31m-[m
+[31m-```css[m
+[31m-/* Size containment - queries based on inline and block size */[m
+[31m-.container {[m
+[31m-  container-type: size;[m
+[31m-}[m
+[31m-[m
+[31m-/* Inline-size containment - queries based on inline (width) size only */[m
+[31m-/* Most common and recommended */[m
+[31m-.container {[m
+[31m-  container-type: inline-size;[m
+[31m-}[m
+[31m-[m
+[31m-/* Normal - style queries only, no size queries */[m
+[31m-.container {[m
+[31m-  container-type: normal;[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Named Containers[m
+[31m-[m
+[31m-```css[m
+[31m-/* Named container for targeted queries */[m
+[31m-.card-wrapper {[m
+[31m-  container-type: inline-size;[m
+[31m-  container-name: card;[m
+[31m-}[m
+[31m-[m
+[31m-/* Shorthand */[m
+[31m-.card-wrapper {[m
+[31m-  container: card / inline-size;[m
+[31m-}[m
+[31m-[m
+[31m-/* Query specific container */[m
+[31m-@container card (min-width: 400px) {[m
+[31m-  .card-content {[m
+[31m-    display: flex;[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Container Query Syntax[m
+[31m-[m
+[31m-### Width-Based Queries[m
+[31m-[m
+[31m-```css[m
+[31m-.container {[m
+[31m-  container-type: inline-size;[m
+[31m-}[m
+[31m-[m
+[31m-/* Minimum width */[m
+[31m-@container (min-width: 300px) {[m
+[31m-  .element {[m
+[31m-    /* styles */[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* Maximum width */[m
+[31m-@container (max-width: 500px) {[m
+[31m-  .element {[m
+[31m-    /* styles */[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* Range syntax */[m
+[31m-@container (300px <= width <= 600px) {[m
+[31m-  .element {[m
+[31m-    /* styles */[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* Exact width */[m
+[31m-@container (width: 400px) {[m
+[31m-  .element {[m
+[31m-    /* styles */[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Combining Conditions[m
+[31m-[m
+[31m-```css[m
+[31m-/* AND condition */[m
+[31m-@container (min-width: 400px) and (max-width: 800px) {[m
+[31m-  .element {[m
+[31m-    /* styles */[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* OR condition */[m
+[31m-@container (max-width: 300px) or (min-width: 800px) {[m
+[31m-  .element {[m
+[31m-    /* styles */[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* NOT condition */[m
+[31m-@container not (min-width: 400px) {[m
+[31m-  .element {[m
+[31m-    /* styles */[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Named Container Queries[m
+[31m-[m
+[31m-```css[m
+[31m-/* Multiple named containers */[m
+[31m-.page-wrapper {[m
+[31m-  container: page / inline-size;[m
+[31m-}[m
+[31m-[m
+[31m-.sidebar-wrapper {[m
+[31m-  container: sidebar / inline-size;[m
+[31m-}[m
+[31m-[m
+[31m-/* Target specific containers */[m
+[31m-@container page (min-width: 1024px) {[m
+[31m-  .main-content {[m
+[31m-    max-width: 800px;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-@container sidebar (min-width: 300px) {[m
+[31m-  .sidebar-widget {[m
+[31m-    display: grid;[m
+[31m-    grid-template-columns: 1fr 1fr;[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Container Query Units[m
+[31m-[m
+[31m-```css[m
+[31m-/* Container query length units */[m
+[31m-.element {[m
+[31m-  /* Container query width - 1cqw = 1% of container width */[m
+[31m-  width: 50cqw;[m
+[31m-[m
+[31m-  /* Container query height - 1cqh = 1% of container height */[m
+[31m-  height: 50cqh;[m
+[31m-[m
+[31m-  /* Container query inline - 1cqi = 1% of container inline size */[m
+[31m-  padding-inline: 5cqi;[m
+[31m-[m
+[31m-  /* Container query block - 1cqb = 1% of container block size */[m
+[31m-  padding-block: 3cqb;[m
+[31m-[m
+[31m-  /* Container query min - smaller of cqi and cqb */[m
+[31m-  font-size: 5cqmin;[m
+[31m-[m
+[31m-  /* Container query max - larger of cqi and cqb */[m
+[31m-  margin: 2cqmax;[m
+[31m-}[m
+[31m-[m
+[31m-/* Practical example: fluid typography based on container */[m
+[31m-.card-title {[m
+[31m-  font-size: clamp(1rem, 4cqi, 2rem);[m
+[31m-}[m
+[31m-[m
+[31m-.card-body {[m
+[31m-  padding: clamp(0.75rem, 4cqi, 1.5rem);[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Style Queries[m
+[31m-[m
+[31m-Style queries allow querying CSS custom property values. Currently limited support.[m
+[31m-[m
+[31m-```css[m
+[31m-/* Define a custom property */[m
+[31m-.card {[m
+[31m-  --layout: stack;[m
+[31m-}[m
+[31m-[m
+[31m-/* Query the property value */[m
+[31m-@container style(--layout: stack) {[m
+[31m-  .card-content {[m
+[31m-    display: flex;[m
+[31m-    flex-direction: column;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-@container style(--layout: inline) {[m
+[31m-  .card-content {[m
+[31m-    display: flex;[m
+[31m-    flex-direction: row;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* Toggle layout via custom property */[m
+[31m-.card.horizontal {[m
+[31m-  --layout: inline;[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Practical Patterns[m
+[31m-[m
+[31m-### Responsive Card Component[m
+[31m-[m
+[31m-```css[m
+[31m-.card-container {[m
+[31m-  container: card / inline-size;[m
+[31m-}[m
+[31m-[m
+[31m-.card {[m
+[31m-  display: flex;[m
+[31m-  flex-direction: column;[m
+[31m-  gap: 1rem;[m
+[31m-  padding: clamp(1rem, 4cqi, 2rem);[m
+[31m-}[m
+[31m-[m
+[31m-.card-image {[m
+[31m-  aspect-ratio: 16/9;[m
+[31m-  width: 100%;[m
+[31m-  object-fit: cover;[m
+[31m-  border-radius: 0.5rem;[m
+[31m-}[m
+[31m-[m
+[31m-.card-title {[m
+[31m-  font-size: clamp(1rem, 4cqi, 1.5rem);[m
+[31m-  font-weight: 600;[m
+[31m-}[m
+[31m-[m
+[31m-/* Medium container: side-by-side layout */[m
+[31m-@container card (min-width: 400px) {[m
+[31m-  .card {[m
+[31m-    flex-direction: row;[m
+[31m-    align-items: flex-start;[m
+[31m-  }[m
+[31m-[m
+[31m-  .card-image {[m
+[31m-    width: 40%;[m
+[31m-    aspect-ratio: 1;[m
+[31m-  }[m
+[31m-[m
+[31m-  .card-content {[m
+[31m-    flex: 1;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* Large container: enhanced layout */[m
+[31m-@container card (min-width: 600px) {[m
+[31m-  .card-image {[m
+[31m-    width: 250px;[m
+[31m-  }[m
+[31m-[m
+[31m-  .card-title {[m
+[31m-    font-size: 1.5rem;[m
+[31m-  }[m
+[31m-[m
+[31m-  .card-actions {[m
+[31m-    display: flex;[m
+[31m-    gap: 0.5rem;[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Responsive Grid Items[m
+[31m-[m
+[31m-```css[m
+[31m-.grid {[m
+[31m-  display: grid;[m
+[31m-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));[m
+[31m-  gap: 1.5rem;[m
+[31m-}[m
+[31m-[m
+[31m-.grid-item {[m
+[31m-  container-type: inline-size;[m
+[31m-}[m
+[31m-[m
+[31m-.item-content {[m
+[31m-  padding: 1rem;[m
+[31m-}[m
+[31m-[m
+[31m-/* Item adapts to its own size, not the viewport */[m
+[31m-@container (min-width: 350px) {[m
+[31m-  .item-content {[m
+[31m-    padding: 1.5rem;[m
+[31m-  }[m
+[31m-[m
+[31m-  .item-title {[m
+[31m-    font-size: 1.25rem;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-@container (min-width: 500px) {[m
+[31m-  .item-content {[m
+[31m-    display: grid;[m
+[31m-    grid-template-columns: auto 1fr;[m
+[31m-    gap: 1rem;[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Dashboard Widget[m
+[31m-[m
+[31m-```css[m
+[31m-.widget-container {[m
+[31m-  container: widget / inline-size;[m
+[31m-}[m
+[31m-[m
+[31m-.widget {[m
+[31m-  --chart-height: 150px;[m
+[31m-  padding: 1rem;[m
+[31m-}[m
+[31m-[m
+[31m-.widget-header {[m
+[31m-  display: flex;[m
+[31m-  justify-content: space-between;[m
+[31m-  align-items: center;[m
+[31m-  margin-bottom: 1rem;[m
+[31m-}[m
+[31m-[m
+[31m-.widget-chart {[m
+[31m-  height: var(--chart-height);[m
+[31m-}[m
+[31m-[m
+[31m-.widget-stats {[m
+[31m-  display: grid;[m
+[31m-  grid-template-columns: 1fr;[m
+[31m-  gap: 0.5rem;[m
+[31m-}[m
+[31m-[m
+[31m-@container widget (min-width: 300px) {[m
+[31m-  .widget {[m
+[31m-    --chart-height: 200px;[m
+[31m-  }[m
+[31m-[m
+[31m-  .widget-stats {[m
+[31m-    grid-template-columns: repeat(2, 1fr);[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-@container widget (min-width: 500px) {[m
+[31m-  .widget {[m
+[31m-    --chart-height: 250px;[m
+[31m-    padding: 1.5rem;[m
+[31m-  }[m
+[31m-[m
+[31m-  .widget-stats {[m
+[31m-    grid-template-columns: repeat(4, 1fr);[m
+[31m-  }[m
+[31m-[m
+[31m-  .widget-actions {[m
+[31m-    display: flex;[m
+[31m-    gap: 0.5rem;[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Navigation Component[m
+[31m-[m
+[31m-```css[m
+[31m-.nav-container {[m
+[31m-  container: nav / inline-size;[m
+[31m-}[m
+[31m-[m
+[31m-.nav {[m
+[31m-  display: flex;[m
+[31m-  flex-direction: column;[m
+[31m-  gap: 0.5rem;[m
+[31m-}[m
+[31m-[m
+[31m-.nav-link {[m
+[31m-  display: flex;[m
+[31m-  align-items: center;[m
+[31m-  gap: 0.75rem;[m
+[31m-  padding: 0.75rem 1rem;[m
+[31m-  border-radius: 0.5rem;[m
+[31m-}[m
+[31m-[m
+[31m-.nav-link-text {[m
+[31m-  display: none;[m
+[31m-}[m
+[31m-[m
+[31m-.nav-link-icon {[m
+[31m-  width: 1.5rem;[m
+[31m-  height: 1.5rem;[m
+[31m-}[m
+[31m-[m
+[31m-/* Show text when container is wide enough */[m
+[31m-@container nav (min-width: 200px) {[m
+[31m-  .nav-link-text {[m
+[31m-    display: block;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* Horizontal layout for wider containers */[m
+[31m-@container nav (min-width: 600px) {[m
+[31m-  .nav {[m
+[31m-    flex-direction: row;[m
+[31m-  }[m
+[31m-[m
+[31m-  .nav-link {[m
+[31m-    padding: 0.5rem 1rem;[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Tailwind CSS Integration[m
+[31m-[m
+[31m-```tsx[m
+[31m-// Tailwind v3.2+ supports container queries[m
+[31m-// tailwind.config.js[m
+[31m-module.exports = {[m
+[31m-  plugins: [require("@tailwindcss/container-queries")],[m
+[31m-};[m
+[31m-[m
+[31m-// Component usage[m
+[31m-function Card({ title, image, description }) {[m
+[31m-  return ([m
+[31m-    // @container creates containment context[m
+[31m-    <div className="@container">[m
+[31m-      <article className="flex flex-col @md:flex-row @md:gap-4">[m
+[31m-        <img[m
+[31m-          src={image}[m
+[31m-          alt=""[m
+[31m-          className="w-full @md:w-48 @lg:w-64 aspect-video @md:aspect-square object-cover rounded-lg"[m
+[31m-        />[m
+[31m-        <div className="p-4 @md:p-0">[m
+[31m-          <h2 className="text-lg @md:text-xl @lg:text-2xl font-semibold">[m
+[31m-            {title}[m
+[31m-          </h2>[m
+[31m-          <p className="mt-2 text-muted-foreground @lg:text-lg">[m
+[31m-            {description}[m
+[31m-          </p>[m
+[31m-        </div>[m
+[31m-      </article>[m
+[31m-    </div>[m
+[31m-  );[m
+[31m-}[m
+[31m-[m
+[31m-// Named containers[m
+[31m-function Dashboard() {[m
+[31m-  return ([m
+[31m-    <div className="@container/main">[m
+[31m-      <aside className="@container/sidebar">[m
+[31m-        <nav className="flex flex-col @lg/sidebar:flex-row">{/* ... */}</nav>[m
+[31m-      </aside>[m
+[31m-      <main className="@lg/main:grid @lg/main:grid-cols-2">{/* ... */}</main>[m
+[31m-    </div>[m
+[31m-  );[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Fallback Strategies[m
+[31m-[m
+[31m-```css[m
+[31m-/* Provide fallbacks for browsers without support */[m
+[31m-.card {[m
+[31m-  /* Default (fallback) styles */[m
+[31m-  display: flex;[m
+[31m-  flex-direction: column;[m
+[31m-}[m
+[31m-[m
+[31m-/* Feature query for container support */[m
+[31m-@supports (container-type: inline-size) {[m
+[31m-  .card-container {[m
+[31m-    container-type: inline-size;[m
+[31m-  }[m
+[31m-[m
+[31m-  @container (min-width: 400px) {[m
+[31m-    .card {[m
+[31m-      flex-direction: row;[m
+[31m-    }[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* Alternative: media query fallback */[m
+[31m-.card {[m
+[31m-  display: flex;[m
+[31m-  flex-direction: column;[m
+[31m-}[m
+[31m-[m
+[31m-/* Viewport-based fallback */[m
+[31m-@media (min-width: 768px) {[m
+[31m-  .card {[m
+[31m-    flex-direction: row;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-/* Enhanced with container queries when supported */[m
+[31m-@supports (container-type: inline-size) {[m
+[31m-  @media (min-width: 768px) {[m
+[31m-    .card {[m
+[31m-      flex-direction: column; /* Reset */[m
+[31m-    }[m
+[31m-  }[m
+[31m-[m
+[31m-  @container (min-width: 400px) {[m
+[31m-    .card {[m
+[31m-      flex-direction: row;[m
+[31m-    }[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Performance Considerations[m
+[31m-[m
+[31m-```css[m
+[31m-/* Avoid over-nesting containers */[m
+[31m-/* Bad: Too many nested containers */[m
+[31m-.level-1 {[m
+[31m-  container-type: inline-size;[m
+[31m-}[m
+[31m-.level-2 {[m
+[31m-  container-type: inline-size;[m
+[31m-}[m
+[31m-.level-3 {[m
+[31m-  container-type: inline-size;[m
+[31m-}[m
+[31m-.level-4 {[m
+[31m-  container-type: inline-size;[m
+[31m-}[m
+[31m-[m
+[31m-/* Good: Strategic container placement */[m
+[31m-.component-wrapper {[m
+[31m-  container-type: inline-size;[m
+[31m-}[m
+[31m-[m
+[31m-/* Use inline-size instead of size when possible */[m
+[31m-/* size containment is more expensive */[m
+[31m-.container {[m
+[31m-  container-type: inline-size; /* Preferred */[m
+[31m-  /* container-type: size; */ /* Only when needed */[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Testing Container Queries[m
+[31m-[m
+[31m-```javascript[m
+[31m-// Test container query support[m
+[31m-const supportsContainerQueries = CSS.supports("container-type", "inline-size");[m
+[31m-[m
+[31m-// Resize observer for testing[m
+[31m-const observer = new ResizeObserver((entries) => {[m
+[31m-  for (const entry of entries) {[m
+[31m-    console.log("Container width:", entry.contentRect.width);[m
+[31m-  }[m
+[31m-});[m
+[31m-[m
+[31m-observer.observe(document.querySelector(".container"));[m
+[31m-```[m
+[31m-[m
+[31m-## Resources[m
+[31m-[m
+[31m-- [MDN Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries)[m
+[31m-- [CSS Container Queries Spec](https://www.w3.org/TR/css-contain-3/)[m
+[31m-- [Una Kravets: Container Queries](https://web.dev/cq-stable/)[m
+[31m-- [Ahmad Shadeed: Container Queries Guide](https://ishadeed.com/article/container-queries-are-finally-here/)[m
+[1mdiff --git a/.agent/skills/responsive-design/references/fluid-layouts.md b/.agent/skills/responsive-design/references/fluid-layouts.md[m
+[1mdeleted file mode 100644[m
+[1mindex 29fde9c..0000000[m
+[1m--- a/.agent/skills/responsive-design/references/fluid-layouts.md[m
+[1m+++ /dev/null[m
+[36m@@ -1,538 +0,0 @@[m
+[31m-# Fluid Layouts and Typography[m
+[31m-[m
+[31m-## Overview[m
+[31m-[m
+[31m-Fluid design creates smooth scaling experiences by using relative units and mathematical functions instead of fixed breakpoints. This approach reduces the need for media queries and creates more natural-feeling interfaces.[m
+[31m-[m
+[31m-## Fluid Typography[m
+[31m-[m
+[31m-### The clamp() Function[m
+[31m-[m
+[31m-```css[m
+[31m-/* clamp(minimum, preferred, maximum) */[m
+[31m-.heading {[m
+[31m-  /* Never smaller than 1.5rem, never larger than 3rem */[m
+[31m-  /* Scales at 5vw between those values */[m
+[31m-  font-size: clamp(1.5rem, 5vw, 3rem);[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Calculating Fluid Values[m
+[31m-[m
+[31m-The preferred value in `clamp()` typically combines a base size with a viewport-relative portion:[m
+[31m-[m
+[31m-```css[m
+[31m-/* Formula: clamp(min, base + scale * vw, max) */[m
+[31m-[m
+[31m-/* For text that scales from 16px (320px viewport) to 24px (1200px viewport): */[m
+[31m-/* slope = (24 - 16) / (1200 - 320) = 8 / 880 = 0.00909 */[m
+[31m-/* y-intercept = 16 - 0.00909 * 320 = 13.09px = 0.818rem */[m
+[31m-[m
+[31m-.text {[m
+[31m-  font-size: clamp(1rem, 0.818rem + 0.909vw, 1.5rem);[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Type Scale Generator[m
+[31m-[m
+[31m-```javascript[m
+[31m-// Generate a fluid type scale[m
+[31m-function fluidType({[m
+[31m-  minFontSize,[m
+[31m-  maxFontSize,[m
+[31m-  minViewport = 320,[m
+[31m-  maxViewport = 1200,[m
+[31m-}) {[m
+[31m-  const minFontRem = minFontSize / 16;[m
+[31m-  const maxFontRem = maxFontSize / 16;[m
+[31m-  const minViewportRem = minViewport / 16;[m
+[31m-  const maxViewportRem = maxViewport / 16;[m
+[31m-[m
+[31m-  const slope = (maxFontRem - minFontRem) / (maxViewportRem - minViewportRem);[m
+[31m-  const yAxisIntersection = minFontRem - slope * minViewportRem;[m
+[31m-[m
+[31m-  return `clamp(${minFontRem}rem, ${yAxisIntersection.toFixed(4)}rem + ${(slope * 100).toFixed(4)}vw, ${maxFontRem}rem)`;[m
+[31m-}[m
+[31m-[m
+[31m-// Usage[m
+[31m-const typeScale = {[m
+[31m-  xs: fluidType({ minFontSize: 12, maxFontSize: 14 }),[m
+[31m-  sm: fluidType({ minFontSize: 14, maxFontSize: 16 }),[m
+[31m-  base: fluidType({ minFontSize: 16, maxFontSize: 18 }),[m
+[31m-  lg: fluidType({ minFontSize: 18, maxFontSize: 20 }),[m
+[31m-  xl: fluidType({ minFontSize: 20, maxFontSize: 24 }),[m
+[31m-  "2xl": fluidType({ minFontSize: 24, maxFontSize: 32 }),[m
+[31m-  "3xl": fluidType({ minFontSize: 30, maxFontSize: 48 }),[m
+[31m-  "4xl": fluidType({ minFontSize: 36, maxFontSize: 60 }),[m
+[31m-};[m
+[31m-```[m
+[31m-[m
+[31m-### Complete Type Scale[m
+[31m-[m
+[31m-```css[m
+[31m-:root {[m
+[31m-  /* Base: 16-18px */[m
+[31m-  --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);[m
+[31m-[m
+[31m-  /* Smaller sizes */[m
+[31m-  --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);[m
+[31m-  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);[m
+[31m-[m
+[31m-  /* Larger sizes */[m
+[31m-  --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);[m
+[31m-  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);[m
+[31m-  --text-2xl: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);[m
+[31m-  --text-3xl: clamp(1.875rem, 1.4rem + 2.375vw, 2.5rem);[m
+[31m-  --text-4xl: clamp(2.25rem, 1.5rem + 3.75vw, 3.5rem);[m
+[31m-  --text-5xl: clamp(3rem, 1.8rem + 6vw, 5rem);[m
+[31m-[m
+[31m-  /* Line heights scale inversely */[m
+[31m-  --leading-tight: 1.25;[m
+[31m-  --leading-normal: 1.5;[m
+[31m-  --leading-relaxed: 1.75;[m
+[31m-}[m
+[31m-[m
+[31m-/* Apply to elements */[m
+[31m-body {[m
+[31m-  font-size: var(--text-base);[m
+[31m-  line-height: var(--leading-normal);[m
+[31m-}[m
+[31m-[m
+[31m-h1 {[m
+[31m-  font-size: var(--text-4xl);[m
+[31m-  line-height: var(--leading-tight);[m
+[31m-}[m
+[31m-h2 {[m
+[31m-  font-size: var(--text-3xl);[m
+[31m-  line-height: var(--leading-tight);[m
+[31m-}[m
+[31m-h3 {[m
+[31m-  font-size: var(--text-2xl);[m
+[31m-  line-height: var(--leading-tight);[m
+[31m-}[m
+[31m-h4 {[m
+[31m-  font-size: var(--text-xl);[m
+[31m-  line-height: var(--leading-normal);[m
+[31m-}[m
+[31m-h5 {[m
+[31m-  font-size: var(--text-lg);[m
+[31m-  line-height: var(--leading-normal);[m
+[31m-}[m
+[31m-h6 {[m
+[31m-  font-size: var(--text-base);[m
+[31m-  line-height: var(--leading-normal);[m
+[31m-}[m
+[31m-[m
+[31m-small {[m
+[31m-  font-size: var(--text-sm);[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Fluid Spacing[m
+[31m-[m
+[31m-### Spacing Scale[m
+[31m-[m
+[31m-```css[m
+[31m-:root {[m
+[31m-  /* Spacing tokens that scale with viewport */[m
+[31m-  --space-3xs: clamp(0.25rem, 0.2rem + 0.25vw, 0.375rem);[m
+[31m-  --space-2xs: clamp(0.375rem, 0.3rem + 0.375vw, 0.5rem);[m
+[31m-  --space-xs: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);[m
+[31m-  --space-sm: clamp(0.75rem, 0.6rem + 0.75vw, 1rem);[m
+[31m-  --space-md: clamp(1rem, 0.8rem + 1vw, 1.5rem);[m
+[31m-  --space-lg: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);[m
+[31m-  --space-xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);[m
+[31m-  --space-2xl: clamp(3rem, 2rem + 5vw, 5rem);[m
+[31m-  --space-3xl: clamp(4rem, 2.5rem + 7.5vw, 8rem);[m
+[31m-[m
+[31m-  /* One-up pairs (for asymmetric spacing) */[m
+[31m-  --space-xs-sm: clamp(0.5rem, 0.3rem + 1vw, 1rem);[m
+[31m-  --space-sm-md: clamp(0.75rem, 0.5rem + 1.25vw, 1.5rem);[m
+[31m-  --space-md-lg: clamp(1rem, 0.6rem + 2vw, 2rem);[m
+[31m-  --space-lg-xl: clamp(1.5rem, 1rem + 2.5vw, 3rem);[m
+[31m-}[m
+[31m-[m
+[31m-/* Usage examples */[m
+[31m-.section {[m
+[31m-  padding-block: var(--space-xl);[m
+[31m-  padding-inline: var(--space-md);[m
+[31m-}[m
+[31m-[m
+[31m-.card {[m
+[31m-  padding: var(--space-md);[m
+[31m-  gap: var(--space-sm);[m
+[31m-}[m
+[31m-[m
+[31m-.stack > * + * {[m
+[31m-  margin-top: var(--space-md);[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Container Widths[m
+[31m-[m
+[31m-```css[m
+[31m-:root {[m
+[31m-  /* Fluid max-widths */[m
+[31m-  --container-xs: min(100% - 2rem, 20rem);[m
+[31m-  --container-sm: min(100% - 2rem, 30rem);[m
+[31m-  --container-md: min(100% - 2rem, 45rem);[m
+[31m-  --container-lg: min(100% - 2rem, 65rem);[m
+[31m-  --container-xl: min(100% - 3rem, 80rem);[m
+[31m-  --container-2xl: min(100% - 4rem, 96rem);[m
+[31m-}[m
+[31m-[m
+[31m-.container {[m
+[31m-  width: var(--container-lg);[m
+[31m-  margin-inline: auto;[m
+[31m-}[m
+[31m-[m
+[31m-.prose {[m
+[31m-  max-width: var(--container-md);[m
+[31m-}[m
+[31m-[m
+[31m-.full-bleed {[m
+[31m-  width: 100vw;[m
+[31m-  margin-inline: calc(-50vw + 50%);[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## CSS Grid Fluid Layouts[m
+[31m-[m
+[31m-### Auto-fit Grid[m
+[31m-[m
+[31m-```css[m
+[31m-/* Grid that fills available space */[m
+[31m-.auto-grid {[m
+[31m-  display: grid;[m
+[31m-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));[m
+[31m-  gap: var(--space-md);[m
+[31m-}[m
+[31m-[m
+[31m-/* With maximum columns */[m
+[31m-.auto-grid-max-4 {[m
+[31m-  display: grid;[m
+[31m-  grid-template-columns: repeat([m
+[31m-    auto-fit,[m
+[31m-    minmax(min(100%, max(200px, calc((100% - 3 * var(--space-md)) / 4))), 1fr)[m
+[31m-  );[m
+[31m-  gap: var(--space-md);[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Responsive Grid Areas[m
+[31m-[m
+[31m-```css[m
+[31m-.page-grid {[m
+[31m-  display: grid;[m
+[31m-  grid-template-columns:[m
+[31m-    1fr[m
+[31m-    min(var(--container-lg), 100%)[m
+[31m-    1fr;[m
+[31m-  grid-template-rows: auto 1fr auto;[m
+[31m-}[m
+[31m-[m
+[31m-.page-grid > * {[m
+[31m-  grid-column: 2;[m
+[31m-}[m
+[31m-[m
+[31m-.full-width {[m
+[31m-  grid-column: 1 / -1;[m
+[31m-}[m
+[31m-[m
+[31m-/* Content with sidebar */[m
+[31m-.content-grid {[m
+[31m-  display: grid;[m
+[31m-  grid-template-columns: 1fr;[m
+[31m-  gap: var(--space-lg);[m
+[31m-}[m
+[31m-[m
+[31m-@media (min-width: 768px) {[m
+[31m-  .content-grid {[m
+[31m-    grid-template-columns: 1fr min(300px, 30%);[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Fluid Aspect Ratios[m
+[31m-[m
+[31m-```css[m
+[31m-/* Maintain aspect ratio fluidly */[m
+[31m-.aspect-video {[m
+[31m-  aspect-ratio: 16 / 9;[m
+[31m-}[m
+[31m-[m
+[31m-.aspect-square {[m
+[31m-  aspect-ratio: 1;[m
+[31m-}[m
+[31m-[m
+[31m-/* Fluid aspect ratio that changes */[m
+[31m-.hero-image {[m
+[31m-  aspect-ratio: 1; /* Mobile: square */[m
+[31m-}[m
+[31m-[m
+[31m-@media (min-width: 640px) {[m
+[31m-  .hero-image {[m
+[31m-    aspect-ratio: 4 / 3;[m
+[31m-  }[m
+[31m-}[m
+[31m-[m
+[31m-@media (min-width: 1024px) {[m
+[31m-  .hero-image {[m
+[31m-    aspect-ratio: 16 / 9;[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Flexbox Fluid Patterns[m
+[31m-[m
+[31m-### Flexible Sidebar[m
+[31m-[m
+[31m-```css[m
+[31m-/* Sidebar that collapses when too narrow */[m
+[31m-.with-sidebar {[m
+[31m-  display: flex;[m
+[31m-  flex-wrap: wrap;[m
+[31m-  gap: var(--space-lg);[m
+[31m-}[m
+[31m-[m
+[31m-.with-sidebar > :first-child {[m
+[31m-  flex-basis: 300px;[m
+[31m-  flex-grow: 1;[m
+[31m-}[m
+[31m-[m
+[31m-.with-sidebar > :last-child {[m
+[31m-  flex-basis: 0;[m
+[31m-  flex-grow: 999;[m
+[31m-  min-width: 60%;[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Cluster Layout[m
+[31m-[m
+[31m-```css[m
+[31m-/* Items cluster and wrap naturally */[m
+[31m-.cluster {[m
+[31m-  display: flex;[m
+[31m-  flex-wrap: wrap;[m
+[31m-  gap: var(--space-sm);[m
+[31m-  justify-content: flex-start;[m
+[31m-  align-items: center;[m
+[31m-}[m
+[31m-[m
+[31m-/* Center-aligned cluster */[m
+[31m-.cluster-center {[m
+[31m-  display: flex;[m
+[31m-  flex-wrap: wrap;[m
+[31m-  gap: var(--space-sm);[m
+[31m-  justify-content: center;[m
+[31m-  align-items: center;[m
+[31m-}[m
+[31m-[m
+[31m-/* Space-between cluster */[m
+[31m-.cluster-spread {[m
+[31m-  display: flex;[m
+[31m-  flex-wrap: wrap;[m
+[31m-  gap: var(--space-sm);[m
+[31m-  justify-content: space-between;[m
+[31m-  align-items: center;[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Switcher Layout[m
+[31m-[m
+[31m-```css[m
+[31m-/* Switches from horizontal to vertical based on container */[m
+[31m-.switcher {[m
+[31m-  display: flex;[m
+[31m-  flex-wrap: wrap;[m
+[31m-  gap: var(--space-md);[m
+[31m-}[m
+[31m-[m
+[31m-.switcher > * {[m
+[31m-  /* Items go vertical when container is narrower than threshold */[m
+[31m-  flex-grow: 1;[m
+[31m-  flex-basis: calc((30rem - 100%) * 999);[m
+[31m-}[m
+[31m-[m
+[31m-/* Limit columns */[m
+[31m-.switcher > :nth-last-child(n + 4),[m
+[31m-.switcher > :nth-last-child(n + 4) ~ * {[m
+[31m-  flex-basis: 100%;[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Intrinsic Sizing[m
+[31m-[m
+[31m-### Content-Based Widths[m
+[31m-[m
+[31m-```css[m
+[31m-/* Size based on content */[m
+[31m-.fit-content {[m
+[31m-  width: fit-content;[m
+[31m-  max-width: 100%;[m
+[31m-}[m
+[31m-[m
+[31m-/* Minimum content size */[m
+[31m-.min-content {[m
+[31m-  width: min-content;[m
+[31m-}[m
+[31m-[m
+[31m-/* Maximum content size */[m
+[31m-.max-content {[m
+[31m-  width: max-content;[m
+[31m-}[m
+[31m-[m
+[31m-/* Practical examples */[m
+[31m-.button {[m
+[31m-  width: fit-content;[m
+[31m-  min-width: 8rem; /* Prevent too-narrow buttons */[m
+[31m-  padding-inline: var(--space-md);[m
+[31m-}[m
+[31m-[m
+[31m-.tag {[m
+[31m-  width: fit-content;[m
+[31m-  padding: var(--space-2xs) var(--space-xs);[m
+[31m-}[m
+[31m-[m
+[31m-.modal {[m
+[31m-  width: min(90vw, 600px);[m
+[31m-  max-height: min(90vh, 800px);[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### min() and max() Functions[m
+[31m-[m
+[31m-```css[m
+[31m-/* Responsive sizing without media queries */[m
+[31m-.container {[m
+[31m-  /* 90% of viewport or 1200px, whichever is smaller */[m
+[31m-  width: min(90%, 1200px);[m
+[31m-  margin-inline: auto;[m
+[31m-}[m
+[31m-[m
+[31m-.hero-text {[m
+[31m-  /* At least 2rem, at most 4rem */[m
+[31m-  font-size: max(2rem, min(5vw, 4rem));[m
+[31m-}[m
+[31m-[m
+[31m-.sidebar {[m
+[31m-  /* At least 200px, at most 25% of parent */[m
+[31m-  width: max(200px, min(300px, 25%));[m
+[31m-}[m
+[31m-[m
+[31m-.card-grid {[m
+[31m-  /* Each card at least 200px, fill available space */[m
+[31m-  grid-template-columns: repeat(auto-fit, minmax(max(200px, 100%/4), 1fr));[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Viewport Units[m
+[31m-[m
+[31m-### Modern Viewport Units[m
+[31m-[m
+[31m-```css[m
+[31m-/* Dynamic viewport height - accounts for mobile browser UI */[m
+[31m-.full-height {[m
+[31m-  min-height: 100dvh;[m
+[31m-}[m
+[31m-[m
+[31m-/* Small viewport - minimum size when UI is visible */[m
+[31m-.hero {[m
+[31m-  min-height: 100svh;[m
+[31m-}[m
+[31m-[m
+[31m-/* Large viewport - maximum size when UI is hidden */[m
+[31m-.backdrop {[m
+[31m-  height: 100lvh;[m
+[31m-}[m
+[31m-[m
+[31m-/* Viewport-relative positioning */[m
+[31m-.fixed-nav {[m
+[31m-  position: fixed;[m
+[31m-  inset-inline: 0;[m
+[31m-  top: 0;[m
+[31m-  height: max(60px, 8vh);[m
+[31m-}[m
+[31m-[m
+[31m-/* Safe area insets for notched devices */[m
+[31m-.safe-area {[m
+[31m-  padding-top: env(safe-area-inset-top);[m
+[31m-  padding-right: env(safe-area-inset-right);[m
+[31m-  padding-bottom: env(safe-area-inset-bottom);[m
+[31m-  padding-left: env(safe-area-inset-left);[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-### Combining Viewport and Container Units[m
+[31m-[m
+[31m-```css[m
+[31m-/* Responsive based on both viewport and container */[m
+[31m-.component {[m
+[31m-  container-type: inline-size;[m
+[31m-}[m
+[31m-[m
+[31m-.component-text {[m
+[31m-  /* Uses viewport when small, container when in container */[m
+[31m-  font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem);[m
+[31m-}[m
+[31m-[m
+[31m-@container (min-width: 400px) {[m
+[31m-  .component-text {[m
+[31m-    font-size: clamp(1rem, 4cqi, 1.5rem);[m
+[31m-  }[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Utility Classes[m
+[31m-[m
+[31m-```css[m
+[31m-/* Tailwind-style fluid utilities */[m
+[31m-.text-fluid-sm {[m
+[31m-  font-size: var(--text-sm);[m
+[31m-}[m
+[31m-.text-fluid-base {[m
+[31m-  font-size: var(--text-base);[m
+[31m-}[m
+[31m-.text-fluid-lg {[m
+[31m-  font-size: var(--text-lg);[m
+[31m-}[m
+[31m-.text-fluid-xl {[m
+[31m-  font-size: var(--text-xl);[m
+[31m-}[m
+[31m-.text-fluid-2xl {[m
+[31m-  font-size: var(--text-2xl);[m
+[31m-}[m
+[31m-.text-fluid-3xl {[m
+[31m-  font-size: var(--text-3xl);[m
+[31m-}[m
+[31m-.text-fluid-4xl {[m
+[31m-  font-size: var(--text-4xl);[m
+[31m-}[m
+[31m-[m
+[31m-.p-fluid-sm {[m
+[31m-  padding: var(--space-sm);[m
+[31m-}[m
+[31m-.p-fluid-md {[m
+[31m-  padding: var(--space-md);[m
+[31m-}[m
+[31m-.p-fluid-lg {[m
+[31m-  padding: var(--space-lg);[m
+[31m-}[m
+[31m-[m
+[31m-.gap-fluid-sm {[m
+[31m-  gap: var(--space-sm);[m
+[31m-}[m
+[31m-.gap-fluid-md {[m
+[31m-  gap: var(--space-md);[m
+[31m-}[m
+[31m-.gap-fluid-lg {[m
+[31m-  gap: var(--space-lg);[m
+[31m-}[m
+[31m-```[m
+[31m-[m
+[31m-## Resources[m
+[31m-[m
+[31m-- [Utopia Fluid Type Calculator](https://utopia.fyi/)[m
+[31m-- [Modern Fluid Typography](https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/)[m
+[31m-- [Every Layout](https://every-layout.dev/)[m
+[31m-- [CSS min(), max(), and clamp()](https://web.dev/min-max-clamp/)[m
+[1mdiff --git a/src/components/Collections.tsx b/src/components/Collections.tsx[m
+[1mindex 4ee8e48..a5992cd 100644[m
+[1m--- a/src/components/Collections.tsx[m
+[1m+++ b/src/components/Collections.tsx[m
+[36m@@ -197,7 +197,7 @@[m [mconst Collections = ({ products: dbProducts = [] }: { products?: Product[] }) =>[m
+                       height: '450px'[m
+                     }}>[m
+                       <div[m
+[31m-                        className="overflow-hidden h-full flex flex-col transition-all duration-300 relative group-hover:-translate-y-1 bg-[#202027] group-hover:bg-white shadow-[0_8px_18.7px_-7px_#9F19FF] group-hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2),0_10px_20px_-5px_rgba(125,228,0,0.4)]"[m
+[32m+[m[32m                        className="overflow-hidden h-full flex flex-col transition-all duration-300 relative group-hover:-translate-y-1 group-hover:bg-white shadow-[0_8px_18.7px_-7px_#9F19FF] group-hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2),0_10px_20px_-5px_rgba(125,228,0,0.4)]"[m
+                         style={{[m
+                           display: 'flex',[m
+                           flexDirection: 'column',[m
+[36m@@ -205,7 +205,8 @@[m [mconst Collections = ({ products: dbProducts = [] }: { products?: Product[] }) =>[m
+                           gap: '2px',[m
+                           borderRadius: '24px',[m
+                           height: '450px',[m
+[31m-                          width: '100%'[m
+[32m+[m[32m                          width: '100%',[m
+[32m+[m[32m                          background: 'linear-gradient(180deg, #16172E 0%, #3E1B63 100%)'[m
+                         }}>[m
+ [m
+                         {/* Image Container - White BG for Trinkets */}[m
+[1mdiff --git a/src/components/FeaturedProducts.tsx b/src/components/FeaturedProducts.tsx[m
+[1mindex 0d12d94..c1b80b6 100644[m
+[1m--- a/src/components/FeaturedProducts.tsx[m
+[1m+++ b/src/components/FeaturedProducts.tsx[m
+[36m@@ -180,7 +180,7 @@[m [mconst FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps)[m
+                 height: '450px'[m
+               }}>[m
+                 <div[m
+[31m-                  className="overflow-hidden h-full flex flex-col transition-all duration-300 relative group-hover:-translate-y-1 bg-[#202027] group-hover:bg-white shadow-[0_8px_18.7px_-7px_#9F19FF] group-hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2),0_10px_20px_-5px_rgba(125,228,0,0.4)]"[m
+[32m+[m[32m                  className="overflow-hidden h-full flex flex-col transition-all duration-300 relative group-hover:-translate-y-1 group-hover:bg-white shadow-[0_8px_18.7px_-7px_#9F19FF] group-hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2),0_10px_20px_-5px_rgba(125,228,0,0.4)]"[m
+                   style={{[m
+                     display: 'flex',[m
+                     flexDirection: 'column',[m
+[36m@@ -188,7 +188,8 @@[m [mconst FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps)[m
+                     gap: '2px', // GAP REDUCED TO 2PX as requested[m
+                     borderRadius: '24px',[m
+                     height: '450px',[m
+[31m-                    width: '100%'[m
+[32m+[m[32m                    width: '100%',[m
+[32m+[m[32m                    background: 'linear-gradient(180deg, #16172E 0%, #3E1B63 100%)'[m
+                   }}>[m
+ [m
+                   {/* Image Container */}[m
+[1mdiff --git a/src/components/HeroVideo.tsx b/src/components/HeroVideo.tsx[m
+[1mindex 5b4a0c2..e3da150 100644[m
+[1m--- a/src/components/HeroVideo.tsx[m
+[1m+++ b/src/components/HeroVideo.tsx[m
+[36m@@ -112,6 +112,7 @@[m [mconst HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)[m
+           width: 100%;[m
+           padding-left: 16px;[m
+           padding-right: 16px;[m
+[32m+[m[32m          padding-bottom: 40px; /* Space for shadow glow */[m
+           display: flex;[m
+           justify-content: center;[m
+         }[m
+[36m@@ -122,7 +123,6 @@[m [mconst HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)[m
+           width: 100%;[m
+           max-width: 1400px;[m
+           aspect-ratio: 16/9;[m
+[31m-          max-height: 80vh; [m
+           margin: 0 auto;[m
+           display: block;[m
+           border-radius: 24px;[m
+[36m@@ -140,6 +140,7 @@[m [mconst HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)[m
+ [m
+         /* Info Bar Background Strip */[m
+         .info-bar {[m
+[32m+[m[32m          display: none !important; /* HIDDEN - Remove this line to restore the info bar */[m
+           width: 100%;[m
+           min-height: 80px;[m
+           background: linear-gradient([m
+[36m@@ -152,7 +153,6 @@[m [mconst HeroVideo = ({ heroVideo, heroYoutubeUrl, heroInfoItems }: HeroVideoProps)[m
+           );[m
+           box-shadow: 0 0 11.6px 0 rgba(0, 0, 0, 0.22) inset;[m
+           margin-top: 30px;[m
+[31m-          display: flex;[m
+           justify-content: center;[m
+           /* Explicitly No Border Radius on Desktop/Default */[m
+           border-radius: 0;[m
+[1mdiff --git a/src/components/Navbar.tsx b/src/components/Navbar.tsx[m
+[1mindex 859ba7c..fbb3f06 100644[m
+[1m--- a/src/components/Navbar.tsx[m
+[1m+++ b/src/components/Navbar.tsx[m
+[36m@@ -236,14 +236,12 @@[m [mconst Navbar = () => {[m
+           border-radius: 140px;[m
+           border: none;[m
+           background: linear-gradient([m
+[31m-            90deg,[m
+[31m-            #271C2F 0%,[m
+[31m-            #0A0A0A 31.73%,[m
+[31m-            #0A0A0A 56.4%,[m
+[31m-            #0A0A0A 66.83%,[m
+[31m-            #19260A 100%[m
+[32m+[m[32m            180deg,[m
+[32m+[m[32m            #16172E 0%,[m
+[32m+[m[32m            #3E1B63 100%[m
+           );[m
+           box-shadow: 0 0 15px 0 #872B8F;[m
+[32m+[m[32m          overflow: visible; /* Allow neon glow to spread freely */[m
+         }[m
+ [m
+         /* Inner frame with white border */[m
+[36m@@ -321,12 +319,13 @@[m [mconst Navbar = () => {[m
+           display: flex;[m
+           align-items: center;[m
+           gap: 12px;[m
+[32m+[m[32m          overflow: visible; /* Allow neon glow to spread freely */[m
+         }[m
+ [m
+         .nav-icon-btn {[m
+           position: relative;[m
+[31m-          width: 44px;[m
+[31m-          height: 44px;[m
+[32m+[m[32m          width: 60px;[m
+[32m+[m[32m          height: 60px;[m
+           background: transparent;[m
+           border: 0;[m
+           box-shadow: none;[m
+[36m@@ -336,6 +335,7 @@[m [mconst Navbar = () => {[m
+           justify-content: center;[m
+           cursor: pointer;[m
+           transition: transform 0.15s ease, opacity 0.15s ease;[m
+[32m+[m[32m          overflow: visible; /* Allow neon glow to spread freely */[m
+         }[m
+ [m
+         .nav-icon-btn:hover {[m
+[36m@@ -349,9 +349,12 @@[m [mconst Navbar = () => {[m
+           transition: all 0.3s ease;[m
+         }[m
+ [m
+[32m+[m[32m        .nav-icon-btn:hover .icon {[m
+[32m+[m[32m          filter: drop-shadow(0 0 3px #E6FFB3) drop-shadow(0 0 8px #ccff00) drop-shadow(0 0 12px #ccff00);[m
+[32m+[m[32m        }[m
+[32m+[m
+         .nav-icon-btn:hover .icon path {[m
+           fill: #E6FFB3;[m
+[31m-          filter: drop-shadow(0 0 2px #E6FFB3) drop-shadow(0 0 5px #ccff00);[m
+         }[m
+ [m
+         /* badge */[m
+[1mdiff --git a/src/components/PinsAndStickers.tsx b/src/components/PinsAndStickers.tsx[m
+[1mindex 0bb7b87..a0f40b2 100644[m
+[1m--- a/src/components/PinsAndStickers.tsx[m
+[1m+++ b/src/components/PinsAndStickers.tsx[m
+[36m@@ -170,7 +170,7 @@[m [mconst PinsAndStickers = ({ products: dbProducts = [] }: { products?: Product[] }[m
+                                             height: '450px'[m
+                                         }}>[m
+                                             <div[m
+[31m-                                                className="overflow-hidden h-full flex flex-col transition-all duration-300 relative group-hover:-translate-y-1 bg-[#202027] group-hover:bg-white shadow-[0_8px_18.7px_-7px_#9F19FF] group-hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2),0_10px_20px_-5px_rgba(125,228,0,0.4)]"[m
+[32m+[m[32m                                                className="overflow-hidden h-full flex flex-col transition-all duration-300 relative group-hover:-translate-y-1 group-hover:bg-white shadow-[0_8px_18.7px_-7px_#9F19FF] group-hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2),0_10px_20px_-5px_rgba(125,228,0,0.4)]"[m
+                                                 style={{[m
+                                                     display: 'flex',[m
+                                                     flexDirection: 'column',[m
+[36m@@ -178,7 +178,8 @@[m [mconst PinsAndStickers = ({ products: dbProducts = [] }: { products?: Product[] }[m
+                                                     gap: '2px',[m
+                                                     borderRadius: '24px',[m
+                                                     height: '450px',[m
+[31m-                                                    width: '310px'[m
+[32m+[m[32m                                                    width: '310px',[m
+[32m+[m[32m                                                    background: 'linear-gradient(180deg, #16172E 0%, #3E1B63 100%)'[m
+                                                 }}>[m
+ [m
+                                                 {/* Image Container - White BG */}[m
+[36m@@ -234,7 +235,7 @@[m [mconst PinsAndStickers = ({ products: dbProducts = [] }: { products?: Product[] }[m
+                                                 <div className="w-full px-5 pb-[70px] flex flex-col flex-1 relative duration-300">[m
+ [m
+                                                     {/* Dark BG base to allow hover light */}[m
+[31m-                                                    <div className="absolute inset-0 bg-[#202027] group-hover:bg-white transition-colors duration-300 -z-10" />[m
+[32m+[m[32m                                                    <div className="absolute inset-0 group-hover:bg-white transition-colors duration-300 -z-10" style={{ background: 'linear-gradient(180deg, #16172E 0%, #3E1B63 100%)' }} />[m
+ [m
+                                                     {/* Title */}[m
+                                                     <h3 className="mb-1 text-[#F2F2F2] transition-colors duration-300 group-hover:text-[#7DE400]" style={{[m
+[1mdiff --git a/src/components/ProductListModal.tsx b/src/components/ProductListModal.tsx[m
+[1mindex 37976f4..318a6da 100644[m
+[1m--- a/src/components/ProductListModal.tsx[m
+[1m+++ b/src/components/ProductListModal.tsx[m
+[36m@@ -119,10 +119,11 @@[m [mconst ProductListModal = ({ isOpen, onClose, title, products }: ProductListModal[m
+                                         height: '450px'[m
+                                     }}>[m
+                                         <div[m
+[31m-                                            className="overflow-hidden h-full flex flex-col transition-all duration-300 relative group-hover:-translate-y-1 bg-[#202027] group-hover:bg-white shadow-md hover:shadow-xl"[m
+[32m+[m[32m                                            className="overflow-hidden h-full flex flex-col transition-all duration-300 relative group-hover:-translate-y-1 group-hover:bg-white shadow-md hover:shadow-xl"[m
+                                             style={{[m
+                                                 borderRadius: '24px',[m
+[31m-                                                height: '450px'[m
+[32m+[m[32m                                                height: '450px',[m
+[32m+[m[32m                                                background: 'linear-gradient(180deg, #16172E 0%, #3E1B63 100%)'[m
+                                             }}>[m
+ [m
+                                             {/* Image Container */}[m
+[1mdiff --git a/src/index.css b/src/index.css[m
+[1mindex d9da767..fe9bf41 100644[m
+[1m--- a/src/index.css[m
+[1m+++ b/src/index.css[m
+[36m@@ -38,7 +38,7 @@[m [mAll colors MUST be HSL.[m
+ [m
+     --radius: 1rem;[m
+ [m
+[31m-    --gradient-primary: linear-gradient(135deg, hsl(270 60% 75%), hsl(290 65% 85%));[m
+[32m+[m[32m    --gradient-primary: linear-gradient(90deg, #391B5C 0%, #9F19FF 100%);[m
+     --gradient-warm: linear-gradient(135deg, hsl(20 90% 80%), hsl(340 85% 85%));[m
+     --gradient-hero: linear-gradient(180deg, hsl(270 40% 97%), hsl(0 0% 100%));[m
+     --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(270 30% 98%));[m
+[36m@@ -96,7 +96,7 @@[m [mAll colors MUST be HSL.[m
+     --input: 240 10% 25%;[m
+     --ring: 270 60% 70%;[m
+ [m
+[31m-    --gradient-primary: linear-gradient(135deg, hsl(270 50% 40%), hsl(290 55% 50%));[m
+[32m+[m[32m    --gradient-primary: linear-gradient(90deg, #391B5C 0%, #9F19FF 100%);[m
+     --gradient-warm: linear-gradient(135deg, hsl(20 80% 45%), hsl(340 75% 55%));[m
+     --gradient-hero: linear-gradient(180deg, hsl(240 10% 15%), hsl(240 10% 12%));[m
+     --gradient-card: linear-gradient(135deg, hsl(240 10% 15%), hsl(270 20% 18%));[m
