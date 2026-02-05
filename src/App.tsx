@@ -6,7 +6,47 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MouseTrail from "./components/MouseTrail";
 
-// ... existing imports
+import ScrollToTop from "./components/ScrollToTop";
+import SessionTimeout from "./components/SessionTimeout";
+import { LoadingSpinner } from "./components/ui/LoadingSpinner";
+import { AuthProvider } from "./context/AuthContext";
+import { CartProvider } from "./context/CartContext";
+import CartDrawer from "./components/CartDrawer";
+import AdminRoute from "./components/AdminRoute";
+
+// Lazy Load Pages
+const Index = lazy(() => import("./pages/Index"));
+const About = lazy(() => import("./pages/About"));
+const Catalog = lazy(() => import("./pages/Catalog"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Register = lazy(() => import("./pages/Register"));
+const Login = lazy(() => import("./pages/Login"));
+const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+const Profile = lazy(() => import("./pages/Profile"));
+const Checkout = lazy(() => import("./pages/Checkout"));
+const OrderSuccess = lazy(() => import("./pages/OrderSuccess"));
+const UserOrders = lazy(() => import("./pages/UserOrders"));
+const ProductPage = lazy(() => import("./pages/ProductPage"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const VerifyEmail = lazy(() => import("./pages/VerifyEmail"));
+const VerifyAccount = lazy(() => import("./pages/VerifyAccount"));
+const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
+const PolicyPage = lazy(() => import("./pages/PolicyPage"));
+
+// Admin Lazy Load
+const AdminLayout = lazy(() => import("./layouts/AdminLayout"));
+const AdminDashboard = lazy(() => import("./pages/admin/Dashboard"));
+const ContentSettings = lazy(() => import("./pages/admin/ContentSettings"));
+const Products = lazy(() => import("./pages/admin/Products"));
+const ProductForm = lazy(() => import("./pages/admin/ProductForm"));
+const AdminTeam = lazy(() => import("./pages/admin/AdminTeam"));
+const AdminOrders = lazy(() => import("./pages/admin/AdminOrders"));
+const AdminCoupons = lazy(() => import("./pages/admin/AdminCoupons"));
+const Marketing = lazy(() => import("./pages/admin/Marketing"));
+const PolicySettings = lazy(() => import("./pages/admin/PolicySettings"));
+
+const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
