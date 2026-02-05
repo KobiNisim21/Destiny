@@ -189,7 +189,7 @@ const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) 
                     borderRadius: '24px',
                     height: '450px',
                     width: '100%',
-                    background: 'linear-gradient(180deg, #16172E 0%, #16172E 40%, #3E1B63 100%)'
+                    background: 'linear-gradient(180deg, #16172E 0%, #16172E 80%, #3E1B63 100%)'
                   }}>
 
                   {/* Image Container */}

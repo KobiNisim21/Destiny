@@ -123,7 +123,7 @@ const ProductListModal = ({ isOpen, onClose, title, products }: ProductListModal
                                             style={{
                                                 borderRadius: '24px',
                                                 height: '450px',
-                                                background: 'linear-gradient(180deg, #16172E 0%, #3E1B63 100%)'
+                                                background: 'linear-gradient(180deg, #16172E 0%, #16172E 80%, #3E1B63 100%)'
                                             }}>
 
                                             {/* Image Container */}
