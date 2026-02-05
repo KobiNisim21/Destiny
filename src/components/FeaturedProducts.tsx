@@ -118,7 +118,7 @@ const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) 
   const getProductName = (p: Product) => p.title || p.name || '';
   const getProductLink = (p: Product) => p._id ? `/product/${p._id}` : `/product/${p.slug}`;
 
-  return <section className="py-16 md:py-24" dir="rtl">
+  return <section className="pt-[54px] pb-16 md:pt-[86px] md:pb-24" dir="rtl">
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header */}
       <div className="mb-12 animate-fade-in" style={{ textAlign: 'center' }}>
