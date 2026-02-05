@@ -257,7 +257,7 @@ const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) 
                     </h3>
 
                     {/* Description */}
-                    <p className="flex-1 text-[#F2F2F2] transition-colors duration-300 group-hover:text-[#22222A]" style={{
+                    <p className="flex-1 text-[#F2F2F2] transition-colors duration-300" style={{
                       textAlign: 'right',
                       fontFamily: '"Noto Sans Hebrew", sans-serif',
                       fontSize: '14px',
@@ -272,7 +272,7 @@ const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) 
                     {/* Footer: Price & Button - Absolute Positioning */}
                     <div className="flex items-center justify-between w-full absolute bottom-5 left-0 px-5">
                       <div className="flex flex-col items-start gap-0">
-                        <span className="text-[#FFF] transition-colors duration-300 group-hover:text-[#22222A]" style={{
+                        <span className="text-[#FFF] transition-colors duration-300" style={{
                           fontFamily: '"Noto Sans Hebrew"',
                           fontSize: '24px',
                           fontWeight: 700,

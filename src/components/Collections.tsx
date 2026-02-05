@@ -206,7 +206,7 @@ const Collections = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                           borderRadius: '24px',
                           height: '450px',
                           width: '100%',
-                          background: 'linear-gradient(180deg, #16172E 0%, #3E1B63 100%)'
+                          background: 'linear-gradient(180deg, #16172E 0%, #16172E 80%, #3E1B63 100%)'
                         }}>
 
                         {/* Image Container - White BG for Trinkets */}
@@ -276,7 +276,7 @@ const Collections = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                           </h3>
 
                           {/* Description */}
-                          <p className="flex-1 text-[#F2F2F2] transition-colors duration-300 group-hover:text-[#22222A]" style={{
+                          <p className="flex-1 text-[#F2F2F2] transition-colors duration-300" style={{
                             textAlign: 'right',
                             fontFamily: '"Noto Sans Hebrew", sans-serif',
                             fontSize: '14px',
@@ -291,7 +291,7 @@ const Collections = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                           {/* Footer: Price & Button */}
                           <div className="flex items-center justify-between w-full absolute bottom-5 left-0 px-5">
                             <div className="flex flex-col items-start gap-0">
-                              <span className="text-[#FFF] transition-colors duration-300 group-hover:text-[#22222A]" style={{
+                              <span className="text-[#FFF] transition-colors duration-300" style={{
                                 fontFamily: '"Noto Sans Hebrew"',
                                 fontSize: '24px',
                                 fontWeight: 700,

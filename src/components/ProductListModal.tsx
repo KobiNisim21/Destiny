@@ -177,7 +177,7 @@ const ProductListModal = ({ isOpen, onClose, title, products }: ProductListModal
                                                 </h3>
 
                                                 {/* Description */}
-                                                <p className="flex-1 text-[#F2F2F2]/80 transition-colors duration-300 group-hover:text-[#22222A]/80 text-sm mt-2 line-clamp-2" style={{
+                                                <p className="flex-1 text-[#F2F2F2]/80 transition-colors duration-300 text-sm mt-2 line-clamp-2" style={{
                                                     textAlign: 'right',
                                                     fontFamily: '"Noto Sans Hebrew", sans-serif',
                                                 }}>
@@ -187,7 +187,7 @@ const ProductListModal = ({ isOpen, onClose, title, products }: ProductListModal
                                                 {/* Footer */}
                                                 <div className="flex items-center justify-between w-full mt-auto pt-4 border-t border-white/10 group-hover:border-black/5">
                                                     <div className="flex flex-col items-start gap-0">
-                                                        <span className="text-white transition-colors duration-300 group-hover:text-[#22222A] font-bold text-xl">
+                                                        <span className="text-white transition-colors duration-300 font-bold text-xl">
                                                             ₪{product.price}
                                                         </span>
                                                         {product.originalPrice && product.originalPrice > product.price && (

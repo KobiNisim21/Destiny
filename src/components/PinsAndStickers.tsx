@@ -179,7 +179,7 @@ const PinsAndStickers = ({ products: dbProducts = [] }: { products?: Product[] }
                                                     borderRadius: '24px',
                                                     height: '450px',
                                                     width: '310px',
-                                                    background: 'linear-gradient(180deg, #16172E 0%, #3E1B63 100%)'
+                                                    background: 'linear-gradient(180deg, #16172E 0%, #16172E 80%, #3E1B63 100%)'
                                                 }}>
 
                                                 {/* Image Container - White BG */}
@@ -235,7 +235,7 @@ const PinsAndStickers = ({ products: dbProducts = [] }: { products?: Product[] }
                                                 <div className="w-full px-5 pb-[70px] flex flex-col flex-1 relative duration-300">
 
                                                     {/* Dark BG base to allow hover light */}
-                                                    <div className="absolute inset-0 group-hover:bg-white transition-colors duration-300 -z-10" style={{ background: 'linear-gradient(180deg, #16172E 0%, #3E1B63 100%)' }} />
+                                                    <div className="absolute inset-0 group-hover:bg-white transition-colors duration-300 -z-10" style={{ background: 'linear-gradient(180deg, #16172E 0%, #16172E 80%, #3E1B63 100%)' }} />
 
                                                     {/* Title */}
                                                     <h3 className="mb-1 text-[#F2F2F2] transition-colors duration-300 group-hover:text-[#7DE400]" style={{
@@ -249,7 +249,7 @@ const PinsAndStickers = ({ products: dbProducts = [] }: { products?: Product[] }
                                                     </h3>
 
                                                     {/* Description */}
-                                                    <p className="flex-1 text-[#F2F2F2] transition-colors duration-300 group-hover:text-[#22222A]" style={{
+                                                    <p className="flex-1 text-[#F2F2F2] transition-colors duration-300" style={{
                                                         textAlign: 'right',
                                                         fontFamily: '"Noto Sans Hebrew", sans-serif',
                                                         fontSize: '14px',
@@ -260,7 +260,7 @@ const PinsAndStickers = ({ products: dbProducts = [] }: { products?: Product[] }
 
                                                     {/* Footer: Price & Button */}
                                                     <div className="flex items-center justify-between w-full absolute bottom-5 left-0 px-5">
-                                                        <span className="text-[#FFF] transition-colors duration-300 group-hover:text-[#22222A]" style={{
+                                                        <span className="text-[#FFF] transition-colors duration-300" style={{
                                                             fontFamily: '"Noto Sans Hebrew"',
                                                             fontSize: '24px',
                                                             fontWeight: 700,
