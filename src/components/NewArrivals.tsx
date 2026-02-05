@@ -191,12 +191,8 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                   <img src={displayImage} alt={productName} className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0" />
                   <img src={hoverImage} alt={productName} className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
 
-                  <Badge className="relative z-10 font-bold px-3 py-1"
+                  <Badge className="relative z-10 font-bold px-3 py-1 bg-[#9F19FF] text-white rounded-[20px] text-[12px] shadow-sm transition-colors duration-300 group-hover:bg-[#7DE400]"
                     style={{
-                      backgroundColor: '#9F19FF',
-                      color: 'white',
-                      borderRadius: '20px',
-                      fontSize: '12px',
                       boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
                     }}>
                     חדש

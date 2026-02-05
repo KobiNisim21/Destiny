@@ -228,12 +228,8 @@ const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) 
                       </div>
                     </button>
 
-                    {badgeText && <Badge className="relative z-10 font-bold px-3 py-1"
+                    {badgeText && <Badge className="relative z-10 font-bold px-3 py-1 bg-[#9F19FF] text-white rounded-[20px] text-[12px] shadow-sm transition-colors duration-300 group-hover:bg-[#7DE400]"
                       style={{
-                        backgroundColor: '#9F19FF',
-                        color: 'white',
-                        borderRadius: '20px',
-                        fontSize: '12px',
                         boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
                       }}>
                       {badgeText}

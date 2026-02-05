@@ -150,12 +150,8 @@ const ProductListModal = ({ isOpen, onClose, title, products }: ProductListModal
                                                     </div>
                                                 </Link>
 
-                                                {badgeText && <Badge className="relative z-10 font-bold px-3 py-1"
+                                                {badgeText && <Badge className="relative z-10 font-bold px-3 py-1 bg-[#9F19FF] text-white rounded-[20px] text-[12px] shadow-sm transition-colors duration-300 group-hover:bg-[#7DE400]"
                                                     style={{
-                                                        backgroundColor: '#9F19FF',
-                                                        color: 'white',
-                                                        borderRadius: '20px',
-                                                        fontSize: '12px',
                                                         boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
                                                     }}>
                                                     {badgeText}
@@ -200,7 +196,7 @@ const ProductListModal = ({ isOpen, onClose, title, products }: ProductListModal
                                                     <Link to={getProductLink(product)}>
                                                         <Button
                                                             size="sm"
-                                                            className="h-9 px-4 rounded-xl border border-[#9F19FF] bg-[#3C3C43] text-white hover:bg-[#7DE400] hover:border-[#A6FF4D] hover:text-white transition-all duration-300 text-xs"
+                                                            className="h-9 px-4 rounded-xl border border-[#9F19FF] bg-[#3C3C43] text-white hover:opacity-90 transition-all duration-300 text-xs group-hover:bg-[#7DE400] group-hover:border-[#A6FF4D] group-hover:text-white"
                                                         >
                                                             צפו במוצר
                                                         </Button>

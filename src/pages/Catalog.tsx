@@ -111,12 +111,8 @@ const Catalog = () => {
                                                     </div>
                                                 </div>
 
-                                                {badgeText && <Badge className="relative z-10 font-bold px-3 py-1"
+                                                {badgeText && <Badge className="relative z-10 font-bold px-3 py-1 bg-[#9F19FF] text-white rounded-[20px] text-[12px] shadow-sm transition-colors duration-300 group-hover:bg-[#7DE400]"
                                                     style={{
-                                                        backgroundColor: '#9F19FF',
-                                                        color: 'white',
-                                                        borderRadius: '20px',
-                                                        fontSize: '12px',
                                                     }}>
                                                     {badgeText}
                                                 </Badge>}
@@ -143,7 +139,7 @@ const Catalog = () => {
                                                         )}
                                                     </div>
                                                     <Link to={getProductLink(product)}>
-                                                        <Button size="sm" className="rounded-[14px] border border-[#9F19FF] bg-[#3C3C43] text-[#F2F2F2] hover:bg-[#7DE400] hover:border-[#A6FF4D] hover:text-white transition-all">
+                                                        <Button size="sm" className="rounded-[14px] border border-[#9F19FF] bg-[#3C3C43] text-[#F2F2F2] hover:opacity-90 group-hover:bg-[#7DE400] group-hover:border-[#A6FF4D] group-hover:text-white transition-all">
                                                             צפו במוצר
                                                         </Button>
                                                     </Link>
