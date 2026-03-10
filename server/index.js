@@ -62,15 +62,34 @@ if (!process.env.JWT_SECRET) {
 
 // CORS Configuration
 const allowedOrigins = [
+    'https://destiny-rose.vercel.app',
     'http://localhost:5173',
     'http://localhost:3000',
-    'http://localhost:8080',
-    process.env.FRONTEND_URL,
-    process.env.CLIENT_URL
-].filter(Boolean);
+    'http://localhost:8080'
+];
+
+if (process.env.FRONTEND_URL) allowedOrigins.push(process.env.FRONTEND_URL);
+if (process.env.CLIENT_URL) allowedOrigins.push(process.env.CLIENT_URL);
 
 app.use(cors({
-    origin: allowedOrigins,
+    origin: function (origin, callback) {
+        // Explicitly block null origin (Sandbox bypass protection)
+        if (origin === 'null') {
+            console.warn('CORS blocked request from null origin');
+            return callback(new Error('CORS error: null origin is not allowed'));
+        }
+
+        // Allow requests with no origin (server-to-server, curl)
+        if (!origin) return callback(null, true);
+
+        // Strict exact matching (Prevents suffix/substring matching bypasses)
+        if (allowedOrigins.includes(origin)) {
+            callback(null, origin); // Reflect the exact matched origin
+        } else {
+            console.warn(`CORS blocked request from unauthorized origin: ${origin}`);
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
