@@ -70,21 +70,7 @@ const allowedOrigins = [
 ].filter(Boolean);
 
 app.use(cors({
-    origin: function (origin, callback) {
-        // Requests with no origin (server-to-server, mobile apps, curl)
-        if (!origin) {
-            // In production, allow originless requests (needed for Vercel serverless)
-            // In development, also allow for local testing tools
-            return callback(null, true);
-        }
-        // Always enforce explicit allowed origins list
-        if (allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            console.warn(`CORS blocked request from origin: ${origin}`);
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+    origin: allowedOrigins,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
