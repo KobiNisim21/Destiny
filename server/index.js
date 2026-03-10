@@ -79,8 +79,10 @@ app.use(cors({
             return callback(new Error('CORS error: null origin is not allowed'));
         }
 
-        // Allow requests with no origin (server-to-server, curl)
-        if (!origin) return callback(null, true);
+        // No origin header (same-origin, server-to-server, curl)
+        // callback(null, false) = pass request through WITHOUT setting any CORS headers
+        // This is correct: same-origin requests don't need CORS headers
+        if (!origin) return callback(null, false);
 
         // Strict exact matching (Prevents suffix/substring matching bypasses)
         if (allowedOrigins.includes(origin)) {
