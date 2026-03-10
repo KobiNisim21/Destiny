@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import cors from 'cors';
+// CORS is handled manually below — no cors package import needed
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import mongoSanitize from 'express-mongo-sanitize';
@@ -60,42 +60,49 @@ if (!process.env.JWT_SECRET) {
     process.exit(1);
 }
 
-// CORS Configuration
-const allowedOrigins = [
+// ═══════════════════════════════════════════════════════════════
+// MANUAL CORS MIDDLEWARE — No cors package, full explicit control
+// ═══════════════════════════════════════════════════════════════
+const ALLOWED_ORIGINS = new Set([
     'https://destiny-rose.vercel.app',
     'http://localhost:5173',
     'http://localhost:3000',
     'http://localhost:8080'
-];
+]);
 
-if (process.env.FRONTEND_URL) allowedOrigins.push(process.env.FRONTEND_URL);
-if (process.env.CLIENT_URL) allowedOrigins.push(process.env.CLIENT_URL);
+// Add env-based origins
+if (process.env.FRONTEND_URL) ALLOWED_ORIGINS.add(process.env.FRONTEND_URL);
+if (process.env.CLIENT_URL) ALLOWED_ORIGINS.add(process.env.CLIENT_URL);
 
-app.use(cors({
-    origin: function (origin, callback) {
-        // Explicitly block null origin (Sandbox bypass protection)
-        if (origin === 'null') {
-            console.warn('CORS blocked request from null origin');
-            return callback(new Error('CORS error: null origin is not allowed'));
-        }
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
 
-        // No origin header (same-origin, server-to-server, curl)
-        // callback(null, false) = pass request through WITHOUT setting any CORS headers
-        // This is correct: same-origin requests don't need CORS headers
-        if (!origin) return callback(null, false);
+    // If no Origin header or origin is 'null' string → do NOT set any CORS headers
+    // Same-origin and server-to-server requests don't need CORS
+    // 'null' origin (sandbox iframes) is explicitly rejected
+    if (!origin || origin === 'null') {
+        return next();
+    }
 
-        // Strict exact matching (Prevents suffix/substring matching bypasses)
-        if (allowedOrigins.includes(origin)) {
-            callback(null, origin); // Reflect the exact matched origin
-        } else {
-            console.warn(`CORS blocked request from unauthorized origin: ${origin}`);
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-}));
+    // STRICT exact match against allowed origins list (Set.has = O(1) exact equality)
+    // This cannot be bypassed by suffix matching, substring matching, or regex tricks
+    if (ALLOWED_ORIGINS.has(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+        res.setHeader('Access-Control-Allow-Credentials', 'true');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        res.setHeader('Vary', 'Origin');
+    }
+    // If origin is NOT in the allowlist → no CORS headers are set at all
+    // The browser will block the cross-origin request automatically
+
+    // Handle preflight OPTIONS requests
+    if (req.method === 'OPTIONS') {
+        return res.status(204).end();
+    }
+
+    next();
+});
 
 // Serve uploads statically
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
