@@ -3,6 +3,7 @@ import { Play, ArrowLeft, ShieldCheck, Sparkles } from "lucide-react";
 import creatorImage from "@/assets/about-creator.jpg";
 import { useEffect, useState } from "react";
 import API_BASE_URL from "@/config";
+import DOMPurify from 'dompurify';
 
 import { Link } from "react-router-dom";
 import { X } from "lucide-react";
@@ -95,9 +96,9 @@ const AboutCreator = () => {
             </div>
 
             {/* Paragraph */}
-            <p className="font-['Noto_Sans_Hebrew'] text-[24px] font-light leading-normal text-[#4B5563] max-w-xl">
-              {content?.aboutDescription || "ברוכים הבאים לקולקציית המרצ'נדייז הרשמית של דסטני. עיצובים בלעדיים, מכירות מוגבלות ומוצרים שיוצרו באהבה עבור הקהילה המדהימה שלי. ✨"}
-            </p>
+            <div className="font-['Noto_Sans_Hebrew'] text-[24px] font-light leading-normal text-[#4B5563] max-w-xl whitespace-pre-line"
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content?.aboutDescription || "ברוכים הבאים לקולקציית המרצ'נדייז הרשמית של דסטני. עיצובים בלעדיים, מכירות מוגבלות ומוצרים שיוצרו באהבה עבור הקהילה המדהימה שלי. ✨") }}
+            />
 
             {/* Buttons */}
             <div className="flex flex-wrap gap-4 pt-4">

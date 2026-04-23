@@ -546,6 +546,9 @@ const ContentSettings = () => {
                             value={settings.aboutDescription}
                             onChange={e => setSettings({ ...settings, aboutDescription: e.target.value })}
                         />
+                        <p className="text-xs text-gray-500">
+                            * טיפ: כדי להדגיש מילה, תוכלו להוסיף <b>&lt;b&gt;</b> לפני המילה, ו-<b>&lt;/b&gt;</b> אחריה (לדוגמה: מילה <b>&lt;b&gt;מודגשת&lt;/b&gt;</b>).
+                        </p>
                     </div>
 
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-6 border-t pt-4">
@@ -892,6 +895,9 @@ const ContentSettings = () => {
                             value={settings.pageAboutDescription}
                             onChange={e => setSettings({ ...settings, pageAboutDescription: e.target.value })}
                         />
+                        <p className="text-xs text-gray-500">
+                            * טיפ: כדי להדגיש מילה, תוכלו להוסיף <b>&lt;b&gt;</b> לפני המילה, ו-<b>&lt;/b&gt;</b> אחריה (לדוגמה: מילה <b>&lt;b&gt;מודגשת&lt;/b&gt;</b>).
+                        </p>
                     </div>
 
                     <div className="space-y-2 border-t pt-4">

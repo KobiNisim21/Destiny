@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import API_BASE_URL from "../config";
 import { Youtube, Instagram } from "lucide-react";
+import DOMPurify from 'dompurify';
 
 interface ContentData {
     aboutTitle1: string;
@@ -92,9 +93,9 @@ const About = () => {
 
                         {/* Text Content Section */}
                         <div className="space-y-8 lg:pt-8 animate-slide-up">
-                            <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed whitespace-pre-line text-lg">
-                                {content.pageAboutDescription || content.aboutDescription || "ברוכים הבאים לקולקציית המרצ'נדייז הרשמית של דסטני. עיצובים בלעדיים, מכירות מוגבלות ומוצרים שיוצרו באהבה עבור הקהילה המדהימה שלי. ✨"}
-                            </div>
+                            <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed whitespace-pre-line text-lg"
+                                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content.pageAboutDescription || content.aboutDescription || "ברוכים הבאים לקולקציית המרצ'נדייז הרשמית של דסטני. עיצובים בלעדיים, מכירות מוגבלות ומוצרים שיוצרו באהבה עבור הקהילה המדהימה שלי. ✨") }}
+                            />
 
                             {/* Stats Grid */}
                             <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-100">
