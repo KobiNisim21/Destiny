@@ -147,7 +147,7 @@ const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) 
       </div>
 
       {/* Products Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 justify-items-center">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8 justify-items-center">
         {loading ? (
           // Skeleton Loader
           [1, 2, 3, 4].map((i) => (
@@ -173,29 +173,28 @@ const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) 
             if (!badgeText && product.isNewArrival) badgeText = "חדש!";
 
             return (
-              <div key={product._id || product.id} className="group animate-slide-up" style={{
+              <Link key={product._id || product.id} to={getProductLink(product)} className="group animate-slide-up block" style={{
                 animationDelay: `${index * 0.1}s`,
                 width: '100%',
                 maxWidth: '350px',
-                height: '450px'
+                textDecoration: 'none'
               }}>
                 <div
-                  className="overflow-hidden h-full flex flex-col transition-all duration-300 relative group-hover:-translate-y-1 group-hover:bg-white shadow-[0_8px_18.7px_-7px_#9F19FF] group-hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2),0_10px_20px_-5px_rgba(125,228,0,0.4)]"
+                  className="overflow-hidden flex flex-col transition-all duration-300 relative shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    gap: '2px', // GAP REDUCED TO 2PX as requested
+                    gap: '2px',
                     borderRadius: '24px',
-                    height: '450px',
                     width: '100%',
-                    background: 'linear-gradient(180deg, #16172E 0%, #16172E 80%, #3E1B63 100%)'
+                    background: '#FFFFFF'
                   }}>
 
                   {/* Image Container */}
-                  <div className="relative overflow-hidden w-full group-hover:bg-[#D5D5F5]/30 transition-colors duration-300"
+                  <div className="relative overflow-hidden w-full"
                     style={{
-                      height: '265px', // Increased height to show more image
+                      height: '265px',
                       flexShrink: 0,
                       padding: '12px 18px',
                       display: 'flex',
@@ -203,6 +202,7 @@ const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) 
                       alignItems: 'flex-start',
                       gap: '10px',
                       borderRadius: '24px 24px 0 0',
+                      backgroundColor: '#F5F0FA',
                     }}>
 
                     {/* Default Image */}
@@ -228,7 +228,7 @@ const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) 
                       </div>
                     </button>
 
-                    {badgeText && <Badge className="relative z-10 font-bold px-3 py-1 bg-[#9F19FF] text-white rounded-[20px] text-[12px] shadow-sm transition-colors duration-300 group-hover:bg-[#7DE400]"
+                    {badgeText && <Badge className="relative z-10 font-bold px-3 py-1 bg-[#9F19FF] text-white rounded-[20px] text-[12px] shadow-sm"
                       style={{
                         boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
                       }}>
@@ -237,38 +237,39 @@ const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) 
                   </div>
 
                   {/* Content Container */}
-                  <div className="w-full px-5 pb-[70px] flex flex-col flex-1 relative duration-300">
+                  <div className="w-full px-5 py-4 flex flex-col flex-1 relative">
                     {/* Title */}
-                    <h3 className="mb-1 text-[#F2F2F2] transition-colors duration-300 group-hover:text-[#7DE400]" style={{
+                    <h3 className="mb-1" style={{
+                      color: '#22222A',
                       textAlign: 'right',
                       fontFamily: '"Noto Sans Hebrew", sans-serif',
                       fontSize: '20px',
-                      fontStyle: 'normal',
                       fontWeight: 700,
                       lineHeight: 'normal',
                       alignSelf: 'stretch',
-                      marginTop: '4px' // Adjusted margin as per instruction
+                      marginTop: '4px'
                     }}>
                       {getProductName(product)}
                     </h3>
 
                     {/* Description */}
-                    <p className="flex-1 text-[#F2F2F2] transition-colors duration-300" style={{
+                    <p className="flex-1" style={{
+                      color: '#22222A',
                       textAlign: 'right',
                       fontFamily: '"Noto Sans Hebrew", sans-serif',
                       fontSize: '14px',
-                      fontStyle: 'normal',
-                      fontWeight: 200,
+                      fontWeight: 300,
                       lineHeight: 'normal',
                       alignSelf: 'stretch'
                     }}>
                       {product.description && product.description.length > 60 ? product.description.substring(0, 60) + '...' : product.description}
                     </p>
 
-                    {/* Footer: Price & Button - Absolute Positioning */}
-                    <div className="flex items-center justify-between w-full absolute bottom-5 left-0 px-5">
+                    {/* Footer: Price & Button */}
+                    <div className="flex items-center justify-between w-full mt-4">
                       <div className="flex flex-col items-start gap-0">
-                        <span className="text-[#FFF] transition-colors duration-300" style={{
+                        <span style={{
+                          color: '#22222A',
                           fontFamily: '"Noto Sans Hebrew"',
                           fontSize: '24px',
                           fontWeight: 700,
@@ -276,24 +277,22 @@ const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) 
                           ₪{product.price}
                         </span>
                         {product.originalPrice && product.originalPrice > product.price && (
-                          <span className="text-sm text-gray-400 line-through -mt-1 group-hover:text-gray-500">
+                          <span className="text-sm text-gray-400 line-through -mt-1">
                             ₪{product.originalPrice}
                           </span>
                         )}
                       </div>
 
-                      <Link to={getProductLink(product)}>
-                        <Button
-                          size="sm"
-                          className="w-[107px] h-[36px] px-[18px] py-[4px] flex flex-col justify-center items-center gap-[10px] rounded-[14px] border border-[#9F19FF] bg-[#3C3C43] text-[#F2F2F2] font-['Noto_Sans_Hebrew'] text-[14px] font-normal transition-all duration-300 hover:opacity-90 group-hover:bg-[#7DE400] group-hover:border-[#A6FF4D] group-hover:text-white"
-                        >
-                          צפו במוצר
-                        </Button>
-                      </Link>
+                      <Button
+                        size="sm"
+                        className="w-[107px] h-[36px] px-[18px] py-[4px] flex flex-col justify-center items-center gap-[10px] rounded-[14px] border border-[#22222A] bg-[#22222A] text-white font-['Noto_Sans_Hebrew'] text-[14px] font-normal transition-all duration-300 hover:bg-[#333] hover:border-[#333]"
+                      >
+                        צפו במוצר
+                      </Button>
                     </div>
                   </div>
                 </div>
-              </div>)
+              </Link>)
           }))}
       </div>
 
