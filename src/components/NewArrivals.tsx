@@ -158,13 +158,13 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
 
           {/* Right - Product Card (First Position) */}
           <div className="relative animate-slide-up flex lg:justify-end justify-center">
-            <div className="group" style={{
+            <Link to={productLink} className="group block" style={{
               width: '100%',
               maxWidth: '360px',
-              height: '540px'
+              textDecoration: 'none'
             }}>
               <div
-                className="overflow-hidden h-full flex flex-col relative bg-white shadow-[0_8px_18.7px_-12px_rgba(239,73,252,0.49)] group-hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2),0_10px_20px_-5px_rgba(125,228,0,0.4)] transition-all duration-300 group-hover:-translate-y-1"
+                className="overflow-hidden flex flex-col relative bg-white shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-all duration-300"
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -176,7 +176,7 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                 }}>
 
                 {/* Image Container */}
-                <div className="relative overflow-hidden w-full group-hover:bg-[#D5D5F5]/30"
+                <div className="relative overflow-hidden w-full"
                   style={{
                     height: '350px',
                     flexShrink: 0,
@@ -186,12 +186,12 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                     alignItems: 'flex-start',
                     gap: '10px',
                     borderRadius: '24px 24px 0 0',
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: '#F5F0FA',
                   }}>
                   <img src={displayImage} alt={productName} className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0" />
                   <img src={hoverImage} alt={productName} className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
 
-                  <Badge className="relative z-10 font-bold px-3 py-1 bg-[#9F19FF] text-white rounded-[20px] text-[12px] shadow-sm transition-colors duration-300 group-hover:bg-[#7DE400]"
+                  <Badge className="relative z-10 font-bold px-3 py-1 bg-[#9F19FF] text-white rounded-[20px] text-[12px] shadow-sm"
                     style={{
                       boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
                     }}>
@@ -200,14 +200,14 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                 </div>
 
                 {/* Content Container */}
-                <div className="w-full px-5 pb-[40px] flex flex-col flex-1 relative justify-start pt-2">
+                <div className="w-full px-5 py-4 flex flex-col flex-1 relative justify-start">
 
                   {/* Title */}
-                  <h3 className="mb-1 text-[#22222A] group-hover:text-[#7DE400] transition-colors duration-300" style={{
+                  <h3 className="mb-1" style={{
+                    color: '#22222A',
                     textAlign: 'right',
                     fontFamily: '"Noto Sans Hebrew", sans-serif',
                     fontSize: '24px',
-                    fontStyle: 'normal',
                     fontWeight: 700,
                     lineHeight: 'normal',
                     alignSelf: 'stretch',
@@ -217,12 +217,12 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                   </h3>
 
                   {/* Description */}
-                  <p className="text-[#22222A] group-hover:text-[#4B5563] transition-colors duration-300" style={{
+                  <p style={{
+                    color: '#22222A',
                     textAlign: 'right',
                     fontFamily: '"Noto Sans Hebrew", sans-serif',
                     fontSize: '16px',
-                    fontStyle: 'normal',
-                    fontWeight: 200,
+                    fontWeight: 300,
                     lineHeight: 'normal',
                     alignSelf: 'stretch',
                     marginTop: '8px'
@@ -233,7 +233,8 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                   {/* Footer: Price & Button */}
                   <div className="flex items-center justify-between w-full absolute bottom-4 left-0 px-5">
                     <div className="flex flex-col items-start gap-0">
-                      <span className="text-[#22222A] transition-colors duration-300" style={{
+                      <span style={{
+                        color: '#22222A',
                         fontFamily: '"Noto Sans Hebrew"',
                         fontSize: '28px',
                         fontWeight: 700,
@@ -247,18 +248,16 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                       )}
                     </div>
 
-                    <Link to={productLink}>
-                      <Button
-                        size="sm"
-                        className="w-[120px] h-[40px] px-[18px] py-[4px] flex flex-col justify-center items-center gap-[10px] rounded-[14px] border border-[#22222A] bg-white text-[#22222A] group-hover:bg-[#7DE400] group-hover:text-white group-hover:border-white font-['Noto_Sans_Hebrew'] text-[14px] font-normal transition-all duration-300"
-                      >
-                        צפו במוצר
-                      </Button>
-                    </Link>
+                    <Button
+                      size="sm"
+                      className="w-[120px] h-[40px] px-[18px] py-[4px] flex flex-col justify-center items-center gap-[10px] rounded-[14px] border border-[#22222A] bg-[#22222A] text-white font-['Noto_Sans_Hebrew'] text-[14px] font-normal transition-all duration-300 hover:bg-[#333] hover:border-[#333]"
+                    >
+                      צפו במוצר
+                    </Button>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
 
           {/* Left - Content (Swapped to Second Position) */}
