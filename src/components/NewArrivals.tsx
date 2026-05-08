@@ -1,24 +1,13 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Sparkles, ArrowLeft } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import API_BASE_URL from "@/config";
-import protestShirtImage from "@/assets/A9.png";
-import protestShirtHoverImage from "@/assets/product-tshirt.jpg";
 import { Product } from "./ProductListModal";
 import { Skeleton } from "@/components/ui/skeleton";
 
 // Types
-
-const DEFAULT_NEW_ARRIVAL: Product = {
-  title: "Signature Hoodie",
-  name: "Signature Hoodie",
-  price: 99.00,
-  description: "חולצת פרימיום בעיצוב ייחודי ובלעדי.",
-  image: protestShirtImage,
-  hoverImage: protestShirtHoverImage
-};
 
 const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) => {
   const [product, setProduct] = useState<Product | null>(null);
@@ -39,7 +28,17 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
   }, []);
 
   useEffect(() => {
-    if (dbProducts.length > 0) {
+    if (dbProducts.length > 0 && content) {
+      // Manual product selection: use the product ID from content settings
+      if (content.newArrivalsProductId) {
+        const selectedProduct = dbProducts.find((p: Product) => p._id === content.newArrivalsProductId);
+        if (selectedProduct) {
+          setProduct(selectedProduct);
+          setLoading(false);
+          return;
+        }
+      }
+      // Fallback: find isNewArrival or first product
       const newArrival = dbProducts.find((p: Product) => p.isNewArrival);
       if (newArrival) {
         setProduct(newArrival);
@@ -48,11 +47,7 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
       }
       setLoading(false);
     }
-    // If dbProducts is empty but we've waited "long enough"? 
-    // Actually, usually dbProducts starts empty then populates. 
-    // If it never populates (network error), loading stays true. 
-    // This is acceptable for now.
-  }, [dbProducts]);
+  }, [dbProducts, content]);
 
   if (loading) {
     return (
@@ -95,22 +90,7 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                 <Skeleton className="h-6 w-full ml-auto" />
                 <Skeleton className="h-6 w-5/6 ml-auto" />
               </div>
-              <div className="space-y-4 pt-4">
-                <div className="flex items-center gap-4 justify-end">
-                  <div className="text-right space-y-2">
-                    <Skeleton className="h-6 w-32 ml-auto" />
-                    <Skeleton className="h-4 w-48 ml-auto" />
-                  </div>
-                  <Skeleton className="h-8 w-8 rounded-full" />
-                </div>
-                <div className="flex items-center gap-4 justify-end">
-                  <div className="text-right space-y-2">
-                    <Skeleton className="h-6 w-32 ml-auto" />
-                    <Skeleton className="h-4 w-48 ml-auto" />
-                  </div>
-                  <Skeleton className="h-8 w-8 rounded-full" />
-                </div>
-              </div>
+              <Skeleton className="h-16 w-full ml-auto rounded-xl" />
               <Skeleton className="h-12 w-48 ml-auto rounded-full mt-8" />
             </div>
           </div>
@@ -133,13 +113,11 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
   const productName = product.title || product.name || '';
   const productLink = product._id ? `/product/${product._id}` : '#';
 
-  const features = content?.newArrivalsFeatures && content.newArrivalsFeatures.length > 0 ? content.newArrivalsFeatures : [
-    { title: "מהדורות במהדורה מוגבלת", description: "עיצובים בלעדיים שלא תמצאו בשום מקום אחר" },
-    { title: "חומרים איכותיים", description: "בדים איכותיים לנוחות מרבית" },
-    { title: "משלוח מהיר", description: "קבלו את הסחורה שלכם תוך 3-5 ימים" }
-  ];
-
-  const featureColors = ['#E487E8', '#F4CAB8', '#F3A4E6'];
+  // Calculate remaining stock
+  const totalStock = content?.newArrivalsStock ?? 100;
+  const salesCount = (product as any).salesCount || 0;
+  const remainingStock = Math.max(0, totalStock - salesCount);
+  const stockLabel = content?.newArrivalsStockLabel || "חולצות";
 
   return (
     <section
@@ -195,7 +173,7 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                     style={{
                       boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
                     }}>
-                    חדש
+                    מוצר נבחר
                   </Badge>
                 </div>
 
@@ -325,36 +303,62 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
               {content?.newArrivalsSubtitle || "היו הראשונים להשיג את המוצר החדש ביותר. כמות מוגבלת זמינה - ברגע שהם נגמרים, הם נגמרים לתמיד!"}
             </p>
 
-            {/* Feature List */}
-            <div className="space-y-6 pt-4">
+            {/* Stock Counter - Replaces Feature List */}
+            <div className="pt-2">
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+                gap: '14px',
+                direction: 'rtl',
+              }}>
+                {/* Right text: "נותרו רק" */}
+                <span style={{
+                  color: '#4B5563',
+                  fontFamily: '"Noto Sans Hebrew", sans-serif',
+                  fontSize: '20px',
+                  fontWeight: 400,
+                  lineHeight: 'normal',
+                  whiteSpace: 'nowrap',
+                }}>
+                  נותרו רק
+                </span>
 
-              {features.map((feature: any, index: number) => (
-                <div key={index} className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style={{ backgroundColor: featureColors[index % featureColors.length] }}>
-                    {index + 1}
-                  </div>
-                  <div>
-                    <h4 style={{
-                      color: '#4B5563',
-                      fontFamily: '"Noto Sans Hebrew", sans-serif',
-                      fontSize: '16px',
-                      fontWeight: 600,
-                      marginBottom: '4px'
-                    }}>
-                      {feature.title}
-                    </h4>
-                    <p style={{
-                      color: '#4B5563',
-                      fontFamily: '"Noto Sans Hebrew", sans-serif',
-                      fontSize: '16px',
-                      fontWeight: 300
-                    }}>
-                      {feature.description}
-                    </p>
-                  </div>
+                {/* Number in circle */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  minWidth: '72px',
+                  height: '52px',
+                  padding: '8px 18px',
+                  borderRadius: '60px',
+                  border: '2px solid #D1D5DB',
+                  background: '#FFFFFF',
+                }}>
+                  <span style={{
+                    color: '#22222A',
+                    fontFamily: '"Noto Sans Hebrew", sans-serif',
+                    fontSize: '28px',
+                    fontWeight: 700,
+                    lineHeight: '1',
+                  }}>
+                    {remainingStock}
+                  </span>
                 </div>
-              ))}
 
+                {/* Left text: "חולצות אחרונות בלבד!" */}
+                <span style={{
+                  color: '#4B5563',
+                  fontFamily: '"Noto Sans Hebrew", sans-serif',
+                  fontSize: '20px',
+                  fontWeight: 400,
+                  lineHeight: 'normal',
+                  whiteSpace: 'nowrap',
+                }}>
+                  {stockLabel} אחרונות בלבד!
+                </span>
+              </div>
             </div>
 
             {/* CTA Button */}
@@ -385,7 +389,7 @@ const NewArrivals = ({ products: dbProducts = [] }: { products?: Product[] }) =>
                   lineHeight: 'normal',
                   whiteSpace: 'nowrap'
                 }}>
-                  {content?.newArrivalsButtonText || "הזמינו עכשיו"}
+                  {content?.newArrivalsButtonText || "מהרו להזמין"}
                 </span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
                   <path d="M7.25299 14.2563C7.49678 13.9977 7.4974 13.5777 7.25299 13.3191L2.13183 7.88804H19.3749C19.72 7.88804 20 7.59136 20 7.22513C20 6.8589 19.7199 6.56223 19.3749 6.56223H2.13183L7.25237 1.13116C7.49678 0.872563 7.49678 0.452539 7.25237 0.193945C7.00796 -0.0646484 6.6123 -0.0646484 6.36852 0.193945L0.180969 6.7565C-0.0603229 7.01247 -0.0603229 7.43839 0.180969 7.69437L6.36852 14.2569C6.61293 14.5156 7.00858 14.5156 7.25299 14.2563C7.00858 14.5156 7.49678 13.9977 7.25299 14.2563Z" fill="white" />

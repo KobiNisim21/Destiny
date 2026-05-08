@@ -5,9 +5,18 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { useToast } from "@/components/ui/use-toast";
 import API_BASE_URL from "@/config";
 
+interface AdminProduct {
+    _id: string;
+    title: string;
+    price: number;
+    mainImage?: string;
+}
+
+
 const ContentSettings = () => {
     const { toast } = useToast();
     const [loading, setLoading] = useState(false);
+    const [allProducts, setAllProducts] = useState<AdminProduct[]>([]);
     const [settings, setSettings] = useState({
         heroTitle: "",
         heroSubtitle: "",
@@ -52,7 +61,9 @@ const ContentSettings = () => {
         newArrivalsSubtitle: "",
         newArrivalsTagText: "",
         newArrivalsButtonText: "",
-        newArrivalsFeatures: [] as { title: string; description: string }[],
+        newArrivalsProductId: "",
+        newArrivalsStock: 100,
+        newArrivalsStockLabel: "חולצות",
 
         // New separate About Page fields
         pageAboutTitle1: "",
@@ -86,7 +97,21 @@ const ContentSettings = () => {
 
     useEffect(() => {
         fetchContent();
+        fetchProducts();
     }, []);
+
+    const fetchProducts = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const res = await fetch(`${API_BASE_URL}/api/products`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const data = await res.json();
+            setAllProducts(data);
+        } catch (error) {
+            console.error('Failed to fetch products', error);
+        }
+    };
 
     const fetchContent = async () => {
         try {
@@ -170,12 +195,10 @@ const ContentSettings = () => {
                 newArrivalsTitle: data.newArrivalsTitle || "פריטים חדשים.",
                 newArrivalsSubtitle: data.newArrivalsSubtitle || "היו הראשונים להשיג את המוצר החדש ביותר. כמות מוגבלת זמינה - ברגע שהם נגמרים, הם נגמרים לתמיד!",
                 newArrivalsTagText: data.newArrivalsTagText || "מוצרים שנחתו עכשיו",
-                newArrivalsButtonText: data.newArrivalsButtonText || "הזמינו עכשיו",
-                newArrivalsFeatures: data.newArrivalsFeatures && data.newArrivalsFeatures.length > 0 ? data.newArrivalsFeatures : [
-                    { title: "מהדורות במהדורה מוגבלת", description: "עיצובים בלעדיים שלא תמצאו בשום מקום אחר" },
-                    { title: "חומרים איכותיים", description: "בדים איכותיים לנוחות מרבית" },
-                    { title: "משלוח מהיר", description: "קבלו את הסחורה שלכם תוך 3-5 ימים" }
-                ],
+                newArrivalsButtonText: data.newArrivalsButtonText || "מהרו להזמין",
+                newArrivalsProductId: data.newArrivalsProductId || "",
+                newArrivalsStock: data.newArrivalsStock ?? 100,
+                newArrivalsStockLabel: data.newArrivalsStockLabel || "חולצות",
 
                 // Page About Defaults (Fallback to homepage ones initially if empty)
                 pageAboutTitle1: data.pageAboutTitle1 || "לחלום.",
@@ -444,7 +467,7 @@ const ContentSettings = () => {
             <Card className="border-none shadow-sm bg-white border-2 border-[#9F19FF]/20">
                 <CardHeader className="bg-[#9F19FF]/5 rounded-t-lg">
                     <CardTitle className="text-[#9F19FF]">פריטים חדשים (New Arrivals)</CardTitle>
-                    <CardDescription>עריכת הטקסטים בסקשן המציג את המוצר החדש ביותר.</CardDescription>
+                    <CardDescription>עריכת הטקסטים בסקשן המציג את המוצר החדש ביותר, בחירת מוצר והגדרת מלאי.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6 pt-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -481,33 +504,52 @@ const ContentSettings = () => {
                         />
                     </div>
 
+                    {/* Product Selection & Stock */}
                     <div className="space-y-4 pt-4 border-t">
-                        <label className="text-sm font-medium">רשימת פיצ'רים (3 פריטים)</label>
-                        {settings.newArrivalsFeatures.map((feature, index) => (
-                            <div key={index} className="flex gap-4 items-start p-4 border rounded-xl bg-gray-50">
-                                <span className="font-bold text-gray-400 mt-2">#{index + 1}</span>
-                                <div className="flex-1 space-y-2">
-                                    <Input
-                                        placeholder="כותרת הפיצ'ר"
-                                        value={feature.title}
-                                        onChange={(e) => {
-                                            const newFeatures = [...settings.newArrivalsFeatures];
-                                            newFeatures[index].title = e.target.value;
-                                            setSettings({ ...settings, newArrivalsFeatures: newFeatures });
-                                        }}
-                                    />
-                                    <Input
-                                        placeholder="תיאור הפיצ'ר"
-                                        value={feature.description}
-                                        onChange={(e) => {
-                                            const newFeatures = [...settings.newArrivalsFeatures];
-                                            newFeatures[index].description = e.target.value;
-                                            setSettings({ ...settings, newArrivalsFeatures: newFeatures });
-                                        }}
-                                    />
-                                </div>
+                        <label className="text-sm font-medium text-[#9F19FF]">בחירת מוצר ומלאי</label>
+                        <p className="text-xs text-gray-500 -mt-2">בחרו את המוצר שיוצג בסקשן "פריטים חדשים" והגדירו את כמות המלאי הזמין. המלאי יתעדכן אוטומטית בעת רכישות.</p>
+
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium">בחירת מוצר להצגה</label>
+                            <select
+                                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                value={settings.newArrivalsProductId}
+                                onChange={(e) => setSettings({ ...settings, newArrivalsProductId: e.target.value })}
+                            >
+                                <option value="">-- בחרו מוצר --</option>
+                                {allProducts.map((p) => (
+                                    <option key={p._id} value={p._id}>
+                                        {p.title} — ₪{p.price}
+                                    </option>
+                                ))}
+                            </select>
+                            {settings.newArrivalsProductId && (
+                                <p className="text-xs text-green-600">✓ מוצר נבחר: {allProducts.find(p => p._id === settings.newArrivalsProductId)?.title || settings.newArrivalsProductId}</p>
+                            )}
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium">כמות מלאי זמין (התחלתי)</label>
+                                <Input
+                                    type="number"
+                                    min="0"
+                                    value={settings.newArrivalsStock}
+                                    onChange={(e) => setSettings({ ...settings, newArrivalsStock: Number(e.target.value) })}
+                                    placeholder="100"
+                                />
+                                <p className="text-xs text-gray-500">כמות המלאי הכוללת. המספר יקטן אוטומטית בעת רכישה.</p>
                             </div>
-                        ))}
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium">תווית מוצר (למשל: חולצות)</label>
+                                <Input
+                                    value={settings.newArrivalsStockLabel}
+                                    onChange={(e) => setSettings({ ...settings, newArrivalsStockLabel: e.target.value })}
+                                    placeholder="חולצות"
+                                />
+                                <p className="text-xs text-gray-500">הטקסט שיופיע ליד מספר המלאי, למשל: "נותרו רק 100 <strong>חולצות</strong> אחרונות בלבד!"</p>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="flex justify-end">
