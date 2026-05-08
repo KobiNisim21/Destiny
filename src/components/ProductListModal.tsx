@@ -116,10 +116,11 @@ const ProductListModal = ({ isOpen, onClose, title, products }: ProductListModal
                                         animationDelay: `${index * 0.05}s`,
                                         width: '100%',
                                         maxWidth: '310px',
+                                        height: '450px',
                                         textDecoration: 'none'
                                     }}>
                                         <div
-                                            className="overflow-hidden flex flex-col transition-all duration-300 relative shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
+                                            className="overflow-hidden h-full flex flex-col transition-all duration-300 relative shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
                                             style={{
                                                 borderRadius: '24px',
                                                 background: '#FFFFFF'
@@ -151,7 +152,7 @@ const ProductListModal = ({ isOpen, onClose, title, products }: ProductListModal
                                             </div>
 
                                             {/* Content Container */}
-                                            <div className="w-full px-5 py-4 flex flex-col flex-1 relative">
+                                            <div className="w-full px-5 pb-[70px] pt-4 flex flex-col flex-1 relative">
 
                                                 {/* Title */}
                                                 <h3 className="mb-1" style={{
@@ -175,7 +176,7 @@ const ProductListModal = ({ isOpen, onClose, title, products }: ProductListModal
                                                 </p>
 
                                                 {/* Footer */}
-                                                <div className="flex items-center justify-between w-full mt-4 pt-4 border-t border-gray-100">
+                                                <div className="flex items-center justify-between w-full absolute bottom-5 left-0 px-5">
                                                     <div className="flex flex-col items-start gap-0">
                                                         <span className="font-bold text-xl" style={{ color: '#22222A' }}>
                                                             ₪{product.price}

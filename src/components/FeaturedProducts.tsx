@@ -177,10 +177,11 @@ const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) 
                 animationDelay: `${index * 0.1}s`,
                 width: '100%',
                 maxWidth: '350px',
+                height: '450px',
                 textDecoration: 'none'
               }}>
                 <div
-                  className="overflow-hidden flex flex-col transition-all duration-300 relative shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
+                  className="overflow-hidden h-full flex flex-col transition-all duration-300 relative shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -237,7 +238,7 @@ const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) 
                   </div>
 
                   {/* Content Container */}
-                  <div className="w-full px-5 py-4 flex flex-col flex-1 relative">
+                  <div className="w-full px-5 pb-[70px] flex flex-col flex-1 relative">
                     {/* Title */}
                     <h3 className="mb-1" style={{
                       color: '#22222A',
@@ -266,7 +267,7 @@ const FeaturedProducts = ({ products: dbProducts = [] }: FeaturedProductsProps) 
                     </p>
 
                     {/* Footer: Price & Button */}
-                    <div className="flex items-center justify-between w-full mt-4">
+                    <div className="flex items-center justify-between w-full absolute bottom-5 left-0 px-5">
                       <div className="flex flex-col items-start gap-0">
                         <span style={{
                           color: '#22222A',
